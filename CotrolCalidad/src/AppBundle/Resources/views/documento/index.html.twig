@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Documentos list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Urldocumento</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for documento in documentos %}
+            <tr>
+                <td><a href="{{ path('documento_show', { 'id': documento.id }) }}">{{ documento.id }}</a></td>
+                <td>{{ documento.nombre }}</td>
+                <td>{{ documento.urlDocumento }} <a href="{{ path('catalogo_marca_download', { 'id': documento.id }) }}">descargar</a></td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('documento_show', { 'id': documento.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('documento_edit', { 'id': documento.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('documento_new') }}">Create a new documento</a>
+        </li>
+    </ul>
+{% endblock %}

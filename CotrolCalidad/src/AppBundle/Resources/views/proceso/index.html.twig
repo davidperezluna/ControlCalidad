@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Procesos list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Codigo</th>
+                <th>Nombre</th>
+                <th>Version</th>
+                <th>Vigencia</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for proceso in procesos %}
+            <tr>
+                <td><a href="{{ path('proceso_show', { 'id': proceso.id }) }}">{{ proceso.id }}</a></td>
+                <td>{{ proceso.codigo }}</td>
+                <td>{{ proceso.nombre }}</td>
+                <td>{{ proceso.version }}</td>
+                <td>{% if proceso.vigencia %}{{ proceso.vigencia|date('Y-m-d') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('proceso_show', { 'id': proceso.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('proceso_edit', { 'id': proceso.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('proceso_new') }}">Create a new proceso</a>
+        </li>
+    </ul>
+{% endblock %}

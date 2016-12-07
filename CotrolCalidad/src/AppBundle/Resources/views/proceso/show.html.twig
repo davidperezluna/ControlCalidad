@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Proceso</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ proceso.id }}</td>
+            </tr>
+            <tr>
+                <th>Codigo</th>
+                <td>{{ proceso.codigo }}</td>
+            </tr>
+            <tr>
+                <th>Nombre</th>
+                <td>{{ proceso.nombre }}</td>
+            </tr>
+            <tr>
+                <th>Version</th>
+                <td>{{ proceso.version }}</td>
+            </tr>
+            <tr>
+                <th>Vigencia</th>
+                <td>{% if proceso.vigencia %}{{ proceso.vigencia|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('proceso_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('proceso_edit', { 'id': proceso.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

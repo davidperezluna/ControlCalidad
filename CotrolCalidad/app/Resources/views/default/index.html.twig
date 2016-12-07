@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <br>
+    <div class="container col-lg-3 col-lg-offset-4">
+        <form action="{{path("usuario_login_check")}}" method="post" class="form-signin">
+
+            <h2 class="form-signin-heading">Intrudusca sus credenciales</h2>
+            <label for="inputEmail" class="sr-only">Email</label>
+            <span class="block input-icon input-icon-right">
+                <input type="text" id="username" name="_username"  value="{{ last_username }}" class="form-control" required="required"/>
+                <i class="ace-icon fa fa-user"></i>
+            </span>
+
+            <label for="inputPassword" class="sr-only">Password</label>
+            <span class="block input-icon input-icon-right">
+                <input type="password" placeholder="Password" id="password" name="_password" class="form-control" required="required"/>
+                <i class="ace-icon fa fa-lock"></i>
+            </span>
+
+            <div class="space"></div>
+
+            <div class="clearfix">
+                <label>
+                    <input type="checkbox" value="remember-me"> Remember me
+                </label>
+
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Iniciar Sesion</button>
+
+                <input type="hidden" name="_target_path" value="/" />
+            </div>
+
+            <div class="space-4"></div>
+        </form>
+    </div>
+{% endblock %}

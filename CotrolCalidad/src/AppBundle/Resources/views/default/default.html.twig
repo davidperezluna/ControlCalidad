@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+	<div class="btn-group-vertical" role="group" aria-label="...">
+		{% for e in empresas %}
+	  <div class="btn-group" role="group">
+	    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	      {{e.nombre}}
+	      <span class="caret"></span>
+	    </button>
+	    
+	    <ul class="dropdown-menu">
+		    {% for d in e.dependencias %}
+		      <li><a href="{{ path('dependencia_show', { 'id': d.id }) }}">{{d.nombre}}</a></li>
+		    {% endfor %}
+	    </ul>
+	  </div>
+	   {% endfor %}
+	</div>
+{% endblock %}

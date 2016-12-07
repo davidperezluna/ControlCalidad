@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Procedimientodocumentos list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for procedimientoDocumento in procedimientoDocumentos %}
+            <tr>
+                <td><a href="{{ path('procedimientodocumento_show', { 'id': procedimientoDocumento.id }) }}">{{ procedimientoDocumento.id }}</a></td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('procedimientodocumento_show', { 'id': procedimientoDocumento.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('procedimientodocumento_edit', { 'id': procedimientoDocumento.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('procedimientodocumento_new') }}">Create a new procedimientoDocumento</a>
+        </li>
+    </ul>
+{% endblock %}

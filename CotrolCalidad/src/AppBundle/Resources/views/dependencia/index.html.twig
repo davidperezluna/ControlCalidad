@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Dependencias list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nit</th>
+                <th>Nombre</th>
+                <th>Representante</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for dependencium in dependencias %}
+            <tr>
+                <td><a href="{{ path('dependencia_show', { 'id': dependencium.id }) }}">{{ dependencium.id }}</a></td>
+                <td>{{ dependencium.nit }}</td>
+                <td>{{ dependencium.nombre }}</td>
+                <td>{{ dependencium.representante }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('dependencia_show', { 'id': dependencium.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('dependencia_edit', { 'id': dependencium.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('dependencia_new') }}">Create a new dependencium</a>
+        </li>
+    </ul>
+{% endblock %}

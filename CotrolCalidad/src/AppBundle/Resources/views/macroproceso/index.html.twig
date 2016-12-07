@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Macroprocesos list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for macroProceso in macroProcesos %}
+            <tr>
+                <td><a href="{{ path('macroproceso_show', { 'id': macroProceso.id }) }}">{{ macroProceso.id }}</a></td>
+                <td>{{ macroProceso.nombre }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('macroproceso_show', { 'id': macroProceso.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('macroproceso_edit', { 'id': macroProceso.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('macroproceso_new') }}">Create a new macroProceso</a>
+        </li>
+    </ul>
+{% endblock %}

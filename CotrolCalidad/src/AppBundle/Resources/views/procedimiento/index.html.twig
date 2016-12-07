@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Procedimientos list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Codigo</th>
+                <th>Nombre</th>
+                <th>Vigencia</th>
+                <th>Version</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for procedimiento in procedimientos %}
+            <tr>
+                <td><a href="{{ path('procedimiento_show', { 'id': procedimiento.id }) }}">{{ procedimiento.id }}</a></td>
+                <td>{{ procedimiento.codigo }}</td>
+                <td>{{ procedimiento.nombre }}</td>
+                <td>{% if procedimiento.vigencia %}{{ procedimiento.vigencia|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ procedimiento.version }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('procedimiento_show', { 'id': procedimiento.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('procedimiento_edit', { 'id': procedimiento.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('procedimiento_new') }}">Create a new procedimiento</a>
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Procesousuarios list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for procesoUsuario in procesoUsuarios %}
+            <tr>
+                <td><a href="{{ path('procesousuario_show', { 'id': procesoUsuario.id }) }}">{{ procesoUsuario.id }}</a></td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('procesousuario_show', { 'id': procesoUsuario.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('procesousuario_edit', { 'id': procesoUsuario.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('procesousuario_new') }}">Create a new procesoUsuario</a>
+        </li>
+    </ul>
+{% endblock %}
