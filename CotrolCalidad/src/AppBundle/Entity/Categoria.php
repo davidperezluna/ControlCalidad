@@ -31,6 +31,14 @@ class Categoria
     /**
      * @var string
      *
+     * @ORM\Column(name="sigla", type="string" , length=255)
+     */
+    private $sigla;
+
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="descripcion", type="text")
      */
     private $descripcion;
@@ -41,10 +49,11 @@ class Categoria
     }
 
 
+  
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
@@ -73,6 +82,30 @@ class Categoria
     public function getNombre()
     {
         return $this->nombre;
+    }
+
+    /**
+     * Set sigla
+     *
+     * @param string $sigla
+     *
+     * @return Categoria
+     */
+    public function setSigla($sigla)
+    {
+        $this->sigla = $sigla;
+
+        return $this;
+    }
+
+    /**
+     * Get sigla
+     *
+     * @return string
+     */
+    public function getSigla()
+    {
+        return $this->sigla;
     }
 
     /**

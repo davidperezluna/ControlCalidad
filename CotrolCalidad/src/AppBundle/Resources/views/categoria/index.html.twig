@@ -8,6 +8,7 @@
             <tr>
                 <th>Id</th>
                 <th>Nombre</th>
+                <th>Sigla</th>
                 <th>Descripcion</th>
                 <th>Actions</th>
             </tr>
@@ -17,6 +18,7 @@
             <tr>
                 <td><a href="{{ path('categoria_show', { 'id': categorium.id }) }}">{{ categorium.id }}</a></td>
                 <td>{{ categorium.nombre }}</td>
+                <td>{{ categorium.sigla }}</td>
                 <td>{{ categorium.descripcion }}</td>
                 <td>
                     <ul>
