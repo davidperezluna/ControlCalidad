@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Procedimientousuarios list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for procedimientoUsuario in procedimientoUsuarios %}
+            <tr>
+                <td><a href="{{ path('procedimientousuario_show', { 'id': procedimientoUsuario.id }) }}">{{ procedimientoUsuario.id }}</a></td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('procedimientousuario_show', { 'id': procedimientoUsuario.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('procedimientousuario_edit', { 'id': procedimientoUsuario.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('procedimientousuario_new') }}">Create a new procedimientoUsuario</a>
+        </li>
+    </ul>
+{% endblock %}

@@ -240,38 +240,4 @@ class Procedimiento
     {
         return $this->procedimientosDocumentos;
     }
-
-    /**
-     * Add procedimientosUsuario
-     *
-     * @param \AppBundle\Entity\ProcedimientoUsuario $procedimientosUsuario
-     *
-     * @return Procedimiento
-     */
-    public function addProcedimientosUsuario(\AppBundle\Entity\ProcedimientoUsuario $procedimientosUsuario)
-    {
-        $this->procedimientosUsuarios[] = $procedimientosUsuario;
-
-        return $this;
-    }
-
-    /**
-     * Remove procedimientosUsuario
-     *
-     * @param \AppBundle\Entity\ProcedimientoUsuario $procedimientosUsuario
-     */
-    public function removeProcedimientosUsuario(\AppBundle\Entity\ProcedimientoUsuario $procedimientosUsuario)
-    {
-        $this->procedimientosUsuarios->removeElement($procedimientosUsuario);
-    }
-
-    /**
-     * Get procedimientosUsuarios
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getProcedimientosUsuarios()
-    {
-        return $this->procedimientosUsuarios;
-    }
 }

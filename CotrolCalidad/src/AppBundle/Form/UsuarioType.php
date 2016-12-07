@@ -11,6 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class UsuarioType extends AbstractType
 {
@@ -46,6 +47,12 @@ class UsuarioType extends AbstractType
                 "label" => "Correo:",
                 "attr" =>array("class" => "form-control")
         ))
+
+        ->add('Cargo', EntityType::class, array(
+                'class' => 'AppBundle:Cargo',
+                "attr" =>array("class" => "form-control"),
+                'choice_label' => 'nombre',
+            ))
         ->add('role', ChoiceType::class,array(
                 "label" => "Role:",
                 "attr" =>array("class" => "form-control"),
