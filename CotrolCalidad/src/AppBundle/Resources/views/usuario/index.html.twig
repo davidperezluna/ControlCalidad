@@ -1,51 +1,53 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Usuarios list</h1>
+<!-- /.box -->
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nombres</th>
-                <th>Apellidos</th>
-                <th>Direccion</th>
-                <th>Telefono</th>
-                <th>Email</th>
-                <th>Role</th>
-                <th>Identificacion</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for usuario in usuarios %}
-            <tr>
-                <td><a href="{{ path('usuario_show', { 'id': usuario.id }) }}">{{ usuario.id }}</a></td>
-                <td>{{ usuario.nombres }}</td>
-                <td>{{ usuario.apellidos }}</td>
-                <td>{{ usuario.direccion }}</td>
-                <td>{{ usuario.telefono }}</td>
-                <td>{{ usuario.email }}</td>
-                <td>{{ usuario.role }}</td>
-                <td>{{ usuario.identificacion }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('usuario_show', { 'id': usuario.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('usuario_edit', { 'id': usuario.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+          <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">Usuarios</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nombres</th>
+                    <th>Apellidos</th>
+                    <th>Direccion</th>
+                    <th>Telefono</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Identificacion</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for usuario in usuarios %}
+                    <tr>
+                        <td><a href="{{ path('usuario_show', { 'id': usuario.id }) }}">{{ usuario.id }}</a></td>
+                        <td>{{ usuario.nombres }}</td>
+                        <td>{{ usuario.apellidos }}</td>
+                        <td>{{ usuario.direccion }}</td>
+                        <td>{{ usuario.telefono }}</td>
+                        <td>{{ usuario.email }}</td>
+                        <td>{{ usuario.role }}</td>
+                        <td>{{ usuario.identificacion }}</td>
+                        <td>
+                            <div class="btn-group">
+                              <a href="{{ path('usuario_show', { 'id': usuario.id }) }}" class="btn btn-default btn-flat"><i class="fa fa-eye"></i></a>
+                              <a href="{{ path('usuario_edit', { 'id': usuario.id }) }}" class="btn btn-default btn-flat"><i class="fa fa-edit"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+               
+              </table>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
 
-    <ul>
-        <li>
-            <a href="{{ path('usuario_new') }}">Create a new usuario</a>
-        </li>
-    </ul>
 {% endblock %}
