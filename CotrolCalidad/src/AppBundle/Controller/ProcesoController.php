@@ -98,25 +98,36 @@ class ProcesoController extends Controller
         ));
     }
 
+   
+    // public function deleteAction(Request $request, Proceso $proceso)
+    // {
+    //     $form = $this->createDeleteForm($proceso);
+    //     $form->handleRequest($request);
+
+    //     if ($form->isSubmitted() && $form->isValid()) {
+    //         $em = $this->getDoctrine()->getManager();
+    //         $em->remove($proceso);
+    //         $em->flush($proceso);
+    //     }
+
+    //     return $this->redirectToRoute('proceso_index');
+    // }
+
     /**
      * Deletes a proceso entity.
      *
-     * @Route("/{id}", name="proceso_delete")
-     * @Method("DELETE")
+     * @Route("delete/{id}", name="proceso_delete")
+     * @Method("GET")
      */
     public function deleteAction(Request $request, Proceso $proceso)
     {
-        $form = $this->createDeleteForm($proceso);
-        $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($proceso);
             $em->flush($proceso);
-        }
-
-        return $this->redirectToRoute('proceso_index');
+            return $this->redirectToRoute('proceso_index');
     }
+
 
     /**
      * Creates a form to delete a proceso entity.

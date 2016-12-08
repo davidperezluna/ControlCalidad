@@ -41,4 +41,59 @@
             {{ form_end(delete_form) }}
         </li>
     </ul>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre Documento</th>
+                <th>Nombre Documento 2</th>
+                <th>Tipo Documento</th>
+                <th>Descargar</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for procedimientoDocumento in procedimiento.procedimientosDocumentos %}
+            <tr>
+                <td><a href="{{ path('procedimientodocumento_show', { 'id': procedimientoDocumento.id }) }}">{{ procedimientoDocumento.id }}</a></td>
+                <td>{{procedimientoDocumento.documento.nombre}}</td>
+                <td>{{procedimientoDocumento.procedimiento.proceso.macroProceso.categoria.sigla}}
+                    {% 
+                        set idProceso = procedimientoDocumento.procedimiento.proceso.id / 2
+                     %}
+                     {% if idProceso < 5 %}
+                        0
+                     {% endif %}
+                    {{procedimientoDocumento.procedimiento.proceso.id}}_
+                    {% 
+                        set idProcedimiento = procedimientoDocumento.procedimiento.id / 2
+                     %}
+                     {% if idProcedimiento < 5 %}
+                        0
+                     {% endif %}
+                    {{procedimientoDocumento.procedimiento.id}}_{{procedimientoDocumento.documento.tipoDocumento.sigla}}
+                    {% 
+                        set idDocumento = procedimientoDocumento.documento.id / 2
+                     %}
+                     {% if idDocumento < 5 %}
+                        0
+                     {% endif %}
+                    {{procedimientoDocumento.documento.id}}</td>
+                 <td>{{procedimientoDocumento.documento.tipoDocumento.nombre}}</td>
+                <td><a href="{{ path('catalogo_marca_download', { 'id': procedimientoDocumento.documento.id }) }}">descargar</a></td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('procedimientodocumento_show', { 'id': procedimientoDocumento.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('procedimientodocumento_edit', { 'id': procedimientoDocumento.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}

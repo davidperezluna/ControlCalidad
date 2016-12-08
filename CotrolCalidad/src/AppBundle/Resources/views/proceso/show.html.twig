@@ -1,44 +1,80 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Proceso</h1>
 
-    <table>
-        <tbody>
+
+    <div class="col-md-3">
+            <a href="{{ path('proceso_index') }}" class="link-black text-sm"><i class="fa fa-mail-reply margin-r-5"></i> Atras</a>
+
+          <!-- About Me Box -->
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">{{ proceso.nombre }}</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <strong><i class="fa fa-book margin-r-5"></i> Codigo </strong>
+              <p>{{ proceso.codigo }}</p>
+              <hr>
+              <strong><i class="fa fa-map-marker margin-r-5"></i> Version </strong>
+              <p>{{ proceso.version }}</p>
+              <hr>
+              <strong><i class="fa fa-pencil margin-r-5"></i>Vigencia </strong>
+              <p>{% if proceso.vigencia %}{{ proceso.vigencia|date('Y-m-d') }}{% endif %}</p>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+
+            <div style="margin-top: 19px;">
+                <a href="{{ path('proceso_edit', { 'id': proceso.id }) }}" class="btn btn-app">
+                    <i class="fa fa-edit"></i> Editar
+                  </a>
+                <br>
+
+                <a href="{{ path('proceso_delete', { 'id': proceso.id }) }}" class="btn btn-app">
+                    <i class="fa fa-trash"></i> Eliminar
+                  </a>
+                <br>
+            </div>
+
+       
+        
+           {#  {{ form_start(delete_form) }}
+                <a type="submit" value="Delete" class="btn btn-app">
+                <i class="fa fa-edit"></i> Edit
+                </a>
+            {{ form_end(delete_form) }} #}
+  
+
+    <table class="table">
+        <thead>
             <tr>
                 <th>Id</th>
-                <td>{{ proceso.id }}</td>
-            </tr>
-            <tr>
                 <th>Codigo</th>
-                <td>{{ proceso.codigo }}</td>
-            </tr>
-            <tr>
                 <th>Nombre</th>
-                <td>{{ proceso.nombre }}</td>
-            </tr>
-            <tr>
-                <th>Version</th>
-                <td>{{ proceso.version }}</td>
-            </tr>
-            <tr>
                 <th>Vigencia</th>
-                <td>{% if proceso.vigencia %}{{ proceso.vigencia|date('Y-m-d') }}{% endif %}</td>
+                <th>Version</th>
+                <th>Actions</th>
             </tr>
+        </thead>
+        <tbody>
+        {% for procedimiento in proceso.procedimientos %}
+            <tr>
+                <td><a href="{{ path('procedimiento_show', { 'id': procedimiento.id }) }}">{{ procedimiento.id }}</a></td>
+                <td>{{ procedimiento.codigo }}</td>
+                <td>{{ procedimiento.nombre }}</td>
+                <td>{% if procedimiento.vigencia %}{{ procedimiento.vigencia|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ procedimiento.version }}</td>
+                <td>
+                    <div class="btn-group">
+                      <a  href="{{ path('procedimiento_show', { 'id': procedimiento.id }) }}" class="btn btn-default btn-flat"><i class="fa fa-eye"></i></a>
+                      <a href="{{ path('procedimiento_edit', { 'id': procedimiento.id }) }}" class="btn btn-default btn-flat"><i class="fa fa-edit"></i></a>
+                    </div>
+                </td>
+            </tr>
+        {% endfor %}
         </tbody>
     </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('proceso_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('proceso_edit', { 'id': proceso.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
 {% endblock %}

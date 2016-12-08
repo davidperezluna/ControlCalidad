@@ -17,6 +17,8 @@ class UsuarioController extends Controller
 
     public function loginAction(Request $request)
     {
+
+
         $authenticationUtils = $this->get("security.authentication_utils");
         $error = $authenticationUtils->getLastAuthenticationError();
         $lastUsername = $authenticationUtils->getLastUsername();
@@ -35,10 +37,12 @@ class UsuarioController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
+        $empresas = $em->getRepository('AppBundle:Empresa')->findAll();
 
         $usuarios = $em->getRepository('AppBundle:Usuario')->findAll();
 
         return $this->render('AppBundle:usuario:index.html.twig', array(
+            "empresas" =>$empresas,
             'usuarios' => $usuarios,
         ));
     }

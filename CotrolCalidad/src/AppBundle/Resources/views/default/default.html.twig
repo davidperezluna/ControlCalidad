@@ -1,19 +1,30 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-	<div class="btn-group-vertical" role="group" aria-label="...">
-		{% for e in empresas %}
-	  <div class="btn-group" role="group">
-	    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-	      {{e.nombre}}
-	      <span class="caret"></span>
-	    </button>
-	    
-	    <ul class="dropdown-menu">
-		    {% for d in e.dependencias %}
-		      <li><a href="{{ path('dependencia_show', { 'id': d.id }) }}">{{d.nombre}}</a></li>
-		    {% endfor %}
-	    </ul>
-	  </div>
-	   {% endfor %}
+	
+{% for e in empresas %}
+	<div class="box">
+	    <div class="box-header with-border">
+	      <h3 class="box-title">{{e.nombre}}</h3>
+
+	      <div class="box-tools pull-right">
+	        <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
+	          <i class="fa fa-minus"></i></button>
+	      </div>
+	    </div>
+	    <!-- /.box-body -->
+	    <div class="box-footer">
+	     	
+	     	
+		     
+		     	<div class="btn-group">
+		     		{% for d in e.dependencias %}
+		     			<a class="btn btn-sm bg-light-blue color-palette" href="{{ path('dependencia_show', { 'id': d.id }) }}">{{d.nombre}}</a>
+		     		  {% endfor %}
+              	</div>
+		  
+
+	    </div>
+	    <!-- /.box-footer-->
 	</div>
+{% endfor %}	
 {% endblock %}

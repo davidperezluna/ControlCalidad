@@ -65,9 +65,16 @@ class DependenciaController extends Controller
      */
     public function showAction(Dependencia $dependencium)
     {
+        $em = $this->getDoctrine()->getManager();
+
+        $categorias = $em->getRepository('AppBundle:Categoria')->findAll();
+
         $deleteForm = $this->createDeleteForm($dependencium);
 
+
+
         return $this->render('AppBundle:dependencia:show.html.twig', array(
+            'categorias' => $categorias,
             'dependencium' => $dependencium,
             'delete_form' => $deleteForm->createView(),
         ));
