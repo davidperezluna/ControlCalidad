@@ -82,16 +82,20 @@ class Procedimiento
      */
     private $procedimientosUsuarios;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Normograma", mappedBy="procedimiento")
+     */
+    private $normogramas;
+
     public function __construct() {
         $this->procedimientosDocumentos = new ArrayCollection();
         $this->procedimientosUsuarios = new ArrayCollection();
+        $this->normogramas = new ArrayCollection();
     }
     public function __toString()
     {
         return (string) $this->getNombre();
     }
-
-
     /**
      * Get id
      *
@@ -337,5 +341,39 @@ class Procedimiento
     public function getUrlDocumentoPdf()
     {
         return $this->urlDocumentoPdf;
+    }
+
+    /**
+     * Add normograma
+     *
+     * @param \AppBundle\Entity\Normograma $normograma
+     *
+     * @return Procedimiento
+     */
+    public function addNormograma(\AppBundle\Entity\Normograma $normograma)
+    {
+        $this->normogramas[] = $normograma;
+
+        return $this;
+    }
+
+    /**
+     * Remove normograma
+     *
+     * @param \AppBundle\Entity\Normograma $normograma
+     */
+    public function removeNormograma(\AppBundle\Entity\Normograma $normograma)
+    {
+        $this->normogramas->removeElement($normograma);
+    }
+
+    /**
+     * Get normogramas
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getNormogramas()
+    {
+        return $this->normogramas;
     }
 }

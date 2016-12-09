@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Documentolegals list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Url</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for documentoLegal in documentoLegals %}
+            <tr>
+                <td><a href="{{ path('documentolegal_show', { 'id': documentoLegal.id }) }}">{{ documentoLegal.id }}</a></td>
+                <td>{{ documentoLegal.nombre }}</td>
+                <td>{{ documentoLegal.url }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('documentolegal_show', { 'id': documentoLegal.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('documentolegal_edit', { 'id': documentoLegal.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('documentolegal_new') }}">Create a new documentoLegal</a>
+        </li>
+    </ul>
+{% endblock %}
