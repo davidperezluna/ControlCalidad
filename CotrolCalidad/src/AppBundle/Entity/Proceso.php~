@@ -315,28 +315,4 @@ class Proceso
     {
         return $this->urlDocumento;
     }
-
-    /**
-     * Set urlDocumentoPdf
-     *
-     * @param string $urlDocumentoPdf
-     *
-     * @return Proceso
-     */
-    public function setUrlDocumentoPdf($urlDocumentoPdf)
-    {
-        $this->urlDocumentoPdf = $urlDocumentoPdf;
-
-        return $this;
-    }
-
-    /**
-     * Get urlDocumentoPdf
-     *
-     * @return string
-     */
-    public function getUrlDocumentoPdf()
-    {
-        return $this->urlDocumentoPdf;
-    }
 }

@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Proceso;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -14,6 +15,67 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
  */
 class ProcesoController extends Controller
 {
+
+    /**
+      * Download file
+      * @Route("/download/{id}", name="documento_proceso_download")
+      * @Method("GET")
+      */
+     public function downloadDocumentAction($id)
+     {
+        $em = $this->getDoctrine()->getManager();
+        $proceso = $em->getRepository('AppBundle:Proceso')->find($id);
+
+        if ( ! $proceso) {
+        throw $this->createNotFoundException('Unable to find Document
+        entity.');
+        }
+        $path = $this->get('kernel')->getRootDir() .
+        "/../web/uploads/documentos/" . $proceso->geturlDocumento();
+        $content = file_get_contents($path);
+
+        $response = new Response();
+
+        $response->headers->set('Content-Type', "'". $proceso->getNombre() .
+        "'");
+        $response->headers->set('Content-Disposition',
+        'attachment;filename="'.$proceso->geturlDocumento());
+
+        $response->setContent($content);
+
+             return $response;
+     }
+
+     /**
+      * Download file
+      * @Route("/pdf/download/{id}", name="documento_pdf_proceso_download")
+      * @Method("GET")
+      */
+     public function downloadDocumentPdfAction($id)
+     {
+
+        $em = $this->getDoctrine()->getManager();
+        $proceso = $em->getRepository('AppBundle:Proceso')->find($id);
+
+        if ( ! $proceso) {
+        throw $this->createNotFoundException('Unable to find Document
+        entity.');
+        }
+        $path = $this->get('kernel')->getRootDir() .
+        "/../web/uploads/documentos/" . $proceso->geturlDocumentoPdf();
+        $content = file_get_contents($path);
+
+        $response = new Response();
+
+        $response->headers->set('Content-Type', "'". $proceso->getNombre() .
+        "'");
+        $response->headers->set('Content-Disposition',
+        'attachment;filename="'.$proceso->geturlDocumentoPdf());
+
+        $response->setContent($content);
+
+             return $response;
+     }
     /**
      * Lists all proceso entities.
      *
@@ -44,6 +106,28 @@ class ProcesoController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $file = $proceso->getUrlDocumento();
+            $filePdf = $proceso->getUrlDocumentoPdf();
+
+
+            $fileName = md5(uniqid()).$proceso->getNombre().'.'.$file->guessExtension();
+            $filePdfName = md5(uniqid()).$proceso->getNombre().'.'.$filePdf->guessExtension();
+
+        
+
+            $file->move(
+                $this->getParameter('documentos_directory'),
+                $fileName
+            );
+
+            $filePdf->move(
+                $this->getParameter('documentos_directory'),
+                $filePdfName
+            );
+
+            $proceso->seturlDocumentoPdf($filePdfName);
+            $proceso->seturlDocumento($fileName);
             $em = $this->getDoctrine()->getManager();
             $em->persist($proceso);
             $em->flush($proceso);
