@@ -1,0 +1,54 @@
+jh@prueba.com
+$Admin123
+http://www.w3schools.com/code/tryit.asp?filename=FAC3JO55Y2ZR
+
+Ya he encontrado la solución para la carga y descarga de archivos gracias a
+la ayuda de Victor, se requiere realizar lo siguiente:
+
+    1. Crear una entidad con los campos: ID, Nombre de archivo, ruta y tipo,
+    la clase entidad debe implementar todos los metodos sobre la carga,
+    ubicacion con el ciclo de vida de retrollamadas
+    2. luego se realiza un CRUD para generar todos los elementos para el
+    mantenimiento de la tabla
+    3. Se consultan los documentos cargados y se despliega una lista con el
+    vinculo e identificacion por ID de cada documento.
+    4. Al dar click en algun vinculo se llama al controlador y se pasa por
+    parametro el ID al metodo: downloadAction($id), que se hara cargo de
+    consultar el registro en la base de datos y luego se crea una respuesta
+    utilizando para ello el tipo de archivo que se almaceno en la tabla,
+    pasandole ademas como attachment el archivo a la respuesta.
+    5. y por ultimo se envia la respuesta al browser que con el tipo de
+    archivo busca el programa y la acción respectiva para cargarlo.
+
+Les envio el codigo del método del controlador para mejor ilustración:
+
+/**
+      * Download file
+      * @Route("/download/{id}", name="catalogo_marca_download")
+      * @Method("GET")
+      */
+     public function downloadDocumentAction($id)
+     {
+         $em = $this->getDoctrine()->getManager();
+         $document =
+$em->getRepository('ErsolRectmotorBundle:Document')->find($id);
+
+         if ( ! $document) {
+             throw $this->createNotFoundException('Unable to find Document
+entity.');
+         }
+         $path = $this->get('kernel')->getRootDir() .
+"/../web/uploads/documents/" . $document->getPath();
+         $content = file_get_contents($path);
+
+         $response = new Response();
+
+         $response->headers->set('Content-Type', "'". $document->getType() .
+"'");
+         $response->headers->set('Content-Disposition',
+'attachment;filename="'.$document->getPath());
+
+         $response->setContent($content);
+
+         return $response;
+     }

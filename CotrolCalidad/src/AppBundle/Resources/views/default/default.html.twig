@@ -2,7 +2,7 @@
 {% block body %}
 	
 {% for e in empresas %}
-	<div class="box">
+	<div class="box collapsed-box">
 	    <div class="box-header with-border">
 	      <h3 class="box-title">{{e.nombre}}</h3>
 
@@ -13,16 +13,20 @@
 	    </div>
 	    <!-- /.box-body -->
 	    <div class="box-footer">
-	     	
-	     	
-		     
-		     	<div class="btn-group">
+	    		
 		     		{% for d in e.dependencias %}
-		     			<a class="btn btn-sm bg-light-blue color-palette" href="{{ path('dependencia_show', { 'id': d.id }) }}">{{d.nombre}}</a>
+		     			<div class="small-box bg-aqua col-md-2 container" style="margin-right: 15px;">
+			            <div class="inner">
+		     			<p>{{d.nombre}}</p>
+			            </div>
+			            <div class="icon">
+			              <i class="fa fa-star-o"></i>
+			            </div>
+			            <a  href="{{ path('dependencia_show', { 'id': d.id }) }}" class="small-box-footer">
+			              Mas informacion <i class="fa fa-arrow-circle-right"></i>
+			            </a>
+			          </div>
 		     		  {% endfor %}
-              	</div>
-		  
-
 	    </div>
 	    <!-- /.box-footer-->
 	</div>
