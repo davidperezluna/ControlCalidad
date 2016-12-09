@@ -2,6 +2,10 @@
 {% block body %}
 	
 {% for e in empresas %}
+
+	<a  href="{{ path('dependencia_new', { 'idEmpresa': e.id}) }}" class="small-box-footer">
+			              Mas informacion <i class="fa fa-arrow-circle-right"></i>
+	</a>
 	<div class="box collapsed-box">
 	    <div class="box-header with-border">
 	      <h3 class="box-title">{{e.nombre}}</h3>

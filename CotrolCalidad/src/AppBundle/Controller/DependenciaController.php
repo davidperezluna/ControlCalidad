@@ -43,15 +43,23 @@ class DependenciaController extends Controller
         $form = $this->createForm('AppBundle\Form\DependenciaType', $dependencium);
         $form->handleRequest($request);
 
+
         if ($form->isSubmitted() && $form->isValid()) {
+
+        $idEmpresa=$request->query->get('idEmpresa');
+        $em = $this->getDoctrine()->getManager();
+
+        $empresa = $em->getRepository('AppBundle:Empresa')->find($idEmpresa);
+
+            $dependencium->setEmpresa($empresa);
             $em = $this->getDoctrine()->getManager();
             $em->persist($dependencium);
             $em->flush($dependencium);
 
             return $this->redirectToRoute('dependencia_show', array('id' => $dependencium->getId()));
         }
-
         return $this->render('AppBundle:dependencia:new.html.twig', array(
+            
             'dependencium' => $dependencium,
             'form' => $form->createView(),
         ));
