@@ -40,7 +40,7 @@ class Procedimiento
      * @var \DateTime
      *
      * @ORM\Column(name="vigencia", type="date")
-     */
+     */ 
     private $vigencia;
 
     /**
@@ -49,6 +49,22 @@ class Procedimiento
      * @ORM\Column(name="version", type="string", length=255)
      */
     private $version;
+
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="urlDocumento", type="string", length=255)
+     */
+    private $urlDocumento;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="urlDocumentoPdf", type="string", length=255)
+     */
+    private $urlDocumentoPdf;
+
 
 
       /**
@@ -273,5 +289,53 @@ class Procedimiento
     public function getProcedimientosUsuarios()
     {
         return $this->procedimientosUsuarios;
+    }
+
+    /**
+     * Set urlDocumento
+     *
+     * @param string $urlDocumento
+     *
+     * @return Procedimiento
+     */
+    public function setUrlDocumento($urlDocumento)
+    {
+        $this->urlDocumento = $urlDocumento;
+
+        return $this;
+    }
+
+    /**
+     * Get urlDocumento
+     *
+     * @return string
+     */
+    public function getUrlDocumento()
+    {
+        return $this->urlDocumento;
+    }
+
+    /**
+     * Set urlDocumentoPdf
+     *
+     * @param string $urlDocumentoPdf
+     *
+     * @return Procedimiento
+     */
+    public function setUrlDocumentoPdf($urlDocumentoPdf)
+    {
+        $this->urlDocumentoPdf = $urlDocumentoPdf;
+
+        return $this;
+    }
+
+    /**
+     * Get urlDocumentoPdf
+     *
+     * @return string
+     */
+    public function getUrlDocumentoPdf()
+    {
+        return $this->urlDocumentoPdf;
     }
 }
