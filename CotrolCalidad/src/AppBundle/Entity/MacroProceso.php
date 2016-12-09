@@ -30,6 +30,13 @@ class MacroProceso
     private $nombre;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="sigla", type="string" , length=255)
+     */
+    private $sigla;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Dependencia", inversedBy="macroProcesos")
      */
     protected $dependencia;
@@ -168,5 +175,29 @@ class MacroProceso
     public function getProcesos()
     {
         return $this->procesos;
+    }
+
+    /**
+     * Set sigla
+     *
+     * @param string $sigla
+     *
+     * @return MacroProceso
+     */
+    public function setSigla($sigla)
+    {
+        $this->sigla = $sigla;
+
+        return $this;
+    }
+
+    /**
+     * Get sigla
+     *
+     * @return string
+     */
+    public function getSigla()
+    {
+        return $this->sigla;
     }
 }

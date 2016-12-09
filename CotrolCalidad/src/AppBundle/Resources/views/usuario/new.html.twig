@@ -1,16 +1,17 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Usuario creation</h1>
-
+    <div class="container">
+<div class="panel panel-default">
+  <div class="panel-heading">Crear Usuario  <a href="{{ path('usuario_index') }}" class="link-black text-sm col-lg-offset-10"><i class="fa fa-mail-reply margin-r-5"></i> Atras</a></div>
+  <div class="panel-body"> 
     {{ form_start(form) }}
         {{ form_widget(form) }}
-        <input type="submit" value="Create" />
+        <br>
+        <input type="submit" class="btn btn-primary btn-block" value="Crear" />
     {{ form_end(form) }}
+</div>
+</div>
 
-    <ul>
-        <li>
-            <a href="{{ path('usuario_index') }}">Back to the list</a>
-        </li>
-    </ul>
+    </div>
 {% endblock %}

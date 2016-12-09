@@ -28,12 +28,7 @@ class Categoria
      */
     private $nombre;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="sigla", type="string" , length=255)
-     */
-    private $sigla;
+    
 
 
     /**
@@ -83,21 +78,7 @@ class Categoria
     {
         return $this->nombre;
     }
-
-    /**
-     * Set sigla
-     *
-     * @param string $sigla
-     *
-     * @return Categoria
-     */
-    public function setSigla($sigla)
-    {
-        $this->sigla = $sigla;
-
-        return $this;
-    }
-
+   
     /**
      * Get sigla
      *
