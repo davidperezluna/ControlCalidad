@@ -49,8 +49,8 @@ class ProcedimientoController extends Controller
 
             $vigencia = $procedimiento->getVigencia();
 
-            $fechaVigencia = new \DateTime($vigencia);
-            $procedimiento->setVigencia($fechaVigencia);
+            // $fechaVigencia = new \DateTime($vigencia);
+            // $procedimiento->setVigencia($fechaVigencia);
             $em = $this->getDoctrine()->getManager();
             $em->persist($procedimiento);
             $em->flush($procedimiento);
