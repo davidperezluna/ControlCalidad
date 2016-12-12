@@ -1,45 +1,64 @@
 {% extends 'base.html.twig' %}
 
+{% block referencia %}
+    <ol class="breadcrumb">
+        <li><a href="{{ path('homepage') }}"><i class="fa fa-dashboard"></i> Inicio</a></li>
+        <li class="active">Empresa</li>
+    </ol>
+{% endblock %} 
+
 {% block body %}
-    <h1>Empresas list</h1>
+    <div class="col-lg-12">
+    <div class="col-lg-1">
+                    <a href="{{ path('empresa_new')}}" class="btn btn-app btn-xs">
+                        <i class="fa fa-plus"></i> Agregar
+                    </a>
+                </div>
+       
+        <div class="col-lg-12">
+          <div class="box">
+            <div class="box-header">
+                
+              <h3 class="box-title">Empresa</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <table id="example1" class="table table-bordered table-striped">
 
-    <table class="table">
-        <thead >
-            <tr>
-                <th>Id</th>
-                <th>Nit</th>
-                <th>Nombre</th>
-                <th>Representante</th>
-                <th>Direccion</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for empresa in empresas %}
-            <tr>
-                <td><a href="{{ path('empresa_show', { 'id': empresa.id }) }}">{{ empresa.id }}</a></td>
-                <td>{{ empresa.nit }}</td>
-                <td>{{ empresa.nombre }}</td>
-                <td>{{ empresa.representante }}</td>
-                <td>{{ empresa.direccion }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('empresa_show', { 'id': empresa.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('empresa_edit', { 'id': empresa.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+                <thead>
+                <tr>
+                    <th>Id</th> 
+                    <th>Nit</th>
+                    <th>Nombre</th>
+                    <th>Representante</th>
+                    <th>Direccion</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
 
-    <ul>
-        <li>
-            <a href="{{ path('empresa_new') }}">Create a new empresa</a>
-        </li>
-    </ul>
+                <tbody>
+                {% for empresa in empresas %}
+                        <td><a href="{{ path('empresa_show', { 'id': empresa.id }) }}">{{ empresa.id }}</a></td>
+                        <td>{{ empresa.nit }}</td>
+                        <td>{{ empresa.nombre }}</td>
+                        <td>{{ empresa.representante }}</td>
+                        <td>{{ empresa.direccion }}</td>
+                        <td>
+                            <div class="btn-group">
+                              <a href="{{ path('empresa_edit', { 'id': empresa.id }) }}" class="btn btn-default btn-flat"><i class="fa fa-edit"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+               
+              </table>
+
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+          </div>
+           
+</div>
 {% endblock %}

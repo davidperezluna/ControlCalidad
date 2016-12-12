@@ -4,6 +4,7 @@ namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class EmpresaType extends AbstractType
@@ -13,7 +14,19 @@ class EmpresaType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('nit')->add('nombre')->add('representante')->add('direccion')        ;
+        $builder
+        ->add('nit', TextType::class,array(
+                "attr" =>array("class" => "form-control")
+            ))
+        ->add('nombre', TextType::class,array(
+                "attr" =>array("class" => "form-control")
+            ))
+        ->add('representante', TextType::class,array(
+                "attr" =>array("class" => "form-control")
+            ))
+        ->add('direccion', TextType::class,array(
+                "attr" =>array("class" => "form-control")
+            ));
     }
     
     /**

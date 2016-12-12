@@ -83,7 +83,7 @@ class CargoController extends Controller
     public function editAction(Request $request, CArgo $cArgo)
     {
         $deleteForm = $this->createDeleteForm($cArgo);
-        $editForm = $this->createForm('AppBundle\Form\CArgoType', $cArgo);
+        $editForm = $this->createForm('AppBundle\Form\CargoType', $cArgo);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {

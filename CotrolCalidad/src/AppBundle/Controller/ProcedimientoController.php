@@ -110,6 +110,10 @@ class ProcedimientoController extends Controller
             $file = $procedimiento->getUrlDocumento();
             $filePdf = $procedimiento->getUrlDocumentoPdf();
 
+            $vigencia = $procedimiento->getVigencia();
+
+            $fechaVigencia = new \DateTime($vigencia);
+
 
             $fileName = md5(uniqid()).$procedimiento->getNombre().'.'.$file->guessExtension();
             $filePdfName = md5(uniqid()).$procedimiento->getNombre().'.'.$filePdf->guessExtension();
@@ -126,6 +130,7 @@ class ProcedimientoController extends Controller
                 $filePdfName
             );
 
+            $procedimiento->setVigencia($fechaVigencia);
             $procedimiento->seturlDocumentoPdf($filePdfName);
             $procedimiento->seturlDocumento($fileName);
             $em = $this->getDoctrine()->getManager();
@@ -169,12 +174,16 @@ class ProcedimientoController extends Controller
         $editForm = $this->createForm('AppBundle\Form\ProcedimientoType', $procedimiento);
         $editForm->handleRequest($request);
 
+       
+
+
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('procedimiento_edit', array('id' => $procedimiento->getId()));
         }
 
+     
         return $this->render('AppBundle:procedimiento:edit.html.twig', array(
             'procedimiento' => $procedimiento,
             'edit_form' => $editForm->createView(),

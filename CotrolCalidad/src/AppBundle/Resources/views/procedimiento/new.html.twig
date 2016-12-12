@@ -1,16 +1,37 @@
 {% extends 'base.html.twig' %}
 
+{% block referencia %}
+     <ol class="breadcrumb">
+        <li><a href="{{ path('homepage') }}"><i class="fa fa-dashboard"></i> Inicio</a></li>
+        <li><a href="{{ path('procedimiento_index') }}">Vigencia</a></li>
+        <li class="active">Nuevo</li>
+      </ol>
+{% endblock %}
+
 {% block body %}
-    <h1>Procedimiento creation</h1>
+     <div class="col-lg-5">
+                  <a href="{{ path('procedimiento_index') }}" style="margin-left: 89%;" class="link-black text-sm col-lg-offset-10"><i class="fa fa-mail-reply margin-r-5"></i> Atras</a>
 
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
+        <div class="box box-success col-lg-5 ">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Crear Vigencia</h3>
+                </div>
+                 {{ form_start(form) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('procedimiento_index') }}">Back to the list</a>
-        </li>
-    </ul>
+                    <b>Vigencia</b>
+                    <div class="input-group">
+                              <div class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                              </div>
+                                {{ form_widget(form.vigencia, { 'attr': {'data-inputmask':"'alias': 'dd/mm/yyyy'",'data-mask':''} }) }}
+                            </div>
+                    {{ form_widget(form) }}
+
+
+
+                    <div class="box-footer">
+                    <button type="submit" class="btn btn-primary">Crear</button>
+                {{ form_end(form) }}
+        </div>
+    </div>
 {% endblock %}

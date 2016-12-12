@@ -25,7 +25,7 @@ class DocumentoType extends AbstractType
             "label" => "Documento",
             'attr' =>array("class" =>"file file-5", "data-preview-file-type"=>"any", "data-upload-url"=>"#"),
             "data_class" => null
-          ))
+          )) 
 
         ->add('tipoDocumento', EntityType::class,array(
                 "class" => "AppBundle:TipoDocumento",
