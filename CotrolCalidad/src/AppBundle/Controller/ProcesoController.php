@@ -107,6 +107,11 @@ class ProcesoController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
 
+            $em = $this->getDoctrine()->getManager();
+            $idMacroProceso=$request->query->get('idMacroProceso');
+            $macroProceso = $em->getRepository('AppBundle:MacroProceso')->find($idMacroProceso);
+          
+
             $file = $proceso->getUrlDocumento();
             $filePdf = $proceso->getUrlDocumentoPdf();
 
@@ -126,13 +131,14 @@ class ProcesoController extends Controller
                 $filePdfName
             );
 
+            $proceso->setMacroProceso($macroProceso);
             $proceso->seturlDocumentoPdf($filePdfName);
             $proceso->seturlDocumento($fileName);
-            $em = $this->getDoctrine()->getManager();
+            
             $em->persist($proceso);
             $em->flush($proceso);
 
-            return $this->redirectToRoute('proceso_show', array('id' => $proceso->getId()));
+            return $this->redirectToRoute('dependencia_show', array('id' => $macroProceso->getDependencia()->getId()));
         }
 
         return $this->render('AppBundle:proceso:new.html.twig', array(

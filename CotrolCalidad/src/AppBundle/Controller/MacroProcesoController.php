@@ -44,11 +44,18 @@ class MacroProcesoController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
             $em = $this->getDoctrine()->getManager();
+            $categoriaId=$request->query->get('idCategoria');
+            $dependenciaId=$request->query->get('idDependencia');
+            $categoria = $em->getRepository('AppBundle:Categoria')->find($categoriaId);
+            $dependencia = $em->getRepository('AppBundle:Dependencia')->find($dependenciaId);
+            $macroProceso->setCategoria($categoria);
+            $macroProceso->setDependencia($dependencia);
             $em->persist($macroProceso);
             $em->flush($macroProceso);
 
-            return $this->redirectToRoute('macroproceso_show', array('id' => $macroProceso->getId()));
+            return $this->redirectToRoute('dependencia_show', array('id' => $dependenciaId));
         }
 
         return $this->render('AppBundle:macroproceso:new.html.twig', array(

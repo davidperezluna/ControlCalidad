@@ -13,7 +13,7 @@ class MacroProcesoType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('nombre')->add('dependencia')->add('categoria')        ;
+        $builder->add('nombre')->add('sigla')->add('dependencia')->add('categoria')        ;
     }
     
     /**
