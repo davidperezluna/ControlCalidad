@@ -102,40 +102,55 @@ class ArchivoController extends Controller
      */
     public function newAction(Request $request)
     {
+        $em = $this->getDoctrine()->getManager();
         $archivo = new Archivo();
         $form = $this->createForm('AppBundle\Form\ArchivoType', $archivo);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
+
+
+            $preocesoId=$request->query->get('idProceso');
+            if ($preocesoId != null) {
+                $preoceso = $em->getRepository('AppBundle:Proceso')->find($preocesoId);
+            }else{
+                $preoceso = null;
+            }
+
+            $procedimientoId=$request->query->get('idProcdimiento');
+            if ($procedimientoId != null) {
+                $procedimiento = $em->getRepository('AppBundle:Procedimiento')->find($procedimientoId);
+            }else{
+                $procedimiento = null;
+            }
+
             $file = $archivo->getUrlDocumento();
             $filePdf = $archivo->getUrlDocumentoPdf();
-
-
             $fileName = md5(uniqid()).$archivo->getVersion().'.'.$file->guessExtension();
             $filePdfName = md5(uniqid()).$archivo->getVersion().'.'.$filePdf->guessExtension();
-
-        
-
             $file->move(
                 $this->getParameter('documentos_directory'),
                 $fileName
             );
-
             $filePdf->move(
                 $this->getParameter('documentos_directory'),
                 $filePdfName
             );
-
             $archivo->seturlDocumentoPdf($filePdfName);
+            $archivo->setProceso($procedimiento);
+            $archivo->setProceso($preoceso);
             $archivo->seturlDocumento($fileName);
-
-
             $em = $this->getDoctrine()->getManager();
             $em->persist($archivo);
             $em->flush($archivo);
 
-            return $this->redirectToRoute('archivo_show', array('id' => $archivo->getId()));
+            if ($preoceso==null) {
+                return $this->redirectToRoute('procedimiento_show', array('id' => $procedimiento->getId()));
+            }else{
+               return $this->redirectToRoute('proceso_show', array('id' => $preoceso->getId())); 
+            }
+           
         }
 
         return $this->render('AppBundle:archivo:new.html.twig', array(

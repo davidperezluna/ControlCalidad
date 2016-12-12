@@ -63,6 +63,11 @@ class Proceso
     private $procedimientos;
 
     /**
+     * @ORM\OneToMany(targetEntity="Archivo", mappedBy="proceso")
+     */
+    private $archivos;
+
+    /**
      * @ORM\OneToMany(targetEntity="ProcesoUsuario", mappedBy="proceso")
      */
     private $procesosUsuarios;
@@ -278,5 +283,39 @@ class Proceso
     public function getProcesosUsuarios()
     {
         return $this->procesosUsuarios;
+    }
+
+    /**
+     * Add archivo
+     *
+     * @param \AppBundle\Entity\Archivo $archivo
+     *
+     * @return Proceso
+     */
+    public function addArchivo(\AppBundle\Entity\Archivo $archivo)
+    {
+        $this->archivos[] = $archivo;
+
+        return $this;
+    }
+
+    /**
+     * Remove archivo
+     *
+     * @param \AppBundle\Entity\Archivo $archivo
+     */
+    public function removeArchivo(\AppBundle\Entity\Archivo $archivo)
+    {
+        $this->archivos->removeElement($archivo);
+    }
+
+    /**
+     * Get archivos
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getArchivos()
+    {
+        return $this->archivos;
     }
 }

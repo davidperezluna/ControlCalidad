@@ -63,6 +63,11 @@ class Proceso
     private $procedimientos;
 
     /**
+     * @ORM\OneToMany(targetEntity="Archivo", mappedBy="proceso")
+     */
+    private $archivos;
+
+    /**
      * @ORM\OneToMany(targetEntity="ProcesoUsuario", mappedBy="proceso")
      */
     private $procesosUsuarios;
@@ -91,4 +96,192 @@ class Proceso
     }
 
    
+
+    /**
+     * Set codigo
+     *
+     * @param string $codigo
+     *
+     * @return Proceso
+     */
+    public function setCodigo($codigo)
+    {
+        $this->codigo = $codigo;
+
+        return $this;
+    }
+
+    /**
+     * Get codigo
+     *
+     * @return string
+     */
+    public function getCodigo()
+    {
+        return $this->codigo;
+    }
+
+    /**
+     * Set nombre
+     *
+     * @param string $nombre
+     *
+     * @return Proceso
+     */
+    public function setNombre($nombre)
+    {
+        $this->nombre = $nombre;
+
+        return $this;
+    }
+
+    /**
+     * Get nombre
+     *
+     * @return string
+     */
+    public function getNombre()
+    {
+        return $this->nombre;
+    }
+
+    /**
+     * Set version
+     *
+     * @param string $version
+     *
+     * @return Proceso
+     */
+    public function setVersion($version)
+    {
+        $this->version = $version;
+
+        return $this;
+    }
+
+    /**
+     * Get version
+     *
+     * @return string
+     */
+    public function getVersion()
+    {
+        return $this->version;
+    }
+
+    /**
+     * Set vigencia
+     *
+     * @param \DateTime $vigencia
+     *
+     * @return Proceso
+     */
+    public function setVigencia($vigencia)
+    {
+        $this->vigencia = $vigencia;
+
+        return $this;
+    }
+
+    /**
+     * Get vigencia
+     *
+     * @return \DateTime
+     */
+    public function getVigencia()
+    {
+        return $this->vigencia;
+    }
+
+    /**
+     * Set macroProceso
+     *
+     * @param \AppBundle\Entity\MacroProceso $macroProceso
+     *
+     * @return Proceso
+     */
+    public function setMacroProceso(\AppBundle\Entity\MacroProceso $macroProceso = null)
+    {
+        $this->macroProceso = $macroProceso;
+
+        return $this;
+    }
+
+    /**
+     * Get macroProceso
+     *
+     * @return \AppBundle\Entity\MacroProceso
+     */
+    public function getMacroProceso()
+    {
+        return $this->macroProceso;
+    }
+
+    /**
+     * Add procedimiento
+     *
+     * @param \AppBundle\Entity\Procedimiento $procedimiento
+     *
+     * @return Proceso
+     */
+    public function addProcedimiento(\AppBundle\Entity\Procedimiento $procedimiento)
+    {
+        $this->procedimientos[] = $procedimiento;
+
+        return $this;
+    }
+
+    /**
+     * Remove procedimiento
+     *
+     * @param \AppBundle\Entity\Procedimiento $procedimiento
+     */
+    public function removeProcedimiento(\AppBundle\Entity\Procedimiento $procedimiento)
+    {
+        $this->procedimientos->removeElement($procedimiento);
+    }
+
+    /**
+     * Get procedimientos
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getProcedimientos()
+    {
+        return $this->procedimientos;
+    }
+
+    /**
+     * Add procesosUsuario
+     *
+     * @param \AppBundle\Entity\ProcesoUsuario $procesosUsuario
+     *
+     * @return Proceso
+     */
+    public function addProcesosUsuario(\AppBundle\Entity\ProcesoUsuario $procesosUsuario)
+    {
+        $this->procesosUsuarios[] = $procesosUsuario;
+
+        return $this;
+    }
+
+    /**
+     * Remove procesosUsuario
+     *
+     * @param \AppBundle\Entity\ProcesoUsuario $procesosUsuario
+     */
+    public function removeProcesosUsuario(\AppBundle\Entity\ProcesoUsuario $procesosUsuario)
+    {
+        $this->procesosUsuarios->removeElement($procesosUsuario);
+    }
+
+    /**
+     * Get procesosUsuarios
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getProcesosUsuarios()
+    {
+        return $this->procesosUsuarios;
+    }
 }
