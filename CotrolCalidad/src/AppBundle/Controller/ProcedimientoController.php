@@ -47,11 +47,15 @@ class ProcedimientoController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
 
+            $em = $this->getDoctrine()->getManager();
+            $idProceso=$request->query->get('idProceso');
+            $proceso = $em->getRepository('AppBundle:Proceso')->find($idProceso);
+
             $vigencia = $procedimiento->getVigencia();
 
             // $fechaVigencia = new \DateTime($vigencia);
             // $procedimiento->setVigencia($fechaVigencia);
-            $em = $this->getDoctrine()->getManager();
+            $procedimiento->setProceso($proceso);           
             $em->persist($procedimiento);
             $em->flush($procedimiento);
 
