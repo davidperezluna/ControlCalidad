@@ -1,40 +1,45 @@
 {% extends 'base.html.twig' %}
 
+{% block referencia %}
+    <ol class="breadcrumb">
+        <li><a href="{{ path('homepage') }}"><i class="fa fa-dashboard"></i> Inicio</a></li>
+        <li><a href="{{ path('usuario_index') }}">Categoria</a></li>
+        <li class="active">{{ categorium.nombre }}</li>
+    </ol>
+{% endblock %}
+
 {% block body %}
-    <h1>Categorium</h1>
+    <div class="container col-lg-3"> 
+        <a href="{{ path('categoria_index') }}" style="margin-left: 83%;" class="link-black text-sm col-lg-offset-10"><i class="fa fa-mail-reply margin-r-5"></i> Atras</a>
+        <div class="box box-primary">
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ categorium.id }}</td>
-            </tr>
-            <tr>
-                <th>Nombre</th>
-                <td>{{ categorium.nombre }}</td>
-            </tr>
-            <tr>
-                <th>Descripcion</th>
-                <td>{{ categorium.descripcion }}</td>
-            </tr>
-            <tr>
-                <th>Sigla</th>
-                <td>{{ categorium.sigla }}</td>
-            </tr>
-        </tbody>
-    </table>
+            <div class="box-body box-profile">
+                <div style="margin-top: 19px; margin-left: 35%;">
+                    <a href="{{ path('categoria_edit', { 'id': categorium.id }) }}" class="btn btn-app">
+                        <i class="fa fa-edit"></i> Editar
+                    </a>
+                    <br>
+                </div>
 
-    <ul>
-        <li>
-            <a href="{{ path('categoria_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('categoria_edit', { 'id': categorium.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+                <ul class="list-group list-group-unbordered">
+                    <li class="list-group-item">
+                        <b>ID</b> <a class="pull-right">{{ categorium.id }}</a>
+                    </li>
+                    <li class="list-group-item">
+                        <b>Nombre</b> <a class="pull-right">{{ categorium.nombre }}</a>
+                    </li>
+                    <li class="list-group-item">
+                        <b>Descripcion</b>
+                        <br>
+                         <a class="">{{ categorium.descripcion }}</a>
+                    </li>
+                </ul>
+                {{ form_start(delete_form) }}
+                <input type="submit" class="btn btn-danger btn-block" value="Eliminar">
+                {{ form_end(delete_form) }}
+
+            </div>
+            <!-- /.box-body -->
+        </div>
+    </div>
 {% endblock %}

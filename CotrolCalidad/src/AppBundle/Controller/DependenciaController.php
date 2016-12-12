@@ -39,27 +39,24 @@ class DependenciaController extends Controller
      */
     public function newAction(Request $request)
     {
+        $em = $this->getDoctrine()->getManager();
+        $empresas = $em->getRepository('AppBundle:Empresa')->findAll();
         $dependencium = new Dependencia();
         $form = $this->createForm('AppBundle\Form\DependenciaType', $dependencium);
         $form->handleRequest($request);
 
-
         if ($form->isSubmitted() && $form->isValid()) {
-
-        $idEmpresa=$request->query->get('idEmpresa');
-        $em = $this->getDoctrine()->getManager();
-
-        $empresa = $em->getRepository('AppBundle:Empresa')->find($idEmpresa);
-
+            $empresaId=$request->request->get('empresaId');
+            $empresa = $em->getRepository('AppBundle:Empresa')->find($empresaId);
             $dependencium->setEmpresa($empresa);
-            $em = $this->getDoctrine()->getManager();
             $em->persist($dependencium);
             $em->flush($dependencium);
 
             return $this->redirectToRoute('dependencia_show', array('id' => $dependencium->getId()));
         }
+
         return $this->render('AppBundle:dependencia:new.html.twig', array(
-            
+            'empresas' => $empresas,
             'dependencium' => $dependencium,
             'form' => $form->createView(),
         ));
@@ -96,17 +93,25 @@ class DependenciaController extends Controller
      */
     public function editAction(Request $request, Dependencia $dependencium)
     {
+        $em = $this->getDoctrine()->getManager();
+        $empresas = $em->getRepository('AppBundle:Empresa')->findAll();
+
         $deleteForm = $this->createDeleteForm($dependencium);
         $editForm = $this->createForm('AppBundle\Form\DependenciaType', $dependencium);
         $editForm->handleRequest($request);
 
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
+        if ($editForm->isSubmitted() && $editForm->isValid()) 
+        {
+            $empresaId=$request->request->get('empresaId');
+            $empresa = $em->getRepository('AppBundle:Empresa')->find($empresaId);
+            $dependencium->setEmpresa($empresa);
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('dependencia_edit', array('id' => $dependencium->getId()));
         }
 
         return $this->render('AppBundle:dependencia:edit.html.twig', array(
+            'empresas' => $empresas,
             'dependencium' => $dependencium,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),

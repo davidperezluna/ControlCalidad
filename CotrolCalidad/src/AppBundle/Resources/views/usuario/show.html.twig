@@ -1,16 +1,32 @@
 {% extends 'base.html.twig' %}
+{% block referencia %}
+    <ol class="breadcrumb">
+        <li><a href="{{ path('homepage') }}"><i class="fa fa-dashboard"></i> Inicio</a></li>
+        <li><a href="{{ path('usuario_index') }}">Usuario</a></li>
+        <li class="active">{{ usuario.nombres }}</li>
+    </ol>
+{% endblock %}
 
 {% block body %}
     <div class="container col-lg-3"> 
-        <a href="{{ path('usuario_index') }}" class="link-black text-sm"><i class="fa fa-mail-reply margin-r-5"></i> Atras</a>
+        <a href="{{ path('usuario_index') }}" style="margin-left: 83%;" class="link-black text-sm col-lg-offset-10"><i class="fa fa-mail-reply margin-r-5"></i> Atras</a>
         <div class="box box-primary">
 
             <div class="box-body box-profile">
                 <img class="profile-user-img img-responsive img-circle" src="../../dist/img/user6-128x128.jpg" alt="User profile picture">
 
+
                 <h3 class="profile-username text-center">{{ usuario.nombres }}</h3>
 
+
                 <p class="text-muted text-center">{{ usuario.apellidos }}</p>
+                
+                <div style="margin-top: 19px; margin-left: 35%;">
+                    <a href="{{ path('usuario_edit', { 'id': usuario.id }) }}" class="btn btn-app">
+                        <i class="fa fa-edit"></i> Editar
+                    </a>
+                    <br>
+                </div>
 
                 <ul class="list-group list-group-unbordered">
                     <li class="list-group-item">
@@ -38,10 +54,5 @@
             <!-- /.box-body -->
         </div>
     </div>
-    <div style="margin-top: 19px;">
-        <a href="{{ path('usuario_edit', { 'id': usuario.id }) }}" class="btn btn-app">
-            <i class="fa fa-edit"></i> Editar
-        </a>
-        <br>
-    </div>
+    
 {% endblock %}

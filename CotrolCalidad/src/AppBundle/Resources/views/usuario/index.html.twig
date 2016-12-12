@@ -1,62 +1,79 @@
 {% extends 'base.html.twig' %}
 
+{% block referencia %}
+    <ol class="breadcrumb">
+        <li><a href="{{ path('homepage') }}"><i class="fa fa-dashboard"></i> Inicio</a></li>
+        <li class="active">Usuarios</li>
+    </ol>
+{% endblock %}
+
 {% block body %}
 <!-- /.box -->
 <div class="col-lg-12">
+    <div class="col-lg-1">
+                    <a href="{{ path('usuario_new')}}" class="btn btn-app btn-xs">
+                        <i class="fa fa-plus"></i> Agregar
+                    </a>
+                </div>
        
-        <div class="col-lg-11">
+        <div class="col-lg-12">
           <div class="box">
             <div class="box-header">
+                
               <h3 class="box-title">Usuarios</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <table id="example1" class="table table-bordered table-striped">
-                <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Nombres</th>
-                    <th>Apellidos</th>
-                    <th>Direccion</th>
-                    <th>Telefono</th>
-                    <th>Email</th>
-                    <th>Role</th>
-                    <th>Identificacion</th>
-                    <th>Actions</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for usuario in usuarios %}
-                    <tr>
-                        <td><a href="{{ path('usuario_show', { 'id': usuario.id }) }}">{{ usuario.id }}</a></td>
-                        <td>{{ usuario.nombres }}</td>
-                        <td>{{ usuario.apellidos }}</td>
-                        <td>{{ usuario.direccion }}</td>
-                        <td>{{ usuario.telefono }}</td>
-                        <td>{{ usuario.email }}</td>
-                        <td>{{ usuario.role }}</td>
-                        <td>{{ usuario.identificacion }}</td>
-                        <td>
-                            <div class="btn-group">
-                              <a href="{{ path('usuario_show', { 'id': usuario.id }) }}" class="btn btn-default btn-flat"><i class="fa fa-eye"></i></a>
-                              <a href="{{ path('usuario_edit', { 'id': usuario.id }) }}" class="btn btn-default btn-flat"><i class="fa fa-edit"></i></a>
-                            </div>
-                        </td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-               
-              </table>
+                <div class="table-responsive ">
+                      <table id="example1" class="table table-bordered table-striped table-condensed">
+
+                        <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Nombres</th>
+                            <th>Apellidos</th>
+                            <th>Direccion</th>
+                            <th>Telefono</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th>Identificacion</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        {% for usuario in usuarios %}
+                            <tr>
+                                <td><a href="{{ path('usuario_show', { 'id': usuario.id }) }}">{{ usuario.id }}</a></td>
+                                <td>{{ usuario.nombres }}</td>
+                                <td>{{ usuario.apellidos }}</td>
+                                <td>{{ usuario.direccion }}</td>
+                                <td>{{ usuario.telefono }}</td>
+                                <td>{{ usuario.email }}</td>
+                                <td>{{ usuario.role }}</td>
+                                <td>{{ usuario.identificacion }}</td>
+                                <td>
+                                    <div class="btn-group">
+                                      <a href="{{ path('usuario_show', { 'id': usuario.id }) }}" class="btn btn-default btn-flat"><i class="fa fa-eye"></i></a>
+                                      <a href="{{ path('usuario_edit', { 'id': usuario.id }) }}" class="btn btn-default btn-flat"><i class="fa fa-edit"></i></a>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                       
+                      </table>
+                    
+                </div>
+
             </div>
             <!-- /.box-body -->
           </div>
           <!-- /.box -->
           </div>
-           <div class="col-lg-1">
-            <a href="{{ path('usuario_new')}}" class="btn btn-app btn-xs">
-                <i class="fa fa-plus"></i> Agregar
-            </a>
-        </div>
+           
 </div>
+
+
 
 {% endblock %}

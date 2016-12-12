@@ -4,6 +4,7 @@ namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class DependenciaType extends AbstractType
@@ -13,7 +14,16 @@ class DependenciaType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('nit')->add('nombre')->add('representante')->add('empresa')        ;
+        $builder
+        ->add('nit', TextType::class,array(
+                "attr" =>array("class" => "form-control")
+            ))
+        ->add('nombre', TextType::class,array(
+                "attr" =>array("class" => "form-control")
+            ))
+        ->add('representante', TextType::class,array(
+                "attr" =>array("class" => "form-control")
+            ));
     }
     
     /**

@@ -177,7 +177,7 @@ class MacroProceso
         return $this->procesos;
     }
 
-    /**
+    /** 
      * Set sigla
      *
      * @param string $sigla

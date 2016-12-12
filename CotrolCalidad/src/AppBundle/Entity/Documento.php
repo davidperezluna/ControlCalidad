@@ -25,14 +25,14 @@ class Documento
     /**
      * @var string
      *
-     * @ORM\Column(name="nombre", type="string", length=255)
+     * @ORM\Column(name="nombre", type="string", length=255,nullable=true)
      */
     private $nombre;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="urlDocumento", type="string", length=255)
+     * @ORM\Column(name="urlDocumento", type="string", length=255,nullable=true)
      */
     private $urlDocumento;
 
