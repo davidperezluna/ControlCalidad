@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Archivo</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ archivo.id }}</td>
+            </tr>
+            <tr>
+                <th>Version</th>
+                <td>{{ archivo.version }}</td>
+            </tr>
+            <tr>
+                <th>Descripcion</th>
+                <td>{{ archivo.descripcion }}</td>
+            </tr>
+            <tr>
+                <th>Estado</th>
+                <td>{% if archivo.estado %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Urldocumento</th>
+                <td>{{ archivo.urlDocumento }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('archivo_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('archivo_edit', { 'id': archivo.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
