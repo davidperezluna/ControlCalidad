@@ -58,7 +58,7 @@
             <tr>
                 <td><a href="{{ path('procedimientodocumento_show', { 'id': procedimientoDocumento.id }) }}">{{ procedimientoDocumento.id }}</a></td>
                 <td>{{procedimientoDocumento.documento.nombre}}</td>
-                <td>{{procedimientoDocumento.procedimiento.proceso.macroProceso.categoria.sigla}}
+                <td>{{procedimientoDocumento.procedimiento.proceso.macroProceso.sigla}}
                     {% 
                         set idProceso = procedimientoDocumento.procedimiento.proceso.id / 2
                      %}

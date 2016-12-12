@@ -1,21 +1,44 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-    <h1>Dependencium edit</h1>
-
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
-
-    <ul>
-        <li>
-            <a href="{{ path('dependencia_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+{% block referencia %}
+    <ol class="breadcrumb">
+        <li><a href="{{ path('homepage') }}"><i class="fa fa-dashboard"></i> Inicio</a></li>
+        <li><a href="{{ path('usuario_index') }}">Dependencia</a></li>
+        <li class="active">Editar</li>
+    </ol>
 {% endblock %}
+
+{% block body %}
+    <div class="col-lg-5">
+        <a href="{{ path('dependencia_index') }}" style="margin-left: 89%;" class="link-black text-sm col-lg-offset-10"><i class="fa fa-mail-reply margin-r-5"></i> Atras</a>
+        <div class="box box-info col-lg-5 ">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Editar Dependencia</h3>
+                </div>
+                 {{ form_start(edit_form) }}
+                   {{ form_widget(edit_form) }}
+                        <div class="form-group">
+                            <label>Empresa</label>
+                            <select class="form-control select2" name="empresaId" style="width: 100%;">
+                              {% for d in empresas %}
+                                {% if dependencium.empresa.id == d.id %}
+                                    <option selected="selected" value= {{d.id}} >{{d.nombre}}</option> 
+                                    {% else %}
+                                    <option value= {{d.id}} >{{d.nombre}}</option> 
+                                {% endif %}
+                            {% endfor %}
+                            </select>
+                        </div>
+                    <br>
+                    <div class="box-footer">
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                  </div>
+                {{ form_end(edit_form) }}
+                    {{ form_start(delete_form) }}
+                    <input type="submit" class="btn btn-danger" value="Eliminar" style="margin-left: 86%; margin-top: -74px;">
+                {{ form_end(delete_form) }}
+        </div>
+    </div>
+
+{% endblock %}
+ 

@@ -22,12 +22,10 @@ class UsuarioType extends AbstractType
     {
         $builder
         ->add('nombres', TextType::class,array(
-                "label" => "Nombres:",
                 "attr" =>array("class" => "form-control")
             ))
 
         ->add('apellidos', TextType::class,array(
-                "label" => "Apellidos:",
                 "attr" =>array("class" => "form-control")
             ))
 
@@ -36,15 +34,12 @@ class UsuarioType extends AbstractType
                 "attr" =>array("class" => "form-control")
             ))
         ->add('direccion', TextType::class,array(
-                "label" => "Apellidos:",
                 "attr" =>array("class" => "form-control")
             ))
         ->add('telefono', TextType::class,array(
-                "label" => "Telefono:",
                 "attr" =>array("class" => "form-control")
             ))
         ->add('email', EmailType::class,array(
-                "label" => "Correo:",
                 "attr" =>array("class" => "form-control")
         ))
 
@@ -54,7 +49,6 @@ class UsuarioType extends AbstractType
                 'choice_label' => 'nombre',
             ))
         ->add('role', ChoiceType::class,array(
-                "label" => "Role:",
                 "attr" =>array("class" => "form-control"),
                 "choices"=> array(
                     "Administrador" => "ROLE_ADMIN",
