@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Normogramas list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for normograma in normogramas %}
+            <tr>
+                <td><a href="{{ path('normograma_show', { 'id': normograma.id }) }}">{{ normograma.id }}</a></td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('normograma_show', { 'id': normograma.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('normograma_edit', { 'id': normograma.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('normograma_new') }}">Create a new normograma</a>
+        </li>
+    </ul>
+{% endblock %}

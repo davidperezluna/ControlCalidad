@@ -51,6 +51,20 @@ class Proceso
     private $vigencia;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="urlDocumento", type="string", length=255)
+     */
+    private $urlDocumento;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="urlDocumentoPdf", type="string", length=255)
+     */
+    private $urlDocumentoPdf;
+
+    /**
      * @ORM\ManyToOne(targetEntity="MacroProceso", inversedBy="procesos")
      */
     protected $macroProceso;
@@ -276,5 +290,53 @@ class Proceso
     public function getProcesosUsuarios()
     {
         return $this->procesosUsuarios;
+    }
+
+    /**
+     * Set urlDocumento
+     *
+     * @param string $urlDocumento
+     *
+     * @return Proceso
+     */
+    public function setUrlDocumento($urlDocumento)
+    {
+        $this->urlDocumento = $urlDocumento;
+
+        return $this;
+    }
+
+    /**
+     * Get urlDocumento
+     *
+     * @return string
+     */
+    public function getUrlDocumento()
+    {
+        return $this->urlDocumento;
+    }
+
+    /**
+     * Set urlDocumentoPdf
+     *
+     * @param string $urlDocumentoPdf
+     *
+     * @return Proceso
+     */
+    public function setUrlDocumentoPdf($urlDocumentoPdf)
+    {
+        $this->urlDocumentoPdf = $urlDocumentoPdf;
+
+        return $this;
+    }
+
+    /**
+     * Get urlDocumentoPdf
+     *
+     * @return string
+     */
+    public function getUrlDocumentoPdf()
+    {
+        return $this->urlDocumentoPdf;
     }
 }

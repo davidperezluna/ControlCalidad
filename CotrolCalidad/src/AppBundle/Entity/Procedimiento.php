@@ -40,7 +40,7 @@ class Procedimiento
      * @var \DateTime
      *
      * @ORM\Column(name="vigencia", type="date")
-     */
+     */ 
     private $vigencia;
 
     /**
@@ -49,6 +49,22 @@ class Procedimiento
      * @ORM\Column(name="version", type="string", length=255)
      */
     private $version;
+
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="urlDocumento", type="string", length=255)
+     */
+    private $urlDocumento;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="urlDocumentoPdf", type="string", length=255)
+     */
+    private $urlDocumentoPdf;
+
 
 
       /**
@@ -66,16 +82,20 @@ class Procedimiento
      */
     private $procedimientosUsuarios;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Normograma", mappedBy="procedimiento")
+     */
+    private $normogramas;
+
     public function __construct() {
         $this->procedimientosDocumentos = new ArrayCollection();
         $this->procedimientosUsuarios = new ArrayCollection();
+        $this->normogramas = new ArrayCollection();
     }
     public function __toString()
     {
         return (string) $this->getNombre();
     }
-
-
     /**
      * Get id
      *
@@ -273,5 +293,87 @@ class Procedimiento
     public function getProcedimientosUsuarios()
     {
         return $this->procedimientosUsuarios;
+    }
+
+    /**
+     * Set urlDocumento
+     *
+     * @param string $urlDocumento
+     *
+     * @return Procedimiento
+     */
+    public function setUrlDocumento($urlDocumento)
+    {
+        $this->urlDocumento = $urlDocumento;
+
+        return $this;
+    }
+
+    /**
+     * Get urlDocumento
+     *
+     * @return string
+     */
+    public function getUrlDocumento()
+    {
+        return $this->urlDocumento;
+    }
+
+    /**
+     * Set urlDocumentoPdf
+     *
+     * @param string $urlDocumentoPdf
+     *
+     * @return Procedimiento
+     */
+    public function setUrlDocumentoPdf($urlDocumentoPdf)
+    {
+        $this->urlDocumentoPdf = $urlDocumentoPdf;
+
+        return $this;
+    }
+
+    /**
+     * Get urlDocumentoPdf
+     *
+     * @return string
+     */
+    public function getUrlDocumentoPdf()
+    {
+        return $this->urlDocumentoPdf;
+    }
+
+    /**
+     * Add normograma
+     *
+     * @param \AppBundle\Entity\Normograma $normograma
+     *
+     * @return Procedimiento
+     */
+    public function addNormograma(\AppBundle\Entity\Normograma $normograma)
+    {
+        $this->normogramas[] = $normograma;
+
+        return $this;
+    }
+
+    /**
+     * Remove normograma
+     *
+     * @param \AppBundle\Entity\Normograma $normograma
+     */
+    public function removeNormograma(\AppBundle\Entity\Normograma $normograma)
+    {
+        $this->normogramas->removeElement($normograma);
+    }
+
+    /**
+     * Get normogramas
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getNormogramas()
+    {
+        return $this->normogramas;
     }
 }

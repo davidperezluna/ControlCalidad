@@ -5,23 +5,15 @@ namespace AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
 
-class ProcesoType extends AbstractType
+class DocumentoLegalType extends AbstractType
 {
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
-        ->add('codigo')
-        ->add('nombre')
-        ->add('version')
-        ->add('vigencia')
-        ->add('macroProceso')
-        ->add('urlDocumento', FileType::class)
-        ->add('urlDocumentoPdf', FileType::class);
+        $builder->add('nombre')->add('url')        ;
     }
     
     /**
@@ -30,7 +22,7 @@ class ProcesoType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Proceso'
+            'data_class' => 'AppBundle\Entity\DocumentoLegal'
         ));
     }
 
@@ -39,7 +31,7 @@ class ProcesoType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'appbundle_proceso';
+        return 'appbundle_documentolegal';
     }
 
 
