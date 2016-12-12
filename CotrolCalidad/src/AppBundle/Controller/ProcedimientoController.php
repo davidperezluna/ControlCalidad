@@ -46,37 +46,11 @@ class ProcedimientoController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-<<<<<<< HEAD
-
-            $file = $procedimiento->getUrlDocumento();
-            $filePdf = $procedimiento->getUrlDocumentoPdf();
 
             $vigencia = $procedimiento->getVigencia();
 
             $fechaVigencia = new \DateTime($vigencia);
-
-
-            $fileName = md5(uniqid()).$procedimiento->getNombre().'.'.$file->guessExtension();
-            $filePdfName = md5(uniqid()).$procedimiento->getNombre().'.'.$filePdf->guessExtension();
-
-        
-
-            $file->move(
-                $this->getParameter('documentos_directory'),
-                $fileName
-            );
-
-            $filePdf->move(
-                $this->getParameter('documentos_directory'),
-                $filePdfName
-            );
-
             $procedimiento->setVigencia($fechaVigencia);
-            $procedimiento->seturlDocumentoPdf($filePdfName);
-            $procedimiento->seturlDocumento($fileName);
-=======
-           
->>>>>>> origin/master
             $em = $this->getDoctrine()->getManager();
             $em->persist($procedimiento);
             $em->flush($procedimiento);

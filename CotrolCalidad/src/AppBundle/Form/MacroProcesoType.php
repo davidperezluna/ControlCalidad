@@ -15,11 +15,14 @@ class MacroProcesoType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-<<<<<<< HEAD
+
         $builder
         ->add('nombre', TextType::class,array(
                 "attr" =>array("class" => "form-control")
             ))
+        ->add('sigla', TextType::class,array(
+            "attr" =>array("class" => "form-control")
+        ))
         ->add('dependencia', EntityType::class,array(
                 "class" => "AppBundle:Dependencia",
                 "label" => "Dependencia:",
@@ -30,11 +33,7 @@ class MacroProcesoType extends AbstractType
                 "label" => "Categoria:",
                 "attr" =>array("class" => "form-control")
             ));
-=======
-        $builder->add('nombre')->add('sigla')->add('dependencia')->add('categoria')        ;
->>>>>>> origin/master
     }
-    
     /**
      * {@inheritdoc}
      */
