@@ -46,7 +46,7 @@ class DependenciaController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $empresaId=$request->request->get('empresaId');
+            $empresaId=$request->query->get('idEmpresa');
             $empresa = $em->getRepository('AppBundle:Empresa')->find($empresaId);
             $dependencium->setEmpresa($empresa);
             $em->persist($dependencium);
