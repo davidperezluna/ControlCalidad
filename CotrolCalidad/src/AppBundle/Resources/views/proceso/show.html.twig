@@ -27,7 +27,11 @@
           <!-- /.box -->
         </div>
 
-            <div style="margin-top: 19px;">
+            <div style="margin-top: 19px;" class="col-md-1">
+              <a href="{{ path('procedimiento_new', { 'idProceso': proceso.id }) }}" class="btn btn-app">
+                    <i class="fa fa-plus"></i> <small>Procedimiento</small>
+                  </a>
+                <br>
                 <a href="{{ path('proceso_edit', { 'id': proceso.id }) }}" class="btn btn-app">
                     <i class="fa fa-edit"></i> Editar
                   </a>
@@ -37,7 +41,103 @@
                     <i class="fa fa-trash"></i> Eliminar
                   </a>
                 <br>
+                <a href="{{ path('archivo_new', { 'idProceso': proceso.id }) }}" class="btn btn-app">
+                    <i class="fa fa-plus"></i> Archivo
+                  </a>
+                <br>
+                
             </div>
+
+          <div style="margin-top: 19px;" class="col-md-8">
+            <div class="nav-tabs-custom">
+              <ul class="nav nav-tabs">
+                
+                <li class="active"><a href="#activity" data-toggle="tab" aria-expanded="false">Archivos</a></li>
+                <li class=""><a href="#timeline" data-toggle="tab" aria-expanded="false">Usuarios</a></li>
+              </ul>
+              <div class="tab-content">
+                <div class="tab-pane active" id="activity">
+                     <a href="{{ path('archivo_new', { 'idProceso': proceso.id }) }}" class="link-black text-sm"><i class="fa fa-plus"></i> Archivo</a>
+                        <table class="table" id="example1">
+                            <thead>
+                                <tr>
+                                   
+                                    <th>Version</th>
+                                    <th>Descripcion</th>
+                                    <th>Estado</th>
+                                    <th>Urldocumento</th>
+                                    <th>Urldocumento PDF</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for archivo in proceso.archivos %}
+                                <tr>
+                                    <td>{{ archivo.version }}</td>
+                                    <td>{{ archivo.descripcion }}</td>
+                                    <td>{% if archivo.estado %}Yes{% else %}No{% endif %}</td>
+                                    <td><a href="{{ path('documento_archivo_download', { 'id': archivo.id }) }}">Descargar</a></td>
+                                    <td><a href="{{ path('documento_pdf_archivo_download', { 'id': archivo.id }) }}">Descargar</a></td>
+                                    <td>
+                                        <ul>
+                                            <li>
+                                                <a href="{{ path('archivo_show', { 'id': archivo.id }) }}">show</a>
+                                            </li>
+                                            <li>
+                                                <a href="{{ path('archivo_edit', { 'id': archivo.id }) }}">edit</a>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                 
+                </div>
+                <!-- /.tab-pane -->
+                <div class="tab-pane" id="timeline">
+                    <a href="{{ path('procesousuario_new', { 'idProceso': proceso.id }) }}" class="link-black text-sm"><i class="fa fa-plus"></i> Usuario</a>
+                    <table class="table" id="example2">
+                        <thead>
+                            <tr>  
+                                <th>Nombre Usuario</th>
+                                <th>Identificacion Usuario</th>
+                                <th>Role</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for procesoUsuario in proceso.procesosUsuarios %}
+                            <tr>
+
+                                <td>{{procesoUsuario.usuario.nombres}} {{procesoUsuario.usuario.apellidos}}</td>
+                                <td>{{procesoUsuario.usuario.identificacion}}</td>
+                                <td>{{procesoUsuario.role}}</td>
+                                <td>
+                                    <ul>
+                                        <li>
+                                            <a href="{{ path('procesousuario_show', { 'id': procesoUsuario.id }) }}">show</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ path('procesousuario_edit', { 'id': procesoUsuario.id }) }}">edit</a>
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>      
+                   
+                </div>
+                <!-- /.tab-pane -->
+
+               
+                <!-- /.tab-pane -->
+              </div>
+              <!-- /.tab-content -->
+            </div>
+            <!-- /.nav-tabs-custom -->
+           </div>
 
        
         
@@ -48,7 +148,7 @@
             {{ form_end(delete_form) }} #}
   
 
-    <table class="table">
+    <table class="table" id="example1">
         <thead>
             <tr>
                 <th>Id</th>
