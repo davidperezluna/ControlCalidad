@@ -37,18 +37,7 @@ class ProcedimientoType extends AbstractType
                 "class" => "AppBundle:Proceso",
                 "label" => "Proceso:",
                 "attr" =>array("class" => "form-control")
-            )) 
-
-        ->add('urlDocumento', FileType::class,array(
-            "label" => "Documento Original",
-            'attr' =>array("class" =>"file file-5", "data-preview-file-type"=>"any", "data-upload-url"=>"#"),
-            "data_class" => null
-          )) 
-        ->add('urlDocumentoPdf', FileType::class,array(
-            "label" => "Documento",
-            'attr' =>array("class" =>"file file-5", "data-preview-file-type"=>"any", "data-upload-url"=>"#"),
-            "data_class" => null
-          ));
+            ));
 
     }
     

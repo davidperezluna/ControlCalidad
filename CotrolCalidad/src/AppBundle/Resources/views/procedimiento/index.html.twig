@@ -33,8 +33,6 @@
                     <th>Nombre</th>
                     <th>Vigencia</th>
                     <th>Version</th>
-                    <th>Descargar </th>
-                    <th>Descargar pdf</th>
                     <th>Actions</th>
                 </tr>
                 </thead>
@@ -47,8 +45,6 @@
                         <td>{{ procedimiento.nombre }}</td>
                         <td>{% if procedimiento.vigencia %}{{ procedimiento.vigencia|date('Y-m-d') }}{% endif %}</td>
                         <td>{{ procedimiento.version }}</td>
-                        <td><a href="{{ path('documento_procedimiento_download', { 'id': procedimiento.id }) }}">Descargar</a></td>
-                        <td><a href="{{ path('documento_pdf_procedimiento_download', { 'id': procedimiento.id }) }}">Descargar</a></td>
                         <td>
                             <div class="btn-group">
                               <a href="{{ path('procedimiento_show', { 'id': procedimiento.id }) }}" class="btn btn-default btn-flat"><i class="fa fa-eye"></i></a>
