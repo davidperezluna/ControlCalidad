@@ -28,6 +28,10 @@
         </div>
 
             <div style="margin-top: 19px;" class="col-md-1">
+              <a href="{{ path('procedimiento_new', { 'idProceso': proceso.id }) }}" class="btn btn-app">
+                    <i class="fa fa-plus"></i> <small>Procedimiento</small>
+                  </a>
+                <br>
                 <a href="{{ path('proceso_edit', { 'id': proceso.id }) }}" class="btn btn-app">
                     <i class="fa fa-edit"></i> Editar
                   </a>
@@ -41,18 +45,19 @@
                     <i class="fa fa-plus"></i> Archivo
                   </a>
                 <br>
+                
             </div>
 
-          <div class="col-md-8">
+          <div style="margin-top: 19px;" class="col-md-8">
             <div class="nav-tabs-custom">
               <ul class="nav nav-tabs">
-                <li class="active"><a href="#settings" data-toggle="tab" aria-expanded="true">Detalles</a></li>
-                <li class=""><a href="#activity" data-toggle="tab" aria-expanded="false">Archivos</a></li>
+                
+                <li class="active"><a href="#activity" data-toggle="tab" aria-expanded="false">Archivos</a></li>
                 <li class=""><a href="#timeline" data-toggle="tab" aria-expanded="false">Usuarios</a></li>
               </ul>
               <div class="tab-content">
-                <div class="tab-pane" id="activity">
-                    
+                <div class="tab-pane active" id="activity">
+                     <a href="{{ path('archivo_new', { 'idProceso': proceso.id }) }}" class="link-black text-sm"><i class="fa fa-plus"></i> Archivo</a>
                         <table class="table" id="example1">
                             <thead>
                                 <tr>
@@ -92,17 +97,22 @@
                 <!-- /.tab-pane -->
                 <div class="tab-pane" id="timeline">
                     <a href="{{ path('procesousuario_new', { 'idProceso': proceso.id }) }}" class="link-black text-sm"><i class="fa fa-plus"></i> Usuario</a>
-                    <table class="table" id="example1">
+                    <table class="table" id="example2">
                         <thead>
-                            <tr>
-                                <th>Id</th>
+                            <tr>  
+                                <th>Nombre Usuario</th>
+                                <th>Identificacion Usuario</th>
+                                <th>Role</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                         {% for procesoUsuario in proceso.procesosUsuarios %}
                             <tr>
-                                <td><a href="{{ path('procesousuario_show', { 'id': procesoUsuario.id }) }}">{{ procesoUsuario.id }}</a></td>
+
+                                <td>{{procesoUsuario.usuario.nombres}} {{procesoUsuario.usuario.apellidos}}</td>
+                                <td>{{procesoUsuario.usuario.identificacion}}</td>
+                                <td>{{procesoUsuario.role}}</td>
                                 <td>
                                     <ul>
                                         <li>
@@ -121,9 +131,7 @@
                 </div>
                 <!-- /.tab-pane -->
 
-                <div class="tab-pane active" id="settings">
-                  Detalles
-                </div>
+               
                 <!-- /.tab-pane -->
               </div>
               <!-- /.tab-content -->
