@@ -11,6 +11,7 @@
                 <th>Descripcion</th>
                 <th>Estado</th>
                 <th>Urldocumento</th>
+                <th>Urldocumento PDF</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -21,7 +22,8 @@
                 <td>{{ archivo.version }}</td>
                 <td>{{ archivo.descripcion }}</td>
                 <td>{% if archivo.estado %}Yes{% else %}No{% endif %}</td>
-                <td>{{ archivo.urlDocumento }}</td>
+                <td><a href="{{ path('documento_archivo_download', { 'id': archivo.id }) }}">Descargar</a></td>
+                <td><a href="{{ path('documento_pdf_archivo_download', { 'id': archivo.id }) }}">Descargar</a></td>
                 <td>
                     <ul>
                         <li>

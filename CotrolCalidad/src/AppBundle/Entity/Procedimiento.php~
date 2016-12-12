@@ -1,0 +1,94 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+
+/**
+ * Procedimiento
+ *
+ * @ORM\Table(name="procedimiento")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\ProcedimientoRepository")
+ */
+class Procedimiento
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="codigo", type="string", length=255)
+     */
+    private $codigo;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nombre", type="string", length=255)
+     */
+    private $nombre;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="vigencia", type="date")
+     */ 
+    private $vigencia;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="version", type="string", length=255)
+     */
+    private $version;
+
+    
+      /**
+     * @ORM\ManyToOne(targetEntity="Proceso", inversedBy="procedminetos")
+     */
+    protected $proceso;
+
+     /**
+     * @ORM\OneToMany(targetEntity="ProcedimientoDocumento", mappedBy="procedimiento")
+     */
+    private $procedimientosDocumentos;
+
+     /**
+     * @ORM\OneToMany(targetEntity="ProcedimientoUsuario", mappedBy="procedimiento")
+     */
+    private $procedimientosUsuarios;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Normograma", mappedBy="procedimiento")
+     */
+    private $normogramas;
+
+    public function __construct() {
+        $this->procedimientosDocumentos = new ArrayCollection();
+        $this->procedimientosUsuarios = new ArrayCollection();
+        $this->normogramas = new ArrayCollection();
+    }
+    public function __toString()
+    {
+        return (string) $this->getNombre();
+    }
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+  
+}

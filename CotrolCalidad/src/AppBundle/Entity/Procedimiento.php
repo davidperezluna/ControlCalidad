@@ -51,22 +51,6 @@ class Procedimiento
     private $version;
 
     
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="urlDocumento", type="string", length=255)
-     */
-    private $urlDocumento;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="urlDocumentoPdf", type="string", length=255)
-     */
-    private $urlDocumentoPdf;
-
-
-
       /**
      * @ORM\ManyToOne(targetEntity="Proceso", inversedBy="procedminetos")
      */
@@ -105,6 +89,8 @@ class Procedimiento
     {
         return $this->id;
     }
+
+  
 
     /**
      * Set codigo
@@ -202,7 +188,6 @@ class Procedimiento
         return $this->version;
     }
 
-
     /**
      * Set proceso
      *
@@ -293,54 +278,6 @@ class Procedimiento
     public function getProcedimientosUsuarios()
     {
         return $this->procedimientosUsuarios;
-    }
-
-    /**
-     * Set urlDocumento
-     *
-     * @param string $urlDocumento
-     *
-     * @return Procedimiento
-     */
-    public function setUrlDocumento($urlDocumento)
-    {
-        $this->urlDocumento = $urlDocumento;
-
-        return $this;
-    }
-
-    /**
-     * Get urlDocumento
-     *
-     * @return string
-     */
-    public function getUrlDocumento()
-    {
-        return $this->urlDocumento;
-    }
-
-    /**
-     * Set urlDocumentoPdf
-     *
-     * @param string $urlDocumentoPdf
-     *
-     * @return Procedimiento
-     */
-    public function setUrlDocumentoPdf($urlDocumentoPdf)
-    {
-        $this->urlDocumentoPdf = $urlDocumentoPdf;
-
-        return $this;
-    }
-
-    /**
-     * Get urlDocumentoPdf
-     *
-     * @return string
-     */
-    public function getUrlDocumentoPdf()
-    {
-        return $this->urlDocumentoPdf;
     }
 
     /**

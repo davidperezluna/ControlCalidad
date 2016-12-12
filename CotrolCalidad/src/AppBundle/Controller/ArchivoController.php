@@ -5,7 +5,9 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Archivo;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Archivo controller.
@@ -14,6 +16,67 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
  */
 class ArchivoController extends Controller
 {
+
+     /**
+      * Download file
+      * @Route("/download/{id}", name="documento_archivo_download")
+      * @Method("GET")
+      */
+     public function downloadDocumentAction($id)
+     {
+        $em = $this->getDoctrine()->getManager();
+        $archivo = $em->getRepository('AppBundle:Archivo')->find($id);
+
+        if ( ! $archivo) {
+        throw $this->createNotFoundException('Unable to find Document
+        entity.');
+        }
+        $path = $this->get('kernel')->getRootDir() .
+        "/../web/uploads/documentos/" . $archivo->geturlDocumento();
+        $content = file_get_contents($path);
+
+        $response = new Response();
+
+        $response->headers->set('Content-Type', "'". $archivo->getVersion() .
+        "'");
+        $response->headers->set('Content-Disposition',
+        'attachment;filename="'.$archivo->geturlDocumento());
+
+        $response->setContent($content);
+
+             return $response;
+     }
+
+     /**
+      * Download file
+      * @Route("/pdf/download/{id}", name="documento_pdf_archivo_download")
+      * @Method("GET")
+      */
+     public function downloadDocumentPdfAction($id)
+     {
+
+        $em = $this->getDoctrine()->getManager();
+        $archivo = $em->getRepository('AppBundle:Archivo')->find($id);
+
+        if ( ! $archivo) {
+        throw $this->createNotFoundException('Unable to find Document
+        entity.');
+        }
+        $path = $this->get('kernel')->getRootDir() .
+        "/../web/uploads/documentos/" . $archivo->geturlDocumentoPdf();
+        $content = file_get_contents($path);
+
+        $response = new Response();
+
+        $response->headers->set('Content-Type', "'". $archivo->getVersion() .
+        "'");
+        $response->headers->set('Content-Disposition',
+        'attachment;filename="'.$archivo->geturlDocumentoPdf());
+
+        $response->setContent($content);
+
+             return $response;
+     }
     /**
      * Lists all archivo entities.
      *
@@ -44,6 +107,30 @@ class ArchivoController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $file = $archivo->getUrlDocumento();
+            $filePdf = $archivo->getUrlDocumentoPdf();
+
+
+            $fileName = md5(uniqid()).$archivo->getVersion().'.'.$file->guessExtension();
+            $filePdfName = md5(uniqid()).$archivo->getVersion().'.'.$filePdf->guessExtension();
+
+        
+
+            $file->move(
+                $this->getParameter('documentos_directory'),
+                $fileName
+            );
+
+            $filePdf->move(
+                $this->getParameter('documentos_directory'),
+                $filePdfName
+            );
+
+            $archivo->seturlDocumentoPdf($filePdfName);
+            $archivo->seturlDocumento($fileName);
+
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($archivo);
             $em->flush($archivo);

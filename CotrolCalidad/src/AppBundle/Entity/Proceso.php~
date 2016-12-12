@@ -1,0 +1,94 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+
+/**
+ * Proceso
+ *
+ * @ORM\Table(name="proceso")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\ProcesoRepository")
+ */
+class Proceso
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="codigo", type="string", length=255)
+     */
+    private $codigo;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nombre", type="string", length=255)
+     */
+    private $nombre;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="version", type="string", length=255)
+     */
+    private $version;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="vigencia", type="date")
+     */
+    private $vigencia;
+
+   
+
+    /**
+     * @ORM\ManyToOne(targetEntity="MacroProceso", inversedBy="procesos")
+     */
+    protected $macroProceso;
+
+     /**
+     * @ORM\OneToMany(targetEntity="Procedimiento", mappedBy="proceso")
+     */
+    private $procedimientos;
+
+    /**
+     * @ORM\OneToMany(targetEntity="ProcesoUsuario", mappedBy="proceso")
+     */
+    private $procesosUsuarios;
+
+    public function __construct() {
+        $this->procedimientos = new ArrayCollection();
+        $this->procesosUsuarios = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return (string) $this->getNombre();
+    }
+
+   
+
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+   
+}

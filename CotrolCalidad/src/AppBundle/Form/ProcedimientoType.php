@@ -5,7 +5,6 @@ namespace AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class ProcedimientoType extends AbstractType
 {
@@ -19,9 +18,8 @@ class ProcedimientoType extends AbstractType
         ->add('nombre')
         ->add('vigencia')
         ->add('version')
-        ->add('proceso')
-        ->add('urlDocumento', FileType::class)
-        ->add('urlDocumentoPdf', FileType::class);
+        ->add('proceso');
+        
     }
     
     /**

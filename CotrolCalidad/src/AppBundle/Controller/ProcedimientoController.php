@@ -16,66 +16,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
 class ProcedimientoController extends Controller
 {
 
-     /**
-      * Download file
-      * @Route("/download/{id}", name="documento_procedimiento_download")
-      * @Method("GET")
-      */
-     public function downloadDocumentAction($id)
-     {
-        $em = $this->getDoctrine()->getManager();
-        $procedimiento = $em->getRepository('AppBundle:Procedimiento')->find($id);
-
-        if ( ! $procedimiento) {
-        throw $this->createNotFoundException('Unable to find Document
-        entity.');
-        }
-        $path = $this->get('kernel')->getRootDir() .
-        "/../web/uploads/documentos/" . $procedimiento->geturlDocumento();
-        $content = file_get_contents($path);
-
-        $response = new Response();
-
-        $response->headers->set('Content-Type', "'". $procedimiento->getNombre() .
-        "'");
-        $response->headers->set('Content-Disposition',
-        'attachment;filename="'.$procedimiento->geturlDocumento());
-
-        $response->setContent($content);
-
-             return $response;
-     }
-
-     /**
-      * Download file
-      * @Route("/pdf/download/{id}", name="documento_pdf_procedimiento_download")
-      * @Method("GET")
-      */
-     public function downloadDocumentPdfAction($id)
-     {
-
-        $em = $this->getDoctrine()->getManager();
-        $procedimiento = $em->getRepository('AppBundle:Procedimiento')->find($id);
-
-        if ( ! $procedimiento) {
-        throw $this->createNotFoundException('Unable to find Document
-        entity.');
-        }
-        $path = $this->get('kernel')->getRootDir() .
-        "/../web/uploads/documentos/" . $procedimiento->geturlDocumentoPdf();
-        $content = file_get_contents($path);
-
-        $response = new Response();
-
-        $response->headers->set('Content-Type', "'". $procedimiento->getNombre() .
-        "'");
-        $response->headers->set('Content-Disposition',
-        'attachment;filename="'.$procedimiento->geturlDocumentoPdf());
-
-        $response->setContent($content);
-
-             return $response;
-     }
     /**
      * Lists all procedimiento entities.
      *
@@ -106,28 +46,7 @@ class ProcedimientoController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
-            $file = $procedimiento->getUrlDocumento();
-            $filePdf = $procedimiento->getUrlDocumentoPdf();
-
-
-            $fileName = md5(uniqid()).$procedimiento->getNombre().'.'.$file->guessExtension();
-            $filePdfName = md5(uniqid()).$procedimiento->getNombre().'.'.$filePdf->guessExtension();
-
-        
-
-            $file->move(
-                $this->getParameter('documentos_directory'),
-                $fileName
-            );
-
-            $filePdf->move(
-                $this->getParameter('documentos_directory'),
-                $filePdfName
-            );
-
-            $procedimiento->seturlDocumentoPdf($filePdfName);
-            $procedimiento->seturlDocumento($fileName);
+           
             $em = $this->getDoctrine()->getManager();
             $em->persist($procedimiento);
             $em->flush($procedimiento);
