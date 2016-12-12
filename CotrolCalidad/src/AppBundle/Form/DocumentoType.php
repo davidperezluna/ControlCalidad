@@ -23,7 +23,8 @@ class DocumentoType extends AbstractType
 
         ->add('urlDocumento', FileType::class,array(
             "label" => "Documento",
-            'attr' =>array("class" => "file file-5","data-preview-file-type"=>"any","data-upload-url"=>"#")
+            'attr' =>array("class" =>"file file-5", "data-preview-file-type"=>"any", "data-upload-url"=>"#"),
+            "data_class" => null
           ))
 
         ->add('tipoDocumento', EntityType::class,array(
