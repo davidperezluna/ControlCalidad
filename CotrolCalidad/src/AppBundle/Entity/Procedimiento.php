@@ -140,29 +140,7 @@ class Procedimiento
         return $this->nombre;
     }
 
-    /**
-     * Set vigencia
-     *
-     * @param \DateTime $vigencia
-     *
-     * @return Procedimiento
-     */
-    public function setVigencia($vigencia)
-    {
-        $this->vigencia = $vigencia;
-
-        return $this;
-    }
-
-    /**
-     * Get vigencia
-     *
-     * @return \DateTime
-     */
-    public function getVigencia()
-    {
-        return $this->vigencia;
-    }
+    
 
     /**
      * Set version
@@ -312,5 +290,29 @@ class Procedimiento
     public function getNormogramas()
     {
         return $this->normogramas;
+    }
+
+    /**
+     * Set vigencia
+     *
+     * @param string $vigencia
+     *
+     * @return Procedimiento
+     */
+    public function setVigencia($vigencia)
+    {
+        $this->vigencia = $vigencia;
+
+        return $this;
+    }
+
+    /**
+     * Get vigencia
+     *
+     * @return string
+     */
+    public function getVigencia()
+    {
+        return $this->vigencia;
     }
 }

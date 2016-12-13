@@ -39,7 +39,7 @@ class Procedimiento
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="vigencia", type="date")
+     * @ORM\Column(name="vigencia", type="string")
      */ 
     private $vigencia;
 
@@ -91,4 +91,204 @@ class Procedimiento
     }
 
   
+
+    /**
+     * Set codigo
+     *
+     * @param string $codigo
+     *
+     * @return Procedimiento
+     */
+    public function setCodigo($codigo)
+    {
+        $this->codigo = $codigo;
+
+        return $this;
+    }
+
+    /**
+     * Get codigo
+     *
+     * @return string
+     */
+    public function getCodigo()
+    {
+        return $this->codigo;
+    }
+
+    /**
+     * Set nombre
+     *
+     * @param string $nombre
+     *
+     * @return Procedimiento
+     */
+    public function setNombre($nombre)
+    {
+        $this->nombre = $nombre;
+
+        return $this;
+    }
+
+    /**
+     * Get nombre
+     *
+     * @return string
+     */
+    public function getNombre()
+    {
+        return $this->nombre;
+    }
+
+    
+
+    /**
+     * Set version
+     *
+     * @param string $version
+     *
+     * @return Procedimiento
+     */
+    public function setVersion($version)
+    {
+        $this->version = $version;
+
+        return $this;
+    }
+
+    /**
+     * Get version
+     *
+     * @return string
+     */
+    public function getVersion()
+    {
+        return $this->version;
+    }
+
+    /**
+     * Set proceso
+     *
+     * @param \AppBundle\Entity\Proceso $proceso
+     *
+     * @return Procedimiento
+     */
+    public function setProceso(\AppBundle\Entity\Proceso $proceso = null)
+    {
+        $this->proceso = $proceso;
+
+        return $this;
+    }
+
+    /**
+     * Get proceso
+     *
+     * @return \AppBundle\Entity\Proceso
+     */
+    public function getProceso()
+    {
+        return $this->proceso;
+    }
+
+    /**
+     * Add procedimientosDocumento
+     *
+     * @param \AppBundle\Entity\ProcedimientoDocumento $procedimientosDocumento
+     *
+     * @return Procedimiento
+     */
+    public function addProcedimientosDocumento(\AppBundle\Entity\ProcedimientoDocumento $procedimientosDocumento)
+    {
+        $this->procedimientosDocumentos[] = $procedimientosDocumento;
+
+        return $this;
+    }
+
+    /**
+     * Remove procedimientosDocumento
+     *
+     * @param \AppBundle\Entity\ProcedimientoDocumento $procedimientosDocumento
+     */
+    public function removeProcedimientosDocumento(\AppBundle\Entity\ProcedimientoDocumento $procedimientosDocumento)
+    {
+        $this->procedimientosDocumentos->removeElement($procedimientosDocumento);
+    }
+
+    /**
+     * Get procedimientosDocumentos
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getProcedimientosDocumentos()
+    {
+        return $this->procedimientosDocumentos;
+    }
+
+    /**
+     * Add procedimientosUsuario
+     *
+     * @param \AppBundle\Entity\ProcedimientoUsuario $procedimientosUsuario
+     *
+     * @return Procedimiento
+     */
+    public function addProcedimientosUsuario(\AppBundle\Entity\ProcedimientoUsuario $procedimientosUsuario)
+    {
+        $this->procedimientosUsuarios[] = $procedimientosUsuario;
+
+        return $this;
+    }
+
+    /**
+     * Remove procedimientosUsuario
+     *
+     * @param \AppBundle\Entity\ProcedimientoUsuario $procedimientosUsuario
+     */
+    public function removeProcedimientosUsuario(\AppBundle\Entity\ProcedimientoUsuario $procedimientosUsuario)
+    {
+        $this->procedimientosUsuarios->removeElement($procedimientosUsuario);
+    }
+
+    /**
+     * Get procedimientosUsuarios
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getProcedimientosUsuarios()
+    {
+        return $this->procedimientosUsuarios;
+    }
+
+    /**
+     * Add normograma
+     *
+     * @param \AppBundle\Entity\Normograma $normograma
+     *
+     * @return Procedimiento
+     */
+    public function addNormograma(\AppBundle\Entity\Normograma $normograma)
+    {
+        $this->normogramas[] = $normograma;
+
+        return $this;
+    }
+
+    /**
+     * Remove normograma
+     *
+     * @param \AppBundle\Entity\Normograma $normograma
+     */
+    public function removeNormograma(\AppBundle\Entity\Normograma $normograma)
+    {
+        $this->normogramas->removeElement($normograma);
+    }
+
+    /**
+     * Get normogramas
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getNormogramas()
+    {
+        return $this->normogramas;
+    }
 }

@@ -111,8 +111,7 @@
                                 <td>{{procesoUsuario.role}}</td>
                                 <td>
                                     <div class="btn-group">
-                                      <a  href="{{ path('procesousuario_show', { 'id': procesoUsuario.id }) }}" class="btn btn-default btn-flat btn-xs"><i class="fa fa-eye "></i></a>
-                                      <a href="{{ path('procesousuario_edit', { 'id': procesoUsuario.id }) }}" class="btn btn-default btn-flat btn-xs"><i class="fa fa-edit"></i></a>
+                                      <a  href="{{ path('usuario_show', { 'id': procesoUsuario.usuario.id }) }}" class="btn btn-default btn-flat btn-xs"><i class="fa fa-eye "></i></a>
                                     </div>
                                 </td>
                             </tr>
@@ -143,7 +142,6 @@
     <table class="table" id="example1">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Codigo</th>
                 <th>Nombre</th>
                 <th>Vigencia</th>
@@ -154,7 +152,6 @@
         <tbody>
         {% for procedimiento in proceso.procedimientos %}
             <tr>
-                <td><a href="{{ path('procedimiento_show', { 'id': procedimiento.id }) }}">{{ procedimiento.id }}</a></td>
                 <td>{{ procedimiento.codigo }}</td>
                 <td>{{ procedimiento.nombre }}</td>
                 <td>{% if procedimiento.vigencia %}{{ procedimiento.vigencia|date('Y-m-d') }}{% endif %}</td>
