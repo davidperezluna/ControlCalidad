@@ -53,8 +53,6 @@ class ProcedimientoController extends Controller
 
             $vigencia = $procedimiento->getVigencia();
 
-            var_dump($vigencia);
-            die();
 
             // $fechaVigencia = new \DateTime($vigencia);
             // $procedimiento->setVigencia($fechaVigencia);
