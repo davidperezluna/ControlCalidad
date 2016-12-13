@@ -47,6 +47,12 @@ class ProcedimientoUsuarioController extends Controller
         $procedimiento = $em->getRepository('AppBundle:Procedimiento')->find($idProcedimiento);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+        $idProcedimiento = $request->query->get('idProcedimiento');
+        $em = $this->getDoctrine()->getManager();
+        $procedimiento = $em->getRepository('AppBundle:Procedimiento')->find($idProcedimiento);
+
+            $procedimientoUsuario->setProcedimiento($procedimiento );
             $em = $this->getDoctrine()->getManager();
             $em->persist($procedimientoUsuario);
             $em->flush($procedimientoUsuario);
