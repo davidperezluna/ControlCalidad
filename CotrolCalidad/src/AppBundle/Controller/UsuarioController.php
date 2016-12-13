@@ -15,6 +15,45 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
 class UsuarioController extends Controller
 {
 
+    /**
+     * Creates a new usuario entity.
+     *
+     * @Route("/new/usuario", name="usuario_interno_new")
+     * @Method({"GET", "POST"})
+     */
+    public function newUsuarioAction(Request $request)
+    {
+        $usuario = new Usuario();
+        $form = $this->createForm('AppBundle\Form\UsuarioType', $usuario);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $idProceso = $request->query->get('idProceso');
+            $idProcedimiento = $request->query->get('idProcedimiento');
+            $em = $this->getDoctrine()->getManager();
+            $factory = $this->get("security.encoder_factory");
+            $encoder = $factory->getEncoder($usuario);
+            $passwordd =$usuario->getPassword();
+            $password = $encoder->encodePassword($passwordd, $usuario->getSalt());
+            $usuario->setPassword($password);
+            $em->persist($usuario);
+            $em->flush($usuario);
+
+            if ($idProceso!=null) {
+                return $this->redirectToRoute('procesousuario_new', array('idProceso' => $idProceso));
+            }else{
+                return $this->redirectToRoute('procedimientousuario_show', array('idProcedimiento' => $idProcedimiento));
+            }
+
+        }
+
+        return $this->render('AppBundle:usuario:new.html.twig', array(
+            'usuario' => $usuario,
+            'form' => $form->createView(),
+        ));
+    }
+
     public function loginAction(Request $request)
     {
 

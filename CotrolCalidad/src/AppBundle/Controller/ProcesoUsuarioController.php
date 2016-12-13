@@ -42,16 +42,24 @@ class ProcesoUsuarioController extends Controller
         $procesoUsuario = new Procesousuario();
         $form = $this->createForm('AppBundle\Form\ProcesoUsuarioType', $procesoUsuario);
         $form->handleRequest($request);
-
+        $idProceso = $request->query->get('idProceso');
+        $em = $this->getDoctrine()->getManager();
+        $proceso = $em->getRepository('AppBundle:Proceso')->find($idProceso);
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $idProceso = $request->query->get('idProceso');
             $em = $this->getDoctrine()->getManager();
+            $proceso = $em->getRepository('AppBundle:Proceso')->find($idProceso);
+
+            $procesoUsuario->setProceso($proceso);
             $em->persist($procesoUsuario);
             $em->flush($procesoUsuario);
 
-            return $this->redirectToRoute('procesousuario_show', array('id' => $procesoUsuario->getId()));
+            return $this->redirectToRoute('proceso_show', array('id' => $proceso->getId()));
         }
 
         return $this->render('AppBundle:procesousuario:new.html.twig', array(
+            'proceso' => $proceso,
             'procesoUsuario' => $procesoUsuario,
             'form' => $form->createView(),
         ));

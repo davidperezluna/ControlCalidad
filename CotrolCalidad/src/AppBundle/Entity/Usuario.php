@@ -105,7 +105,7 @@ class Usuario implements UserInterface
 
     public function __toString()
 {
-    return (string) $this->getIdentificacion();
+    return (string) $this->getNombres()." ".$this->getApellidos()." ".$this->getIdentificacion();
 }
 
 

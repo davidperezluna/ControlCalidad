@@ -79,14 +79,10 @@
                                     <td><a href="{{ path('documento_archivo_download', { 'id': archivo.id }) }}">Descargar</a></td>
                                     <td><a href="{{ path('documento_pdf_archivo_download', { 'id': archivo.id }) }}">Descargar</a></td>
                                     <td>
-                                        <ul>
-                                            <li>
-                                                <a href="{{ path('archivo_show', { 'id': archivo.id }) }}">show</a>
-                                            </li>
-                                            <li>
-                                                <a href="{{ path('archivo_edit', { 'id': archivo.id }) }}">edit</a>
-                                            </li>
-                                        </ul>
+                                        <div class="btn-group">
+                                      <a  href="{{ path('archivo_show', { 'id': archivo.id }) }}" class="btn btn-default btn-flat btn-xs"><i class="fa fa-eye "></i></a>
+                                      <a href="{{ path('archivo_edit', { 'id': archivo.id }) }}" class="btn btn-default btn-flat btn-xs"><i class="fa fa-edit"></i></a>
+                                    </div>
                                     </td>
                                 </tr>
                             {% endfor %}
@@ -114,14 +110,10 @@
                                 <td>{{procesoUsuario.usuario.identificacion}}</td>
                                 <td>{{procesoUsuario.role}}</td>
                                 <td>
-                                    <ul>
-                                        <li>
-                                            <a href="{{ path('procesousuario_show', { 'id': procesoUsuario.id }) }}">show</a>
-                                        </li>
-                                        <li>
-                                            <a href="{{ path('procesousuario_edit', { 'id': procesoUsuario.id }) }}">edit</a>
-                                        </li>
-                                    </ul>
+                                    <div class="btn-group">
+                                      <a  href="{{ path('procesousuario_show', { 'id': procesoUsuario.id }) }}" class="btn btn-default btn-flat btn-xs"><i class="fa fa-eye "></i></a>
+                                      <a href="{{ path('procesousuario_edit', { 'id': procesoUsuario.id }) }}" class="btn btn-default btn-flat btn-xs"><i class="fa fa-edit"></i></a>
+                                    </div>
                                 </td>
                             </tr>
                         {% endfor %}
