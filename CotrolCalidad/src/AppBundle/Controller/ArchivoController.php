@@ -122,11 +122,6 @@ class ArchivoController extends Controller
             }
 
         if ($form->isSubmitted() && $form->isValid()) {
-
-
-
-            
-
             $file = $archivo->getUrlDocumento();
             $filePdf = $archivo->getUrlDocumentoPdf();
             $fileName = md5(uniqid()).$archivo->getVersion().'.'.$file->guessExtension();
@@ -141,15 +136,17 @@ class ArchivoController extends Controller
             );
 
             $preocesoId=$request->query->get('idProceso');
+            // var_dump($preocesoId);
+            // die();
             if ($preocesoId != null) {
                 $preoceso = $em->getRepository('AppBundle:Proceso')->find($preocesoId);
 
                  $archivos = $em->getRepository('AppBundle:Archivo')->findBy(array('proceso' => $preoceso->getId()));
-                 foreach ($archivos as $archivo ) {
-                $em = $this->getDoctrine()->getManager();
-                $archivo->setEstado(0);
-                $em->persist($archivo);
-                $em->flush($archivo);
+
+                foreach ($archivos as $archivoC ) {
+                    $archivoC->setEstado(0);
+                    $em->persist($archivoC);
+                    $em->flush($archivoC);
                 }
             }else{
                 $preoceso = null;
@@ -160,11 +157,10 @@ class ArchivoController extends Controller
                 $procedimiento = $em->getRepository('AppBundle:Procedimiento')->find($procedimientoId);
 
                 $archivos = $em->getRepository('AppBundle:Archivo')->findBy(array('procedimiento' => $procedimiento->getId()));
-                foreach ($archivos as $archivo ) {
-                $em = $this->getDoctrine()->getManager();
-                $archivo->setEstado(0);
-                $em->persist($archivo);
-                $em->flush($archivo);
+                foreach ($archivos as $archivoP ) {
+                $archivoP->setEstado(0);
+                $em->persist($archivoP);
+                $em->flush($archivoP);
                 }
             }else{
                 $procedimiento = null;
@@ -181,7 +177,7 @@ class ArchivoController extends Controller
             $em->persist($archivo);
             $em->flush($archivo);
 
-            $archivos = $em->getRepository('AppBundle:Archivo')->findBy(array('proceso' => $preoceso->getId()));
+            // $archivos = $em->getRepository('AppBundle:Archivo')->findBy(array('proceso' => $preoceso->getId()));
 
 
             if ($preoceso==null) {
