@@ -1,16 +1,34 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-    <h1>Archivo creation</h1>
-
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
-
-    <ul>
-        <li>
-            <a href="{{ path('archivo_index') }}">Back to the list</a>
-        </li>
-    </ul>
+{% block referencia %}
+     <ol class="breadcrumb">
+        <li><a href="{{ path('homepage') }}"><i class="fa fa-dashboard"></i> Inicio</a></li>
+        <li><a href="{{ path('archivo_index') }}">Archivo</a></li>
+        <li class="active">Nuevo</li>
+      </ol>
 {% endblock %}
+
+{% block body %}
+
+     <div class="col-lg-5">
+                  <a href="{{ path('archivo_index') }}" style="margin-left: 89%;" class="link-black text-sm col-lg-offset-10"><i class="fa fa-mail-reply margin-r-5"></i> Atras</a>
+
+        <div class="box box-success col-lg-5 ">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Crear Dependencia</h3>
+                </div>
+                 {{ form_start(form, { 'attr': {'class': 'task_field',"novalidate":"novalidate"} }) }}
+                    {{ form_widget(form) }}
+
+                    <br>
+                    </div>
+                    <br>
+                    <div class="box-footer">
+                    <button type="submit" class="btn btn-primary">Crear</button>
+                  </div>
+                  <div class="col-md-6">
+                {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}
+ 
