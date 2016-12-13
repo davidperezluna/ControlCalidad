@@ -44,6 +44,9 @@ class ProcesoController extends Controller
         $proceso = new Proceso();
         $form = $this->createForm('AppBundle\Form\ProcesoType', $proceso);
         $form->handleRequest($request);
+        $em = $this->getDoctrine()->getManager();
+            $idMacroProceso=$request->query->get('idMacroProceso');
+            $macroProceso = $em->getRepository('AppBundle:MacroProceso')->find($idMacroProceso);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
@@ -59,6 +62,7 @@ class ProcesoController extends Controller
         }
 
         return $this->render('AppBundle:proceso:new.html.twig', array(
+            'macroProceso'=> $macroProceso,
             'proceso' => $proceso,
             'form' => $form->createView(),
         ));

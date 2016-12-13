@@ -39,13 +39,16 @@ class MacroProcesoController extends Controller
      */
     public function newAction(Request $request)
     {
+        $em = $this->getDoctrine()->getManager();
         $macroProceso = new Macroproceso();
         $form = $this->createForm('AppBundle\Form\MacroProcesoType', $macroProceso);
         $form->handleRequest($request);
+        $dependenciaId=$request->query->get('idDependencia');
+        $dependencia = $em->getRepository('AppBundle:Dependencia')->find($dependenciaId);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $em = $this->getDoctrine()->getManager();
+            
             $categoriaId=$request->query->get('idCategoria');
             $dependenciaId=$request->query->get('idDependencia');
             $categoria = $em->getRepository('AppBundle:Categoria')->find($categoriaId);
@@ -59,6 +62,7 @@ class MacroProcesoController extends Controller
         }
 
         return $this->render('AppBundle:macroproceso:new.html.twig', array(
+            'dependencia'=> $dependencia,
             'macroProceso' => $macroProceso,
             'form' => $form->createView(),
         ));

@@ -1,11 +1,12 @@
 {% extends 'base.html.twig' %}
-
+{% block referencia %}
+     <ol class="breadcrumb">
+        <li><a href="{{ path('dependencia_show', { 'id': proceso.macroProceso.dependencia.id }) }}"><i class="fa fa-dashboard"></i>{{proceso.macroProceso.dependencia.nombre}}</a></li>
+        <li>{{proceso.nombre}}</li>
+      </ol>
+{% endblock %}
 {% block body %}
-
-
     <div class="col-md-3">
-            <a href="{{ path('proceso_index') }}" class="link-black text-sm"><i class="fa fa-mail-reply margin-r-5"></i> Atras</a>
-
           <!-- About Me Box -->
           <div class="box box-primary">
             <div class="box-header with-border">
@@ -27,7 +28,7 @@
           <!-- /.box -->
         </div>
 
-            <div style="margin-top: 19px;" class="col-md-1">
+            <div  class="col-md-1">
               <a href="{{ path('procedimiento_new', { 'idProceso': proceso.id }) }}" class="btn btn-app">
                     <i class="fa fa-plus"></i> <small>Procedimiento</small>
                   </a>
@@ -42,13 +43,13 @@
                   </a>
                 <br>
                 <a href="{{ path('archivo_new', { 'idProceso': proceso.id }) }}" class="btn btn-app">
-                    <i class="fa fa-plus"></i> Archivo
+                    <i class="fa fa-plus"></i> Archivo 
                   </a>
                 <br>
                 
             </div>
 
-          <div style="margin-top: 19px;" class="col-md-8">
+          <div  class="col-md-8">
             <div class="nav-tabs-custom">
               <ul class="nav nav-tabs">
                 
@@ -76,8 +77,8 @@
                                     <td>{{ archivo.version }}</td>
                                     <td>{{ archivo.descripcion }}</td>
                                     <td>{% if archivo.estado %}Yes{% else %}No{% endif %}</td>
-                                    <td><a href="{{ path('documento_archivo_download', { 'id': archivo.id }) }}">Descargar</a></td>
-                                    <td><a href="{{ path('documento_pdf_archivo_download', { 'id': archivo.id }) }}">Descargar</a></td>
+                                    <td><a class="btn btn-primary" href="{{ path('documento_archivo_download', { 'id': archivo.id }) }}"><i class="fa  fa-cloud-download"></i></a></td>
+                                    <td><a class="btn btn-primary" href="{{ path('documento_pdf_archivo_download', { 'id': archivo.id }) }}"><i class="fa  fa-cloud-download"></i></a></td>
                                     <td>
                                         <div class="btn-group">
                                       <a  href="{{ path('archivo_show', { 'id': archivo.id }) }}" class="btn btn-default btn-flat btn-xs"><i class="fa fa-eye "></i></a>

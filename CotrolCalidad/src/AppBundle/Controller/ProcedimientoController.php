@@ -45,6 +45,10 @@ class ProcedimientoController extends Controller
         $form = $this->createForm('AppBundle\Form\ProcedimientoType', $procedimiento);
         $form->handleRequest($request);
 
+        $em = $this->getDoctrine()->getManager();
+            $idProceso=$request->query->get('idProceso');
+            $proceso = $em->getRepository('AppBundle:Proceso')->find($idProceso);
+
         if ($form->isSubmitted() && $form->isValid()) {
 
             $em = $this->getDoctrine()->getManager();
@@ -64,6 +68,7 @@ class ProcedimientoController extends Controller
         }
 
         return $this->render('AppBundle:procedimiento:new.html.twig', array(
+            'proceso'=>$proceso,
             'procedimiento' => $procedimiento,
             'form' => $form->createView(),
         ));
