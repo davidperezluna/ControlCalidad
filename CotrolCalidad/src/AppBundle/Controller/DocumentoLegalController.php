@@ -43,15 +43,20 @@ class DocumentoLegalController extends Controller
         $form = $this->createForm('AppBundle\Form\DocumentoLegalType', $documentoLegal);
         $form->handleRequest($request);
 
+         $idProcedimiento = $request->query->get('idProcedmiento');
+        $em = $this->getDoctrine()->getManager();
+        $procedimiento = $em->getRepository('AppBundle:Procedimiento')->find($idProcedimiento);
+
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($documentoLegal);
             $em->flush($documentoLegal);
 
-            return $this->redirectToRoute('documentolegal_show', array('id' => $documentoLegal->getId()));
+            return $this->redirectToRoute('normograma_new', array('idProcedmiento' => $procedimiento->getId()));
         }
 
         return $this->render('AppBundle:documentolegal:new.html.twig', array(
+            'procedimiento'=>$procedimiento,
             'documentoLegal' => $documentoLegal,
             'form' => $form->createView(),
         ));

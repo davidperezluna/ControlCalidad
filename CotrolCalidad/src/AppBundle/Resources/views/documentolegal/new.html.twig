@@ -1,16 +1,37 @@
 {% extends 'base.html.twig' %}
-
-{% block body %}
-    <h1>Documentolegal creation</h1>
-
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
-
-    <ul>
-        <li>
-            <a href="{{ path('documentolegal_index') }}">Back to the list</a>
-        </li>
-    </ul>
+{% block referencia %}
+    <ol class="breadcrumb">
+        <li><a href="{{ path('homepage') }}"><i class="fa fa-dashboard"></i> Inicio</a></li>
+        <li><a href="{{ path('procedimiento_show',{'id':procedimiento.id})}}">Procedimiento</a></li>
+        <li class="active">Documento Legal</li>
+      </ol>
+     
 {% endblock %}
+{% block body %}
+    <div class="col-lg-5">
+    <div class="col-lg-10">
+                  
+        <div class="box box-success col-lg-5 ">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Asignar Documento Legal</h3>
+                </div>
+
+                {{ form_start(form) }}
+                    <label>Nombre:</label>
+                    {{ form_widget(form.nombre, {'attr': {'class': 'form-control'}}) }}
+                    <label>Url:</label>
+                    {{ form_widget(form.url, {'attr': {'class': 'form-control'}}) }}
+
+                     <br>
+                    <div class="box-footer">
+                    <button type="submit" class="btn btn-primary">Crear</button>
+                  </div>
+                    {{ form_end(form) }}
+
+                
+                <br>
+        </div>
+    </div>
+    </div>
+{% endblock %}
+

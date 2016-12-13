@@ -43,15 +43,25 @@ class NormogramaController extends Controller
         $form = $this->createForm('AppBundle\Form\NormogramaType', $normograma);
         $form->handleRequest($request);
 
+        $idProcedimiento = $request->query->get('idProcedmiento');
+        $em = $this->getDoctrine()->getManager();
+        $procedimiento = $em->getRepository('AppBundle:Procedimiento')->find($idProcedimiento);
+
         if ($form->isSubmitted() && $form->isValid()) {
+            $idProcedimiento = $request->query->get('idProcedmiento');
+            $em = $this->getDoctrine()->getManager();
+            $procedimiento = $em->getRepository('AppBundle:Procedimiento')->find($idProcedimiento);
+
+            $normograma->setProcedimiento($procedimiento);
             $em = $this->getDoctrine()->getManager();
             $em->persist($normograma);
             $em->flush($normograma);
 
-            return $this->redirectToRoute('normograma_show', array('id' => $normograma->getId()));
+            return $this->redirectToRoute('procedimiento_show', array('id' => $procedimiento->getId()));
         }
 
         return $this->render('AppBundle:normograma:new.html.twig', array(
+            'procedimiento'=>$procedimiento,
             'normograma' => $normograma,
             'form' => $form->createView(),
         ));

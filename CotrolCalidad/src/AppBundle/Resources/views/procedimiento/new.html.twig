@@ -3,8 +3,8 @@
 {% block referencia %}
      <ol class="breadcrumb">
         <li><a href="{{ path('homepage') }}"><i class="fa fa-dashboard"></i> Inicio</a></li>
-        <li><a href="{{ path('dependencia_show',{'id':proceso.macroProceso.dependencia.id}) }}">{{proceso.macroProceso.dependencia.nombre}}</a></li>
-        <li><a href="{{ path('proceso_show',{'id':proceso.id}) }}">{{proceso.nombre}}</a></li>
+        <li><a href="{{ path('dependencia_show',{'id':proceso.macroProceso.dependencia.id}) }}">Dependencia</a></li>
+        <li><a href="{{ path('proceso_show',{'id':proceso.id}) }}">Proceso</a></li>
         <li class="active">Nuevo</li>
       </ol>
 {% endblock %}
@@ -15,7 +15,7 @@
 
         <div class="box box-success col-lg-5 ">
                 <div class="box-header with-border">
-                  <h3 class="box-title">Crear Vigencia</h3>
+                  <h3 class="box-title">Crear Procedimiento</h3>
                 </div>
                  {{ form_start(form) }}
 
@@ -25,6 +25,7 @@
                                 <i class="fa fa-calendar"></i>
                               </div>
                                 {{ form_widget(form.vigencia, { 'attr': {'data-inputmask':"'alias': 'dd/mm/yyyy'",'data-mask':''} }) }}
+                                 {{ form_widget(form.proceso, { 'attr': {'class':'hidden'} }) }}
                             </div>
                     {{ form_widget(form) }}
 

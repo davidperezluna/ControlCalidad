@@ -35,6 +35,11 @@ class DocumentoLegal
      */
     private $url;
 
+    public function __toString()
+    {
+        return (string) $this->getNombre();
+    }
+
 
     /**
      * Get id

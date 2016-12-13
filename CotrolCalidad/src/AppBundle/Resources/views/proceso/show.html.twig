@@ -1,8 +1,8 @@
 {% extends 'base.html.twig' %}
 {% block referencia %}
      <ol class="breadcrumb">
-        <li><a href="{{ path('dependencia_show', { 'id': proceso.macroProceso.dependencia.id }) }}"><i class="fa fa-dashboard"></i>{{proceso.macroProceso.dependencia.nombre}}</a></li>
-        <li>{{proceso.nombre}}</li>
+        <li><a href="{{ path('dependencia_show', { 'id': proceso.macroProceso.dependencia.id }) }}"><i class="fa fa-dashboard"></i>Dependencia</a></li>
+        <li>Proceso</li>
       </ol>
 {% endblock %}
 {% block body %}
@@ -21,7 +21,7 @@
               <p>{{ proceso.version }}</p>
               <hr>
               <strong><i class="fa fa-pencil margin-r-5"></i>Vigencia </strong>
-              <p>{% if proceso.vigencia %}{{ proceso.vigencia|date('Y-m-d') }}{% endif %}</p>
+              <p>{{proceso.vigencia}}</p>
             </div>
             <!-- /.box-body -->
           </div>
@@ -155,7 +155,7 @@
             <tr>
                 <td>{{ procedimiento.codigo }}</td>
                 <td>{{ procedimiento.nombre }}</td>
-                <td>{% if procedimiento.vigencia %}{{ procedimiento.vigencia|date('Y-m-d') }}{% endif %}</td>
+                <td>{{procedimiento.vigencia}}</td>
                 <td>{{ procedimiento.version }}</td>
                 <td>
                     <div class="btn-group">
@@ -168,4 +168,5 @@
         </tbody>
     </table>
   </div>
+
 {% endblock %}

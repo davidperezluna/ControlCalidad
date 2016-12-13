@@ -20,7 +20,7 @@
               <p>{{ procedimiento.version }}</p>
               <hr>
               <strong><i class="fa fa-pencil margin-r-5"></i>Vigencia </strong>
-              <p>{% if procedimiento.vigencia %}{{ procedimiento.vigencia|date('Y-m-d') }}{% endif %}</p>
+              <p>{{procedimiento.vigencia}}</p>
             </div>
             <!-- /.box-body -->
           </div>
@@ -55,6 +55,7 @@
                 
                 <li class="active"><a href="#activity" data-toggle="tab" aria-expanded="false">Archivos</a></li>
                 <li class=""><a href="#timeline" data-toggle="tab" aria-expanded="false">Usuarios</a></li>
+                <li class=""><a href="#normograma" data-toggle="tab" aria-expanded="false">Normograma</a></li>
               </ul>
               <div class="tab-content">
                 <div class="tab-pane active" id="activity">
@@ -66,8 +67,8 @@
                                     <th>Version</th>
                                     <th>Descripcion</th>
                                     <th>Estado</th>
-                                    <th>Urldocumento</th>
-                                    <th>Urldocumento PDF</th>
+                                    <th>Descargar </th>
+                                    <th>Descargar PDF</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -115,6 +116,30 @@
                                       <a  href="{{ path('usuario_show', { 'id': procedimientousuario.usuario.id }) }}" class="btn btn-default btn-flat btn-xs"><i class="fa fa-eye "></i></a>
                                     </div>
                                 </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>      
+                   
+                </div>
+                <!-- /.tab-pane -->
+
+                <!-- /.tab-pane -->
+                <div class="tab-pane" id="normograma">
+                    <a href="{{ path('normograma_new', { 'idProcedimiento': procedimiento.id }) }}" class="link-black text-sm"><i class="fa fa-plus"></i> Normograma</a>
+                    <table class="table" id="example2">
+                        <thead>
+                            <tr>  
+                                <th>Nombre</th>
+                                <th>Url</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for normograma in procedimiento.normogramas %}
+                            <tr>
+
+                                <td>{{normograma.documentoLegal.nombre}}</td>
+                                <td> <a href="{{normograma.documentoLegal.url}}" class="btn btn-primary"><i class="fa fa-external-link"></i></a> </td>
                             </tr>
                         {% endfor %}
                         </tbody>

@@ -107,11 +107,7 @@ class ArchivoController extends Controller
         $form = $this->createForm('AppBundle\Form\ArchivoType', $archivo);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-
-
-
-            $preocesoId=$request->query->get('idProceso');
+        $preocesoId=$request->query->get('idProceso');
             if ($preocesoId != null) {
                 $preoceso = $em->getRepository('AppBundle:Proceso')->find($preocesoId);
             }else{
@@ -125,6 +121,12 @@ class ArchivoController extends Controller
                 $procedimiento = null;
             }
 
+        if ($form->isSubmitted() && $form->isValid()) {
+
+
+
+            
+
             $file = $archivo->getUrlDocumento();
             $filePdf = $archivo->getUrlDocumentoPdf();
             $fileName = md5(uniqid()).$archivo->getVersion().'.'.$file->guessExtension();
@@ -137,6 +139,40 @@ class ArchivoController extends Controller
                 $this->getParameter('documentos_directory'),
                 $filePdfName
             );
+
+            $preocesoId=$request->query->get('idProceso');
+            if ($preocesoId != null) {
+                $preoceso = $em->getRepository('AppBundle:Proceso')->find($preocesoId);
+
+                 $archivos = $em->getRepository('AppBundle:Archivo')->findBy(array('proceso' => $preoceso->getId()));
+                 foreach ($archivos as $archivo ) {
+                $em = $this->getDoctrine()->getManager();
+                $archivo->setEstado(0);
+                $em->persist($archivo);
+                $em->flush($archivo);
+                }
+            }else{
+                $preoceso = null;
+            }
+
+            $procedimientoId=$request->query->get('idProcedimiento');
+            if ($procedimientoId != null) {
+                $procedimiento = $em->getRepository('AppBundle:Procedimiento')->find($procedimientoId);
+
+                $archivos = $em->getRepository('AppBundle:Archivo')->findBy(array('procedimiento' => $procedimiento->getId()));
+                foreach ($archivos as $archivo ) {
+                $em = $this->getDoctrine()->getManager();
+                $archivo->setEstado(0);
+                $em->persist($archivo);
+                $em->flush($archivo);
+                }
+            }else{
+                $procedimiento = null;
+            }
+
+
+           
+            $archivo->setEstado(1);
             $archivo->seturlDocumentoPdf($filePdfName);
             $archivo->setProcedimiento($procedimiento);
             $archivo->setProceso($preoceso);
@@ -144,6 +180,9 @@ class ArchivoController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($archivo);
             $em->flush($archivo);
+
+            $archivos = $em->getRepository('AppBundle:Archivo')->findBy(array('proceso' => $preoceso->getId()));
+
 
             if ($preoceso==null) {
                 return $this->redirectToRoute('procedimiento_show', array('id' => $procedimiento->getId()));
@@ -154,6 +193,8 @@ class ArchivoController extends Controller
         }
 
         return $this->render('AppBundle:archivo:new.html.twig', array(
+            'proceso'=>$preoceso,
+            'preocedimiento'=>$procedimiento,
             'archivo' => $archivo,
             'form' => $form->createView(),
         ));
