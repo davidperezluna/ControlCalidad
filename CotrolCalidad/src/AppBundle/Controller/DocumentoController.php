@@ -76,6 +76,8 @@ class DocumentoController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
 
+            $idProcedimiento = $request->query->get('idProcedmiento');
+
             $file = $documento->getUrlDocumento();
 
             $fileName = md5(uniqid()).$documento->getNombre().'.'.$file->guessExtension();
@@ -91,7 +93,8 @@ class DocumentoController extends Controller
             $em->persist($documento);
             $em->flush($documento);
 
-            return $this->redirectToRoute('documento_show', array('id' => $documento->getId()));
+
+            return $this->redirectToRoute('procedimientodocumento_new', array('idProcedimiento' => $idProcedimiento));
         }
 
         return $this->render('AppBundle:documento:new.html.twig', array(

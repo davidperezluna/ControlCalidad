@@ -43,15 +43,25 @@ class ProcedimientoDocumentoController extends Controller
         $form = $this->createForm('AppBundle\Form\ProcedimientoDocumentoType', $procedimientoDocumento);
         $form->handleRequest($request);
 
+        $idProcedimiento = $request->query->get('idProcedimiento');
+        $em = $this->getDoctrine()->getManager();
+        $procedimiento = $em->getRepository('AppBundle:Procedimiento')->find($idProcedimiento);
+
         if ($form->isSubmitted() && $form->isValid()) {
+            $idProcedimiento = $request->query->get('idProcedimiento');
+            $em = $this->getDoctrine()->getManager();
+            $procedimiento = $em->getRepository('AppBundle:Procedimiento')->find($idProcedimiento);
+            $procedimientoDocumento->setProcedimiento($procedimiento);
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($procedimientoDocumento);
             $em->flush($procedimientoDocumento);
 
-            return $this->redirectToRoute('procedimientodocumento_show', array('id' => $procedimientoDocumento->getId()));
+            return $this->redirectToRoute('procedimiento_show', array('id' => $procedimiento->getId()));
         }
 
         return $this->render('AppBundle:procedimientodocumento:new.html.twig', array(
+            'procedimiento' => $procedimiento,
             'procedimientoDocumento' => $procedimientoDocumento,
             'form' => $form->createView(),
         ));

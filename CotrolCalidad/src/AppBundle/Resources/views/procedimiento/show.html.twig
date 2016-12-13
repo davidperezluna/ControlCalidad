@@ -28,6 +28,10 @@
         </div>
 
             <div style="margin-top: 19px;" class="col-md-1">
+              <a href="{{ path('archivo_new', { 'idProcedimiento': procedimiento.id }) }}" class="btn btn-app">
+                    <i class="fa fa-plus"></i> Archivo
+                  </a>
+                <br>
                 <a href="{{ path('procedimiento_edit', { 'id': procedimiento.id }) }}" class="btn btn-app">
                     <i class="fa fa-edit"></i> Editar
                   </a>
@@ -37,8 +41,9 @@
                     <i class="fa fa-trash"></i> Eliminar
                   </a>
                 <br>
-                <a href="{{ path('archivo_new', { 'idProcedimiento': procedimiento.id }) }}" class="btn btn-app">
-                    <i class="fa fa-plus"></i> Archivo
+                
+                <a href="{{ path('procedimientodocumento_new', { 'idProcedimiento': procedimiento.id }) }}" class="btn btn-app">
+                    <i class="fa fa-plus"></i> Documento
                   </a>
                 <br>
                 
@@ -72,8 +77,8 @@
                                     <td>{{ archivo.version }}</td>
                                     <td>{{ archivo.descripcion }}</td>
                                     <td>{% if archivo.estado %}Yes{% else %}No{% endif %}</td>
-                                    <td><a href="{{ path('documento_archivo_download', { 'id': archivo.id }) }}">Descargar</a></td>
-                                    <td><a href="{{ path('documento_pdf_archivo_download', { 'id': archivo.id }) }}">Descargar</a></td>
+                                    <td><a class="btn btn-primary " href="{{ path('documento_archivo_download', { 'id': archivo.id }) }}"><i class="fa  fa-cloud-download"></i></a></td>
+                                    <td><a class="btn btn-primary " href="{{ path('documento_pdf_archivo_download', { 'id': archivo.id }) }}"><i class="fa  fa-cloud-download"></i></a></td>
                                     <td>
                                         <div class="btn-group">
                                       <a  href="{{ path('archivo_show', { 'id': archivo.id }) }}" class="btn btn-default btn-flat btn-xs"><i class="fa fa-eye "></i></a>
@@ -131,19 +136,18 @@
      <table class="table" id="example30">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Nombre Documento</th>
-                <th>Nombre Documento 2</th>
+                
+                <th>Documento</th>
+                <th>Nombre</th>
                 <th>Tipo Documento</th>
                 <th>Descargar</th>
-                <th>Actions</th>
+               
             </tr>
         </thead>
         <tbody>
         {% for procedimientoDocumento in procedimiento.procedimientosDocumentos %}
             <tr>
-                <td><a href="{{ path('procedimientodocumento_show', { 'id': procedimientoDocumento.id }) }}">{{ procedimientoDocumento.id }}</a></td>
-                <td>{{procedimientoDocumento.documento.nombre}}</td>
+                
                 <td>{{procedimientoDocumento.procedimiento.proceso.macroProceso.sigla}}
                     {% 
                         set idProceso = procedimientoDocumento.procedimiento.proceso.id / 2
@@ -166,18 +170,13 @@
                         0
                      {% endif %}
                     {{procedimientoDocumento.documento.id}}</td>
+                    <td>{{procedimientoDocumento.documento.nombre}}</td>
                  <td>{{procedimientoDocumento.documento.tipoDocumento.nombre}}</td>
-                <td><a href="{{ path('catalogo_marca_download', { 'id': procedimientoDocumento.documento.id }) }}">descargar</a></td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('procedimientodocumento_show', { 'id': procedimientoDocumento.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('procedimientodocumento_edit', { 'id': procedimientoDocumento.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
+                <td><a class="btn btn-primary " href="{{ path('catalogo_marca_download', { 'id': procedimientoDocumento.documento.id }) }}">
+                <i class="fa  fa-cloud-download"></i>
+              </a>
+
+                 </td>
             </tr>
         {% endfor %}
         </tbody>

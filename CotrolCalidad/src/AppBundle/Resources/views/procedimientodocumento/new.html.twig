@@ -1,16 +1,39 @@
 {% extends 'base.html.twig' %}
-
-{% block body %}
-    <h1>Procedimientodocumento creation</h1>
-
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
-
-    <ul>
-        <li>
-            <a href="{{ path('procedimientodocumento_index') }}">Back to the list</a>
-        </li>
-    </ul>
+{% block referencia %}
+     <ol class="breadcrumb">
+        <li><a href="{{ path('homepage') }}"><i class="fa fa-dashboard"></i> Inicio</a></li>
+        <li><a href="{{ path('procedimiento_show',{'id':procedimiento.id})}}">Procedimiento</a></li>
+        <li class="active">Procedimiento Documento</li>
+      </ol>
 {% endblock %}
+{% block body %}
+    <div class="col-lg-5">
+    <div class="col-lg-10">
+                  
+        <div class="box box-success col-lg-5 ">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Asignar Documento</h3>
+                </div>
+
+                {{ form_start(form) }}
+                    {{ form_widget(form.procedimiento, {'attr': {'class': 'hidden'}}) }}
+                    {{ form_widget(form.documento, {'attr': {'class': 'form-control select2'}}) }}
+
+                     <br>
+                    <div class="box-footer">
+                    <button type="submit" class="btn btn-primary">Crear</button>
+                  </div>
+                    {{ form_end(form) }}
+
+                
+                <br>
+        </div>
+    </div>
+    <div class="col-lg-2">
+    <a href="{{ path('documento_new',{'idProcedmiento':procedimiento.id}) }}" class="btn btn-app">
+        <i class="fa fa-user"></i> <small>Usuario</small>
+    </a>
+    </div>
+    </div>
+{% endblock %}
+
