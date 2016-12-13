@@ -43,7 +43,7 @@ class UsuarioController extends Controller
             if ($idProceso!=null) {
                 return $this->redirectToRoute('procesousuario_new', array('idProceso' => $idProceso));
             }else{
-                return $this->redirectToRoute('procedimientousuario_show', array('idProcedimiento' => $idProcedimiento));
+                return $this->redirectToRoute('procedimientousuario_new', array('idProcedimiento' => $idProcedimiento));
             }
 
         }

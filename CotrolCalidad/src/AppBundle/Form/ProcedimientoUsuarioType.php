@@ -13,7 +13,7 @@ class ProcedimientoUsuarioType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('procedimiento')->add('usuario')        ;
+        $builder->add('procedimiento')->add('usuario')->add('role')        ;
     }
     
     /**

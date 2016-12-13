@@ -71,10 +71,16 @@ class Procedimiento
      */
     private $normogramas;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Archivo", mappedBy="procedimiento")
+     */
+    private $archivos;
+
     public function __construct() {
         $this->procedimientosDocumentos = new ArrayCollection();
         $this->procedimientosUsuarios = new ArrayCollection();
         $this->normogramas = new ArrayCollection();
+        $this->archivos = new ArrayCollection();
     }
     public function __toString()
     {
@@ -290,5 +296,29 @@ class Procedimiento
     public function getNormogramas()
     {
         return $this->normogramas;
+    }
+
+    /**
+     * Set vigencia
+     *
+     * @param string $vigencia
+     *
+     * @return Procedimiento
+     */
+    public function setVigencia($vigencia)
+    {
+        $this->vigencia = $vigencia;
+
+        return $this;
+    }
+
+    /**
+     * Get vigencia
+     *
+     * @return string
+     */
+    public function getVigencia()
+    {
+        return $this->vigencia;
     }
 }

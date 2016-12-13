@@ -94,28 +94,4 @@ class ProcedimientoUsuario
     {
         return $this->usuario;
     }
-
-    /**
-     * Set role
-     *
-     * @param \AppBundle\Entity\Role $role
-     *
-     * @return ProcedimientoUsuario
-     */
-    public function setRole(\AppBundle\Entity\Role $role = null)
-    {
-        $this->role = $role;
-
-        return $this;
-    }
-
-    /**
-     * Get role
-     *
-     * @return \AppBundle\Entity\Role
-     */
-    public function getRole()
-    {
-        return $this->role;
-    }
 }

@@ -71,10 +71,16 @@ class Procedimiento
      */
     private $normogramas;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Archivo", mappedBy="procedimiento")
+     */
+    private $archivos;
+
     public function __construct() {
         $this->procedimientosDocumentos = new ArrayCollection();
         $this->procedimientosUsuarios = new ArrayCollection();
         $this->normogramas = new ArrayCollection();
+        $this->archivos = new ArrayCollection();
     }
     public function __toString()
     {
@@ -314,5 +320,39 @@ class Procedimiento
     public function getVigencia()
     {
         return $this->vigencia;
+    }
+
+    /**
+     * Add archivo
+     *
+     * @param \AppBundle\Entity\Archivo $archivo
+     *
+     * @return Procedimiento
+     */
+    public function addArchivo(\AppBundle\Entity\Archivo $archivo)
+    {
+        $this->archivos[] = $archivo;
+
+        return $this;
+    }
+
+    /**
+     * Remove archivo
+     *
+     * @param \AppBundle\Entity\Archivo $archivo
+     */
+    public function removeArchivo(\AppBundle\Entity\Archivo $archivo)
+    {
+        $this->archivos->removeElement($archivo);
+    }
+
+    /**
+     * Get archivos
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getArchivos()
+    {
+        return $this->archivos;
     }
 }

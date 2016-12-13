@@ -118,7 +118,7 @@ class ArchivoController extends Controller
                 $preoceso = null;
             }
 
-            $procedimientoId=$request->query->get('idProcdimiento');
+            $procedimientoId=$request->query->get('idProcedimiento');
             if ($procedimientoId != null) {
                 $procedimiento = $em->getRepository('AppBundle:Procedimiento')->find($procedimientoId);
             }else{
@@ -138,7 +138,7 @@ class ArchivoController extends Controller
                 $filePdfName
             );
             $archivo->seturlDocumentoPdf($filePdfName);
-            $archivo->setProceso($procedimiento);
+            $archivo->setProcedimiento($procedimiento);
             $archivo->setProceso($preoceso);
             $archivo->seturlDocumento($fileName);
             $em = $this->getDoctrine()->getManager();

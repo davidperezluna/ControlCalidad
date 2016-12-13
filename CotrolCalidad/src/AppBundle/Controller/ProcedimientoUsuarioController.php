@@ -42,6 +42,9 @@ class ProcedimientoUsuarioController extends Controller
         $procedimientoUsuario = new Procedimientousuario();
         $form = $this->createForm('AppBundle\Form\ProcedimientoUsuarioType', $procedimientoUsuario);
         $form->handleRequest($request);
+        $idProcedimiento = $request->query->get('idProcedimiento');
+        $em = $this->getDoctrine()->getManager();
+        $procedimiento = $em->getRepository('AppBundle:Procedimiento')->find($idProcedimiento);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -52,6 +55,7 @@ class ProcedimientoUsuarioController extends Controller
         }
 
         return $this->render('AppBundle:procedimientousuario:new.html.twig', array(
+            'procedimiento'=>$procedimiento,
             'procedimientoUsuario' => $procedimientoUsuario,
             'form' => $form->createView(),
         ));
