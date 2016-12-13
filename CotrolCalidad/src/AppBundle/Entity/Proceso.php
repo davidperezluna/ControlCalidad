@@ -46,7 +46,7 @@ class Proceso
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="vigencia", type="date")
+     * @ORM\Column(name="vigencia", type="string")
      */
     private $vigencia;
 

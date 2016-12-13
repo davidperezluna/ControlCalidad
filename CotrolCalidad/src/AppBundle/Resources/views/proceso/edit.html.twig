@@ -1,21 +1,39 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-    <h1>Proceso edit</h1>
-
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
-
-    <ul>
-        <li>
-            <a href="{{ path('proceso_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+{% block referencia %}
+    <ol class="breadcrumb">
+        <li><a href="{{ path('homepage') }}"><i class="fa fa-dashboard"></i> Inicio</a></li>
+        <li><a href="{{ path('procedimiento_index') }}">Proceso</a></li>
+        <li class="active">Editar</li>
+    </ol>
 {% endblock %}
+
+{% block body %}
+    <div class="col-lg-5">
+        <a href="{{ path('proceso_index') }}" style="margin-left: 89%;" class="link-black text-sm col-lg-offset-10"><i class="fa fa-mail-reply margin-r-5"></i> Atras</a>
+        <div class="box box-info col-lg-5 ">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Editar Proceso</h3>
+                </div>
+                 {{ form_start(edit_form) }}
+                 <b>Vigencia</b>
+                    <div class="input-group">
+                              <div class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                              </div>
+                                {{ form_widget(edit_form.vigencia, { 'attr': {'data-inputmask':"'alias': 'yyyy/dd/mm'",'data-mask':''} }) }}
+                            </div>
+                   {{ form_widget(edit_form) }}
+                    <br>
+                    <div class="box-footer">
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                  </div>
+                {{ form_end(edit_form) }}
+                
+                {{ form_start(delete_form) }}
+                    <input type="submit" class="btn btn-danger" value="Eliminar" style="margin-left: 86%; margin-top: -74px;">
+                {{ form_end(delete_form) }}
+        </div>
+    </div>
+{% endblock %}
+ 
