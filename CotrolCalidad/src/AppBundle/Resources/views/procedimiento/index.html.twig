@@ -28,7 +28,6 @@
 
                 <thead>
                 <tr>
-                    <th>Id</th>
                     <th>Codigo</th>
                     <th>Nombre</th>
                     <th>Vigencia</th>
@@ -41,9 +40,8 @@
                  {% for procedimiento in procedimientos %}
                     <tr>
                         <td><a href="{{ path('procedimiento_show', { 'id': procedimiento.id }) }}">{{ procedimiento.id }}</a></td>
-                        <td>{{ procedimiento.codigo }}</td>
                         <td>{{ procedimiento.nombre }}</td>
-                        <td>{% if procedimiento.vigencia %}{{ procedimiento.vigencia|date('Y-m-d') }}{% endif %}</td>
+                        <td>{{procedimiento.vigencia}}</td>
                         <td>{{ procedimiento.version }}</td>
                         <td>
                             <div class="btn-group">

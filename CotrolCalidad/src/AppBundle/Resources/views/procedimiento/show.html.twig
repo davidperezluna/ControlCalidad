@@ -12,7 +12,7 @@
 
 
   <div class="col-md-3">
-    <a href="{{ path('proceso_index') }}" class="link-black text-sm"><i class="fa fa-mail-reply margin-r-5"></i> Atras</a>
+    <a href="{{ path('proceso_show',{'id':procedimiento.proceso.id}) }}" class="link-black text-sm"><i class="fa fa-mail-reply margin-r-5"></i> Atras</a>
 
     <!-- About Me Box -->
     <div class="box box-primary">
@@ -169,12 +169,11 @@
 
 
   <div class="col-md-12">
-    <a href="{{ path('proceso_index') }}" class="link-black text-sm"><i class="fa fa-mail-reply margin-r-5"></i> Atras</a>
 
     <!-- About Me Box -->
     <div class="box box-default">
       <div class="box-header with-border">
-        <h3 class="box-title">{{ procedimiento.nombre }}</h3>
+        <h3 class="box-title">Documentos</h3>
       </div>
       <!-- /.box-header -->
       <div class="box-body">
