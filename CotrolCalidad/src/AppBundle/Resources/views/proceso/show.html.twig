@@ -2,6 +2,7 @@
 {% block referencia %}
      <ol class="breadcrumb">
         <li><a href="{{ path('dependencia_show', { 'id': proceso.macroProceso.dependencia.id }) }}"><i class="fa fa-dashboard"></i>Dependencia</a></li>
+
         <li>Proceso</li>
       </ol>
 {% endblock %}
@@ -27,7 +28,7 @@
 
             <div  class="col-md-1">
 
-              <a href="{{ path('archivo_new', { 'idProceso': proceso.id }) }}" class="btn btn-app">
+              <a data-toggle="tooltip"data-original-title="Archivo de proceso" href="{{ path('archivo_new', { 'idProceso': proceso.id }) }}" class="btn btn-app">
                     <i class="fa fa-plus"></i> Archivo 
                   </a>
                 <br>
@@ -78,12 +79,13 @@
                                     <td>{{ archivo.version }}</td>
                                     <td>{{ archivo.descripcion }}</td>
                                     <td>{% if archivo.estado %}<i class="fa fa-circle-o text-green"></i>{% else %}<i class="fa fa-circle-o text-red"></i>{% endif %}</td>
-                                    <td><a class="btn btn-primary" href="{{ path('documento_archivo_download', { 'id': archivo.id }) }}"><i class="fa  fa-cloud-download"></i></a></td>
-                                    <td><a class="btn btn-primary" href="{{ path('documento_pdf_archivo_download', { 'id': archivo.id }) }}"><i class="fa  fa-cloud-download"></i></a></td>
+                                    <td><a data-toggle="tooltip"data-original-title="descargar" class="btn btn-primary" href="{{ path('documento_archivo_download', { 'id': archivo.id }) }}"><i class="fa  fa-cloud-download"></i></a></td>
+                                    <td><a data-toggle="tooltip"data-original-title="descargar" class="btn btn-primary" href="{{ path('documento_pdf_archivo_download', { 'id': archivo.id }) }}"><i class="fa  fa-cloud-download"></i></a></td>
                                     <td>
                                         <div class="btn-group">
-                                      <a  href="{{ path('archivo_show', { 'id': archivo.id }) }}" class="btn btn-default btn-flat btn-xs"><i class="fa fa-eye "></i></a>
-                                      <a href="{{ path('archivo_edit', { 'id': archivo.id }) }}" class="btn btn-default btn-flat btn-xs"><i class="fa fa-edit"></i></a>
+                                      <a data-toggle="tooltip"data-original-title="ver" href="{{ path('archivo_show', { 'id': archivo.id }) }}" class="btn btn-default btn-flat btn-xs"><i class="fa fa-eye "></i></a>
+                                      <a data-toggle="tooltip"data-original-title="editar" href="{{ path('archivo_edit', { 'id': archivo.id }) }}" class="btn btn-default btn-flat btn-xs"><i class="fa fa-edit"></i></a>
+
                                     </div>
                                     </td>
                                 </tr>
@@ -113,7 +115,7 @@
                                 <td>{{procesoUsuario.role}}</td>
                                 <td>
                                     <div class="btn-group">
-                                      <a  href="{{ path('usuario_show', { 'id': procesoUsuario.usuario.id }) }}" class="btn btn-default btn-flat btn-xs"><i class="fa fa-eye "></i></a>
+                                      <a data-toggle="tooltip"data-original-title="ver" href="{{ path('usuario_show', { 'id': procesoUsuario.usuario.id }) }}" class="btn btn-default btn-flat btn-xs"><i class="fa fa-eye "></i></a>
                                     </div>
                                 </td>
                             </tr>
@@ -175,8 +177,8 @@
                           <td>{{ procedimiento.version }}</td>
                           <td>
                               <div class="btn-group">
-                                <a  href="{{ path('procedimiento_show', { 'id': procedimiento.id }) }}" class="btn btn-default btn-flat"><i class="fa fa-eye"></i></a>
-                                <a href="{{ path('procedimiento_edit', { 'id': procedimiento.id }) }}" class="btn btn-default btn-flat"><i class="fa fa-edit"></i></a>
+                                <a data-toggle="tooltip"data-original-title="ver" href="{{ path('procedimiento_show', { 'id': procedimiento.id }) }}" class="btn btn-default btn-flat"><i class="fa fa-eye"></i></a>
+                                <a data-toggle="tooltip"data-original-title="editar" href="{{ path('procedimiento_edit', { 'id': procedimiento.id }) }}" class="btn btn-default btn-flat"><i class="fa fa-edit"></i></a>
                               </div>
                           </td>
                       </tr>
