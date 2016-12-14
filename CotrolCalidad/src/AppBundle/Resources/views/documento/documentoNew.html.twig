@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block referencia %}
+     <ol class="breadcrumb">
+        <li><a href="{{ path('homepage') }}"><i class="fa fa-dashboard"></i> Inicio</a></li>
+        <li><a href="{{ path('documento_index') }}">Documento</a></li>
+        <li class="active">Nuevo</li>
+      </ol>
+{% endblock %}
+
+{% block body %}
+     <div class="col-lg-5">
+        <div class="box box-success col-lg-5 ">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Crear Documento</h3>
+                </div>
+                 {{ form_start(form, { 'attr': {'class': 'task_field',"novalidate":"novalidate"} }) }}
+                    {{ form_widget(form) }}
+
+                    <br>
+                    </div>
+                    <br>
+                    <div class="box-footer">
+                    <button type="submit" class="btn btn-primary">Crear</button>
+                  </div>
+                  <div class="col-md-6">
+                {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}
+

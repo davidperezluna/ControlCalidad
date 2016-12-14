@@ -17,6 +17,46 @@ class DocumentoController extends Controller
 {
 
     /**
+     * Creates a new documento entity.
+     *
+     * @Route("/new/documento", name="documento_index_new")
+     * @Method({"GET", "POST"})
+     */
+    public function newDocumentoAction(Request $request)
+    {
+        $documento = new Documento();
+        $form = $this->createForm('AppBundle\Form\DocumentoType', $documento);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+
+            $file = $documento->getUrlDocumento();
+
+            $fileName = md5(uniqid()).$documento->getNombre().'.'.$file->guessExtension();
+
+            $file->move(
+                $this->getParameter('documentos_directory'),
+                $fileName
+            );
+
+
+            $documento->seturlDocumento($fileName);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($documento);
+            $em->flush($documento);
+
+
+            return $this->redirectToRoute('documento_index');
+        }
+
+        return $this->render('AppBundle:documento:documentoNew.html.twig', array(
+            'documento' => $documento,
+            'form' => $form->createView(),
+        ));
+    }
+
+    /**
       * Download file
       * @Route("/download/{id}", name="catalogo_marca_download")
       * @Method("GET")

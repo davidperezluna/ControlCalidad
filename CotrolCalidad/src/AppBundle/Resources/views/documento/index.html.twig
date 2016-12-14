@@ -11,7 +11,7 @@
 <!-- /.box -->
 <div class="col-lg-12">
         <div class="col-lg-1">
-            <a href="{{ path('documento_new')}}" class="btn btn-app btn-xs">
+            <a data-toggle="tooltip"data-original-title="Agregar nuevo documento" href="{{ path('documento_index_new')}}" class="btn btn-app btn-xs">
                 <i class="fa fa-plus"></i> Agregar
             </a>
         </div>
@@ -28,9 +28,8 @@
 
                 <thead>
                 <tr>
-                    <th>Id</th>
                     <th>Nombre</th>
-                    <th>Urldocumento</th>
+                    <th>Descargar</th>
                     <th>Actions</th>
                 </tr>
                 </thead>
@@ -38,12 +37,15 @@
                 <tbody>
                  {% for documento in documentos %}
                     <tr>
-                        <td><a href="{{ path('documento_show', { 'id': documento.id }) }}">{{ documento.id }}</a></td>
                         <td>{{ documento.nombre }}</td>
-                        <td><a href="{{ path('catalogo_marca_download', { 'id': documento.id }) }}">descargar</a></td>
+                       <td><a data-toggle="tooltip"data-original-title="Descargar" class="btn btn-primary " href="{{ path('catalogo_marca_download', { 'id': documento.id }) }}">
+                    <i class="fa  fa-cloud-download"></i>
+                  </a>
+
+                </td>
                         <td>
                             <div class="btn-group">
-                              <a href="{{ path('documento_edit', { 'id': documento.id }) }}" class="btn btn-default btn-flat"><i class="fa fa-edit"></i></a>
+                              <a data-toggle="tooltip"data-original-title="editar" href="{{ path('documento_edit', { 'id': documento.id }) }}" class="btn btn-default btn-flat"><i class="fa fa-edit"></i></a>
                             </div>
                         </td>
                     </tr>
