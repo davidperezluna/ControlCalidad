@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block referencia %}
+    <ol class="breadcrumb">
+        <li><a href="{{ path('homepage') }}"><i class="fa fa-dashboard"></i> Inicio</a></li>
+        <li class="active">Role</li>
+    </ol>
+{% endblock %} 
+
+{% block body %}
+    <div class="col-lg-12">
+    <div class="col-lg-1">
+                    <a href="{{ path('role_new')}}" class="btn btn-app btn-xs">
+                        <i class="fa fa-plus"></i> Agregar
+                    </a>
+                </div>
+       
+        <div class="col-lg-12">
+          <div class="box">
+            <div class="box-header">
+                
+              <h3 class="box-title">Role</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <table id="example1" class="table table-bordered table-striped">
+
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nombre</th>
+                    <th>Cargo</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                {% for role in roles %}
+                    <tr>
+                        <td><a href="{{ path('role_show', { 'id': role.id }) }}">{{ role.id }}</a></td>
+                        <td>{{ role.nombre }}</td>
+                        <td>{{ role.cargo }}</td>
+                        <td>
+                            <div class="btn-group">
+                              <a href="{{ path('role_edit', { 'id': role.id }) }}" class="btn btn-default btn-flat"><i class="fa fa-edit"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+               
+              </table>
+
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+          </div>
+           
+</div>
+{% endblock %}

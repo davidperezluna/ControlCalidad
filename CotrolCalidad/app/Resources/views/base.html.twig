@@ -243,16 +243,17 @@
                       </ul>
                     </li>
 
+
                     <li class="treeview">
                       <a href="#">
                         <i class="fa fa-pie-chart"></i>
-                        <span>Dependecia</span>
+                        <span>Role</span>
                         <span class="pull-right-container">
                           <i class="fa fa-angle-left pull-right"></i>
                         </span>
                       </a>
                       <ul class="treeview-menu">
-                        <li><a href="{{path("dependencia_index")}}">Administrar</a></li>
+                        <li><a href="{{path("role_index")}}">Administrar</a></li>
                       </ul>
                     </li>
                     
@@ -292,47 +293,6 @@
                       </a>
                       <ul class="treeview-menu">
                         <li><a href="{{path("empresa_index")}}">Administrar</a></li>
-                      </ul>
-                    </li>
-
-                    <li class="treeview">
-                      <a href="#">
-                        <i class="fa fa-pie-chart"></i>
-                        <span>Macro Proceso</span>
-                        <span class="pull-right-container">
-                          <i class="fa fa-angle-left pull-right"></i>
-                        </span>
-                      </a>
-                      <ul class="treeview-menu">
-                        <li><a href="{{path("macroproceso_index")}}">Administrar</a></li>
-                      </ul>
-                    </li>
-
-                    <li class="treeview">
-                      <a href="#">
-                        <i class="fa fa-pie-chart"></i>
-                        <span>Procedimiento</span>
-                        <span class="pull-right-container">
-                          <i class="fa fa-angle-left pull-right"></i>
-                        </span>
-                      </a>
-                      <ul class="treeview-menu">
-                        <li><a href="{{path("procedimiento_index")}}">Administrar</a></li>
-                      </ul>
-                    </li>
-
-
-
-                    <li class="treeview">
-                      <a href="#">
-                        <i class="fa fa-pie-chart"></i>
-                        <span>Proceso</span>
-                        <span class="pull-right-container">
-                          <i class="fa fa-angle-left pull-right"></i>
-                        </span>
-                      </a>
-                      <ul class="treeview-menu">
-                        <li><a href="{{path("proceso_index")}}">Administrar</a></li>
                       </ul>
                     </li>
 
@@ -638,6 +598,24 @@
                 maxFileSize: 1000,
                 maxFilesNum: 10, 
               });
+
+             $("#appbundle_archivo_urlDocumento").fileinput({
+                uploadUrl: '#', // you must set a valid URL here else you will get an error
+                language: 'es',
+                allowedFileExtensions : ['doc', 'docx','pdf'],
+                overwriteInitial: false,
+                maxFileSize: 1000,
+                maxFilesNum: 10, 
+              });
+
+             $("#appbundle_archivo_urlDocumentoPdf").fileinput({
+                uploadUrl: '#', // you must set a valid URL here else you will get an error
+                language: 'es',
+                allowedFileExtensions : ['pdf'],
+                overwriteInitial: false,
+                maxFileSize: 1000,
+                maxFilesNum: 10, 
+              })
               $(function () {
                 //Initialize Select2 Elements
                 $(".select2").select2();
