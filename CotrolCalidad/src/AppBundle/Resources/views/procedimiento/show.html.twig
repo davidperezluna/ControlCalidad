@@ -77,7 +77,7 @@
                 <tr>
                   <td>{{ archivo.version }}</td>
                   <td>{{ archivo.descripcion }}</td>
-                  <td>{% if archivo.estado %}Yes{% else %}No{% endif %}</td>
+                   <td>{% if archivo.estado %}<i class="fa fa-circle-o text-green"></i>{% else %}<i class="fa fa-circle-o text-red"></i>{% endif %}</td>
                   <td><a class="btn btn-primary " href="{{ path('documento_archivo_download', { 'id': archivo.id }) }}"><i class="fa  fa-cloud-download"></i></a></td>
                   <td><a class="btn btn-primary " href="{{ path('documento_pdf_archivo_download', { 'id': archivo.id }) }}"><i class="fa  fa-cloud-download"></i></a></td>
                   <td>
