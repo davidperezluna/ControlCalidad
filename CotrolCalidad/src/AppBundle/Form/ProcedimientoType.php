@@ -17,10 +17,6 @@ class ProcedimientoType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-
-        ->add('codigo', TextType::class,array(
-                "attr" =>array("class" => "form-control") 
-            ))
         ->add('nombre', TextType::class,array(
                 "attr" =>array("class" => "form-control") 
             ))

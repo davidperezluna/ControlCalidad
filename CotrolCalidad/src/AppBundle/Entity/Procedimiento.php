@@ -25,13 +25,6 @@ class Procedimiento
     /**
      * @var string
      *
-     * @ORM\Column(name="codigo", type="string", length=255)
-     */
-    private $codigo;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="nombre", type="string", length=255)
      */
     private $nombre;
@@ -94,32 +87,6 @@ class Procedimiento
     public function getId()
     {
         return $this->id;
-    }
-
-  
-
-    /**
-     * Set codigo
-     *
-     * @param string $codigo
-     *
-     * @return Procedimiento
-     */
-    public function setCodigo($codigo)
-    {
-        $this->codigo = $codigo;
-
-        return $this;
-    }
-
-    /**
-     * Get codigo
-     *
-     * @return string
-     */
-    public function getCodigo()
-    {
-        return $this->codigo;
     }
 
     /**

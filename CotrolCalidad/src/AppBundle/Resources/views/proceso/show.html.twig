@@ -14,9 +14,6 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <strong><i class="fa fa-book margin-r-5"></i> Codigo </strong>
-              <p>{{ proceso.codigo }}</p>
-              <hr>
               <strong><i class="fa fa-map-marker margin-r-5"></i> Version </strong>
               <p>{{ proceso.version }}</p>
               <hr>
@@ -165,7 +162,14 @@
                   <tbody>
                   {% for procedimiento in proceso.procedimientos %}
                       <tr>
-                          <td>{{ procedimiento.codigo }}</td>
+                          <td>
+                            {% if procedimiento.id < 10 %}
+                              0{{ procedimiento.id }}
+                              {% else %}
+                                 {{ procedimiento.id }} 
+                            {% endif %}
+                            
+                          </td>
                           <td>{{ procedimiento.nombre }}</td>
                           <td>{{procedimiento.vigencia}}</td>
                           <td>{{ procedimiento.version }}</td>

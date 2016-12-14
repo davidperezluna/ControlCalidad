@@ -1,8 +1,15 @@
 {% extends 'base.html.twig' %}
 
 {% block referencia %}
-     <ol class="breadcrumb">
+      <ol class="breadcrumb">
         <li><a href="{{ path('homepage') }}"><i class="fa fa-dashboard"></i> Inicio</a></li>
+        {% if proceso != null %}
+          <li><a href="{{ path('proceso_show', { 'id': proceso.id }) }}">Proceso</a></li>
+          {% else %}
+          <li><a href="{{ path('proceso_show', { 'id': procedimieto.proceso.id }) }}">Proceso</a></li>
+          <li><a href="{{ path('procedimiento_show', { 'id': procedimieto.id }) }}">Procedimiento</a></li>
+        {% endif %}
+        
         <li class="active">Archivo</li>
       </ol>
 {% endblock %}

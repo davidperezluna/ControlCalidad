@@ -190,7 +190,7 @@ class ArchivoController extends Controller
 
         return $this->render('AppBundle:archivo:new.html.twig', array(
             'proceso'=>$preoceso,
-            'preocedimiento'=>$procedimiento,
+            'procedimieto'=>$procedimiento,
             'archivo' => $archivo,
             'form' => $form->createView(),
         ));

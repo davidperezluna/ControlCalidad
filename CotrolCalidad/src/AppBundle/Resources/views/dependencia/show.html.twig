@@ -74,7 +74,15 @@
                                                             <tbody>
                                                             {% for proceso in mp.procesos %}
                                                                 <tr>
-                                                                    <td>{{ proceso.codigo }}</td>
+                                                                    <td>
+                                                                      {% if proceso.id < 10 %}
+                                                                        0{{ proceso.id }}
+                                                                        {% else %}
+                                                                            {{ proceso.id }}
+                                                                      {% endif %}
+                                                                      
+
+                                                                    </td>
                                                                     <td>{{ proceso.nombre }}</td>
                                                                     <td>{{ proceso.version }}</td>
                                                                     <td>{% if proceso.vigencia %}{{ proceso.vigencia|date('Y-m-d') }}{% endif %}</td>

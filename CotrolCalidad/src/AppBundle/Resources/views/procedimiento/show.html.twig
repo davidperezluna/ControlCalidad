@@ -1,4 +1,12 @@
 {% extends 'base.html.twig' %}
+{% block referencia %}
+     <ol class="breadcrumb">
+        <li><a href="{{ path('homepage') }}"><i class="fa fa-dashboard"></i>Home</a></li>
+        <li><a href="{{ path('dependencia_show', { 'id': procedimiento.proceso.macroProceso.dependencia.id }) }}">Dependencia</a></li>
+        <li><a href="{{ path('proceso_show', { 'id': procedimiento.proceso.id }) }}">Proceso</a></li>
+        <li>Procedimiento</li>
+      </ol>
+{% endblock %}
 
 {% block body %}
 
@@ -14,7 +22,11 @@
       <!-- /.box-header -->
       <div class="box-body">
         <strong><i class="fa fa-book margin-r-5"></i> Codigo </strong>
-        <p>{{ procedimiento.codigo }}</p>
+        <p>{% if procedimiento.id < 10 %}
+              0{{ procedimiento.id }}
+              {% else %}
+                 {{ procedimiento.id }} 
+            {% endif %}</p>
         <hr>
         <strong><i class="fa fa-map-marker margin-r-5"></i> Version </strong>
         <p>{{ procedimiento.version }}</p>
