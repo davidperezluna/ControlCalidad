@@ -21,17 +21,17 @@
       </div>
       <!-- /.box-header -->
       <div class="box-body">
-        <strong><i class="fa fa-book margin-r-5"></i> Codigo </strong>
+        <strong><i class="fa fa-qrcode margin-r-5"></i> Codigo </strong>
         <p>{% if procedimiento.id < 10 %}
               0{{ procedimiento.id }}
               {% else %}
                  {{ procedimiento.id }} 
             {% endif %}</p>
         <hr>
-        <strong><i class="fa fa-map-marker margin-r-5"></i> Version </strong>
+        <strong><i class="fa fa-list margin-r-5"></i> Version </strong>
         <p>{{ procedimiento.version }}</p>
         <hr>
-        <strong><i class="fa fa-pencil margin-r-5"></i>Vigencia </strong>
+        <strong><i class="fa fa-calendar margin-r-5"></i>Vigencia </strong>
         <p>{{procedimiento.vigencia}}</p>
       </div>
       <!-- /.box-body -->
@@ -40,21 +40,21 @@
   </div>
 
   <div style="margin-top: 19px;" class="col-md-1">
-    <a href="{{ path('archivo_new', { 'idProcedimiento': procedimiento.id }) }}" class="btn btn-app">
+    <a  data-toggle="tooltip"data-original-title="Archivo de procedimiento" href="{{ path('archivo_new', { 'idProcedimiento': procedimiento.id }) }}" class="btn btn-app">
       <i class="fa fa-plus"></i> Archivo
     </a>
     <br>
-    <a href="{{ path('procedimiento_edit', { 'id': procedimiento.id }) }}" class="btn btn-app">
+    <a  data-toggle="tooltip"data-original-title="Editar procedimiento" href="{{ path('procedimiento_edit', { 'id': procedimiento.id }) }}" class="btn btn-app">
       <i class="fa fa-edit"></i> Editar
     </a>
     <br>
 
-    <a href="{{ path('procedimiento_delete', { 'id': procedimiento.id }) }}" class="btn btn-app">
+    <a  data-toggle="tooltip"data-original-title="Eliminar procedimiento" href="{{ path('procedimiento_delete', { 'id': procedimiento.id }) }}" class="btn btn-app">
       <i class="fa fa-trash"></i> Eliminar
     </a>
     <br>
 
-    <a href="{{ path('procedimientodocumento_new', { 'idProcedimiento': procedimiento.id }) }}" class="btn btn-app">
+    <a  data-toggle="tooltip"data-original-title="Asignar nuevo documento" href="{{ path('procedimientodocumento_new', { 'idProcedimiento': procedimiento.id }) }}" class="btn btn-app">
       <i class="fa fa-plus"></i> Documento
     </a>
     <br>
@@ -89,13 +89,12 @@
                 <tr>
                   <td>{{ archivo.version }}</td>
                   <td>{{ archivo.descripcion }}</td>
-                   <td>{% if archivo.estado %}<i class="fa fa-circle-o text-green"></i>{% else %}<i class="fa fa-circle-o text-red"></i>{% endif %}</td>
-                  <td><a class="btn btn-primary " href="{{ path('documento_archivo_download', { 'id': archivo.id }) }}"><i class="fa  fa-cloud-download"></i></a></td>
-                  <td><a class="btn btn-primary " href="{{ path('documento_pdf_archivo_download', { 'id': archivo.id }) }}"><i class="fa  fa-cloud-download"></i></a></td>
+                   <td>{% if archivo.estado %}<i <a  data-toggle="tooltip"data-original-title="Activo" class="fa fa-circle-o text-green"></i>{% else %}<i <a  data-toggle="tooltip"data-original-title="Inactivo"class="fa fa-circle-o text-red"></i>{% endif %}</td>
+                  <td><a  data-toggle="tooltip"data-original-title="Descargar" class="btn btn-primary " href="{{ path('documento_archivo_download', { 'id': archivo.id }) }}"><i class="fa  fa-cloud-download"></i></a></td>
+                  <td><a   data-toggle="tooltip"data-original-title="Descargar" class="btn btn-primary " href="{{ path('documento_pdf_archivo_download', { 'id': archivo.id }) }}"><i class="fa  fa-cloud-download"></i></a></td>
                   <td>
                     <div class="btn-group">
-                      <a  href="{{ path('archivo_show', { 'id': archivo.id }) }}" class="btn btn-default btn-flat btn-xs"><i class="fa fa-eye "></i></a>
-                      <a href="{{ path('archivo_edit', { 'id': archivo.id }) }}" class="btn btn-default btn-flat btn-xs"><i class="fa fa-edit"></i></a>
+                      <a <a  data-toggle="tooltip"data-original-title="editar" href="{{ path('archivo_edit', { 'id': archivo.id }) }}" class="btn btn-default btn-flat btn-xs"><i class="fa fa-edit"></i></a>
                     </div>
                   </td>
                 </tr>
@@ -125,7 +124,7 @@
                   <td>{{procedimientousuario.role}}</td>
                   <td>
                     <div class="btn-group">
-                      <a  href="{{ path('usuario_show', { 'id': procedimientousuario.usuario.id }) }}" class="btn btn-default btn-flat btn-xs"><i class="fa fa-eye "></i></a>
+                      <a data-toggle="tooltip"data-original-title="ver" href="{{ path('usuario_show', { 'id': procedimientousuario.usuario.id }) }}" class="btn btn-default btn-flat btn-xs"><i class="fa fa-eye "></i></a>
                     </div>
                   </td>
                 </tr>
@@ -151,7 +150,7 @@
                 <tr>
 
                   <td>{{normograma.documentoLegal.nombre}}</td>
-                  <td> <a href="{{normograma.documentoLegal.url}}" class="btn btn-primary"><i class="fa fa-external-link"></i></a> </td>
+                  <td> <a data-toggle="tooltip"data-original-title="Visitar pagina" href="{{normograma.documentoLegal.url}}" class="btn btn-primary"><i class="fa fa-external-link"></i></a> </td>
                 </tr>
               {% endfor %}
             </tbody>
@@ -218,7 +217,7 @@
                   {{procedimientoDocumento.documento.id}}</td>
                   <td>{{procedimientoDocumento.documento.nombre}}</td>
                   <td>{{procedimientoDocumento.documento.tipoDocumento.nombre}}</td>
-                  <td><a class="btn btn-primary " href="{{ path('catalogo_marca_download', { 'id': procedimientoDocumento.documento.id }) }}">
+                  <td><a data-toggle="tooltip"data-original-title="Descargar" class="btn btn-primary " href="{{ path('catalogo_marca_download', { 'id': procedimientoDocumento.documento.id }) }}">
                     <i class="fa  fa-cloud-download"></i>
                   </a>
 

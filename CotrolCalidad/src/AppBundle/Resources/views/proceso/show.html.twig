@@ -15,10 +15,19 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <strong><i class="fa fa-map-marker margin-r-5"></i> Version </strong>
+               <strong><i class="fa fa-qrcode margin-r-5"></i> Codigo </strong>
+              <p>
+                {% if proceso.id < 10 %}
+                0{{ proceso.id }}
+                {% else %}
+                    {{ proceso.id }}
+                {% endif %}
+              </p>
+              <hr>
+              <strong><i class="fa  fa-list margin-r-5"></i> Version </strong>
               <p>{{ proceso.version }}</p>
               <hr>
-              <strong><i class="fa fa-pencil margin-r-5"></i>Vigencia </strong>
+              <strong><i class="fa fa-calendar margin-r-5"></i>Vigencia </strong>
               <p>{{proceso.vigencia}}</p>
             </div>
             <!-- /.box-body -->
@@ -33,17 +42,17 @@
                   </a>
                 <br>
               
-                <a href="{{ path('proceso_edit', { 'id': proceso.id }) }}" class="btn btn-app">
+                <a data-toggle="tooltip"data-original-title="Editar proceso" href="{{ path('proceso_edit', { 'id': proceso.id }) }}" class="btn btn-app">
                     <i class="fa fa-edit"></i> Editar
                   </a>
                 <br>
 
-                <a href="{{ path('proceso_delete', { 'id': proceso.id }) }}" class="btn btn-app">
+                <a data-toggle="tooltip"data-original-title="Eliminar proceso" href="{{ path('proceso_delete', { 'id': proceso.id }) }}" class="btn btn-app">
                     <i class="fa fa-trash"></i> Eliminar
                   </a>
                 <br>
 
-                <a href="{{ path('procedimiento_new', { 'idProceso': proceso.id }) }}" class="btn btn-app">
+                <a data-toggle="tooltip"data-original-title="Asignar Procedimiento" href="{{ path('procedimiento_new', { 'idProceso': proceso.id }) }}" class="btn btn-app">
                     <i class="fa fa-plus"></i> <small>Procedimiento</small>
                   </a>
                 <br>
@@ -78,12 +87,11 @@
                                 <tr>
                                     <td>{{ archivo.version }}</td>
                                     <td>{{ archivo.descripcion }}</td>
-                                    <td>{% if archivo.estado %}<i class="fa fa-circle-o text-green"></i>{% else %}<i class="fa fa-circle-o text-red"></i>{% endif %}</td>
+                                    <td>{% if archivo.estado %}<i data-toggle="tooltip"data-original-title="Activo" class="fa fa-circle-o text-green"></i>{% else %}<i data-toggle="tooltip"data-original-title="Inactivo" class="fa fa-circle-o text-red"></i>{% endif %}</td>
                                     <td><a data-toggle="tooltip"data-original-title="descargar" class="btn btn-primary" href="{{ path('documento_archivo_download', { 'id': archivo.id }) }}"><i class="fa  fa-cloud-download"></i></a></td>
                                     <td><a data-toggle="tooltip"data-original-title="descargar" class="btn btn-primary" href="{{ path('documento_pdf_archivo_download', { 'id': archivo.id }) }}"><i class="fa  fa-cloud-download"></i></a></td>
                                     <td>
                                         <div class="btn-group">
-                                      <a data-toggle="tooltip"data-original-title="ver" href="{{ path('archivo_show', { 'id': archivo.id }) }}" class="btn btn-default btn-flat btn-xs"><i class="fa fa-eye "></i></a>
                                       <a data-toggle="tooltip"data-original-title="editar" href="{{ path('archivo_edit', { 'id': archivo.id }) }}" class="btn btn-default btn-flat btn-xs"><i class="fa fa-edit"></i></a>
 
                                     </div>
