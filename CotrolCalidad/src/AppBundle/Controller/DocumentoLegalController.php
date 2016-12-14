@@ -43,7 +43,7 @@ class DocumentoLegalController extends Controller
         $form = $this->createForm('AppBundle\Form\DocumentoLegalType', $documentoLegal);
         $form->handleRequest($request);
 
-         $idProcedimiento = $request->query->get('idProcedmiento');
+         $idProcedimiento = $request->query->get('idProcedimiento');
         $em = $this->getDoctrine()->getManager();
         $procedimiento = $em->getRepository('AppBundle:Procedimiento')->find($idProcedimiento);
 
@@ -52,7 +52,7 @@ class DocumentoLegalController extends Controller
             $em->persist($documentoLegal);
             $em->flush($documentoLegal);
 
-            return $this->redirectToRoute('normograma_new', array('idProcedmiento' => $procedimiento->getId()));
+            return $this->redirectToRoute('normograma_new', array('idProcedimiento' => $procedimiento->getId()));
         }
 
         return $this->render('AppBundle:documentolegal:new.html.twig', array(

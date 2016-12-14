@@ -21,6 +21,7 @@ class ArchivoType extends AbstractType
                 "attr" =>array("class" => "form-control")
             ))
         ->add('descripcion', TextareaType::class,array(
+                "label" => "Descripcion(razon de la actualizacion)",
                 "attr" =>array("class" => "form-control")
             ))
         ->add('urlDocumento', FileType::class,array(

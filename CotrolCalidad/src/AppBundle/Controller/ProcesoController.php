@@ -99,7 +99,7 @@ class ProcesoController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('proceso_edit', array('id' => $proceso->getId()));
+            return $this->redirectToRoute('proceso_show', array('id' => $proceso->getId()));
         }
 
         return $this->render('AppBundle:proceso:edit.html.twig', array(

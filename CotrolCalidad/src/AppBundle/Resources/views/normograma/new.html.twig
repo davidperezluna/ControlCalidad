@@ -21,15 +21,15 @@
 
                      <br>
                     <div class="box-footer">
-                    <button type="submit" class="btn btn-primary">Crear</button>
+                   <button type="submit" class="btn btn-default btn-block">Asignar</button>
                   </div>
                     {{ form_end(form) }}
                 <br>
         </div>
     </div>
     <div class="col-lg-2">
-    <a href="{{ path('documentolegal_new',{'idProcedmiento':procedimiento.id}) }}" class="btn btn-app">
-        <i class="fa  fa-book"></i> <small>Documento</small>
+    <a href="{{ path('documentolegal_new',{'idProcedimiento':procedimiento.id}) }}" class="btn btn-app">
+        <i class="fa  fa-book"></i> <small>Crear Documento</small>
     </a>
     </div>
     </div>

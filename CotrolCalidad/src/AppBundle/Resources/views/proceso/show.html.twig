@@ -29,10 +29,12 @@
         </div>
 
             <div  class="col-md-1">
-              <a href="{{ path('procedimiento_new', { 'idProceso': proceso.id }) }}" class="btn btn-app">
-                    <i class="fa fa-plus"></i> <small>Procedimiento</small>
+
+              <a href="{{ path('archivo_new', { 'idProceso': proceso.id }) }}" class="btn btn-app">
+                    <i class="fa fa-plus"></i> Archivo 
                   </a>
                 <br>
+              
                 <a href="{{ path('proceso_edit', { 'id': proceso.id }) }}" class="btn btn-app">
                     <i class="fa fa-edit"></i> Editar
                   </a>
@@ -42,10 +44,12 @@
                     <i class="fa fa-trash"></i> Eliminar
                   </a>
                 <br>
-                <a href="{{ path('archivo_new', { 'idProceso': proceso.id }) }}" class="btn btn-app">
-                    <i class="fa fa-plus"></i> Archivo 
+
+                <a href="{{ path('procedimiento_new', { 'idProceso': proceso.id }) }}" class="btn btn-app">
+                    <i class="fa fa-plus"></i> <small>Procedimiento</small>
                   </a>
                 <br>
+                
                 
             </div>
 
@@ -76,7 +80,7 @@
                                 <tr>
                                     <td>{{ archivo.version }}</td>
                                     <td>{{ archivo.descripcion }}</td>
-                                    <td>{% if archivo.estado %}Yes{% else %}No{% endif %}</td>
+                                    <td>{% if archivo.estado %}<i class="fa fa-circle-o text-green"></i>{% else %}<i class="fa fa-circle-o text-red"></i>{% endif %}</td>
                                     <td><a class="btn btn-primary" href="{{ path('documento_archivo_download', { 'id': archivo.id }) }}"><i class="fa  fa-cloud-download"></i></a></td>
                                     <td><a class="btn btn-primary" href="{{ path('documento_pdf_archivo_download', { 'id': archivo.id }) }}"><i class="fa  fa-cloud-download"></i></a></td>
                                     <td>
@@ -140,33 +144,47 @@
             {{ form_end(delete_form) }} #}
   
 <div class="col-md-12">
-    <table class="table" id="example40">
-        <thead>
-            <tr>
-                <th>Codigo</th>
-                <th>Nombre</th>
-                <th>Vigencia</th>
-                <th>Version</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for procedimiento in proceso.procedimientos %}
-            <tr>
-                <td>{{ procedimiento.codigo }}</td>
-                <td>{{ procedimiento.nombre }}</td>
-                <td>{{procedimiento.vigencia}}</td>
-                <td>{{ procedimiento.version }}</td>
-                <td>
-                    <div class="btn-group">
-                      <a  href="{{ path('procedimiento_show', { 'id': procedimiento.id }) }}" class="btn btn-default btn-flat"><i class="fa fa-eye"></i></a>
-                      <a href="{{ path('procedimiento_edit', { 'id': procedimiento.id }) }}" class="btn btn-default btn-flat"><i class="fa fa-edit"></i></a>
-                    </div>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+
+
+  <div class="box box-default">
+            <div class="box-header with-border">
+              <h3 class="box-title">Procedimientos</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <table class="table" id="example40">
+                  <thead>
+                      <tr>
+                          <th>Codigo</th>
+                          <th>Nombre</th>
+                          <th>Vigencia</th>
+                          <th>Version</th>
+                          <th>Actions</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                  {% for procedimiento in proceso.procedimientos %}
+                      <tr>
+                          <td>{{ procedimiento.codigo }}</td>
+                          <td>{{ procedimiento.nombre }}</td>
+                          <td>{{procedimiento.vigencia}}</td>
+                          <td>{{ procedimiento.version }}</td>
+                          <td>
+                              <div class="btn-group">
+                                <a  href="{{ path('procedimiento_show', { 'id': procedimiento.id }) }}" class="btn btn-default btn-flat"><i class="fa fa-eye"></i></a>
+                                <a href="{{ path('procedimiento_edit', { 'id': procedimiento.id }) }}" class="btn btn-default btn-flat"><i class="fa fa-edit"></i></a>
+                              </div>
+                          </td>
+                      </tr>
+                  {% endfor %}
+                  </tbody>
+              </table>
+            </div>
+            <!-- /.box-body -->
+          </div>
+
+ 
+  
   </div>
 
 {% endblock %}

@@ -57,7 +57,7 @@ class ProcedimientoUsuarioController extends Controller
             $em->persist($procedimientoUsuario);
             $em->flush($procedimientoUsuario);
 
-            return $this->redirectToRoute('procedimientousuario_show', array('id' => $procedimientoUsuario->getId()));
+            return $this->redirectToRoute('procedimiento_show', array('id' => $procedimiento->getId()));
         }
 
         return $this->render('AppBundle:procedimientousuario:new.html.twig', array(

@@ -108,7 +108,7 @@ class ProcedimientoController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('procedimiento_edit', array('id' => $procedimiento->getId()));
+            return $this->redirectToRoute('procedimiento_show', array('id' => $procedimiento->getId()));
         }
 
      
