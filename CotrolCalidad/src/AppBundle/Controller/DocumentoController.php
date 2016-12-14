@@ -113,6 +113,7 @@ class DocumentoController extends Controller
         $documento = new Documento();
         $form = $this->createForm('AppBundle\Form\DocumentoType', $documento);
         $form->handleRequest($request);
+        $idProcedimiento = $request->query->get('idProcedmiento');
 
         if ($form->isSubmitted() && $form->isValid()) {
 
@@ -138,6 +139,7 @@ class DocumentoController extends Controller
         }
 
         return $this->render('AppBundle:documento:new.html.twig', array(
+            'idProcedimiento'=>$idProcedimiento,
             'documento' => $documento,
             'form' => $form->createView(),
         ));

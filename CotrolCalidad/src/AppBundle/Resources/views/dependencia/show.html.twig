@@ -61,7 +61,7 @@
                                                     <a  href="{{ path('proceso_new', { 'idMacroProceso': mp.id}) }}" class="small-box-footer">
                                                         <i class="fa fa-plus"></i> <small>  Nuevo Proceso</small>
                                                     </a>
-                                                       <table class="table" id="example{{mp.id}}">
+                                                       <table class="table display2 compact" id"" >
                                                             <thead>
                                                                 <tr>
                                                                     <th>Codigo</th>
@@ -85,8 +85,8 @@
                                                                     </td>
                                                                     <td>{{ proceso.nombre }}</td>
                                                                     <td>{{ proceso.version }}</td>
-                                                                    <td>{% if proceso.vigencia %}{{ proceso.vigencia|date('Y-m-d') }}{% endif %}</td>
-                                                                    <td><a href="{{ path('proceso_show', { 'id': proceso.id }) }}" class="btn btn-social-icon btn-bitbucket btn-xs"><i class="fa  fa-hand-pointer-o"></i></a></td>
+                                                                    <td>{{proceso.vigencia}}</td>
+                                                                    <td><a data-toggle="tooltip"data-original-title="Ver proceso" href="{{ path('proceso_show', { 'id': proceso.id }) }}" class="btn btn-social-icon btn-bitbucket btn-xs"><i class="fa  fa-hand-pointer-o"></i></a></td>
                                                                 </tr>
                                                             {% endfor %}
                                                             </tbody>
@@ -123,22 +123,3 @@
 
 
 
-{% block javascripts %}
-    {{ parent() }}
-
-<script>
-var id;
-for (id=0; id < 50; id++) {
-
-     $('#example'+id).DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": true,
-      "ordering": false,
-      "info": false,
-      "autoWidth": false
-
-    });
-};
-</script>
-{% endblock %}

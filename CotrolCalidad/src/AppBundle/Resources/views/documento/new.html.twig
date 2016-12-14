@@ -3,7 +3,7 @@
 {% block referencia %}
      <ol class="breadcrumb">
         <li><a href="{{ path('homepage') }}"><i class="fa fa-dashboard"></i> Inicio</a></li>
-        <li><a href="{{ path('documento_index') }}">Documento</a></li>
+        <li><a href="{{ path('procedimiento_show',{'id':idProcedimiento}) }}">Procedimiento</a></li>
         <li class="active">Nuevo</li>
       </ol>
 {% endblock %}
