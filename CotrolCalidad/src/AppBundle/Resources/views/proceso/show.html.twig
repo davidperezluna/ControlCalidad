@@ -87,7 +87,7 @@
                                 <tr>
                                     <td>{{ archivo.version }}</td>
                                     <td>{{ archivo.descripcion }}</td>
-                                    <td>{% if archivo.estado %}<i data-toggle="tooltip"data-original-title="Activo" class="fa fa-circle-o text-green"></i>{% else %}<i data-toggle="tooltip"data-original-title="Inactivo" class="fa fa-circle-o text-red"></i>{% endif %}</td>
+                                    <td>{% if archivo.estado %}<i data-toggle="tooltip"data-original-title="Vigente" class="fa fa-circle-o text-green"></i>{% else %}<i data-toggle="tooltip"data-original-title="Obsoleto" class="fa fa-circle-o text-red"></i>{% endif %}</td>
                                     <td><a data-toggle="tooltip"data-original-title="descargar" class="btn btn-primary" href="{{ path('documento_archivo_download', { 'id': archivo.id }) }}"><i class="fa  fa-cloud-download"></i></a></td>
                                     <td><a data-toggle="tooltip"data-original-title="descargar" class="btn btn-primary" href="{{ path('documento_pdf_archivo_download', { 'id': archivo.id }) }}"><i class="fa  fa-cloud-download"></i></a></td>
                                     <td>

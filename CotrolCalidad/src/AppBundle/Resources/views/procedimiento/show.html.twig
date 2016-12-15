@@ -72,7 +72,7 @@
       <div class="tab-content">
         <div class="tab-pane active" id="activity">
 
-          <table class="table" id="example1">
+          <table class="table display" >
             <thead>
               <tr>
 
@@ -89,7 +89,7 @@
                 <tr>
                   <td>{{ archivo.version }}</td>
                   <td>{{ archivo.descripcion }}</td>
-                   <td>{% if archivo.estado %}<i <a  data-toggle="tooltip"data-original-title="Activo" class="fa fa-circle-o text-green"></i>{% else %}<i <a  data-toggle="tooltip"data-original-title="Inactivo"class="fa fa-circle-o text-red"></i>{% endif %}</td>
+                   <td>{% if archivo.estado %}<i <a  data-toggle="tooltip"data-original-title="Vigente" class="fa fa-circle-o text-green"></i>{% else %}<i <a  data-toggle="tooltip"data-original-title="Obsoleto"class="fa fa-circle-o text-red"></i>{% endif %}</td>
                   <td><a  data-toggle="tooltip"data-original-title="Descargar" class="btn btn-primary " href="{{ path('documento_archivo_download', { 'id': archivo.id }) }}"><i class="fa  fa-cloud-download"></i></a></td>
                   <td><a   data-toggle="tooltip"data-original-title="Descargar" class="btn btn-primary " href="{{ path('documento_pdf_archivo_download', { 'id': archivo.id }) }}"><i class="fa  fa-cloud-download"></i></a></td>
                   <td>
@@ -106,7 +106,7 @@
         <!-- /.tab-pane -->
         <div class="tab-pane" id="timeline">
           <a href="{{ path('procedimientousuario_new', { 'idProcedimiento': procedimiento.id }) }}" class="link-black text-sm"><i class="fa fa-plus"></i> Usuario</a>
-          <table class="table" id="example2">
+          <table class="table display">
             <thead>
               <tr>  
                 <th>Nombre Usuario</th>
@@ -138,7 +138,7 @@
         <!-- /.tab-pane -->
         <div class="tab-pane" id="normograma">
           <a href="{{ path('normograma_new', { 'idProcedimiento': procedimiento.id }) }}" class="link-black text-sm"><i class="fa fa-plus"></i> Normograma</a>
-          <table class="table" id="example2">
+          <table class="table display" >
             <thead>
               <tr>  
                 <th>Nombre</th>
@@ -177,7 +177,7 @@
       </div>
       <!-- /.box-header -->
       <div class="box-body">
-        <table class="table" id="example30">
+        <table class="table display" >
           <thead>
             <tr>
 
