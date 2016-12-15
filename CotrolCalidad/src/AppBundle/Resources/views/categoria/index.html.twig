@@ -11,7 +11,7 @@
     <!-- /.box -->
 <div class="col-lg-12">
     <div class="col-lg-1">
-                    <a href="{{ path('categoria_new')}}" class="btn btn-app btn-xs">
+                    <a data-toggle="tooltip"data-original-title="Agregar nueva categoria" href="{{ path('categoria_new')}}" class="btn btn-app btn-xs">
                         <i class="fa fa-plus"></i> Agregar
                     </a>
                 </div>
@@ -43,8 +43,8 @@
                         <td>{{ categorium.descripcion }}</td>
                         <td>
                             <div class="btn-group">
-                              <a href="{{ path('categoria_show', { 'id': categorium.id }) }}" class="btn btn-default btn-flat"><i class="fa fa-eye"></i></a>
-                              <a href="{{ path('categoria_edit', { 'id': categorium.id }) }}" class="btn btn-default btn-flat"><i class="fa fa-edit"></i></a>
+                              <a data-toggle="tooltip"data-original-title="ver" href="{{ path('categoria_show', { 'id': categorium.id }) }}" class="btn btn-default btn-flat"><i class="fa fa-eye"></i></a>
+                              <a data-toggle="tooltip"data-original-title="editar" href="{{ path('categoria_edit', { 'id': categorium.id }) }}" class="btn btn-default btn-flat"><i class="fa fa-edit"></i></a>
                             </div>
                         </td>
                     </tr>

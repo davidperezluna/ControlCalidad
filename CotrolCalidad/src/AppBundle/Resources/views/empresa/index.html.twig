@@ -10,7 +10,7 @@
 {% block body %}
     <div class="col-lg-12">
     <div class="col-lg-1">
-                    <a href="{{ path('empresa_new')}}" class="btn btn-app btn-xs">
+                    <a  data-toggle="tooltip"data-original-title="Agregar nueva entidad" href="{{ path('empresa_new')}}" class="btn btn-app btn-xs">
                         <i class="fa fa-plus"></i> Agregar
                     </a>
                 </div>
@@ -19,7 +19,7 @@
           <div class="box">
             <div class="box-header">
                 
-              <h3 class="box-title">Empresa</h3>
+              <h3 class="box-title">Entidad</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -27,7 +27,6 @@
 
                 <thead>
                 <tr>
-                    <th>Id</th> 
                     <th>Nit</th>
                     <th>Nombre</th>
                     <th>Representante</th>
@@ -38,14 +37,13 @@
 
                 <tbody>
                 {% for empresa in empresas %}
-                        <td><a href="{{ path('empresa_show', { 'id': empresa.id }) }}">{{ empresa.id }}</a></td>
                         <td>{{ empresa.nit }}</td>
                         <td>{{ empresa.nombre }}</td>
                         <td>{{ empresa.representante }}</td>
                         <td>{{ empresa.direccion }}</td>
                         <td>
                             <div class="btn-group">
-                              <a href="{{ path('empresa_edit', { 'id': empresa.id }) }}" class="btn btn-default btn-flat"><i class="fa fa-edit"></i></a>
+                              <a data-toggle="tooltip"data-original-title="editar" href="{{ path('empresa_edit', { 'id': empresa.id }) }}" class="btn btn-default btn-flat"><i class="fa fa-edit"></i></a>
                             </div>
                         </td>
                     </tr>
