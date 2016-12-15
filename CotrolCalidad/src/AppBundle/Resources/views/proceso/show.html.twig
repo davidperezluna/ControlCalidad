@@ -25,7 +25,17 @@
               </p>
               <hr>
               <strong><i class="fa  fa-list margin-r-5"></i> Version </strong>
-              <p>{{ proceso.version }}</p>
+              <p>
+                {% if proceso.archivos|length != 0 %}
+                  {% for archivo in proceso.archivos %}
+                      {% if archivo.estado %}
+                          <div class="label label-success"> {{ archivo.version }}</div>
+                      {% endif %}
+                  {% endfor %}
+                {% else %}
+                  <h5 class="label label-danger"><i class="fa fa-clock-o"></i> No hay asignado ningun archivo</h5>
+                {% endif %}
+              </p>
               <hr>
               <strong><i class="fa fa-calendar margin-r-5"></i>Vigencia </strong>
               <p>{{proceso.vigencia}}</p>
@@ -75,19 +85,26 @@
                                 <tr>
                                    
                                     <th>Version</th>
-                                    <th>Descripcion</th>
-                                    <th>Estado</th>
-                                    <th>Urldocumento</th>
-                                    <th>Urldocumento PDF</th>
+                                    <th>Control de Cambios</th>
+                                    <th>Documento</th>
+                                    <th>Documento PDF</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
                             {% for archivo in proceso.archivos %}
                                 <tr>
-                                    <td>{{ archivo.version }}</td>
+                                    <td>
+                                      {% if archivo.estado %}
+                                      <div data-toggle="tooltip"data-original-title="Vigente" class="label label-success">{{ archivo.version }}</div>
+                                      {% else %}
+                                         <div data-toggle="tooltip"data-original-title="Obsoleto" class="label label-danger">{{ archivo.version }}</div>
+                                      {% endif %}
+
+                                          
+                                    </td>
                                     <td>{{ archivo.descripcion }}</td>
-                                    <td>{% if archivo.estado %}<i data-toggle="tooltip"data-original-title="Vigente" class="fa fa-circle-o text-green"></i>{% else %}<i data-toggle="tooltip"data-original-title="Obsoleto" class="fa fa-circle-o text-red"></i>{% endif %}</td>
+                                    
                                     <td><a data-toggle="tooltip"data-original-title="descargar" class="btn btn-primary" href="{{ path('documento_archivo_download', { 'id': archivo.id }) }}"><i class="fa  fa-cloud-download"></i></a></td>
                                     <td><a data-toggle="tooltip"data-original-title="descargar" class="btn btn-primary" href="{{ path('documento_pdf_archivo_download', { 'id': archivo.id }) }}"><i class="fa  fa-cloud-download"></i></a></td>
                                     <td>
