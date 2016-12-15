@@ -17,10 +17,10 @@
             <div class="box-body">
                <strong><i class="fa fa-qrcode margin-r-5"></i> Codigo </strong>
               <p>
-                {% if proceso.id < 10 %}
-                0{{ proceso.id }}
+                {% if proceso.codigo < 10 %}
+                 <b> {{proceso.macroProceso.sigla | upper}}</b>0{{ proceso.codigo }}
                 {% else %}
-                    {{ proceso.id }}
+                    <b> {{proceso.macroProceso.sigla | upper}}</b>{{ proceso.codigo }}
                 {% endif %}
               </p>
               <hr>
@@ -173,10 +173,10 @@
                   {% for procedimiento in proceso.procedimientos %}
                       <tr>
                           <td>
-                            {% if procedimiento.id < 10 %}
-                              0{{ procedimiento.id }}
+                            {% if procedimiento.codigo < 10 %}
+                              0{{ procedimiento.codigo }}
                               {% else %}
-                                 {{ procedimiento.id }} 
+                                 {{ procedimiento.codigo }} 
                             {% endif %}
                             
                           </td>

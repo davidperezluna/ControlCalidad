@@ -22,10 +22,18 @@
       <!-- /.box-header -->
       <div class="box-body">
         <strong><i class="fa fa-qrcode margin-r-5"></i> Codigo </strong>
-        <p>{% if procedimiento.id < 10 %}
-              0{{ procedimiento.id }}
+        <p>{% if procedimiento.proceso.codigo < 10 %}<b>{{procedimiento.proceso.macroProceso.sigla | upper}}</b>0{{ procedimiento.proceso.codigo}}_{% if procedimiento.codigo < 10 %}
+                  0{{ procedimiento.codigo }}
+                  {% else %}
+                    {{ procedimiento.codigo }}
+                {% endif %}
               {% else %}
-                 {{ procedimiento.id }} 
+              <b> {{procedimiento.proceso.macroProceso.sigla | upper}}</b>{{ procedimiento.proceso.codigo }}_
+               {% if procedimiento.codigo < 10 %}
+                  0{{ procedimiento.codigo }}
+                  {% else %}
+                    {{ procedimiento.codigo }}
+                {% endif %} 
             {% endif %}</p>
         <hr>
         <strong><i class="fa fa-list margin-r-5"></i> Version </strong>
@@ -192,28 +200,7 @@
             {% for procedimientoDocumento in procedimiento.procedimientosDocumentos %}
               <tr>
 
-                <td>{{procedimientoDocumento.procedimiento.proceso.macroProceso.sigla}}
-                  {% 
-                  set idProceso = procedimientoDocumento.procedimiento.proceso.id / 2
-                  %}
-                  {% if idProceso < 5 %}
-                    0
-                  {% endif %}
-                  {{procedimientoDocumento.procedimiento.proceso.id}}_
-                  {% 
-                  set idProcedimiento = procedimientoDocumento.procedimiento.id / 2
-                  %}
-                  {% if idProcedimiento < 5 %}
-                    0
-                  {% endif %}
-                  {{procedimientoDocumento.procedimiento.id}}_{{procedimientoDocumento.documento.tipoDocumento.sigla}}
-                  {% 
-                  set idDocumento = procedimientoDocumento.documento.id / 2
-                  %}
-                  {% if idDocumento < 5 %}
-                    0
-                  {% endif %}
-                  {{procedimientoDocumento.documento.id}}</td>
+                <td>{{procedimientoDocumento.procedimiento.proceso.macroProceso.sigla}}{% set idProceso = procedimientoDocumento.procedimiento.proceso.codigo / 2 %}{% if idProceso < 5 %}0{% endif %}{{procedimientoDocumento.procedimiento.proceso.codigo}}_{% set idProcedimiento = procedimientoDocumento.procedimiento.codigo / 2 %}{% if idProcedimiento < 5 %}0{% endif %}{{procedimientoDocumento.procedimiento.codigo}}_{{procedimientoDocumento.documento.tipoDocumento.sigla}}{% set idDocumento = procedimientoDocumento.documento.id / 2 %}{% if idDocumento < 5 %}0{% endif %}{{procedimientoDocumento.documento.id}}</td>
                   <td>{{procedimientoDocumento.documento.nombre}}</td>
                   <td>{{procedimientoDocumento.documento.tipoDocumento.nombre}}</td>
                   <td><a data-toggle="tooltip"data-original-title="Descargar" class="btn btn-primary " href="{{ path('catalogo_marca_download', { 'id': procedimientoDocumento.documento.id }) }}">

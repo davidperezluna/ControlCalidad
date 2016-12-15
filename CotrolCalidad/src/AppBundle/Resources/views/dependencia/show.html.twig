@@ -52,7 +52,7 @@
                                             <div class="box-header with-border">
                                                 <h4 class="box-title">
                                                     <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne{{mp.id}}" aria-expanded="false" class="collapsed">
-                                                       <h3 class="box-title">{{mp.nombre}}</h3>
+                                                       <h3 class="box-title"><b>{{mp.sigla| upper}}</b> {{mp.nombre}}</h3>
                                                     </a>
                                                 </h4>
                                             </div>
@@ -75,13 +75,11 @@
                                                             {% for proceso in mp.procesos %}
                                                                 <tr>
                                                                     <td>
-                                                                      {% if proceso.id < 10 %}
-                                                                        0{{ proceso.id }}
-                                                                        {% else %}
-                                                                            {{ proceso.id }}
-                                                                      {% endif %}
-                                                                      
-
+                                                                        {% if proceso.codigo < 10 %}
+                                                                            0{{proceso.codigo}}
+                                                                            {% else %}
+                                                                             {{proceso.codigo}}
+                                                                        {% endif %}
                                                                     </td>
                                                                     <td>{{ proceso.nombre }}</td>
                                                                     <td>{{ proceso.version }}</td>

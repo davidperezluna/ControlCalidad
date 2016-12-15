@@ -23,9 +23,9 @@ class Proceso
     private $id;
 
     /**
-     * @var int
+     * @var string
      *
-     * @ORM\Column(name="codigo", type="integer")
+     * @ORM\Column(name="codigo", type="string")
      */
     private $codigo;
 
@@ -294,27 +294,5 @@ class Proceso
         return $this->archivos;
     }
 
-    /**
-     * Set codigo
-     *
-     * @param integer $codigo
-     *
-     * @return Proceso
-     */
-    public function setCodigo($codigo)
-    {
-        $this->codigo = $codigo;
-
-        return $this;
-    }
-
-    /**
-     * Get codigo
-     *
-     * @return integer
-     */
-    public function getCodigo()
-    {
-        return $this->codigo;
-    }
+  
 }
