@@ -40,6 +40,17 @@ class DocumentoController extends Controller
                 $fileName
             );
 
+            $instrictivo = $documento->geturlInstructivo();
+
+            $instrictivoName = md5(uniqid()).$documento->getNombre().'.'.$instrictivo->guessExtension();
+
+
+            $instrictivo->move(
+                $this->getParameter('documentos_directory'),
+                $instrictivoName
+            );
+            $documento->seturlInstructivo($instrictivoName);
+
 
             $documento->seturlDocumento($fileName);
             $em = $this->getDoctrine()->getManager();
@@ -85,6 +96,38 @@ class DocumentoController extends Controller
 
              return $response;
      }
+
+
+     /**
+      * Download file
+      * @Route("/download/instructivo/{id}", name="instructivo_download")
+      * @Method("GET")
+      */
+     public function downloadInstructivoAction($id)
+     {
+        $em = $this->getDoctrine()->getManager();
+        $document = $em->getRepository('AppBundle:Documento')->find($id);
+
+        if ( ! $document) {
+        throw $this->createNotFoundException('Unable to find Document
+        entity.');
+        }
+        $path = $this->get('kernel')->getRootDir() .
+        "/../web/uploads/documentos/" . $document->geturlInstructivo();
+        $content = file_get_contents($path);
+
+        $response = new Response();
+
+        $response->headers->set('Content-Type', "'". $document->getNombre() .
+        "'");
+        $response->headers->set('Content-Disposition',
+        'attachment;filename="'.$document->geturlInstructivo());
+
+        $response->setContent($content);
+
+             return $response;
+     }
+
     /**
      * Lists all documento entities.
      *
@@ -128,7 +171,20 @@ class DocumentoController extends Controller
                 $fileName
             );
 
+            $instrictivo = $documento->geturlInstructivo();
 
+            $instrictivoName = md5(uniqid()).$documento->getNombre().'.'.$instrictivo->guessExtension();
+
+
+            $instrictivo->move(
+                $this->getParameter('documentos_directory'),
+                $instrictivoName
+            );
+
+
+
+
+            $documento->seturlInstructivo($instrictivoName);
             $documento->seturlDocumento($fileName);
             $em = $this->getDoctrine()->getManager();
             $em->persist($documento);
@@ -175,6 +231,30 @@ class DocumentoController extends Controller
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
+
+            $idProcedimiento = $request->query->get('idProcedmiento');
+
+            $file = $documento->getUrlDocumento();
+
+            $fileName = md5(uniqid()).$documento->getNombre().'.'.$file->guessExtension();
+
+            $file->move(
+                $this->getParameter('documentos_directory'),
+                $fileName
+            );
+
+            $instrictivo = $documento->geturlInstructivo();
+
+            $instrictivoName = md5(uniqid()).$documento->getNombre().'.'.$instrictivo->guessExtension();
+
+
+            $instrictivo->move(
+                $this->getParameter('documentos_directory'),
+                $instrictivoName
+            );
+
+            $documento->seturlInstructivo($instrictivoName);
+            $documento->seturlDocumento($fileName);
 
             return $this->redirectToRoute('documento_edit', array('id' => $documento->getId()));
         }

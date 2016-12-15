@@ -29,7 +29,10 @@
                 <thead>
                 <tr>
                     <th>Nombre</th>
+                    <th>Version</th>
+                    <th>vigencia</th>
                     <th>Descargar</th>
+                    <th>Instructivo</th>
                     <th>Actions</th>
                 </tr>
                 </thead>
@@ -38,11 +41,20 @@
                  {% for documento in documentos %}
                     <tr>
                         <td>{{ documento.nombre }}</td>
-                       <td><a data-toggle="tooltip"data-original-title="Descargar" class="btn btn-primary " href="{{ path('catalogo_marca_download', { 'id': documento.id }) }}">
-                    <i class="fa  fa-cloud-download"></i>
-                  </a>
+                        <td>{{ documento.version }}</td>
+                        <td>{{ documento.vigencia }}</td>
+                        <td>
+                          <a data-toggle="tooltip"data-original-title="Descargar" class="btn btn-primary " href="{{ path('catalogo_marca_download', { 'id': documento.id }) }}">
+                            <i class="fa  fa-cloud-download"></i>
+                          </a>
+                        </td>
 
-                </td>
+                        <td>
+                          <a data-toggle="tooltip"data-original-title="Descargar" class="btn btn-primary " href="{{ path('instructivo_download', { 'id': documento.id }) }}">
+                            <i class="fa  fa-cloud-download"></i>
+                          </a>
+                        </td>
+
                         <td>
                             <div class="btn-group">
                               <a data-toggle="tooltip"data-original-title="editar" href="{{ path('documento_edit', { 'id': documento.id }) }}" class="btn btn-default btn-flat"><i class="fa fa-edit"></i></a>

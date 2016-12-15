@@ -44,9 +44,9 @@ class Documento
     private $urlInstructivo;
 
     /**
-     * @var string
+     * @var date
      *
-     * @ORM\Column(name="vigencia", type="string",nullable=true)
+     * @ORM\Column(name="vigencia", type="date",nullable=true)
      */
     private $vigencia;
 
@@ -192,77 +192,5 @@ class Documento
     public function getProcedimientosDocumentos()
     {
         return $this->procedimientosDocumentos;
-    }
-
-    /**
-     * Set urlInstructivo
-     *
-     * @param string $urlInstructivo
-     *
-     * @return Documento
-     */
-    public function setUrlInstructivo($urlInstructivo)
-    {
-        $this->urlInstructivo = $urlInstructivo;
-
-        return $this;
-    }
-
-    /**
-     * Get urlInstructivo
-     *
-     * @return string
-     */
-    public function getUrlInstructivo()
-    {
-        return $this->urlInstructivo;
-    }
-
-    /**
-     * Set vigencia
-     *
-     * @param \DateTime $vigencia
-     *
-     * @return Documento
-     */
-    public function setVigencia($vigencia)
-    {
-        $this->vigencia = $vigencia;
-
-        return $this;
-    }
-
-    /**
-     * Get vigencia
-     *
-     * @return \DateTime
-     */
-    public function getVigencia()
-    {
-        return $this->vigencia;
-    }
-
-    /**
-     * Set version
-     *
-     * @param string $version
-     *
-     * @return Documento
-     */
-    public function setVersion($version)
-    {
-        $this->version = $version;
-
-        return $this;
-    }
-
-    /**
-     * Get version
-     *
-     * @return string
-     */
-    public function getVersion()
-    {
-        return $this->version;
     }
 }
