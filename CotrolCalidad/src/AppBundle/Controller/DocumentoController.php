@@ -220,6 +220,58 @@ class DocumentoController extends Controller
     /**
      * Displays a form to edit an existing documento entity.
      *
+     * @Route("/{id}/edit/inicio", name="documento_edit_inicio")
+     * @Method({"GET", "POST"})
+     */
+    public function editActionInicio(Request $request, Documento $documento)
+    {
+        $deleteForm = $this->createDeleteForm($documento);
+        $editForm = $this->createForm('AppBundle\Form\DocumentoType', $documento);
+        $editForm->handleRequest($request);
+        $idProcedimiento = $request->query->get('idProcedmiento');
+
+        if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            $idProcedimiento = $request->query->get('idProcedmiento');
+
+            $file = $documento->getUrlDocumento();
+
+            $fileName = md5(uniqid()).$documento->getNombre().'.'.$file->guessExtension();
+
+            $file->move(
+                $this->getParameter('documentos_directory'),
+                $fileName
+            );
+
+            $instrictivo = $documento->geturlInstructivo();
+
+            $instrictivoName = md5(uniqid()).$documento->getNombre().'.'.$instrictivo->guessExtension();
+
+
+            $instrictivo->move(
+                $this->getParameter('documentos_directory'),
+                $instrictivoName
+            );
+
+            $documento->seturlInstructivo($instrictivoName);
+            $documento->seturlDocumento($fileName);
+
+            return $this->redirectToRoute('documento_edit_inicio', array('id' => $documento->getId()));
+        }
+
+        return $this->render('AppBundle:documento:edit_inicio.html.twig', array(
+            'idProcedimiento'=>$idProcedimiento,
+            'documento' => $documento,
+            'edit_form' => $editForm->createView(),
+            'delete_form' => $deleteForm->createView(),
+        ));
+    }
+
+
+/**
+     * Displays a form to edit an existing documento entity.
+     *
      * @Route("/{id}/edit", name="documento_edit")
      * @Method({"GET", "POST"})
      */
@@ -265,7 +317,6 @@ class DocumentoController extends Controller
             'delete_form' => $deleteForm->createView(),
         ));
     }
-
     /**
      * Deletes a documento entity.
      *
