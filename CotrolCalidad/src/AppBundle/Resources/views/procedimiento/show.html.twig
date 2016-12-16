@@ -37,7 +37,17 @@
             {% endif %}</p>
         <hr>
         <strong><i class="fa fa-list margin-r-5"></i> Version </strong>
-        <p>{{ procedimiento.version }}</p>
+        <p>
+          {% if procedimiento.archivos|length != 0 %}
+            {% for archivo in procedimiento.archivos %}
+                {% if archivo.estado %}
+                    <div class="label label-success"> {{ archivo.version }}</div>
+                {% endif %}
+            {% endfor %}
+          {% else %}
+            <h5 class="label label-danger"><i class="fa fa-clock-o"></i> No hay asignado ningun archivo</h5>
+          {% endif %}
+        </p>
         <hr>
         <strong><i class="fa fa-calendar margin-r-5"></i>Vigencia </strong>
         <p>{{procedimiento.vigencia}}</p>
@@ -86,7 +96,6 @@
 
                 <th>Version</th>
                 <th>Control de Cambios</th>
-                <th>Estado</th>
                 <th>Descargar </th>
                 <th>Descargar PDF</th>
                 <th>Actions</th>
@@ -95,9 +104,13 @@
             <tbody>
               {% for archivo in procedimiento.archivos %}
                 <tr>
-                  <td>{{ archivo.version }}</td>
+                  <td>{% if archivo.estado %}
+                      <div data-toggle="tooltip"data-original-title="Vigente" class="label label-success">{{ archivo.version }}</div>
+                      {% else %}
+                         <div data-toggle="tooltip"data-original-title="Obsoleto" class="label label-danger">{{ archivo.version }}</div>
+                      {% endif %}
+                  </td>
                   <td>{{ archivo.descripcion }}</td>
-                   <td>{% if archivo.estado %}<i <a  data-toggle="tooltip"data-original-title="Vigente" class="fa fa-circle-o text-green"></i>{% else %}<i <a  data-toggle="tooltip"data-original-title="Obsoleto"class="fa fa-circle-o text-red"></i>{% endif %}</td>
                   <td><a  data-toggle="tooltip"data-original-title="Descargar" class="btn btn-primary " href="{{ path('documento_archivo_download', { 'id': archivo.id }) }}"><i class="fa  fa-cloud-download"></i></a></td>
                   <td><a   data-toggle="tooltip"data-original-title="Descargar" class="btn btn-primary " href="{{ path('documento_pdf_archivo_download', { 'id': archivo.id }) }}"><i class="fa  fa-cloud-download"></i></a></td>
                   <td>
@@ -194,7 +207,7 @@
               <th>Tipo Documento</th>
               <th>Version</th>
               <th>vigencia</th>
-              <th>Descargar</th>
+              <th>Documento</th>
               <th>Instructivo</th>
               <th>Acciones</th>
 
@@ -210,13 +223,13 @@
                   <td>{{procedimientoDocumento.documento.version}}</td>
                   <td>{{procedimientoDocumento.documento.vigencia}}</td>
                   <td>
-                      <a data-toggle="tooltip"data-original-title="Descargar" class="btn btn-primary " href="{{ path('catalogo_marca_download', { 'id': procedimientoDocumento.documento.id }) }}">
+                      <a data-toggle="tooltip"data-original-title="Descargar" class="btn btn-primary btn-sm " href="{{ path('catalogo_marca_download', { 'id': procedimientoDocumento.documento.id }) }}">
                       <i class="fa  fa-cloud-download"></i>
                     </a>
                   </td>
 
                   <td>
-                      <a data-toggle="tooltip"data-original-title="Descargar" class="btn btn-primary " href="{{ path('instructivo_download', { 'id': procedimientoDocumento.documento.id }) }}">
+                      <a data-toggle="tooltip"data-original-title="Descargar" class="btn btn-primary btn-sm " href="{{ path('instructivo_download', { 'id': procedimientoDocumento.documento.id }) }}">
                       <i class="fa  fa-cloud-download"></i>
                     </a>
                   </td>

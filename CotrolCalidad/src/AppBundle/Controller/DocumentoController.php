@@ -317,6 +317,39 @@ class DocumentoController extends Controller
             'delete_form' => $deleteForm->createView(),
         ));
     }
+
+
+     /**
+     * Deletes a documento entity.
+     *
+     * @Route("/delete/inicio/{id}", name="documento_delete_id_inicio")
+     * @Method({"GET", "POST"})
+     */
+    public function deleteIdInicioAction(Request $request, Documento $documento)
+    {
+       
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($documento);
+            $em->flush($documento);
+     
+        return $this->redirectToRoute('documento_index');
+    }
+
+     /**
+     * Deletes a documento entity.
+     *
+     * @Route("/delete/{id}", name="documento_delete_id")
+     * @Method({"GET", "POST"})
+     */
+    public function deleteIdAction(Request $request, Documento $documento)
+    {
+       
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($documento);
+            $em->flush($documento);
+     
+        return $this->redirectToRoute('documento_index');
+    }
     /**
      * Deletes a documento entity.
      *

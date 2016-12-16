@@ -560,10 +560,11 @@
              <script src="{{ asset('plugins/jQuery/jquery-2.2.3.min.js') }}" type="text/javascript"></script>
             
             <!-- Latest compiled and minified JavaScript -->
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+           
 
 
              <script src="{{ asset('bootstrap/js/bootstrap.min.js') }}" type="text/javascript"></script>
+             
 
              <script src="{{ asset('plugins/slimScroll/jquery.slimscroll.min.js') }}" type="text/javascript"></script>
 
@@ -654,6 +655,10 @@
                   
                   });
               } );
+
+               $('#confirm-delete').on('show.bs.modal', function(e) {
+                  $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+              });
             </script>
 
 

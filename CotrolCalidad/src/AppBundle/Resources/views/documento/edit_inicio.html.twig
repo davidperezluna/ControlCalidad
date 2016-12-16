@@ -23,10 +23,26 @@
                   </div>
                 {{ form_end(edit_form) }}
                 
-                {{ form_start(delete_form) }}
-                    <input type="submit" class="btn btn-danger" value="Eliminar" style="margin-left: 86%; margin-top: -74px;">
-                {{ form_end(delete_form) }}
+               <a class="btn btn-danger" style="margin-left: 86%; margin-top: -74px;"  href="#" data-href="{{ path('documento_delete_id_inicio', { 'id': documento.id,'idProcedimiento':idProcedimiento }) }}" data-toggle="modal" data-target="#confirm-delete">
+                Eliminar</a>
         </div>
     </div>
+
+<div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+               Confirmacion!!
+            </div>
+            <div class="modal-body">
+              Seguro desea eliminar el documento {{documento.nombre}} 
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                <a class="btn btn-danger btn-ok">Eliminar</a>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
   
