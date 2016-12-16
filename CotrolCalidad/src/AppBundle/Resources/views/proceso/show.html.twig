@@ -7,7 +7,7 @@
       </ol>
 {% endblock %}
 {% block body %}
-    <div class="col-md-3">
+    <div class="col-md-2">
           <!-- About Me Box -->
           <div class="box box-primary">
             <div class="box-header with-border">
@@ -70,12 +70,13 @@
                 
             </div>
 
-          <div  class="col-md-8">
+          <div  class="col-md-9">
             <div class="nav-tabs-custom">
               <ul class="nav nav-tabs">
                 
                 <li class="active"><a href="#activity" data-toggle="tab" aria-expanded="false">Archivos</a></li>
                 <li class=""><a href="#timeline" data-toggle="tab" aria-expanded="false">Usuarios</a></li>
+                <li class=""><a href="#Indicadores" data-toggle="tab" aria-expanded="false">Indicadores</a></li>
               </ul>
               <div class="tab-content">
                 <div class="tab-pane active" id="activity">
@@ -127,6 +128,7 @@
                             <tr>  
                                 <th>Nombre Usuario</th>
                                 <th>Identificacion Usuario</th>
+                                <th>Cargo</th>
                                 <th>Role</th>
                                 <th>Actions</th>
                             </tr>
@@ -137,6 +139,7 @@
 
                                 <td>{{procesoUsuario.usuario.nombres}} {{procesoUsuario.usuario.apellidos}}</td>
                                 <td>{{procesoUsuario.usuario.identificacion}}</td>
+                                <td>{{procesoUsuario.usuario.cargo.nombre}}</td>
                                 <td>{{procesoUsuario.role}}</td>
                                 <td>
                                     <div class="btn-group">
@@ -151,7 +154,58 @@
                 </div>
                 <!-- /.tab-pane -->
 
-               
+                 <!-- /.tab-pane -->
+                <div class="tab-pane" id="Indicadores">
+                   
+                     <table class="table display3">
+                      <a style="position: relative;top: 2.5em;" data-toggle="tooltip" data-original-title="Crear Indicador" href="{{ path('indicador_new', { 'idProceso': proceso.id }) }}" class="link-black text-sm">
+                      <i class="fa fa-plus" ></i> Indicador 
+                  </a>
+                        <thead>
+                            <tr>
+                                <th>Codigo</th>
+                                <th>Nombre</th>
+                                <th>Tipo</th>
+                                <th>Tablero</th>
+                                <th>Objetivo</th>
+                                <th>Pertinencia</th>
+                                <th>Unidadmedida</th>
+                                <th>Metodolgia</th>
+                                <th>Periodicidad</th>
+                                <th>Lineabase</th>
+                                <th>Meta</th>
+                                <th>Actions</th>
+                            </tr> 
+                        </thead>
+                        <tbody>
+                        {% for indicador in proceso.indicadores %}
+                            <tr>
+                                <td>
+                                    {% if proceso.codigo < 10 %}{{proceso.macroProceso.sigla}}0{{proceso.codigo}}_{% if indicador.codigo < 10 %}0{{indicador.codigo}}{% else %}{{indicador.codigo}}{% endif %}{% else %}{{proceso.macroProceso.sigla}}{{proceso.codigo}}_{% if indicador.codigo < 10 %}0{{indicador.codigo}}{% else %}{{indicador.codigo}}{% endif %}{% endif %}
+                                </td>
+                                <td>{{ indicador.nombre }}</td>
+                                <td>{{ indicador.tipo }}</td>
+                                <td>{{ indicador.tablero }}</td>
+                                <td>{{ indicador.objetivo }}</td>
+                                <td>{{ indicador.pertinencia }}</td>
+                                <td>{{ indicador.unidadMedida }}</td>
+                                <td>{{ indicador.metodolgia }}</td>
+                                <td>{{ indicador.periodicidad }}</td>
+                                <td>{{ indicador.lineaBase }}</td>
+                                <td>{{ indicador.meta }}</td>
+                                <td>
+                                    <ul>
+                                        <div class="btn-group">
+                                              <a data-toggle="tooltip"data-original-title="ver" href="{{ path('indicador_show', { 'id': indicador.id }) }}" class="btn btn-default btn-flat btn-xs"><i class="fa fa-eye"></i></a>
+                                        </div>
+                                    </ul>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.tab-pane -->
                 <!-- /.tab-pane -->
               </div>
               <!-- /.tab-content -->

@@ -257,7 +257,7 @@ class DocumentoController extends Controller
             $documento->seturlInstructivo($instrictivoName);
             $documento->seturlDocumento($fileName);
 
-            return $this->redirectToRoute('documento_edit_inicio', array('id' => $documento->getId()));
+            return $this->redirectToRoute('procedimiento_show', array('id' => $idProcedimiento));
         }
 
         return $this->render('AppBundle:documento:edit_inicio.html.twig', array(

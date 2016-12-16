@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block referencia %}
+     <ol class="breadcrumb">
+        <li><a href="{{ path('homepage') }}"><i class="fa fa-dashboard"></i> Inicio</a></li>
+        <li><a href="{{ path('indicador_show',{'id':indicador.id}) }}">Indicador</a></li>
+        <li class="active">Editar</li>
+      </ol>
+{% endblock %}
+
+{% block body %}
+    <div class="col-lg-5">
+
+        <div class="box box-success col-lg-5 ">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Crear Indicador</h3>
+                </div>
+                 {{ form_start(edit_form) }}
+                    {{ form_widget(edit_form) }}
+                    <br>
+                    <div class="box-footer">
+                    <button type="submit" class="btn btn-default btn-block">Editar</button>
+                  </div>
+                {{ form_end(edit_form) }}
+        </div>
+    </div>
+{% endblock %}
+  

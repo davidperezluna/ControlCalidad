@@ -1,0 +1,134 @@
+{% extends 'base.html.twig' %}
+{% block referencia %}
+     <ol class="breadcrumb">
+        <li><a href="{{ path('proceso_show',{'id':indicador.proceso.id})}}">Proceso</a></li>
+        <li>Indicador</li>
+      </ol>
+{% endblock %}
+{% block body %}
+    <div class="col-md-4">
+          <!-- About Me Box -->
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">{{ indicador.nombre }}</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+               <table class="table table-striped">
+                <tbody>
+                    <tr>
+                        <th>Codigo</th>
+                        <td>
+                            {% if indicador.codigo < 10 %}
+                                0{{ indicador.codigo }}
+                                {% else %}
+                                {{ indicador.codigo }}   
+                            {% endif %}
+                            
+
+                        </td>
+                        <th>Nombre</th>
+                        <td>{{ indicador.nombre }}</td>
+                    </tr>
+                    <tr>
+                        <th>Tipo</th>
+                        <td>{{ indicador.tipo }}</td>
+                        <th>Tablero</th>
+                        <td>{{ indicador.tablero }}</td>
+                    </tr>
+                    <tr>
+                        <th>Objetivo</th>
+                        <td>{{ indicador.objetivo }}</td>
+                        <th>Pertinencia</th>
+                        <td>{{ indicador.pertinencia }}</td>
+                    </tr>
+                    <tr>
+                        <th>Unidadmedida</th>
+                        <td>{{ indicador.unidadMedida }}</td>
+                        <th>Metodolgia</th>
+                        <td>{{ indicador.metodolgia }}</td>
+                    </tr>
+                    <tr>
+                        <th>Periodicidad</th>
+                        <td>{{ indicador.periodicidad }}</td>
+                        <th>Lineabase</th>
+                        <td>{{ indicador.lineaBase }}</td>
+                    </tr>
+                    <tr>
+                        <th>Meta</th>
+                        <td>{{ indicador.meta }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+</div>
+<div class="col-md-1">
+<a  data-toggle="tooltip"data-original-title="Agregar Responsable" href="{{ path('indicadorcargo_new', { 'idIndicador': indicador.id }) }}" class="btn btn-app">
+      <i class="fa fa-plus"></i> Responsable
+    </a>
+    <br>
+<a  data-toggle="tooltip"data-original-title="Editar Indicador" href="{{ path('indicador_edit', { 'id': indicador.id }) }}" class="btn btn-app">
+      <i class="fa fa-edit"></i> Editar
+    </a>
+    <br>
+</div>
+
+<div class="col-md-7">
+          <!-- About Me Box -->
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">Responzables</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Cargo</th>
+                            <th>role Responsable</th>
+                            <th>Eliminar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for indicadorCargo in indicador.indicadoresCargos %}
+                        <tr>
+                            <td>{{indicadorCargo.cargo.nombre}}</td>
+                            <td>{{indicadorCargo.roleResponsable}}</td>
+                            <td>
+                                 <a class="btn btn-danger btn-flat"  href="#" data-href="{{ path('indicadorcargo_delete', { 'id': indicadorCargo.id,'idIndicador':indicador.id }) }}" data-toggle="modal" data-target="#confirm-delete"><i class="fa fa-close"></i></a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+</div>
+
+<div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+               Confirmacion!!
+            </div>
+            <div class="modal-body">
+              Seguro desea eliminar el responzable 
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                <a class="btn btn-danger btn-ok">Eliminar</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+          
+
+{% endblock %}
+

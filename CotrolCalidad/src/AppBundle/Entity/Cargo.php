@@ -67,5 +67,6 @@ class Cargo
     {
         return $this->nombre;
     }
+
 }
 

@@ -1,0 +1,45 @@
+    <table class="table display3">
+       
+        <thead>
+            <tr>
+                <th>Codigo</th>
+                <th>Nombre</th>
+                <th>Tipo</th>
+                <th>Tablero</th>
+                <th>Objetivo</th>
+                <th>Pertinencia</th>
+                <th>Unidadmedida</th>
+                <th>Metodolgia</th>
+                <th>Periodicidad</th>
+                <th>Lineabase</th>
+                <th>Meta</th>
+                <th>Actions</th>
+            </tr> 
+        </thead>
+        <tbody>
+        {% for indicador in indicadors %}
+            <tr>
+                <td>
+                    {% if indicador.codigo < 10 %}0{{ indicador.codigo }}{% else %}{{ indicador.codigo }}{% endif %}
+                </td>
+                <td>{{ indicador.nombre }}</td>
+                <td>{{ indicador.tipo }}</td>
+                <td>{{ indicador.tablero }}</td>
+                <td>{{ indicador.objetivo }}</td>
+                <td>{{ indicador.pertinencia }}</td>
+                <td>{{ indicador.unidadMedida }}</td>
+                <td>{{ indicador.metodolgia }}</td>
+                <td>{{ indicador.periodicidad }}</td>
+                <td>{{ indicador.lineaBase }}</td>
+                <td>{{ indicador.meta }}</td>
+                <td>
+                    <ul>
+                        <div class="btn-group">
+                              <a data-toggle="tooltip"data-original-title="ver" href="{{ path('indicador_show', { 'id': indicador.id }) }}" class="btn btn-default btn-flat btn-xs"><i class="fa fa-eye"></i></a>
+                        </div>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>

@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+{% block referencia %}
+     <ol class="breadcrumb">
+        <li><a href="{{ path('homepage') }}"><i class="fa fa-dashboard"></i> Inicio</a></li>
+        <li><a href="{{ path('indicador_show',{'id':idIndicador})}}">Indicador</a></li>
+        <li class="active">Nuevo</li>
+      </ol>
+{% endblock %}
+{% block body %}
+    <div class="col-lg-5">
+    <div class="col-lg-10">
+        <div class="box box-success col-lg-5 ">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Asignar Persona</h3>
+                </div>
+
+                 {{ form_start(form) }}
+                    <label>Cargo</label>
+                    {{ form_widget(form.cargo, {'attr': {'class': 'form-control select2'}}) }}
+                     <br>
+                     <label>Role Responsable</label>
+                    {{ form_widget(form.roleResponsable, {'attr': {'class': 'form-control select2'}}) }}
+                    <div class="box-footer">
+                   <button type="submit" class="btn btn-default btn-block">Asignar</button>
+                  </div>
+                    {{ form_end(form) }}
+                <br>
+        </div>
+    </div>
+    <div class="col-lg-2">
+   
+    </div>
+    </div>
+{% endblock %}
+

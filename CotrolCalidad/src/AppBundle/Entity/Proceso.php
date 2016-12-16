@@ -69,13 +69,23 @@ class Proceso
     private $archivos;
 
     /**
+     * @ORM\OneToMany(targetEntity="Indicador", mappedBy="proceso")
+     */
+
+    private $indicadores;
+
+    /**
      * @ORM\OneToMany(targetEntity="ProcesoUsuario", mappedBy="proceso")
      */
     private $procesosUsuarios;
 
+    
+
     public function __construct() {
         $this->procedimientos = new ArrayCollection();
         $this->procesosUsuarios = new ArrayCollection();
+        $this->indicadores = new ArrayCollection();
+       
     }
 
     public function __toString()
@@ -316,5 +326,39 @@ class Proceso
     public function getCodigo()
     {
         return $this->codigo;
+    }
+
+    /**
+     * Add indicadore
+     *
+     * @param \AppBundle\Entity\Indicador $indicadore
+     *
+     * @return Proceso
+     */
+    public function addIndicadore(\AppBundle\Entity\Indicador $indicadore)
+    {
+        $this->indicadores[] = $indicadore;
+
+        return $this;
+    }
+
+    /**
+     * Remove indicadore
+     *
+     * @param \AppBundle\Entity\Indicador $indicadore
+     */
+    public function removeIndicadore(\AppBundle\Entity\Indicador $indicadore)
+    {
+        $this->indicadores->removeElement($indicadore);
+    }
+
+    /**
+     * Get indicadores
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getIndicadores()
+    {
+        return $this->indicadores;
     }
 }

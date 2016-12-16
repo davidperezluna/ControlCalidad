@@ -23,9 +23,9 @@ class Proceso
     private $id;
 
     /**
-     * @var string
+     * @var int
      *
-     * @ORM\Column(name="codigo", type="string")
+     * @ORM\Column(name="codigo", type="integer")
      */
     private $codigo;
 
@@ -69,13 +69,23 @@ class Proceso
     private $archivos;
 
     /**
+     * @ORM\OneToMany(targetEntity="Indicador", mappedBy="proceso")
+     */
+
+    private $indicadores;
+
+    /**
      * @ORM\OneToMany(targetEntity="ProcesoUsuario", mappedBy="proceso")
      */
     private $procesosUsuarios;
 
+    
+
     public function __construct() {
         $this->procedimientos = new ArrayCollection();
         $this->procesosUsuarios = new ArrayCollection();
+        $this->indicadores = new ArrayCollection();
+       
     }
 
     public function __toString()
@@ -294,5 +304,61 @@ class Proceso
         return $this->archivos;
     }
 
-  
+    /**
+     * Set codigo
+     *
+     * @param integer $codigo
+     *
+     * @return Proceso
+     */
+    public function setCodigo($codigo)
+    {
+        $this->codigo = $codigo;
+
+        return $this;
+    }
+
+    /**
+     * Get codigo
+     *
+     * @return integer
+     */
+    public function getCodigo()
+    {
+        return $this->codigo;
+    }
+
+    /**
+     * Add indicadore
+     *
+     * @param \AppBundle\Entity\Indicador $indicadore
+     *
+     * @return Proceso
+     */
+    public function addIndicadore(\AppBundle\Entity\Indicador $indicadore)
+    {
+        $this->indicadores[] = $indicadore;
+
+        return $this;
+    }
+
+    /**
+     * Remove indicadore
+     *
+     * @param \AppBundle\Entity\Indicador $indicadore
+     */
+    public function removeIndicadore(\AppBundle\Entity\Indicador $indicadore)
+    {
+        $this->indicadores->removeElement($indicadore);
+    }
+
+    /**
+     * Get indicadores
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getIndicadores()
+    {
+        return $this->indicadores;
+    }
 }

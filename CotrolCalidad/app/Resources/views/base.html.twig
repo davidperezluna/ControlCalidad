@@ -632,11 +632,28 @@
 
               $('#example1').DataTable({
                     "lengthChange": false,
+                    "language": {
+                      "zeroRecords": "No Existen Registros",
+                  } 
                   });
 
               $(document).ready(function() {
                   $('table.display').DataTable({
                     "lengthChange": false,
+                    "language": {
+                      "zeroRecords": "No Existen Registros",
+                  }
+                  });
+              } );
+
+              $(document).ready(function() {
+                  $('table.display3').DataTable({
+                    "lengthChange": false,
+                     "scrollX": true,
+                     "ordering": false,
+                     "language": {
+                      "zeroRecords": "No Existen Registros",
+                  } 
                   });
               } );
 
