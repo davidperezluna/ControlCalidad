@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="col-lg-5">
+        <div class="box box-success col-lg-5 ">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Crear Variable</h3>
+                </div>
+                 {{ form_start(form) }}
+                    {{ form_widget(form) }}
+                    <br>
+                    <div class="box-footer">
+                    <button type="submit" class="btn btn-default btn-block">Crear</button>
+                  </div>
+                {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}
+ 

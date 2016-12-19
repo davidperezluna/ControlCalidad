@@ -109,15 +109,20 @@ class Indicador
      */
     private $indicadoresCargos;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Variable", mappedBy="indicador")
+     */
+    private $variables;
+
      public function __construct() {
         $this->indicadoresCargos = new ArrayCollection();
-       
+        $this->variables = new ArrayCollection();
     }
 
-    
-
-    
-
+    public function __toString()
+    {
+        return (string) $this->getNombre();
+    }
 
     /**
      * Get id
@@ -449,5 +454,41 @@ class Indicador
     public function getIndicadoresCargos()
     {
         return $this->indicadoresCargos;
+    }
+
+  
+
+    /**
+     * Add variable
+     *
+     * @param \AppBundle\Entity\Variable $variable
+     *
+     * @return Indicador
+     */
+    public function addVariable(\AppBundle\Entity\Variable $variable)
+    {
+        $this->variables[] = $variable;
+
+        return $this;
+    }
+
+    /**
+     * Remove variable
+     *
+     * @param \AppBundle\Entity\Variable $variable
+     */
+    public function removeVariable(\AppBundle\Entity\Variable $variable)
+    {
+        $this->variables->removeElement($variable);
+    }
+
+    /**
+     * Get variables
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getVariables()
+    {
+        return $this->variables;
     }
 }

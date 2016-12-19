@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Variables list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for variable in variables %}
+            <tr>
+                <td><a href="{{ path('variable_show', { 'id': variable.id }) }}">{{ variable.id }}</a></td>
+                <td>{{ variable.nombre }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('variable_show', { 'id': variable.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('variable_edit', { 'id': variable.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('variable_new') }}">Create a new variable</a>
+        </li>
+    </ul>
+{% endblock %}
