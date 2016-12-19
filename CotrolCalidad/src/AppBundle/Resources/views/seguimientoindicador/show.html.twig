@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Seguimientoindicador</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ seguimientoIndicador.id }}</td>
+            </tr>
+            <tr>
+                <th>Fechaseguimiento</th>
+                <td>{% if seguimientoIndicador.fechaSeguimiento %}{{ seguimientoIndicador.fechaSeguimiento|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Proximafecha</th>
+                <td>{% if seguimientoIndicador.proximaFecha %}{{ seguimientoIndicador.proximaFecha|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Resultado</th>
+                <td>{{ seguimientoIndicador.resultado }}</td>
+            </tr>
+            <tr>
+                <th>Notificacion</th>
+                <td>{% if seguimientoIndicador.notificacion %}Yes{% else %}No{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('seguimientoindicador_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('seguimientoindicador_edit', { 'id': seguimientoIndicador.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

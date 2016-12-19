@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Rango
@@ -34,6 +35,18 @@ class Rango
      * @ORM\Column(name="numero_niveles", type="integer")
      */
     private $numeroNiveles;
+
+     /**
+     * @ORM\OneToMany(targetEntity="Nivel", mappedBy="rango")
+     */
+    private $niveles;
+
+    
+
+    public function __construct() {
+        $this->niveles = new ArrayCollection();
+       
+    }
 
 
     /**
@@ -92,5 +105,39 @@ class Rango
     public function getNumeroNiveles()
     {
         return $this->numeroNiveles;
+    }
+
+    /**
+     * Add nivele
+     *
+     * @param \AppBundle\Entity\Nivel $nivele
+     *
+     * @return Rango
+     */
+    public function addNivele(\AppBundle\Entity\Nivel $nivele)
+    {
+        $this->niveles[] = $nivele;
+
+        return $this;
+    }
+
+    /**
+     * Remove nivele
+     *
+     * @param \AppBundle\Entity\Nivel $nivele
+     */
+    public function removeNivele(\AppBundle\Entity\Nivel $nivele)
+    {
+        $this->niveles->removeElement($nivele);
+    }
+
+    /**
+     * Get niveles
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getNiveles()
+    {
+        return $this->niveles;
     }
 }

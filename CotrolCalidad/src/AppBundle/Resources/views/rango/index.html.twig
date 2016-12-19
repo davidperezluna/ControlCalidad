@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Rangos list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Numeroniveles</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for rango in rangos %}
+            <tr>
+                <td><a href="{{ path('rango_show', { 'id': rango.id }) }}">{{ rango.id }}</a></td>
+                <td>{{ rango.nombre }}</td>
+                <td>{{ rango.numeroNiveles }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('rango_show', { 'id': rango.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('rango_edit', { 'id': rango.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('rango_new') }}">Create a new rango</a>
+        </li>
+    </ul>
+{% endblock %}

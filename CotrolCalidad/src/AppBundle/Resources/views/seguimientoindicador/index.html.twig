@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Seguimientoindicadors list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Fechaseguimiento</th>
+                <th>Proximafecha</th>
+                <th>Resultado</th>
+                <th>Notificacion</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for seguimientoIndicador in seguimientoIndicadors %}
+            <tr>
+                <td><a href="{{ path('seguimientoindicador_show', { 'id': seguimientoIndicador.id }) }}">{{ seguimientoIndicador.id }}</a></td>
+                <td>{% if seguimientoIndicador.fechaSeguimiento %}{{ seguimientoIndicador.fechaSeguimiento|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if seguimientoIndicador.proximaFecha %}{{ seguimientoIndicador.proximaFecha|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ seguimientoIndicador.resultado }}</td>
+                <td>{% if seguimientoIndicador.notificacion %}Yes{% else %}No{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('seguimientoindicador_show', { 'id': seguimientoIndicador.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('seguimientoindicador_edit', { 'id': seguimientoIndicador.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('seguimientoindicador_new') }}">Create a new seguimientoIndicador</a>
+        </li>
+    </ul>
+{% endblock %}

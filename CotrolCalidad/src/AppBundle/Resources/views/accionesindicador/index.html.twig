@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Accionesindicadors list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Accion</th>
+                <th>Fechacierre</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for accionesIndicador in accionesIndicadors %}
+            <tr>
+                <td><a href="{{ path('accionesindicador_show', { 'id': accionesIndicador.id }) }}">{{ accionesIndicador.id }}</a></td>
+                <td>{{ accionesIndicador.accion }}</td>
+                <td>{% if accionesIndicador.fechaCierre %}{{ accionesIndicador.fechaCierre|date('Y-m-d') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('accionesindicador_show', { 'id': accionesIndicador.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('accionesindicador_edit', { 'id': accionesIndicador.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('accionesindicador_new') }}">Create a new accionesIndicador</a>
+        </li>
+    </ul>
+{% endblock %}
