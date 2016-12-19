@@ -25,6 +25,7 @@ class NivelController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $nivels = $em->getRepository('AppBundle:Nivel')->findAll();
+        
 
         return $this->render('nivel/index.html.twig', array(
             'nivels' => $nivels,
@@ -45,11 +46,14 @@ class NivelController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $rango = $em->getRepository('AppBundle:Rango')->find($request->query->get('idRango'));
+            $nivel->setRango($rango);
             $em->persist($nivel);
             $em->flush($nivel);
 
-            return $this->redirectToRoute('nivel_show', array('id' => $nivel->getId()));
+            return $this->redirectToRoute('rango_index');
         }
+
 
         return $this->render('AppBundle:nivel:new.html.twig', array(
             'nivel' => $nivel,

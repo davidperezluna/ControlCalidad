@@ -25,6 +25,8 @@ class RangoController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $rangos = $em->getRepository('AppBundle:Rango')->findAll();
+       
+
 
         return $this->render('AppBundle:rango:index.html.twig', array(
             'rangos' => $rangos,

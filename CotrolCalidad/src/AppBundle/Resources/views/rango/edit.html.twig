@@ -1,5 +1,13 @@
 {% extends 'base.html.twig' %}
 
+{% block referencia %}
+    <ol class="breadcrumb">
+        <li><a href="{{ path('homepage') }}"><i class="fa fa-dashboard"></i> Inicio</a></li>
+        <li><a href="{{ path('rango_index') }}">Rango</a></li>
+        <li class="active">Editar</li>
+    </ol>
+{% endblock %}
+
 {% block body %}
     <h1>Rango edit</h1>
 
@@ -19,3 +27,4 @@
         </li>
     </ul>
 {% endblock %}
+ 
