@@ -6,6 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+
 class SeguimientoIndicadorType extends AbstractType
 {
     /**
@@ -13,7 +14,9 @@ class SeguimientoIndicadorType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('fechaSeguimiento')->add('proximaFecha')->add('resultado')->add('notificacion')->add('usuario')->add('indicador')        ;
+        $builder
+        
+        ->add('usuario');
     }
     
     /**

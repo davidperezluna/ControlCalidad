@@ -1,16 +1,119 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Seguimientoindicador creation</h1>
+    <div class="col-lg-5">
+    <div class="col-lg-10">
 
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
+        <div class="box box-success col-lg-5 ">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Crear Seguimiento</h3>
+                </div>
+                {% if indicador.unidadMedida == "PORCENTAJE" %}
 
-    <ul>
-        <li>
-            <a href="{{ path('seguimientoindicador_index') }}">Back to the list</a>
-        </li>
-    </ul>
+                  
+                    {{ form_start(form) }}
+                      <label>(Operador 1/ operador 2)*100</label><br>
+
+                    <label>Operador 1</label>
+                    <input type="text" class="form-control" name="numerador">
+
+                    <label>Operador 1</label>
+                    <input type="text" class="form-control" name="denominador">
+                        <label>Usuario:</label>
+                         {{ form_widget(form.usuario, {'attr': {'class': 'form-control select2'}}) }}
+                         <br>
+                         <br>
+                        <input type="submit" class="btn btn-default btn-block" value="Crear" />
+                    {{ form_end(form) }}
+                {% endif %}
+
+                 {% if indicador.unidadMedida == "NUMERO" %}
+                    {{ form_start(form) }}
+                      <label>Operador 1- operador 2)</label><br>
+
+                    <label>Operador 1</label>
+                    <input type="text" class="form-control" name="operador1">
+
+                    <label>Operador 2</label>
+                    <input type="text" class="form-control" name="operador2">
+                        <label>Usuario:</label>
+                         {{ form_widget(form.usuario, {'attr': {'class': 'form-control select2'}}) }}
+                         <br>
+                         <br>
+                        <input type="submit" class="btn btn-default btn-block" value="Crear" />
+                    {{ form_end(form) }}
+                {% endif %}
+
+                {% if indicador.unidadMedida == "NOVEDAD" %}
+                    {{ form_start(form) }}
+                      <label>Valor Absoluto</label><br>
+
+                    <label>Operador 1</label>
+                    <input type="text" class="form-control" name="operador1">
+                        <label>Usuario:</label>
+                         {{ form_widget(form.usuario, {'attr': {'class': 'form-control select2'}}) }}
+                         <br>
+                         <br>
+                        <input type="submit" class="btn btn-default btn-block" value="Crear" />
+                    {{ form_end(form) }}
+                {% endif %}
+
+                 {% if indicador.unidadMedida == "INDICE" %}
+                    {{ form_start(form) }}
+                     <label>Operador 1- operador 2)/operador2</label><br>
+
+                    <label>Operador 1</label>
+                    <input type="text" class="form-control" name="operador1">
+
+                    <label>Operador 2</label>
+                    <input type="text" class="form-control" name="operador2">
+                        <label>Usuario:</label>
+                         {{ form_widget(form.usuario, {'attr': {'class': 'form-control select2'}}) }}
+                         <br>
+                         <br>
+                        <input type="submit" class="btn btn-default btn-block" value="Crear" />
+                    {{ form_end(form) }}
+                {% endif %}
+
+                 {% if indicador.unidadMedida == "DIAS" %}
+                    {{ form_start(form) }}
+                     <label>Fecha de aprobacion - Fecha de inicio</label><br>
+
+                    <label>Fecha aprobacion</label>
+                    <input type="date" class="form-control" name="fechaAprobacion">
+
+                    <label>Fecha inicio </label>
+                    <input type="date" class="form-control" name="fechaInicio">
+                        <label>Usuario:</label>
+                         {{ form_widget(form.usuario, {'attr': {'class': 'form-control select2'}}) }}
+                         <br>
+                         <br>
+                        <input type="submit" class="btn btn-default btn-block" value="Crear" />
+                    {{ form_end(form) }}
+                {% endif %}
+
+                {% if indicador.unidadMedida == "DIAS AMPLIADO" %}
+                    {{ form_start(form) }}
+                     <label>(Fecha de aprobacion - Fecha de solicitud)numero de novedades</label><br>
+
+                    <label>Fecha aprobacion</label>
+                    <input type="date" class="form-control" name="fechaAprobacion">
+
+                    <label>Fecha solicitud </label>
+                    <input type="date" class="form-control" name="fechaSolicitud">
+
+                     <label>Fecha numero de novedades </label>
+                    <input type="number" class="form-control" name="novedades">
+                        <label>Usuario:</label>
+                         {{ form_widget(form.usuario, {'attr': {'class': 'form-control select2'}}) }}
+                         <br>
+                         <br>
+                        <input type="submit" class="btn btn-default btn-block" value="Crear" />
+                    {{ form_end(form) }}
+                {% endif %}
+                <br>
+        </div>
+    </div> 
+    </div>
 {% endblock %}
+

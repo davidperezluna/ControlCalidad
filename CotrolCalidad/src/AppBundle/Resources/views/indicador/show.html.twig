@@ -24,8 +24,6 @@
                                 {% else %}
                                 {{ indicador.codigo }}   
                             {% endif %}
-                            
-
                         </td>
                         <th>Nombre</th>
                         <td>{{ indicador.nombre }}</td>
@@ -57,7 +55,18 @@
                     <tr>
                         <th>Meta</th>
                         <td>{{ indicador.meta }}</td>
+                        <th>Rango</th>
+                        <td>
+                            {% if indicador.rango != null %}
+                                {% for nivel in indicador.rango.niveles %}
+                                   <b> {{nivel.nombre}}:</b> {{nivel.valorMaximo}}%<br>
+                                {% endfor %}
+                                {% else %}
+
+                            {% endif %}
+                        </td>
                     </tr>
+                    <tr>Porcentaje de acciones: {{indicador.porcentajeAcciones}} %</tr>
                 </tbody>
             </table>
             </div>
@@ -144,7 +153,53 @@
             <!-- /.box-body -->
           </div>
           <!-- /.box -->
+
 </div>
+
+
+          <!-- About Me Box -->
+          <div class="box box-primary col-lg-3">
+            <div class="box-header with-border">
+              <h3 class="box-title">Seguimiento <small><a href="{{ path('seguimientoindicador_new', { 'idIndicador': indicador.id }) }}">Nuevo Seguimiento</a></small></h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <table class="table display">
+                    <thead>
+                        <tr>
+                            <th>Fechaseguimiento</th>
+                            <th>Proximafecha</th>
+                            <th>Resultado</th>
+                            <th>Notificacion</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for seguimientoIndicador in indicador.seguimientosIndicadores %}
+                        <tr>
+                            <td>{% if seguimientoIndicador.fechaSeguimiento %}{{ seguimientoIndicador.fechaSeguimiento|date('Y-m-d') }}{% endif %}</td>
+                            <td>{% if seguimientoIndicador.proximaFecha %}{{ seguimientoIndicador.proximaFecha|date('Y-m-d') }}{% endif %}</td>
+                            <td>{{ seguimientoIndicador.resultado }}</td>
+                            <td>{% if seguimientoIndicador.notificacion %}Yes{% else %}No{% endif %}</td>
+                            <td>
+                                <ul>
+                                    <li>
+                                        <a href="{{ path('seguimientoindicador_show', { 'id': seguimientoIndicador.id }) }}">show</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ path('seguimientoindicador_edit', { 'id': seguimientoIndicador.id }) }}">edit</a>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
 
 <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
     <div class="modal-dialog">
@@ -162,12 +217,5 @@
         </div>
     </div>
 </div>
-
-
-
-
-
-          
-
 {% endblock %}
 
