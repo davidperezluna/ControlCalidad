@@ -9,6 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class IndicadorType extends AbstractType
 {
@@ -75,7 +76,13 @@ class IndicadorType extends AbstractType
             ))
         ->add('meta', TextType::class,array(
                 "attr" =>array("class" => "form-control")
-            ));
+            ))
+
+        ->add('rango', EntityType::class, array(
+            'class' => 'AppBundle:Rango',
+            'choice_label' => 'nombre',
+             "attr" =>array("class" => "form-control"),
+        ));
     }
     
     /**

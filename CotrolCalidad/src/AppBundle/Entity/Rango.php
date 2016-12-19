@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * DocumentoLegal
+ * Rango
  *
- * @ORM\Table(name="documento_legal")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\DocumentoLegalRepository")
+ * @ORM\Table(name="rango")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\RangoRepository")
  */
-class DocumentoLegal
+class Rango
 {
     /**
      * @var int
@@ -29,16 +29,11 @@ class DocumentoLegal
     private $nombre;
 
     /**
-     * @var string
+     * @var int
      *
-     * @ORM\Column(name="url", type="string", length=255)
+     * @ORM\Column(name="numero_niveles", type="integer")
      */
-    private $url;
-
-    public function __toString()
-    {
-        return (string) $this->getNombre();
-    }
+    private $numeroNiveles;
 
 
     /**
@@ -56,7 +51,7 @@ class DocumentoLegal
      *
      * @param string $nombre
      *
-     * @return DocumentoLegal
+     * @return Rango
      */
     public function setNombre($nombre)
     {
@@ -76,26 +71,26 @@ class DocumentoLegal
     }
 
     /**
-     * Set url
+     * Set numeroNiveles
      *
-     * @param string $url
+     * @param integer $numeroNiveles
      *
-     * @return DocumentoLegal
+     * @return Rango
      */
-    public function setUrl($url)
+    public function setNumeroNiveles($numeroNiveles)
     {
-        $this->url = $url;
+        $this->numeroNiveles = $numeroNiveles;
 
         return $this;
     }
 
     /**
-     * Get url
+     * Get numeroNiveles
      *
-     * @return string
+     * @return integer
      */
-    public function getUrl()
+    public function getNumeroNiveles()
     {
-        return $this->url;
+        return $this->numeroNiveles;
     }
 }

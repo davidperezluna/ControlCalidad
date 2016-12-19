@@ -100,9 +100,21 @@ class Indicador
     private $meta;
 
      /**
+     * @var int
+     *
+     * @ORM\Column(name="porcentaje_acciones", type="integer")
+     */
+    private $porcentajeAcciones;
+
+     /**
      * @ORM\ManyToOne(targetEntity="Proceso", inversedBy="indicadores")
      */
     protected $proceso;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Rango", inversedBy="indicadores")
+     */
+    protected $rango;
 
     /**
      * @ORM\OneToMany(targetEntity="IndicadorCargo", mappedBy="indicador")
@@ -113,6 +125,11 @@ class Indicador
      * @ORM\OneToMany(targetEntity="Variable", mappedBy="indicador")
      */
     private $variables;
+
+     /**
+     * @ORM\OneToMany(targetEntity="SeguimientoIndicador", mappedBy="indicador")
+     */
+    private $seguimientosIndicadores;
 
      public function __construct() {
         $this->indicadoresCargos = new ArrayCollection();
@@ -490,5 +507,87 @@ class Indicador
     public function getVariables()
     {
         return $this->variables;
+    }
+
+    /**
+     * Set porcentajeAcciones
+     *
+     * @param integer $porcentajeAcciones
+     *
+     * @return Indicador
+     */
+    public function setPorcentajeAcciones($porcentajeAcciones)
+    {
+        $this->porcentajeAcciones = $porcentajeAcciones;
+
+        return $this;
+    }
+
+    /**
+     * Get porcentajeAcciones
+     *
+     * @return integer
+     */
+    public function getPorcentajeAcciones()
+    {
+        return $this->porcentajeAcciones;
+    }
+
+    /**
+     * Set rango
+     *
+     * @param \AppBundle\Entity\Rango $rango
+     *
+     * @return Indicador
+     */
+    public function setRango(\AppBundle\Entity\Rango $rango = null)
+    {
+        $this->rango = $rango;
+
+        return $this;
+    }
+
+    /**
+     * Get rango
+     *
+     * @return \AppBundle\Entity\Rango
+     */
+    public function getRango()
+    {
+        return $this->rango;
+    }
+
+    /**
+     * Add seguimientosIndicadore
+     *
+     * @param \AppBundle\Entity\SeguimientoIndicador $seguimientosIndicadore
+     *
+     * @return Indicador
+     */
+    public function addSeguimientosIndicadore(\AppBundle\Entity\SeguimientoIndicador $seguimientosIndicadore)
+    {
+        $this->seguimientosIndicadores[] = $seguimientosIndicadore;
+
+        return $this;
+    }
+
+    /**
+     * Remove seguimientosIndicadore
+     *
+     * @param \AppBundle\Entity\SeguimientoIndicador $seguimientosIndicadore
+     */
+    public function removeSeguimientosIndicadore(\AppBundle\Entity\SeguimientoIndicador $seguimientosIndicadore)
+    {
+        $this->seguimientosIndicadores->removeElement($seguimientosIndicadore);
+    }
+
+    /**
+     * Get seguimientosIndicadores
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSeguimientosIndicadores()
+    {
+        return $this->seguimientosIndicadores;
     }
 }
