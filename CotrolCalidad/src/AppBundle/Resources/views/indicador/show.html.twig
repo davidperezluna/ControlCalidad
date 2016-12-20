@@ -171,6 +171,7 @@
                             <th>Fechaseguimiento</th>
                             <th>Proximafecha</th>
                             <th>Resultado</th>
+                            <th><h5> <b>porcentaje</b> <small>resultado/meta</small></h5></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -179,9 +180,7 @@
                             <td>{% if seguimientoIndicador.fechaSeguimiento %}{{ seguimientoIndicador.fechaSeguimiento|date('Y-m-d') }}{% endif %}</td>
                             <td>{% if seguimientoIndicador.proximaFecha %}{{ seguimientoIndicador.proximaFecha|date('Y-m-d') }}{% endif %}</td>
                             <td>{{ seguimientoIndicador.resultado }}</td>
-
-                        
-                            
+                            <td>{{ seguimientoIndicador.porcentaje }}</td>
                         </tr>
                     {% endfor %}
                     </tbody>
@@ -247,24 +246,24 @@
                 var bar = new Morris.Bar({
                 element: 'bar-chart',
                 resize: true,
-                data: [
+                data: [{
                 {% for seguimientoIndicador in indicador.seguimientosIndicadores %}
-                  {y: '', a{{ seguimientoIndicador.id }}: {{ seguimientoIndicador.resultado }}},
+                  y: '', a{{ seguimientoIndicador.id }}: {{ seguimientoIndicador.resultado }},
                 {% endfor %}
+                }
                 ],
 
                 barColors: [
 
                     {% for seguimientoIndicador in indicador.seguimientosIndicadores %}
-                        {% if seguimientoIndicador.resultado > 11 %}
-                            
-                            '#00a65a',
+                        {% for nivel in seguimientoIndicador.indicador.rango.niveles %}
 
-                            {% else %}
+                            {% if (seguimientoIndicador.porcentaje >= nivel.valorMinimo) and (seguimientoIndicador.resultado <= nivel.valorMaximo) %}
 
-                            '#a7500b',
+                            '{{nivel.color}}',
 
-                        {% endif %}
+                            {% endif %}
+                        {% endfor %}
                     {% endfor %}
                 ],
                 xkey: 'y',
@@ -272,8 +271,9 @@
                     {% for seguimientoIndicador in indicador.seguimientosIndicadores %}
                       'a{{ seguimientoIndicador.id }}',
                     {% endfor %}
+                    ,,,,,,,,,,
+                    
                 ],
-                labels: ['%'],
                 hideHover: 'auto'
               });
 

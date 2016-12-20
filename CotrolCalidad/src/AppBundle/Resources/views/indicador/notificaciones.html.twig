@@ -1,0 +1,25 @@
+
+<li class="dropdown notifications-menu">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+    <i class="fa fa-bell-o"></i>
+    <span class="label label-warning">{{seguimientoIndicador|length}}</span>
+  </a>
+  <ul class="dropdown-menu">
+    <li class="header">{{seguimientoIndicador|length}} notificaciones de indicador</li>
+    <li>
+      <!-- inner menu: contains the actual data -->
+      <ul class="menu">
+        {% if seguimientoIndicador|length > 0 %}
+          {% for notificacion in seguimientoIndicador %}
+            <li>
+              <a href="#">
+                <i class="fa fa-users text-aqua"></i>seguimientos vencidos para {{ notificacion.indicador.nombre }}
+              </a>
+            </li>
+          {% endfor %}  
+        {% endif %}
+      </ul>
+    </li>
+    <li class="footer"><a href="#">View all</a></li>
+  </ul>
+</li>

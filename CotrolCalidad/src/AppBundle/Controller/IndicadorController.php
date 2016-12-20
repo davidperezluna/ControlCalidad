@@ -12,8 +12,33 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
  *
  * @Route("indicador")
  */
-class IndicadorController extends Controller
+class IndicadorController extends Controller  
 {
+
+
+   
+    public function notificacionesAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $dql = 'SELECT I
+            FROM AppBundle:Seguimientoindicador I
+            WHERE I.proximaFecha <= CURRENT_DATE()
+            AND   I.notificacion = :notificacion';
+        $consulta = $em->createQuery($dql);
+        $consulta->setParameter('notificacion', 1);
+       
+
+        $seguimientoIndicador= $consulta->getResult();
+
+        return $this->render('AppBundle:indicador:notificaciones.html.twig', array(
+            'seguimientoIndicador' => $seguimientoIndicador,
+        ));
+    }
+
+
+
+
     /**
      * Lists all indicador entities.
      *

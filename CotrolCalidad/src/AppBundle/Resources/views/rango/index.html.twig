@@ -26,7 +26,7 @@
                         {{rango.niveles|length}}/{{rango.numeroNiveles}}
 
                     {% if rango.niveles|length == rango.numeroNiveles %}
-                        <a href="{{ path('nivel_new', { 'idRango': rango.id }) }}" disabled="disabled" data-toggle="tooltip"data-original-title="Agregar" class="btn btn-box-tool"><i class="fa fa-plus"></i></a>
+                       
                     {% else %}
                         
                         <a href="{{ path('nivel_new', { 'idRango': rango.id }) }}" data-toggle="tooltip"data-original-title="Agregar" class="btn btn-box-tool"><i class="fa fa-plus"></i></a>
