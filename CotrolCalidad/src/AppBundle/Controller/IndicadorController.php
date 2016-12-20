@@ -22,7 +22,7 @@ class IndicadorController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $dql = 'SELECT I
-            FROM AppBundle:Seguimientoindicador I
+            FROM AppBundle:SeguimientoIndicador I
             WHERE I.proximaFecha <= CURRENT_DATE()
             AND   I.notificacion = :notificacion';
         $consulta = $em->createQuery($dql);
