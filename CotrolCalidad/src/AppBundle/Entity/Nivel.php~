@@ -34,6 +34,12 @@ class Nivel
      * @ORM\Column(name="color", type="string", length=255)
      */
     private $color;
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="valorMinimo", type="integer")
+     */
+    private $valorMinimo;
 
     /**
      * @var int
@@ -41,6 +47,8 @@ class Nivel
      * @ORM\Column(name="valorMaximo", type="integer")
      */
     private $valorMaximo;
+
+
 
 
      /**
@@ -129,5 +137,29 @@ class Nivel
     public function getRango()
     {
         return $this->rango;
+    }
+
+    /**
+     * Set color
+     *
+     * @param string $color
+     *
+     * @return Nivel
+     */
+    public function setColor($color)
+    {
+        $this->color = $color;
+
+        return $this;
+    }
+
+    /**
+     * Get color
+     *
+     * @return string
+     */
+    public function getColor()
+    {
+        return $this->color;
     }
 }

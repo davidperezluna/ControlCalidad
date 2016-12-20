@@ -34,6 +34,12 @@ class Nivel
      * @ORM\Column(name="color", type="string", length=255)
      */
     private $color;
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="valorMinimo", type="integer")
+     */
+    private $valorMinimo;
 
     /**
      * @var int
@@ -41,6 +47,8 @@ class Nivel
      * @ORM\Column(name="valorMaximo", type="integer")
      */
     private $valorMaximo;
+
+
 
 
      /**
@@ -153,5 +161,29 @@ class Nivel
     public function getColor()
     {
         return $this->color;
+    }
+
+    /**
+     * Set valorMinimo
+     *
+     * @param integer $valorMinimo
+     *
+     * @return Nivel
+     */
+    public function setValorMinimo($valorMinimo)
+    {
+        $this->valorMinimo = $valorMinimo;
+
+        return $this;
+    }
+
+    /**
+     * Get valorMinimo
+     *
+     * @return integer
+     */
+    public function getValorMinimo()
+    {
+        return $this->valorMinimo;
     }
 }

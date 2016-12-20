@@ -20,6 +20,10 @@ class NivelType extends AbstractType
         ->add('nombre', textType::class,array(
                 "attr" =>array("class" => "form-control") 
             ))
+
+        ->add('valorMaximo', numberType::class,array(
+                "attr" =>array("class" => "form-control") 
+            ))
         ->add('valorMaximo', numberType::class,array(
                 "attr" =>array("class" => "form-control") 
             ))
