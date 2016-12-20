@@ -1,14 +1,12 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Seguimientoindicador</h1>
 
-    <table>
+<div class="col-lg-3">
+    <h2>Seguimiento <small>{{seguimientoIndicador.indicador.nombre}}</small></h2>
+
+    <table class="table table striped">
         <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ seguimientoIndicador.id }}</td>
-            </tr>
             <tr>
                 <th>Fechaseguimiento</th>
                 <td>{% if seguimientoIndicador.fechaSeguimiento %}{{ seguimientoIndicador.fechaSeguimiento|date('Y-m-d') }}{% endif %}</td>
@@ -19,26 +17,64 @@
             </tr>
             <tr>
                 <th>Resultado</th>
-                <td>{{ seguimientoIndicador.resultado }}</td>
+                <td>{{ seguimientoIndicador.resultado}}</td>
             </tr>
+
             <tr>
-                <th>Notificacion</th>
-                <td>{% if seguimientoIndicador.notificacion %}Yes{% else %}No{% endif %}</td>
+                <th>Porcentaje</th>
+                <td>{{ seguimientoIndicador.porcentaje}}%</td>
+            </tr>
+
+            <tr>
+                <th>Porcentade de aceptacion</th>
+                <td>{{ seguimientoIndicador.indicador.porcentajeAcciones}}%</td>
+            </tr>
+
+            <tr>
+                <th>Meta</th>
+                <td>{{ seguimientoIndicador.indicador.meta}}%</td>
             </tr>
         </tbody>
     </table>
+</div>
+<br>
+<div class="col-lg-1">
+    <a  data-toggle="tooltip"data-original-title="Agregar Accion" href="{{ path('accionesindicador_new', { 'idSeguimiento': seguimientoIndicador.id }) }}" class="btn btn-app">
+      <i class="fa fa-plus"></i> Accion
+    </a>
+    <br>
+</div>
 
-    <ul>
-        <li>
-            <a href="{{ path('seguimientoindicador_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('seguimientoindicador_edit', { 'id': seguimientoIndicador.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+<div class="col-lg-8">
+    <table class="table display">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Accion</th>
+                <th>Fechacierre</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for accionesIndicador in seguimientoIndicador.accionesIndicadores %}
+            <tr>
+                <td><a href="{{ path('accionesindicador_show', { 'id': accionesIndicador.id }) }}">{{ accionesIndicador.id }}</a></td>
+                <td>{{ accionesIndicador.accion }}</td>
+                <td>{% if accionesIndicador.fechaCierre %}{{ accionesIndicador.fechaCierre|date('Y-m-d') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('accionesindicador_show', { 'id': accionesIndicador.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('accionesindicador_edit', { 'id': accionesIndicador.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+</div>
 {% endblock %}

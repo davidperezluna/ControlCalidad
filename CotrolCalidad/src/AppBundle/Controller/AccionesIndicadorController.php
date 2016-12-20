@@ -44,6 +44,14 @@ class AccionesIndicadorController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $idSeguimiento = $request->query->get('idSeguimiento');
+
+            $em = $this->getDoctrine()->getManager();
+
+            $seguimiento = $em->getRepository('AppBundle:SeguimientoIndicador')->find($idSeguimiento);
+
+            $accionesIndicador->setSeguimientoIndicador($seguimiento);
             $em = $this->getDoctrine()->getManager();
             $em->persist($accionesIndicador);
             $em->flush($accionesIndicador);
