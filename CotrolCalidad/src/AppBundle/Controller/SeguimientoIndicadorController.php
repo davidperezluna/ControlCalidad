@@ -51,6 +51,15 @@ class SeguimientoIndicadorController extends Controller
 
             $indicador = $em->getRepository('AppBundle:Indicador')->find($request->query->get('idIndicador'));
 
+            $seguimientoIndicadors = $em->getRepository('AppBundle:SeguimientoIndicador')->findBy(array('indicador' => $indicador->getId() ));
+
+            foreach ($seguimientoIndicadors as $seguimientoOld) {
+               $seguimientoOld->setNotificacion(false);
+
+                $em->persist($seguimientoOld);
+                $em->flush($seguimientoOld);
+            }
+
             if ($indicador->getUnidadMedida()=="PORCENTAJE") {
                $numerador = $request->request->get('numerador');
                $denominador = $request->request->get('denominador');
