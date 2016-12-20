@@ -265,28 +265,4 @@ class SeguimientoIndicador
     {
         return $this->accionesIndicadores;
     }
-
-    /**
-     * Set porcentaje
-     *
-     * @param integer $porcentaje
-     *
-     * @return SeguimientoIndicador
-     */
-    public function setPorcentaje($porcentaje)
-    {
-        $this->porcentaje = $porcentaje;
-
-        return $this;
-    }
-
-    /**
-     * Get porcentaje
-     *
-     * @return integer
-     */
-    public function getPorcentaje()
-    {
-        return $this->porcentaje;
-    }
 }

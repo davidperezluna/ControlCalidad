@@ -139,7 +139,10 @@ class SeguimientoIndicadorController extends Controller
                 $proximaFecha = $proxima->add($intervalo);
             }
 
+            $porcentaje = ($resultado*$indicador->getMeta())/100;
+
             $seguimientoIndicador->setResultado($resultado);
+             $seguimientoIndicador->setPorcentaje($porcentaje);
             $seguimientoIndicador->setIndicador($indicador);
 
 

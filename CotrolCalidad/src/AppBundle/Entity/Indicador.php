@@ -93,9 +93,9 @@ class Indicador
     private $lineaBase;
 
     /**
-     * @var string
+     * @var int
      *
-     * @ORM\Column(name="meta", type="text")
+     * @ORM\Column(name="meta", type="integer")
      */
     private $meta;
 
@@ -151,6 +151,7 @@ class Indicador
         return $this->id;
     }
 
+
     /**
      * Set codigo
      *
@@ -168,7 +169,7 @@ class Indicador
     /**
      * Get codigo
      *
-     * @return int
+     * @return integer
      */
     public function getCodigo()
     {
@@ -394,7 +395,7 @@ class Indicador
     /**
      * Set meta
      *
-     * @param string $meta
+     * @param integer $meta
      *
      * @return Indicador
      */
@@ -408,11 +409,35 @@ class Indicador
     /**
      * Get meta
      *
-     * @return string
+     * @return integer
      */
     public function getMeta()
     {
         return $this->meta;
+    }
+
+    /**
+     * Set porcentajeAcciones
+     *
+     * @param integer $porcentajeAcciones
+     *
+     * @return Indicador
+     */
+    public function setPorcentajeAcciones($porcentajeAcciones)
+    {
+        $this->porcentajeAcciones = $porcentajeAcciones;
+
+        return $this;
+    }
+
+    /**
+     * Get porcentajeAcciones
+     *
+     * @return integer
+     */
+    public function getPorcentajeAcciones()
+    {
+        return $this->porcentajeAcciones;
     }
 
     /**
@@ -437,6 +462,30 @@ class Indicador
     public function getProceso()
     {
         return $this->proceso;
+    }
+
+    /**
+     * Set rango
+     *
+     * @param \AppBundle\Entity\Rango $rango
+     *
+     * @return Indicador
+     */
+    public function setRango(\AppBundle\Entity\Rango $rango = null)
+    {
+        $this->rango = $rango;
+
+        return $this;
+    }
+
+    /**
+     * Get rango
+     *
+     * @return \AppBundle\Entity\Rango
+     */
+    public function getRango()
+    {
+        return $this->rango;
     }
 
     /**
@@ -473,8 +522,6 @@ class Indicador
         return $this->indicadoresCargos;
     }
 
-  
-
     /**
      * Add variable
      *
@@ -507,54 +554,6 @@ class Indicador
     public function getVariables()
     {
         return $this->variables;
-    }
-
-    /**
-     * Set porcentajeAcciones
-     *
-     * @param integer $porcentajeAcciones
-     *
-     * @return Indicador
-     */
-    public function setPorcentajeAcciones($porcentajeAcciones)
-    {
-        $this->porcentajeAcciones = $porcentajeAcciones;
-
-        return $this;
-    }
-
-    /**
-     * Get porcentajeAcciones
-     *
-     * @return integer
-     */
-    public function getPorcentajeAcciones()
-    {
-        return $this->porcentajeAcciones;
-    }
-
-    /**
-     * Set rango
-     *
-     * @param \AppBundle\Entity\Rango $rango
-     *
-     * @return Indicador
-     */
-    public function setRango(\AppBundle\Entity\Rango $rango = null)
-    {
-        $this->rango = $rango;
-
-        return $this;
-    }
-
-    /**
-     * Get rango
-     *
-     * @return \AppBundle\Entity\Rango
-     */
-    public function getRango()
-    {
-        return $this->rango;
     }
 
     /**
