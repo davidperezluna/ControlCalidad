@@ -5,7 +5,7 @@
     <span class="label label-warning">{{seguimientoIndicador|length}}</span>
   </a>
   <ul class="dropdown-menu">
-    <li class="header">{{seguimientoIndicador|length}} notificaciones de indicador</li>
+    <li class="header">{{seguimientoIndicador|length}} seguimientos vencidos</li>
     <li>
       <!-- inner menu: contains the actual data -->
       <ul class="menu">
@@ -13,7 +13,7 @@
           {% for notificacion in seguimientoIndicador %}
             <li>
               <a href="#">
-                <i class="fa fa-users text-aqua"></i>seguimientos vencidos para {{ notificacion.indicador.nombre }}
+                <i class="fa fa-users text-aqua"></i>seguimiento vencido...
               </a>
             </li>
           {% endfor %}  
