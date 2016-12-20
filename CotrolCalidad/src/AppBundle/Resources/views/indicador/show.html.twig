@@ -179,6 +179,9 @@
                             <td>{% if seguimientoIndicador.fechaSeguimiento %}{{ seguimientoIndicador.fechaSeguimiento|date('Y-m-d') }}{% endif %}</td>
                             <td>{% if seguimientoIndicador.proximaFecha %}{{ seguimientoIndicador.proximaFecha|date('Y-m-d') }}{% endif %}</td>
                             <td>{{ seguimientoIndicador.resultado }}</td>
+
+                        
+                            
                         </tr>
                     {% endfor %}
                     </tbody>
@@ -191,9 +194,26 @@
           </div>
           <div class="col-lg-6">
 
+            <div class="box box-success">
+            <div class="box-header with-border">
+              <h3 class="box-title">Bar Chart</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>
+            <div class="box-body chart-responsive">
+              <div class="chart" id="bar-chart" style="height: 300px;"></div>
+            </div>
+            <!-- /.box-body -->
+          </div>
+
 
           </div>
 </div>
+
 
 <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
     <div class="modal-dialog">
@@ -211,5 +231,58 @@
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{parent()}}
+
+             {#  {% for nivel in indicador.rango.niveles %}
+                                   <b> {{nivel.nombre}}:</b> {{nivel.valorMaximo}}%<br>
+              {% endfor %} #}
+<script>
+
+            
+                
+                
+                var bar = new Morris.Bar({
+                element: 'bar-chart',
+                resize: true,
+                data: [
+                {% for seguimientoIndicador in indicador.seguimientosIndicadores %}
+                  {y: '', a{{ seguimientoIndicador.id }}: {{ seguimientoIndicador.resultado }}},
+                {% endfor %}
+                ],
+
+                barColors: [
+
+                    {% for seguimientoIndicador in indicador.seguimientosIndicadores %}
+                        {% if seguimientoIndicador.resultado > 11 %}
+                            
+                            '#00a65a',
+
+                            {% else %}
+
+                            '#a7500b',
+
+                        {% endif %}
+                    {% endfor %}
+                ],
+                xkey: 'y',
+                ykeys: [
+                    {% for seguimientoIndicador in indicador.seguimientosIndicadores %}
+                      'a{{ seguimientoIndicador.id }}',
+                    {% endfor %}
+                ],
+                labels: ['%'],
+                hideHover: 'auto'
+              });
+
+
+
+</script>
+
+
+          
+    
 {% endblock %}
 
