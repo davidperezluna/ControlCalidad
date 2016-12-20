@@ -78,6 +78,10 @@ class IndicadorType extends AbstractType
                 "attr" =>array("class" => "form-control")
             ))
 
+        ->add('porcentajeAcciones', NumberType::class,array(
+                "attr" =>array("class" => "form-control")
+            ))
+
         ->add('rango', EntityType::class, array(
             'class' => 'AppBundle:Rango',
             'choice_label' => 'nombre',
