@@ -5,7 +5,11 @@
     <span class="label label-warning">{{seguimientoIndicador|length}}</span>
   </a>
   <ul class="dropdown-menu">
-    <li class="header">{{seguimientoIndicador|length}} seguimientos vencidos</li>
+    {% if seguimientoIndicador|length == 1 %}
+      <li class="header">{{seguimientoIndicador|length}} seguimiento vencido</li>
+      {% else %}
+       <li class="header">{{seguimientoIndicador|length}} seguimientos vencidos</li>   
+    {% endif %}
     <li>
       <!-- inner menu: contains the actual data -->
       <ul class="menu">
@@ -13,7 +17,9 @@
           {% for notificacion in seguimientoIndicador %}
             <li>
               <a href="#">
+                {% if seguimientoIndicador|length == 1 %}
                 <i class="fa fa-users text-aqua"></i>seguimiento vencido...
+                {% endif %}
               </a>
             </li>
           {% endfor %}  

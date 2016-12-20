@@ -248,7 +248,7 @@
                 resize: true,
                 data: [{
                 {% for seguimientoIndicador in indicador.seguimientosIndicadores %}
-                  y: '', a{{ seguimientoIndicador.id }}: {{ seguimientoIndicador.resultado }},
+                  y: '', a{{ seguimientoIndicador.id }}: {{ seguimientoIndicador.porcentaje }},
                 {% endfor %}
                 }
                 ],
@@ -258,7 +258,7 @@
                     {% for seguimientoIndicador in indicador.seguimientosIndicadores %}
                         {% for nivel in seguimientoIndicador.indicador.rango.niveles %}
 
-                            {% if (seguimientoIndicador.porcentaje >= nivel.valorMinimo) and (seguimientoIndicador.resultado <= nivel.valorMaximo) %}
+                            {% if (seguimientoIndicador.porcentaje >= nivel.valorMinimo) and (seguimientoIndicador.porcentaje <= nivel.valorMaximo) %}
 
                             '{{nivel.color}}',
 
