@@ -39,13 +39,30 @@ class SeguimientoIndicadorController extends Controller
      */
     public function newAction(Request $request)
     {
-        
+
+        $var1 = null;
+        $var2 = null;
+        $var3 = null;
         $em = $this->getDoctrine()->getManager();
         $seguimientoIndicador = new Seguimientoindicador();
         $form = $this->createForm('AppBundle\Form\SeguimientoIndicadorType', $seguimientoIndicador);
         $form->handleRequest($request);
 
         $indicador = $em->getRepository('AppBundle:Indicador')->find($request->query->get('idIndicador'));
+
+        $i = count($indicador->getVariables());
+        foreach ($indicador->getVariables() as $variable) {
+          
+           if ($var1 == null) {
+               $var1 = $variable->getNombre();
+            }else{
+                $var2 = $variable->getNombre();
+
+                if ($var2 != null && $var3 == null && $i == 3) {
+                    $var3 = $variable->getNombre();
+                }
+            }
+        }
 
         if ($form->isSubmitted() && $form->isValid()) {
 
@@ -159,6 +176,10 @@ class SeguimientoIndicadorController extends Controller
         }
 
         return $this->render('AppBundle:seguimientoindicador:new.html.twig', array(
+
+            'var1'=>$var1,
+            'var2'=>$var2,
+            'var3'=>$var3,
             'indicador'=>$indicador,
             'seguimientoIndicador' => $seguimientoIndicador,
             'form' => $form->createView(),

@@ -8,19 +8,19 @@
                 <div class="box-header with-border">
                   <h3 class="box-title">Crear Seguimiento</h3>
                 </div>
+
+
                 {% if indicador.unidadMedida == "PORCENTAJE" %}
+
+
                     {{ form_start(form) }}
+                    
+                    <label>({{var1}} * {{var2}})/ 100</label><br>
 
-
-                        {% for variable in indicador.variables %}
-                            Operador: {{variable.nombre}}
-                        {% endfor %}<br>
-                    <label>(Operador 1 * operador 2)/ 100</label><br>
-
-                    <label>Operador 1</label>
+                    <label>{{var1}}</label>
                     <input type="text" class="form-control" name="numerador">
 
-                    <label>Operador 2</label>
+                    <label>{{var2}}</label>
                     <input type="text" class="form-control" name="denominador">
                         <label>Usuario:</label>
                          {{ form_widget(form.usuario, {'attr': {'class': 'form-control select2'}}) }}
@@ -29,20 +29,22 @@
                         <input type="submit" class="btn btn-default btn-block" value="Crear" />
 
                     {{ form_end(form) }}
+
+
                 {% endif %}
+
+
 
                  {% if indicador.unidadMedida == "NUMERO" %}
                     {{ form_start(form) }}
 
-                    {% for variable in indicador.variables %}
-                            <label> operador :{{variable.nombre}}</label><br>
-                    {% endfor %}<br>
-                      <label>Operador 1 - Operador 2)</label><br>
+                   
+                      <label>({{var1}} - {{var2}})</label><br>
 
-                    <label>Operador 1</label>
+                    <label>{{var1}}</label>
                     <input type="text" class="form-control" name="operador1">
 
-                    <label>Operador 2</label>
+                    <label>{{var2}}</label>
                     <input type="text" class="form-control" name="operador2">
                         <label>Usuario:</label>
                          {{ form_widget(form.usuario, {'attr': {'class': 'form-control select2'}}) }}
@@ -56,11 +58,9 @@
                     {{ form_start(form) }}
 
                     {% for variable in indicador.variables %}
-                            <label> operador :{{variable.nombre}}</label><br>
-                    {% endfor %}<br>
-                      <label>Valor Absoluto</label><br>
-
-                    <label>Operador 1</label>
+                          
+                    <label>{{variable.nombre}}</label>
+                    {% endfor %}    
                     <input type="text" class="form-control" name="operador1">
                         <label>Usuario:</label>
                          {{ form_widget(form.usuario, {'attr': {'class': 'form-control select2'}}) }}
@@ -73,15 +73,13 @@
                  {% if indicador.unidadMedida == "INDICE" %}
                     {{ form_start(form) }}
 
-                    {% for variable in indicador.variables %}
-                            <label> operador :{{variable.nombre}}</label><br>
-                    {% endfor %}<br>
-                     <label>Operador 1- operador 2)/operador2</label><br>
+                   
+                     <label>{{var1}}- {{var2}})/{{var2}}</label><br>
 
-                    <label>Operador 1</label>
+                    <label>{{var1}}</label>
                     <input type="text" class="form-control" name="operador1">
 
-                    <label>Operador 2</label>
+                    <label>{{var2}}</label>
                     <input type="text" class="form-control" name="operador2">
                         <label>Usuario:</label>
                          {{ form_widget(form.usuario, {'attr': {'class': 'form-control select2'}}) }}
@@ -94,15 +92,13 @@
                  {% if indicador.unidadMedida == "DIAS" %}
                     {{ form_start(form) }}
 
-                    {% for variable in indicador.variables %}
-                            <label> operador :{{variable.nombre}}</label><br>
-                    {% endfor %}<br>
-                     <label>Fecha de aprobacion - Fecha de inicio</label><br>
+                    
+                     <label>{{var1}} - {{var2}}</label><br>
 
-                    <label>Fecha aprobacion</label>
+                    <label>{{var1}}</label>
                     <input type="date" class="form-control" name="fechaAprobacion">
 
-                    <label>Fecha inicio </label>
+                    <label>{{var2}}</label>
                     <input type="date" class="form-control" name="fechaInicio">
                         <label>Usuario:</label>
                          {{ form_widget(form.usuario, {'attr': {'class': 'form-control select2'}}) }}
@@ -115,18 +111,15 @@
                 {% if indicador.unidadMedida == "DIAS AMPLIADO" %}
                     {{ form_start(form) }}
 
-                    {% for variable in indicador.variables %}
-                            <label> operador :{{variable.nombre}}</label><br>
-                    {% endfor %}<br>
-                     <label>(Fecha de aprobacion - Fecha de solicitud)numero de novedades</label><br>
+                     <label>({{var1}} - {{var3}})*{{var2}}</label><br>
 
-                    <label>Fecha aprobacion</label>
+                    <label>{{var1}}</label>
                     <input type="date" class="form-control" name="fechaAprobacion">
 
-                    <label>Fecha solicitud </label>
+                    <label>{{var3}}</label>
                     <input type="date" class="form-control" name="fechaSolicitud">
 
-                     <label>Fecha numero de novedades </label>
+                     <label>{{var2}}</label>
                     <input type="number" class="form-control" name="novedades">
                         <label>Usuario:</label>
                          {{ form_widget(form.usuario, {'attr': {'class': 'form-control select2'}}) }}

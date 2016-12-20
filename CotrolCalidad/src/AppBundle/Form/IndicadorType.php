@@ -51,6 +51,7 @@ class IndicadorType extends AbstractType
                 'PORCENTAJE' => 'PORCENTAJE',
                 'NUMERO' => 'NUMERO',
                 'INDICE' => 'INDICE',
+                'NOVEDAD' => 'NOVEDAD',
                 'DIAS' => 'DIAS',
                 'DIAS AMPLIADO' => 'DIAS AMPLIADO',
             ),
