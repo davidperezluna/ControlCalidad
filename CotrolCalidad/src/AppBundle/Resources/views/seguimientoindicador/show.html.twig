@@ -1,5 +1,11 @@
 {% extends 'base.html.twig' %}
-
+{% block referencia %}
+     <ol class="breadcrumb">
+        <li><a href="{{ path('homepage') }}"><i class="fa fa-dashboard"></i> Inicio</a></li>
+        <li><a href="{{ path('indicador_show',{'id':seguimientoIndicador.indicador.id})}}">Indicador</a></li>
+        <li class="active">Seguimientos</li>
+      </ol>
+{% endblock %}
 {% block body %}
 
 <div class="col-lg-3">
@@ -21,18 +27,13 @@
             </tr>
 
             <tr>
-                <th>Porcentaje</th>
-                <td>{{ seguimientoIndicador.porcentaje}}%</td>
-            </tr>
-
-            <tr>
-                <th>Porcentade de aceptacion</th>
-                <td>{{ seguimientoIndicador.indicador.porcentajeAcciones}}%</td>
+                <th>Rango para acciones de mejora</th>
+                <td>{{ seguimientoIndicador.indicador.porcentajeAcciones}}</td>
             </tr>
 
             <tr>
                 <th>Meta</th>
-                <td>{{ seguimientoIndicador.indicador.meta}}%</td>
+                <td>{{ seguimientoIndicador.indicador.meta}}</td>
             </tr>
         </tbody>
     </table>

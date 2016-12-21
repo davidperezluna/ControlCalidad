@@ -175,7 +175,7 @@
                         {% for indicador in proceso.indicadores %}
                             <tr>
                                 <td>
-                                    {% if proceso.codigo < 10 %}{{proceso.macroProceso.sigla}}0{{proceso.codigo}}_{% if indicador.codigo < 10 %}0{{indicador.codigo}}{% else %}{{indicador.codigo}}{% endif %}{% else %}{{proceso.macroProceso.sigla}}{{proceso.codigo}}_{% if indicador.codigo < 10 %}0{{indicador.codigo}}{% else %}{{indicador.codigo}}{% endif %}{% endif %}
+                                    {% if proceso.codigo < 10 %}{{proceso.macroProceso.sigla}}0{{proceso.codigo}}_{% if indicador.codigo < 10 %}00{{indicador.codigo}}{% else %}{{indicador.codigo}}{% endif %}{% else %}{{proceso.macroProceso.sigla}}{{proceso.codigo}}_{% if indicador.codigo < 10 %}00{{indicador.codigo}}{% else %}{{indicador.codigo}}{% endif %}{% endif %}
                                 </td>
                                 <td>{{ indicador.nombre }}</td>
                                 <td>{{ indicador.tipo }}</td>
