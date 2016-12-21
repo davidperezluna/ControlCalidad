@@ -48,26 +48,41 @@
 
                     {% else %}
                         <div class="box-body " style="display: none;">
-                                    nombre
+                                <div class="col-md-2">
+                                    nombres
                                 </div>
-                                <div class="col-md-4">
-                                    valor %
+                                <div class="col-md-2">
+                                    Inicio 
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-2">
+                                    Fin 
+                                </div>
+                                <div class="col-md-2">
                                     color
                                 </div>
+                                <div class="col-md-2">
+                                    Acciones
+                                </div>
                             </div>
+                            <hr>
 
+ 
                     {% for nivel in rango.niveles %}
                             <div class="box-body " style="display: none;">
-                                <div class="col-md-4">
+                                <div class="col-md-2">
                                     {{nivel.nombre}}
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-2">
+                                    {{nivel.valorMinimo}}
+                                </div>
+                                <div class="col-md-2">
                                     {{nivel.valorMaximo}}
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-2">
                                     <i class="fa fa-circle-o" style="color:{{nivel.color}};"></i>
+                                </div>
+                                <div class="col-md-2">
+                                  <a href="{{ path('nivel_edit', { 'id': nivel.id }) }}" class="btn btn-default btn-flat"><i class="fa fa-edit"></i></a>
                                 </div>
                             </div>
                     {% endfor %}
