@@ -40,20 +40,24 @@
                     <tr>
                         <th>Meta</th>
                         <td>{{ indicador.meta }}</td>
-                        <th>Rango</th>
-                        <td>
-                            {% if indicador.rango != null %}
-                                {% for nivel in indicador.rango.niveles %}
-                                   <b> {{nivel.nombre}}:</b> {{nivel.valorMaximo}}<br>
-                                {% endfor %}
-                                {% else %}
+                        
+                    </tr>
 
-                            {% endif %}
-                        </td>
+                    <tr>
+                     
                     </tr>
                     <tr>Rango para acciones de mejora: {{indicador.porcentajeAcciones}}</tr>
                 </tbody>
             </table>
+             <p>Rango: <br>
+              {% if indicador.rango != null %}
+                  {% for nivel in indicador.rango.niveles %}
+                    <b> <i class="fa fa-circle-o" style="color:{{nivel.color}};"></i> {{nivel.nombre}}:</b> {{nivel.valorMinimo}}-{{nivel.valorMaximo}} 
+                  {% endfor %}
+                  {% else %}
+              {% endif %}
+              </p>
+                        
                    
             </div>
             <!-- /.box-body -->
@@ -75,6 +79,11 @@
                      <p>
                         Metodologia:
                         <textarea class="form-control">{{ indicador.metodolgia }}</textarea> 
+                    </p>
+
+                     <p>
+                        Linea Base:
+                        <textarea class="form-control">{{ indicador.lineaBase }}</textarea> 
                     </p>
 
 </div>
@@ -110,7 +119,6 @@
                         <tr>
                             <th>Cargo</th>
                             <th>role Responsable</th>
-                            <th>Eliminar</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -119,7 +127,7 @@
                             <td>{{indicadorCargo.cargo.nombre}}</td>
                             <td>{{indicadorCargo.roleResponsable}}</td>
                             <td>
-                                 <a class="btn btn-danger btn-flat"  href="#" data-href="{{ path('indicadorcargo_delete', { 'id': indicadorCargo.id,'idIndicador':indicador.id }) }}" data-toggle="modal" data-target="#confirm-delete"><i class="fa fa-close"></i></a>
+                                 <a class="btn btn-danger btn-flat btn-xs"  href="#" data-href="{{ path('indicadorcargo_delete', { 'id': indicadorCargo.id,'idIndicador':indicador.id }) }}" data-toggle="modal" data-target="#confirm-delete"><i class="fa fa-close"></i></a>
                             </td>
                         </tr>
                     {% endfor %}
@@ -149,7 +157,7 @@
                         <tr>
                             <td>{{variable.nombre}}</td>
                             <td>
-                                 <a class="btn btn-danger btn-flat"  href="#" data-href="{{ path('variable_delete', { 'id': variable.id,'idIndicador':indicador.id }) }}" data-toggle="modal" data-target="#confirm-delete"><i class="fa fa-close"></i></a>
+                                 <a class="btn btn-danger btn-flat btn-xs"  href="#" data-href="{{ path('variable_delete', { 'id': variable.id,'idIndicador':indicador.id }) }}" data-toggle="modal" data-target="#confirm-delete"><i class="fa fa-close"></i></a>
                             </td>
                         </tr>
                     {% endfor %}
