@@ -47,16 +47,19 @@ class AccionesIndicadorController extends Controller
 
             $idSeguimiento = $request->query->get('idSeguimiento');
 
+            $fechaCierre = new \DateTime($request->query->get('fechaCierre'));
+
             $em = $this->getDoctrine()->getManager();
 
             $seguimiento = $em->getRepository('AppBundle:SeguimientoIndicador')->find($idSeguimiento);
 
+            $accionesIndicador->setFechaCierre($fechaCierre);
             $accionesIndicador->setSeguimientoIndicador($seguimiento);
             $em = $this->getDoctrine()->getManager();
             $em->persist($accionesIndicador);
             $em->flush($accionesIndicador);
 
-            return $this->redirectToRoute('accionesindicador_show', array('id' => $accionesIndicador->getId()));
+            return $this->redirectToRoute('seguimientoindicador_show', array('id' => $seguimiento->getId()));
         }
 
         return $this->render('AppBundle:accionesindicador:new.html.twig', array(

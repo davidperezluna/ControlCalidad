@@ -42,7 +42,6 @@ class AccionesIndicador
 
      /**
      * @ORM\OneToOne(targetEntity="Cierre", mappedBy="accionIndicador")
-     *@ORM\joinColumn(name="cierre_id", referencedColumnName="id")
      */
     private $cierre;
 
@@ -128,29 +127,5 @@ class AccionesIndicador
     public function getSeguimientoIndicador()
     {
         return $this->seguimientoIndicador;
-    }
-
-    /**
-     * Set cierre
-     *
-     * @param \AppBundle\Entity\Cierre $cierre
-     *
-     * @return AccionesIndicador
-     */
-    public function setCierre(\AppBundle\Entity\Cierre $cierre = null)
-    {
-        $this->cierre = $cierre;
-
-        return $this;
-    }
-
-    /**
-     * Get cierre
-     *
-     * @return \AppBundle\Entity\Cierre
-     */
-    public function getCierre()
-    {
-        return $this->cierre;
     }
 }

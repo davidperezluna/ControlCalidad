@@ -24,9 +24,7 @@ class ProcesoType extends AbstractType
         ->add('nombre', TextType::class,array(
                 "attr" =>array("class" => "form-control") 
             ))
-        ->add('version', TextType::class,array(
-                "attr" =>array("class" => "form-control") 
-            ))
+        
         ->add('vigencia',TextType::class,array(
                 "label" => "Vigencia:",
                 "attr" =>array("class" => "form-control") 

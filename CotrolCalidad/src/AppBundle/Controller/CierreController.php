@@ -44,11 +44,22 @@ class CierreController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+          
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($cierre);
             $em->flush($cierre);
 
-            return $this->redirectToRoute('cierre_show', array('id' => $cierre->getId()));
+            $accionIndicador = $em->getRepository('AppBundle:AccionesIndicador')->find($request->query->get('idAccionesIndicador'));
+
+            $accionIndicador->setCierre($cierre);
+            $em->persist($accionIndicador);
+            $em->flush($accionIndicador);
+
+
+
+            return $this->redirectToRoute('seguimientoindicador_show', array('id' => $accionIndicador->getSeguimientoIndicador()->getId()));
         }
 
         return $this->render('AppBundle:cierre:new.html.twig', array(
@@ -88,7 +99,7 @@ class CierreController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('cierre_edit', array('id' => $cierre->getId()));
+            return $this->redirectToRoute('seguimientoindicador_show', array('id' => $cierre->getAccionIndicador()->getSeguimientoIndicador()->getId()));
         }
 
         return $this->render('AppBundle:cierre:edit.html.twig', array(

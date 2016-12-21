@@ -49,28 +49,30 @@
     <table class="table display">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Accion</th>
-                <th>Fechacierre</th>
-                <th>Actions</th>
+                <th>Fecha cierre</th>
+                <th>Estado cierre</th>
+                <th>Usuario</th>
+                <th>Operaciones</th>
             </tr>
         </thead>
         <tbody>
         {% for accionesIndicador in seguimientoIndicador.accionesIndicadores %}
             <tr>
-                <td><a href="{{ path('accionesindicador_show', { 'id': accionesIndicador.id }) }}">{{ accionesIndicador.id }}</a></td>
-                <td>{{ accionesIndicador.accion }}</td>
+                <td><textarea readonly class="form-control" rows="5" cols="40"> {{ accionesIndicador.accion }}</textarea></td>
                 <td>{% if accionesIndicador.fechaCierre %}{{ accionesIndicador.fechaCierre|date('Y-m-d') }}{% endif %}</td>
                 <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('accionesindicador_show', { 'id': accionesIndicador.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('accionesindicador_edit', { 'id': accionesIndicador.id }) }}">edit</a>
-                        </li>
-                    </ul>
+                    {% if accionesIndicador.cierre != null %}{{ accionesIndicador.cierre.estado }}{% else %}
+                    No cerrada{% endif %}
                 </td>
+                <td>
+
+                    {% if accionesIndicador.cierre != null %}{{ accionesIndicador.cierre.usuario.nombres }} {{ accionesIndicador.cierre.usuario.apellidos }} {{ accionesIndicador.cierre.usuario.cargo.nombre }}{% else %}
+                    No cerrada{% endif %}
+                    
+                </td>
+                <td>{% if accionesIndicador.cierre == null %} <a class="btn btn-default btn-xs"  href="{{ path('cierre_new', { 'idAccionesIndicador': accionesIndicador.id }) }}">Agregar Cierre</a> {% else %}
+                    <a class="btn btn-default btn-xs" href="{{ path('cierre_edit', { 'id': accionesIndicador.cierre.id }) }}">Editar Cierre</a> {% endif %}</td>
             </tr>
         {% endfor %}
         </tbody>

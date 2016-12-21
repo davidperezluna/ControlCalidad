@@ -31,9 +31,6 @@ class ProcedimientoType extends AbstractType
                 "attr" =>array("class" => "form-control") 
             ))
 
-        ->add('version', TextType::class,array(
-                "attr" =>array("class" => "form-control") 
-            ))
         ->add('proceso', EntityType::class,array(
                 "class" => "AppBundle:Proceso",
                 "label" => "Proceso:",

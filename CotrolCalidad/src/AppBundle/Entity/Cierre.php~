@@ -35,8 +35,7 @@ class Cierre
     protected $usuario;
 
     /**
-     *@ORM\OneToOne(targetEntity="AccionesIndicador", mappedBy="cierre")
-     *
+     @ORM\OneToOne(targetEntity="AccionesIndicador", mappedBy="cierre")
      */
     private $accionIndicador;
 
@@ -97,29 +96,5 @@ class Cierre
     public function getUsuario()
     {
         return $this->usuario;
-    }
-
-    /**
-     * Set accionIndicador
-     *
-     * @param \AppBundle\Entity\AccionesIndicador $accionIndicador
-     *
-     * @return Cierre
-     */
-    public function setAccionIndicador(\AppBundle\Entity\AccionesIndicador $accionIndicador = null)
-    {
-        $this->accionIndicador = $accionIndicador;
-
-        return $this;
-    }
-
-    /**
-     * Get accionIndicador
-     *
-     * @return \AppBundle\Entity\AccionesIndicador
-     */
-    public function getAccionIndicador()
-    {
-        return $this->accionIndicador;
     }
 }

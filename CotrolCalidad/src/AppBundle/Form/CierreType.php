@@ -5,6 +5,7 @@ namespace AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class CierreType extends AbstractType
 {
@@ -13,7 +14,16 @@ class CierreType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('estado')->add('usuario')        ;
+        $builder->add('estado', ChoiceType::class, array(
+            'choices'  => array(
+                'Sin Iniciar' => 'Sin Iniciar',
+                'En Dessarollo' => 'En Dessarollo',
+                'No Cumplido' => 'No Cumplido',
+                'Cumplido' => 'Cumplido',
+            ),
+             "attr" =>array("class" => "form-control")
+        ))
+        ->add('usuario');
     }
     
     /**

@@ -22,17 +22,7 @@ class MacroProcesoType extends AbstractType
             ))
         ->add('sigla', TextType::class,array(
             "attr" =>array("class" => "form-control")
-        ))
-        ->add('dependencia', EntityType::class,array(
-                "class" => "AppBundle:Dependencia",
-                "label" => "Dependencia:",
-                "attr" =>array("class" => "form-control")
-            ))
-        ->add('categoria', EntityType::class,array(
-                "class" => "AppBundle:Categoria",
-                "label" => "Categoria:",
-                "attr" =>array("class" => "form-control")
-            ));
+        ));
     }
     /**
      * {@inheritdoc}

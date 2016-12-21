@@ -236,7 +236,6 @@
                           <th>Codigo</th>
                           <th>Nombre</th>
                           <th>Vigencia</th>
-                          <th>Version</th>
                           <th>Actions</th>
                       </tr>
                   </thead>
@@ -253,7 +252,6 @@
                           </td>
                           <td>{{ procedimiento.nombre }}</td>
                           <td>{{procedimiento.vigencia}}</td>
-                          <td>{{ procedimiento.version }}</td>
                           <td>
                               <div class="btn-group">
                                 <a data-toggle="tooltip"data-original-title="ver" href="{{ path('procedimiento_show', { 'id': procedimiento.id }) }}" class="btn btn-default btn-flat"><i class="fa fa-eye"></i></a>

@@ -16,7 +16,7 @@ class AccionesIndicadorType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('fechaCierre', DateType::class, array(
-    'widget' => 'choice',
+            'widget' => 'choice',
             ))
 
         ->add('accion', TextareaType::class,array(

@@ -117,28 +117,4 @@ class Categoria
     {
         return $this->descripcion;
     }
-
-    /**
-     * Set dependencia
-     *
-     * @param \AppBundle\Entity\Dependencia $dependencia
-     *
-     * @return Categoria
-     */
-    public function setDependencia(\AppBundle\Entity\Dependencia $dependencia = null)
-    {
-        $this->dependencia = $dependencia;
-
-        return $this;
-    }
-
-    /**
-     * Get dependencia
-     *
-     * @return \AppBundle\Entity\Dependencia
-     */
-    public function getDependencia()
-    {
-        return $this->dependencia;
-    }
 }

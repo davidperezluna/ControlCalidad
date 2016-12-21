@@ -209,38 +209,4 @@ class Dependencia
     {
         return $this->macroProcesos;
     }
-
-    /**
-     * Add categoria
-     *
-     * @param \AppBundle\Entity\Categoria $categoria
-     *
-     * @return Dependencia
-     */
-    public function addCategoria(\AppBundle\Entity\Categoria $categoria)
-    {
-        $this->categorias[] = $categoria;
-
-        return $this;
-    }
-
-    /**
-     * Remove categoria
-     *
-     * @param \AppBundle\Entity\Categoria $categoria
-     */
-    public function removeCategoria(\AppBundle\Entity\Categoria $categoria)
-    {
-        $this->categorias->removeElement($categoria);
-    }
-
-    /**
-     * Get categorias
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getCategorias()
-    {
-        return $this->categorias;
-    }
 }
