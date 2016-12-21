@@ -34,23 +34,12 @@
                         <th>Tablero</th>
                         <td>{{ indicador.tablero }}</td>
                     </tr>
+                    
                     <tr>
-                        <th>Objetivo</th>
-                        <td>{{ indicador.objetivo }}</td>
-                        <th>Pertinencia</th>
-                        <td>{{ indicador.pertinencia }}</td>
-                    </tr>
-                    <tr>
-                        <th>Unidadmedida</th>
+                        <th>Unidad de medida</th>
                         <td>{{ indicador.unidadMedida }}</td>
-                        <th>Metodolgia</th>
-                        <td>{{ indicador.metodolgia }}</td>
-                    </tr>
-                    <tr>
-                        <th>Periodicidad</th>
+                         <th>Periodicidad</th>
                         <td>{{ indicador.periodicidad }}</td>
-                        <th>Lineabase</th>
-                        <td>{{ indicador.lineaBase }}</td>
                     </tr>
                     <tr>
                         <th>Meta</th>
@@ -66,14 +55,36 @@
                             {% endif %}
                         </td>
                     </tr>
-                    <tr>Porcentaje de acciones: {{indicador.porcentajeAcciones}} %</tr>
+                    <tr>Rango para acciones de mejora: {{indicador.porcentajeAcciones}}</tr>
                 </tbody>
             </table>
+                   
             </div>
             <!-- /.box-body -->
           </div>
           <!-- /.box -->
 </div>
+
+<div class="col-lg-3">
+
+                    <p> 
+                        Objetivo:
+                        <textarea class="form-control">{{ indicador.objetivo }}</textarea> 
+                    </p>
+
+                    <p>
+                        Pertinencia:
+                        <textarea class="form-control">{{ indicador.pertinencia }}</textarea> 
+                    </p>
+                     <p>
+                        Metodologia:
+                        <textarea class="form-control">{{ indicador.metodolgia }}</textarea> 
+                    </p>
+
+</div>
+
+
+
 <div class="col-md-1">
 <a  data-toggle="tooltip"data-original-title="Agregar Responsable" href="{{ path('indicadorcargo_new', { 'idIndicador': indicador.id }) }}" class="btn btn-app">
       <i class="fa fa-plus"></i> Responsable
@@ -90,7 +101,7 @@
 <br>
 </div>
 
-<div class="col-md-7">
+<div class="col-md-4">
           <!-- About Me Box -->
           <div class="box box-primary">
             <div class="box-header with-border">
@@ -155,6 +166,7 @@
           <!-- /.box -->
 
 </div>
+
 
 <div class="col-lg-12">
     <div class="col-lg-6">
@@ -254,7 +266,7 @@
                 resize: true,
                 data: [{
                 {% for seguimientoIndicador in indicador.seguimientosIndicadores %}
-                  y: '', a{{ seguimientoIndicador.id }}: {{ seguimientoIndicador.porcentaje }},
+                  y: '', a{{ seguimientoIndicador.id }}: {{ seguimientoIndicador.resultado }},
                 {% endfor %}
                 }
                 ],
@@ -264,7 +276,7 @@
                     {% for seguimientoIndicador in indicador.seguimientosIndicadores %}
                         {% for nivel in seguimientoIndicador.indicador.rango.niveles %}
 
-                            {% if (seguimientoIndicador.porcentaje >= nivel.valorMinimo) and (seguimientoIndicador.porcentaje <= nivel.valorMaximo) %}
+                            {% if (seguimientoIndicador.resultado >= nivel.valorMinimo) and (seguimientoIndicador.resultado <= nivel.valorMaximo) %}
 
                             '{{nivel.color}}',
 

@@ -7,7 +7,7 @@
       </ol>
 {% endblock %}
 {% block body %}
-    <div class="col-md-2">
+    <div class="col-md-4">
           <!-- About Me Box -->
           <div class="box box-primary">
             <div class="box-header with-border">
@@ -70,7 +70,7 @@
                 
             </div>
 
-          <div  class="col-md-9">
+          <div  class="col-md-7">
             <div class="nav-tabs-custom">
               <ul class="nav nav-tabs">
                 
@@ -80,8 +80,7 @@
               </ul>
               <div class="tab-content">
                 <div class="tab-pane active" id="activity">
-                    
-                        <table  class="table display" id="example">
+                        <table  class="table display">
                             <thead>
                                 <tr>
                                    
@@ -156,23 +155,18 @@
 
                  <!-- /.tab-pane -->
                 <div class="tab-pane" id="Indicadores">
-                   
                      <table class="table display3">
                       <a style="position: relative;top: 2.5em;" data-toggle="tooltip" data-original-title="Crear Indicador" href="{{ path('indicador_new', { 'idProceso': proceso.id }) }}" class="link-black text-sm">
                       <i class="fa fa-plus" ></i> Indicador 
-                  </a>
+                       </a>
                         <thead>
                             <tr>
                                 <th>Codigo</th>
                                 <th>Nombre</th>
                                 <th>Tipo</th>
                                 <th>Tablero</th>
-                                <th>Objetivo</th>
-                                <th>Pertinencia</th>
                                 <th>Unidadmedida</th>
-                                <th>Metodolgia</th>
                                 <th>Periodicidad</th>
-                                <th>Lineabase</th>
                                 <th>Meta</th>
                                 <th>Actions</th>
                             </tr> 
@@ -186,12 +180,8 @@
                                 <td>{{ indicador.nombre }}</td>
                                 <td>{{ indicador.tipo }}</td>
                                 <td>{{ indicador.tablero }}</td>
-                                <td>{{ indicador.objetivo }}</td>
-                                <td>{{ indicador.pertinencia }}</td>
                                 <td>{{ indicador.unidadMedida }}</td>
-                                <td>{{ indicador.metodolgia }}</td>
                                 <td>{{ indicador.periodicidad }}</td>
-                                <td>{{ indicador.lineaBase }}</td>
                                 <td>{{ indicador.meta }}</td>
                                 <td>
                                     <ul>
