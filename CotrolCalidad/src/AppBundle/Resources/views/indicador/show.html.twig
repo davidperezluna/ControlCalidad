@@ -171,7 +171,7 @@
                             <th>Fechaseguimiento</th>
                             <th>Proximafecha</th>
                             <th>Resultado</th>
-                            <th><h5> <b>porcentaje</b> <small>resultado/meta</small></h5></th>
+                            {# <th><h5> <b>porcentaje</b> <small>resultado/meta</small></h5></th> #}
                             <th>Acciones</th>
 
                         </tr>
@@ -182,7 +182,7 @@
                             <td>{% if seguimientoIndicador.fechaSeguimiento %}{{ seguimientoIndicador.fechaSeguimiento|date('Y-m-d') }}{% endif %}</td>
                             <td>{% if seguimientoIndicador.proximaFecha %}{{ seguimientoIndicador.proximaFecha|date('Y-m-d') }}{% endif %}</td>
                             <td>{{ seguimientoIndicador.resultado }}</td>
-                            <td>{{ seguimientoIndicador.porcentaje }}</td>
+                            {# <td>{{ seguimientoIndicador.porcentaje }}</td> #}
                             <td>
                                 {% if seguimientoIndicador.porcentaje < indicador.porcentajeAcciones %} <a data-toggle="tooltip"data-original-title="Porcentaje bajo" href="{{ path('seguimientoindicador_show', { 'id': seguimientoIndicador.id }) }}" class="btn btn-danger btn-flat btn-xs" ><i class="fa  fa-warning"></i></a>{% endif %}
                                
@@ -254,7 +254,7 @@
                 resize: true,
                 data: [{
                 {% for seguimientoIndicador in indicador.seguimientosIndicadores %}
-                  y: '', a{{ seguimientoIndicador.id }}: {{ seguimientoIndicador.porcentaje }},
+                  y: '', a{{ seguimientoIndicador.id }}: {{ seguimientoIndicador.resultado }},
                 {% endfor %}
                 }
                 ],
@@ -264,7 +264,7 @@
                     {% for seguimientoIndicador in indicador.seguimientosIndicadores %}
                         {% for nivel in seguimientoIndicador.indicador.rango.niveles %}
 
-                            {% if (seguimientoIndicador.porcentaje >= nivel.valorMinimo) and (seguimientoIndicador.porcentaje <= nivel.valorMaximo) %}
+                            {% if (seguimientoIndicador.resultado >= nivel.valorMinimo) and (seguimientoIndicador.resultado <= nivel.valorMaximo) %}
 
                             '{{nivel.color}}',
 
