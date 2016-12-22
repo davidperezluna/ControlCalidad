@@ -43,6 +43,7 @@ class HallazgoController extends Controller
         $hallazgo = new Hallazgo();
         $form = $this->createForm('AppBundle\Form\HallazgoType', $hallazgo);
         $form->handleRequest($request);
+        $idAuditoria = $request->query->get('idAuditoria');
 
         if ($form->isSubmitted() && $form->isValid()) {
 
@@ -61,6 +62,7 @@ class HallazgoController extends Controller
         }
 
         return $this->render('AppBundle:hallazgo:new.html.twig', array(
+            'idAuditoria' => $idAuditoria,
             'hallazgo' => $hallazgo,
             'form' => $form->createView(),
         ));

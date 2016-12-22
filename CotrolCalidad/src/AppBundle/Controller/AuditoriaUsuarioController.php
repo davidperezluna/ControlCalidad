@@ -43,6 +43,7 @@ class AuditoriaUsuarioController extends Controller
         $auditoriaUsuario = new Auditoriausuario();
         $form = $this->createForm('AppBundle\Form\AuditoriaUsuarioType', $auditoriaUsuario);
         $form->handleRequest($request);
+        $idAuditoria = $request->query->get('idAuditoria');
 
         if ($form->isSubmitted() && $form->isValid()) {
 
@@ -57,6 +58,7 @@ class AuditoriaUsuarioController extends Controller
         }
 
         return $this->render('AppBundle:auditoriausuario:new.html.twig', array(
+            'idAuditoria' => $idAuditoria,
             'auditoriaUsuario' => $auditoriaUsuario,
             'form' => $form->createView(),
         ));

@@ -49,6 +49,8 @@ class AuditoriaController extends Controller
         $form = $this->createForm('AppBundle\Form\AuditoriaNewType', $auditorium);
         $form->handleRequest($request);
 
+        $idProceso=$request->query->get('idProceso');
+
         if ($form->isSubmitted() && $form->isValid()) {
 
             $proceso = $em->getRepository('AppBundle:Proceso')->find($request->query->get('idProceso'));
@@ -65,6 +67,7 @@ class AuditoriaController extends Controller
         }
 
         return $this->render('AppBundle:auditoria:new.html.twig', array(
+            'idProceso' => $idProceso,
             'auditorium' => $auditorium,
             'form' => $form->createView(),
         ));

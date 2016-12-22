@@ -13,7 +13,18 @@ class AuditoriaType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('tipoAuditoria')->add('objetivos')->add('alcance')->add('criterio')->add('fechaInicio')->add('fechaFind')->add('recomendaciones')->add('seguimiento')->add('informe')->add('concluciones')->add('proceso')        ;
+        $builder
+        ->add('tipoAuditoria')
+        ->add('objetivos')
+        ->add('alcance')
+        ->add('criterio')
+        ->add('fechaInicio')
+        ->add('fechaFind')
+        ->add('recomendaciones')
+        ->add('seguimiento')
+        ->add('informe')
+        ->add('concluciones')
+        ->add('proceso');
     }
     
     /**
