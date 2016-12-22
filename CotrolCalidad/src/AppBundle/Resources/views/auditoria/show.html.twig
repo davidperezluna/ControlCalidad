@@ -23,43 +23,43 @@
                 </tbody>
             </table>
         </div>
-        <div class="col-lg-3">
+        <div class="col-lg-2">
             <p>
             Objetivos:
-            <textarea readonly class="form-control" rows="5">{{ auditorium.objetivos }}</textarea>
+            <textarea readonly class="form-control" >{{ auditorium.objetivos }}</textarea>
             </p>
 
             <p>
             Alcance:
-            <textarea readonly class="form-control" rows="5">{{ auditorium.alcance }}</textarea>
+            <textarea readonly class="form-control" >{{ auditorium.alcance }}</textarea>
             </p>
 
             <p>
             Criterio:
-            <textarea readonly class="form-control" rows="5">{{ auditorium.criterio }}</textarea>
+            <textarea readonly class="form-control" >{{ auditorium.criterio }}</textarea>
             </p>
             <br>
         </div>
-        {% if auditorium.concluciones != null %}
-            <div class="col-lg-3">
+        {% if auditorium.estado != null %}
+            <div class="col-lg-2">
                 <p> 
                 Recomendaciones:
-                <textarea  readonly class="form-control" rows="5">{{ auditorium.recomendaciones }}</textarea>
+                <textarea  readonly class="form-control" >{{ auditorium.recomendaciones }}</textarea>
                 </p>
 
                 <p>
                 Seguimiento:
-                <textarea  readonly class="form-control" rows="5">{{ auditorium.seguimiento }}</textarea>
+                <textarea  readonly class="form-control" >{{ auditorium.seguimiento }}</textarea>
                 </p>
 
                 <p>
                 Informe:
-                <textarea  readonly class="form-control" rows="5">{{ auditorium.informe }}</textarea>
+                <textarea  readonly class="form-control" >{{ auditorium.informe }}</textarea>
                 </p>
 
                  <p>
                 Concluciones:
-                <textarea readonly  class="form-control" rows="5">{{ auditorium.concluciones }}</textarea>
+                <textarea readonly  class="form-control" >{{ auditorium.concluciones }}</textarea>
                 </p>
             </div>
             {% else %}
@@ -72,6 +72,11 @@
 
                     <a  data-toggle="tooltip"data-original-title="Agregar Hallazgo" href="{{ path('hallazgo_new', { 'idAuditoria': auditorium.id }) }}" class="btn btn-app">
                           <i class="fa fa-plus"></i> Hallazgo
+                    </a>
+                    <br>
+
+                     <a  data-toggle="tooltip"data-original-title="Cerrar auditoria" href="{{ path('auditoria_edit', { 'id': auditorium.id }) }}" class="btn btn-app">
+                          <i class="fa fa-warning"></i> Cerrar
                     </a>
                     <br>
             </div> 

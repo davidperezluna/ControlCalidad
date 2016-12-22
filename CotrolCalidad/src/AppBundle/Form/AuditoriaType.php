@@ -5,6 +5,7 @@ namespace AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class AuditoriaType extends AbstractType
 {
@@ -14,17 +15,18 @@ class AuditoriaType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-        ->add('tipoAuditoria')
-        ->add('objetivos')
-        ->add('alcance')
-        ->add('criterio')
-        ->add('fechaInicio')
-        ->add('fechaFind')
-        ->add('recomendaciones')
-        ->add('seguimiento')
-        ->add('informe')
-        ->add('concluciones')
-        ->add('proceso');
+        ->add('recomendaciones', TextareaType::class, array(
+    'attr' => array('class' => 'form-control'),
+))
+        ->add('seguimiento', TextareaType::class, array(
+    'attr' => array('class' => 'form-control'),
+))
+        ->add('informe', TextareaType::class, array(
+    'attr' => array('class' => 'form-control'),
+))
+        ->add('concluciones', TextareaType::class, array(
+    'attr' => array('class' => 'form-control'),
+));
     }
     
     /**

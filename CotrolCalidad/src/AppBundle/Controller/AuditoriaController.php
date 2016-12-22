@@ -59,6 +59,7 @@ class AuditoriaController extends Controller
 
             $auditorium->setFechaInicio(new \DateTime('now'));
             $auditorium->setFechaFind(new \DateTime('now'));
+            $auditorium->setEstado(0);
             $em = $this->getDoctrine()->getManager();
             $em->persist($auditorium);
             $em->flush($auditorium);
@@ -102,6 +103,9 @@ class AuditoriaController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+
+            $auditorium->setEstado(1);
+            $auditorium->setFechaFind(new \DateTime('now'));
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('auditoria_edit', array('id' => $auditorium->getId()));

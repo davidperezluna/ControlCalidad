@@ -111,6 +111,13 @@ class Auditoria
 
     private $hallazgos;
 
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="estado", type="boolean")
+     */
+    private $estado;
+
     
 
     public function __construct() {
@@ -461,5 +468,31 @@ class Auditoria
     public function getHallazgos()
     {
         return $this->hallazgos;
+    }
+
+   
+
+    /**
+     * Set estado
+     *
+     * @param boolean $estado
+     *
+     * @return Auditoria
+     */
+    public function setEstado($estado)
+    {
+        $this->estado = $estado;
+
+        return $this;
+    }
+
+    /**
+     * Get estado
+     *
+     * @return boolean
+     */
+    public function getEstado()
+    {
+        return $this->estado;
     }
 }

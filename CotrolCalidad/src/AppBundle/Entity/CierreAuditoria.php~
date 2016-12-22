@@ -48,6 +48,8 @@ class CierreAuditoria
      */
     private $accion;
 
+    
+
 
     /**
      * Get id
@@ -60,4 +62,100 @@ class CierreAuditoria
     }
 
   
+
+    /**
+     * Set fecha
+     *
+     * @param \DateTime $fecha
+     *
+     * @return CierreAuditoria
+     */
+    public function setFecha($fecha)
+    {
+        $this->fecha = $fecha;
+
+        return $this;
+    }
+
+    /**
+     * Get fecha
+     *
+     * @return \DateTime
+     */
+    public function getFecha()
+    {
+        return $this->fecha;
+    }
+
+    /**
+     * Set estado
+     *
+     * @param string $estado
+     *
+     * @return CierreAuditoria
+     */
+    public function setEstado($estado)
+    {
+        $this->estado = $estado;
+
+        return $this;
+    }
+
+    /**
+     * Get estado
+     *
+     * @return string
+     */
+    public function getEstado()
+    {
+        return $this->estado;
+    }
+
+    /**
+     * Set observaciones
+     *
+     * @param string $observaciones
+     *
+     * @return CierreAuditoria
+     */
+    public function setObservaciones($observaciones)
+    {
+        $this->observaciones = $observaciones;
+
+        return $this;
+    }
+
+    /**
+     * Get observaciones
+     *
+     * @return string
+     */
+    public function getObservaciones()
+    {
+        return $this->observaciones;
+    }
+
+    /**
+     * Set accion
+     *
+     * @param \AppBundle\Entity\Accion $accion
+     *
+     * @return CierreAuditoria
+     */
+    public function setAccion(\AppBundle\Entity\Accion $accion = null)
+    {
+        $this->accion = $accion;
+
+        return $this;
+    }
+
+    /**
+     * Get accion
+     *
+     * @return \AppBundle\Entity\Accion
+     */
+    public function getAccion()
+    {
+        return $this->accion;
+    }
 }
