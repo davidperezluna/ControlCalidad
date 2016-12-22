@@ -22,7 +22,7 @@ class HallazgoController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
+        $em = $this->getDoctrine()->getManager(); 
 
         $hallazgos = $em->getRepository('AppBundle:Hallazgo')->findAll();
 
@@ -39,16 +39,25 @@ class HallazgoController extends Controller
      */
     public function newAction(Request $request)
     {
+        $em = $this->getDoctrine()->getManager();
         $hallazgo = new Hallazgo();
         $form = $this->createForm('AppBundle\Form\HallazgoType', $hallazgo);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $auditoria = $em->getRepository('AppBundle:Auditoria')->find($request->query->get('idAuditoria'));
+            
+            $hallazgo->setAuditoria($auditoria);
+
+
+            $hallazgo->setFechaHallazgo(new  \Datatime('now'));
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($hallazgo);
             $em->flush($hallazgo);
 
-            return $this->redirectToRoute('hallazgo_show', array('id' => $hallazgo->getId()));
+            return $this->redirectToRoute('auditoria_show', array('id' => $auditoria->getId()));
         }
 
         return $this->render('AppBundle:hallazgo:new.html.twig', array(

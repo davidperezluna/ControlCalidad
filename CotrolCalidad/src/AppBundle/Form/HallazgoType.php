@@ -5,6 +5,7 @@ namespace AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class HallazgoType extends AbstractType
 {
@@ -13,7 +14,14 @@ class HallazgoType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('descripcion')->add('fechaHallazgo')->add('naturaleza')->add('tratamiento')->add('auditoria')->add('tipohallazgo')        ;
+        $builder
+        ->add('descripcion')
+        ->add('naturaleza')
+        ->add('tratamiento')
+        ->add('tipohallazgo', EntityType::class, array(
+            'class' => 'AppBundle:TipoHallazgo',
+            'choice_label' => 'nombre',
+        ));
     }
     
     /**

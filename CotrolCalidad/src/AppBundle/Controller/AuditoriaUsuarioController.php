@@ -39,16 +39,21 @@ class AuditoriaUsuarioController extends Controller
      */
     public function newAction(Request $request)
     {
+        $em = $this->getDoctrine()->getManager();
         $auditoriaUsuario = new Auditoriausuario();
         $form = $this->createForm('AppBundle\Form\AuditoriaUsuarioType', $auditoriaUsuario);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $auditoria = $em->getRepository('AppBundle:Auditoria')->find($request->query->get('idAuditoria'));
+            
+            $auditoriaUsuario->setAuditoria($auditoria);
             $em = $this->getDoctrine()->getManager();
             $em->persist($auditoriaUsuario);
             $em->flush($auditoriaUsuario);
 
-            return $this->redirectToRoute('auditoriausuario_show', array('id' => $auditoriaUsuario->getId()));
+            return $this->redirectToRoute('auditoria_show', array('id' => $auditoria->getId()));
         }
 
         return $this->render('AppBundle:auditoriausuario:new.html.twig', array(

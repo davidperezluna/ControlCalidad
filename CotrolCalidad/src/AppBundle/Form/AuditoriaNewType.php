@@ -6,14 +6,19 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class AuditoriaUsuarioType extends AbstractType
+class AuditoriaNewType extends AbstractType
 {
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('usuario')->add('role');
+        $builder
+        ->add('tipoAuditoria')
+        ->add('objetivos')
+        ->add('alcance')
+        ->add('criterio')
+        ;
     }
     
     /**
@@ -22,7 +27,7 @@ class AuditoriaUsuarioType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\AuditoriaUsuario'
+            'data_class' => 'AppBundle\Entity\Auditoria'
         ));
     }
 
@@ -31,7 +36,7 @@ class AuditoriaUsuarioType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'appbundle_auditoriausuario';
+        return 'appbundle_auditoria';
     }
 
 

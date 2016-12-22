@@ -67,28 +67,28 @@ class Auditoria
     /**
      * @var string
      *
-     * @ORM\Column(name="recomendaciones", type="text")
+     * @ORM\Column(name="recomendaciones", type="text" , nullable=true)
      */
     private $recomendaciones;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="seguimiento", type="text")
+     * @ORM\Column(name="seguimiento", type="text" , nullable=true)
      */
     private $seguimiento;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="informe", type="text")
+     * @ORM\Column(name="informe", type="text" , nullable=true)
      */
     private $informe;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="concluciones", type="text")
+     * @ORM\Column(name="concluciones", type="text" , nullable=true)
      */
     private $concluciones;
 
@@ -280,7 +280,7 @@ class Auditoria
      *
      * @return Auditoria
      */
-    public function setRecomendaciones($recomendaciones)
+    public function setRecomendaciones($recomendaciones = null)
     {
         $this->recomendaciones = $recomendaciones;
 
@@ -304,7 +304,7 @@ class Auditoria
      *
      * @return Auditoria
      */
-    public function setSeguimiento($seguimiento)
+    public function setSeguimiento($seguimiento = null)
     {
         $this->seguimiento = $seguimiento;
 
@@ -328,7 +328,7 @@ class Auditoria
      *
      * @return Auditoria
      */
-    public function setInforme($informe)
+    public function setInforme($informe = null)
     {
         $this->informe = $informe;
 
@@ -352,7 +352,7 @@ class Auditoria
      *
      * @return Auditoria
      */
-    public function setConcluciones($concluciones)
+    public function setConcluciones($concluciones = null)
     {
         $this->concluciones = $concluciones;
 

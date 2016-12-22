@@ -1,68 +1,161 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Auditorium</h1>
+<div class="col-lg-12">
+    <h2>Auditoria <small>{{auditorium.proceso.nombre}}</small></h2>
+    <hr>
+        <div class="col-lg-2">
+            <br>
+            <table class="table table-striped">
+                <tbody>
+                    <tr>
+                        <th>Tipo auditoria</th>
+                        <td>{{ auditorium.tipoAuditoria }}</td>
+                    </tr>
+                    
+                        <th>Fecha inicio</th>
+                        <td>{% if auditorium.fechaInicio %}{{ auditorium.fechaInicio|date('Y-m-d') }}{% endif %}</td>
+                    </tr>
+                    <tr>
+                        <th>Fecha fin</th>
+                        <td>{% if auditorium.fechaFind %}{{ auditorium.fechaFind|date('Y-m-d') }}{% endif %}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-lg-3">
+            <p>
+            Objetivos:
+            <textarea readonly class="form-control" rows="5">{{ auditorium.objetivos }}</textarea>
+            </p>
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ auditorium.id }}</td>
-            </tr>
-            <tr>
-                <th>Tipoauditoria</th>
-                <td>{{ auditorium.tipoAuditoria }}</td>
-            </tr>
-            <tr>
-                <th>Objetivos</th>
-                <td>{{ auditorium.objetivos }}</td>
-            </tr>
-            <tr>
-                <th>Alcance</th>
-                <td>{{ auditorium.alcance }}</td>
-            </tr>
-            <tr>
-                <th>Criterio</th>
-                <td>{{ auditorium.criterio }}</td>
-            </tr>
-            <tr>
-                <th>Fechainicio</th>
-                <td>{% if auditorium.fechaInicio %}{{ auditorium.fechaInicio|date('Y-m-d') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Fechafind</th>
-                <td>{% if auditorium.fechaFind %}{{ auditorium.fechaFind|date('Y-m-d') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Recomendaciones</th>
-                <td>{{ auditorium.recomendaciones }}</td>
-            </tr>
-            <tr>
-                <th>Seguimiento</th>
-                <td>{{ auditorium.seguimiento }}</td>
-            </tr>
-            <tr>
-                <th>Informe</th>
-                <td>{{ auditorium.informe }}</td>
-            </tr>
-            <tr>
-                <th>Concluciones</th>
-                <td>{{ auditorium.concluciones }}</td>
-            </tr>
-        </tbody>
-    </table>
+            <p>
+            Alcance:
+            <textarea readonly class="form-control" rows="5">{{ auditorium.alcance }}</textarea>
+            </p>
 
-    <ul>
-        <li>
-            <a href="{{ path('auditoria_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('auditoria_edit', { 'id': auditorium.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+            <p>
+            Criterio:
+            <textarea readonly class="form-control" rows="5">{{ auditorium.criterio }}</textarea>
+            </p>
+            <br>
+        </div>
+        {% if auditorium.concluciones != null %}
+            <div class="col-lg-3">
+                <p> 
+                Recomendaciones:
+                <textarea  readonly class="form-control" rows="5">{{ auditorium.recomendaciones }}</textarea>
+                </p>
+
+                <p>
+                Seguimiento:
+                <textarea  readonly class="form-control" rows="5">{{ auditorium.seguimiento }}</textarea>
+                </p>
+
+                <p>
+                Informe:
+                <textarea  readonly class="form-control" rows="5">{{ auditorium.informe }}</textarea>
+                </p>
+
+                 <p>
+                Concluciones:
+                <textarea readonly  class="form-control" rows="5">{{ auditorium.concluciones }}</textarea>
+                </p>
+            </div>
+            {% else %}
+            <div class="col-md-1">
+                    <br>
+                    <a  data-toggle="tooltip"data-original-title="Agregar Auditor - Auditado" href="{{ path('auditoriausuario_new', { 'idAuditoria': auditorium.id }) }}" class="btn btn-app">
+                          <i class="fa fa-plus"></i> Roles
+                    </a>
+                    <br>
+
+                    <a  data-toggle="tooltip"data-original-title="Agregar Hallazgo" href="{{ path('hallazgo_new', { 'idAuditoria': auditorium.id }) }}" class="btn btn-app">
+                          <i class="fa fa-plus"></i> Hallazgo
+                    </a>
+                    <br>
+            </div> 
+          
+        {% endif %}
+        <div class="col-lg-6">
+            <div class="nav-tabs-custom">
+              <ul class="nav nav-tabs">
+                <li class="active"><a href="#roles" data-toggle="tab" aria-expanded="false">Roles</a></li>
+              </ul>
+              <div class="tab-content">
+                <div class="tab-pane active" id="roles">
+                    <table class="table display">
+                        <thead>
+                            <tr>
+                                <th>Nombres</th>
+                                <th>Apellidos</th>
+                                <th>Identificacion</th>
+                                <th>Cargo</th>
+                                <th>Role</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for auditoriaUsuario in auditorium.auditoriasUsuarios %}
+                            <tr>
+                                <td>{{ auditoriaUsuario.usuario.nombres }}</td>
+                                <td>{{ auditoriaUsuario.usuario.apellidos }}</td>
+                                <td>{{ auditoriaUsuario.usuario.identificacion }}</td>
+                                <td>{{ auditoriaUsuario.usuario.cargo.nombre }}</td>
+                                <td>{{ auditoriaUsuario.role }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+              </div>
+              <!-- /.tab-content -->
+            </div>
+            <!-- /.nav-tabs-custom -->
+        </div>
+</div>
+<div class="col-lg-12">
+    <div class="box box-primary">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Hallazgos</h3>
+                </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+             <table class="table display">
+                <thead>
+                    <tr>
+                        <th>Fecha hallazgo</th>
+                        <th>Fecha Limite</th>
+                        <th>Tipo</th>
+                        <th>Descripcion</th>
+                        <th>Naturaleza</th>
+                        <th>Tratamiento</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for hallazgo in auditorium.hallazgos %}
+                    <tr>
+                        <td>{% if hallazgo.fechaHallazgo %}{{ hallazgo.fechaHallazgo|date('Y-m-d') }}{% endif %}</td>
+                        <td>
+                            {% set modify = hallazgo.tipoHallazgo.plazo %}
+                            {% if hallazgo.fechaHallazgo %}{{ hallazgo.fechaHallazgo|date_modify("+" ~ modify ~ " month")|date('Y-m-d') }}{% endif %}
+                        </td>
+                        <td>{{ hallazgo.tipoHallazgo.nombre }}</td>
+                        <td> <textarea  rows="10" cols="40" readonly class="form-control"> {{ hallazgo.descripcion }}</textarea></td>
+                        <td> <textarea  rows="10" cols="40" readonly class="form-control"> {{ hallazgo.naturaleza }} </textarea></td>
+                        <td> <textarea  rows="10" cols="40" readonly class="form-control"> {{ hallazgo.tratamiento }}</textarea></td>
+                        <td>
+                            <div class="btn-group">
+                              <a data-toggle="tooltip"data-original-title="ver" href="{{ path('hallazgo_show', { 'id': hallazgo.id }) }}" class="btn btn-default btn-flat "><i class="fa fa-eye "></i></a>
+
+                              <a data-toggle="tooltip"data-original-title="editar" href="{{ path('hallazgo_edit', { 'id': hallazgo.id }) }}" class="btn btn-default btn-flat "><i class="fa fa-edit "></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>  
+</div>
 {% endblock %}

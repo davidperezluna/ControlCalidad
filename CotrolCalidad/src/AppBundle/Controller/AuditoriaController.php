@@ -8,7 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
 
 /**
- * Auditorium controller.
+ * Auditoria controller.
  *
  * @Route("auditoria")
  */
@@ -18,7 +18,7 @@ class AuditoriaController extends Controller
      * Lists all auditorium entities.
      *
      * @Route("/", name="auditoria_index")
-     * @Method("GET")
+     * @Method("GET") 
      */
     public function indexAction(Request $request)
     {
@@ -26,7 +26,9 @@ class AuditoriaController extends Controller
 
         $proceso = $em->getRepository('AppBundle:Proceso')->find($request->query->get('idProceso'));
 
-        $auditorias = $em->getRepository('AppBundle:Auditoria')->findAll();
+        $auditorias = $em->getRepository('AppBundle:Auditoria')->findBy(
+            array('proceso' => $proceso->getId())
+        );
 
         return $this->render('AppBundle:auditoria:index.html.twig', array(
             'proceso' => $proceso,
@@ -42,16 +44,24 @@ class AuditoriaController extends Controller
      */
     public function newAction(Request $request)
     {
-        $auditorium = new Auditorium();
-        $form = $this->createForm('AppBundle\Form\AuditoriaType', $auditorium);
+         $em = $this->getDoctrine()->getManager();
+        $auditorium = new Auditoria();
+        $form = $this->createForm('AppBundle\Form\AuditoriaNewType', $auditorium);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $proceso = $em->getRepository('AppBundle:Proceso')->find($request->query->get('idProceso'));
+
+            $auditorium->setProceso($proceso);
+
+            $auditorium->setFechaInicio(new \DateTime('now'));
+            $auditorium->setFechaFind(new \DateTime('now'));
             $em = $this->getDoctrine()->getManager();
             $em->persist($auditorium);
             $em->flush($auditorium);
 
-            return $this->redirectToRoute('auditoria_show', array('id' => $auditorium->getId()));
+            return $this->redirectToRoute('auditoria_index', array('idProceso' => $proceso->getId()));
         }
 
         return $this->render('AppBundle:auditoria:new.html.twig', array(
