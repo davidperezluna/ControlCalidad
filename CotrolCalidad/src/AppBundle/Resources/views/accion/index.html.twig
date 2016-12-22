@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Accions list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Fechamaxima</th>
+                <th>Accion</th>
+                <th>Observaciones</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for accion in accions %}
+            <tr>
+                <td><a href="{{ path('accion_show', { 'id': accion.id }) }}">{{ accion.id }}</a></td>
+                <td>{% if accion.fechaMaxima %}{{ accion.fechaMaxima|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ accion.accion }}</td>
+                <td>{{ accion.observaciones }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('accion_show', { 'id': accion.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('accion_edit', { 'id': accion.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('accion_new') }}">Create a new accion</a>
+        </li>
+    </ul>
+{% endblock %}

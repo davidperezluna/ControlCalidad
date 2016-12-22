@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Hallazgos list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Descripcion</th>
+                <th>Fechahallazgo</th>
+                <th>Naturaleza</th>
+                <th>Tratamiento</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for hallazgo in hallazgos %}
+            <tr>
+                <td><a href="{{ path('hallazgo_show', { 'id': hallazgo.id }) }}">{{ hallazgo.id }}</a></td>
+                <td>{{ hallazgo.descripcion }}</td>
+                <td>{% if hallazgo.fechaHallazgo %}{{ hallazgo.fechaHallazgo|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ hallazgo.naturaleza }}</td>
+                <td>{{ hallazgo.tratamiento }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('hallazgo_show', { 'id': hallazgo.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('hallazgo_edit', { 'id': hallazgo.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('hallazgo_new') }}">Create a new hallazgo</a>
+        </li>
+    </ul>
+{% endblock %}

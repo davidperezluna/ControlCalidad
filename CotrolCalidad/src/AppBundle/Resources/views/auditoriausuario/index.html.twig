@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Auditoriausuarios list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Role</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for auditoriaUsuario in auditoriaUsuarios %}
+            <tr>
+                <td><a href="{{ path('auditoriausuario_show', { 'id': auditoriaUsuario.id }) }}">{{ auditoriaUsuario.id }}</a></td>
+                <td>{{ auditoriaUsuario.role }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('auditoriausuario_show', { 'id': auditoriaUsuario.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('auditoriausuario_edit', { 'id': auditoriaUsuario.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('auditoriausuario_new') }}">Create a new auditoriaUsuario</a>
+        </li>
+    </ul>
+{% endblock %}

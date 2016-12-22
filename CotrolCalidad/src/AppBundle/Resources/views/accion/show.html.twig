@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Accion</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ accion.id }}</td>
+            </tr>
+            <tr>
+                <th>Fechamaxima</th>
+                <td>{% if accion.fechaMaxima %}{{ accion.fechaMaxima|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Accion</th>
+                <td>{{ accion.accion }}</td>
+            </tr>
+            <tr>
+                <th>Observaciones</th>
+                <td>{{ accion.observaciones }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('accion_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('accion_edit', { 'id': accion.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

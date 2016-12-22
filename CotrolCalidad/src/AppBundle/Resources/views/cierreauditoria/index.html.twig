@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Cierreauditorias list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Fecha</th>
+                <th>Estado</th>
+                <th>Observaciones</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for cierreAuditorium in cierreAuditorias %}
+            <tr>
+                <td><a href="{{ path('cierreauditoria_show', { 'id': cierreAuditorium.id }) }}">{{ cierreAuditorium.id }}</a></td>
+                <td>{% if cierreAuditorium.fecha %}{{ cierreAuditorium.fecha|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ cierreAuditorium.estado }}</td>
+                <td>{{ cierreAuditorium.observaciones }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('cierreauditoria_show', { 'id': cierreAuditorium.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('cierreauditoria_edit', { 'id': cierreAuditorium.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('cierreauditoria_new') }}">Create a new cierreAuditorium</a>
+        </li>
+    </ul>
+{% endblock %}

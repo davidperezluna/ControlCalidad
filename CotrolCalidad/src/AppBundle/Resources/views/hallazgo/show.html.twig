@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Hallazgo</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ hallazgo.id }}</td>
+            </tr>
+            <tr>
+                <th>Descripcion</th>
+                <td>{{ hallazgo.descripcion }}</td>
+            </tr>
+            <tr>
+                <th>Fechahallazgo</th>
+                <td>{% if hallazgo.fechaHallazgo %}{{ hallazgo.fechaHallazgo|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Naturaleza</th>
+                <td>{{ hallazgo.naturaleza }}</td>
+            </tr>
+            <tr>
+                <th>Tratamiento</th>
+                <td>{{ hallazgo.tratamiento }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('hallazgo_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('hallazgo_edit', { 'id': hallazgo.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
