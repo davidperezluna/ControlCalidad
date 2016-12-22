@@ -44,7 +44,9 @@
                 <th>Fechamaxima</th>
                 <th>Accion</th>
                 <th>Observaciones</th>
-                <th>Actions</th>
+                <th>Observaciones cierre</th>
+                <th>Fecha cierre</th>
+                <th>Cerrar</th>
             </tr>
         </thead>
         <tbody>
@@ -52,9 +54,16 @@
             <tr>
                 <td>{% if accion.fechaMaxima %}{{ accion.fechaMaxima|date('Y-m-d') }}{% endif %}</td>
                 <td> <textarea class="form-control"> {{ accion.accion }} </textarea> </td>
-                <td> <textarea class="form-control"> {{ accion.observaciones }} </textarea> </td>
+                <td><textarea class="form-control"> {{ accion.observaciones }} </textarea> </td>
+                <td>{% if accion.cierreAuditoria != null %}<textarea class="form-control"> {{ accion.cierreAuditoria.observaciones }}</textarea>{% else %}Accion no Cerrada{% endif %}
+                </td>
                 <td>
-                   <a class="btn btn-default btn-xs" href="{{ path('cierreauditoria_new', { 'idAccion': accion.id }) }}">Cerrar Accion</a>
+                    {% if accion.cierreAuditoria != null %}
+                        {% if accion.cierreAuditoria.fecha %}{{ accion.cierreAuditoria.fecha|date('Y-m-d') }}{% endif %}
+                    {% else %}Accion no Cerrada{% endif %}
+                </td>
+                <td>
+                    {% if accion.cierreAuditoria == null %} <a class="btn btn-default btn-xs" href="{{ path('cierreauditoria_new', { 'idAccion': accion.id }) }}">Cerrar Accion</a> {% else %} {{accion.cierreAuditoria.estado}}{% endif %}
                 </td>
             </tr>
         {% endfor %}

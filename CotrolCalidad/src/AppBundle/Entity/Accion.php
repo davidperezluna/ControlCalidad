@@ -186,4 +186,28 @@ class Accion
     {
         return $this->cierre;
     }
+
+    /**
+     * Set cierreAuditoria
+     *
+     * @param \AppBundle\Entity\CierreAuditoria $cierreAuditoria
+     *
+     * @return Accion
+     */
+    public function setCierreAuditoria(\AppBundle\Entity\CierreAuditoria $cierreAuditoria = null)
+    {
+        $this->cierreAuditoria = $cierreAuditoria;
+
+        return $this;
+    }
+
+    /**
+     * Get cierreAuditoria
+     *
+     * @return \AppBundle\Entity\CierreAuditoria
+     */
+    public function getCierreAuditoria()
+    {
+        return $this->cierreAuditoria;
+    }
 }

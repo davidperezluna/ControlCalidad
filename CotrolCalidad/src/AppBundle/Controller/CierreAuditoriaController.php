@@ -38,17 +38,25 @@ class CierreAuditoriaController extends Controller
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
-    {
+    {   
+        $em = $this->getDoctrine()->getManager();
         $cierreAuditorium = new CierreAuditoria();
         $form = $this->createForm('AppBundle\Form\CierreAuditoriaType', $cierreAuditorium);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $accion = $em->getRepository('AppBundle:Accion')->find($request->query->get('idAccion'));
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($cierreAuditorium);
             $em->flush($cierreAuditorium);
 
-            return $this->redirectToRoute('cierreauditoria_show', array('id' => $cierreAuditorium->getId()));
+            $accion->setCierreAuditoria($cierreAuditorium);
+            $em->persist($accion);
+            $em->flush($accion);
+            
+            return $this->redirectToRoute('hallazgo_show', array('id' => $accion->getHallazgo()->getId()));
         }
 
         return $this->render('AppBundle:cierreauditoria:new.html.twig', array(
