@@ -108,7 +108,7 @@ class AuditoriaController extends Controller
             $auditorium->setFechaFind(new \DateTime('now'));
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('auditoria_edit', array('id' => $auditorium->getId()));
+            return $this->redirectToRoute('auditoria_show', array('id' => $auditorium->getId()));
         }
 
         return $this->render('AppBundle:auditoria:edit.html.twig', array(
