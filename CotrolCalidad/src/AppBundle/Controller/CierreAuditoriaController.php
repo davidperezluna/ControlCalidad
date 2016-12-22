@@ -47,12 +47,21 @@ class CierreAuditoriaController extends Controller
         $idHallazgo = $accion->getHallazgo()->getId();
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $accion = $em->getRepository('AppBundle:Accion')->find($request->query->get('idAccion'));
+
             $fecha = new \DateTime($request->query->get('fechaCierre'));
             $em = $this->getDoctrine()->getManager();
             $cierreAuditorium->setFecha($fecha);
-            $cierreAuditorium->setEstado('Cerrado');
+            $cierreAuditorium->setEstado('Cerrada');
             $em->persist($cierreAuditorium);
             $em->flush($cierreAuditorium);
+
+            $accion->setCierreAuditoria($cierreAuditorium);
+            $em->persist($accion);
+            $em->flush($accion);
+
+
 
             return $this->redirectToRoute('hallazgo_show', array('id' => $idHallazgo));
         }
