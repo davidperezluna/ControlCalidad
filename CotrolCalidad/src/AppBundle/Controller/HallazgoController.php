@@ -51,7 +51,7 @@ class HallazgoController extends Controller
             $hallazgo->setAuditoria($auditoria);
 
 
-            $hallazgo->setFechaHallazgo(new  \Datatime('now'));
+            $hallazgo->setFechaHallazgo(new  \Datetime('now'));
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($hallazgo);

@@ -44,11 +44,24 @@ class AccionController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $em = $this->getDoctrine()->getManager();
+
+            $hallazgo = $em->getRepository('AppBundle:Hallazgo')->find($request->query->get('idHallazgo'));
+
+            $meses = $hallazgo->getTipohallazgo()->getPlazo();
+
+            $intervalo = new \DateInterval('P'.$meses.'M');
+            $fechaMaxima = $hallazgo->getFechaHallazgo();
+            $fechaMaxima = $fechaMaxima->add($intervalo); 
+
+            $accion->setHallazgo($hallazgo);
+            $accion->setFechaMaxima($fechaMaxima);
             $em = $this->getDoctrine()->getManager();
             $em->persist($accion);
             $em->flush($accion);
 
-            return $this->redirectToRoute('accion_show', array('id' => $accion->getId()));
+            return $this->redirectToRoute('hallazgo_show', array('id' => $hallazgo->getId()));
         }
 
         return $this->render('AppBundle:accion:new.html.twig', array(

@@ -48,6 +48,8 @@ class CierreAuditoria
      */
     private $accion;
 
+    
+
 
     /**
      * Get id
@@ -58,6 +60,8 @@ class CierreAuditoria
     {
         return $this->id;
     }
+
+  
 
     /**
      * Set fecha

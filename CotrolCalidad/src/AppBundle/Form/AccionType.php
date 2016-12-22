@@ -13,7 +13,7 @@ class AccionType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('fechaMaxima')->add('accion')->add('observaciones')->add('cierre')        ;
+        $builder->add('accion')->add('observaciones') ;
     }
     
     /**

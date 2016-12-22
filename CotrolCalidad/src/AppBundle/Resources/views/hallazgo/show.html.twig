@@ -1,44 +1,66 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Hallazgo</h1>
 
-    <table>
+<div class="col-lg-12">
+    <div class="col-lg-3">
+        <h3>Hallazgo <small>Auditoria: {{hallazgo.auditoria.proceso.nombre}}</small></h3>
+        <hr>
+
+        <table class="table table-striped">
+            <tbody>
+                <tr>
+                    <th>Fecha hallazgo</th>
+                    <td>{% if hallazgo.fechaHallazgo %}{{ hallazgo.fechaHallazgo|date('Y-m-d') }}{% endif %}</td>
+                </tr>
+                <tr>
+                    <th>Descripcion</th>
+                    <td> <textarea class="form-control">    {{ hallazgo.descripcion }} </textarea></td>
+                </tr>
+                <tr>
+                    <th>Naturaleza</th>
+                    <td> <textarea class="form-control">    {{ hallazgo.naturaleza }}  </textarea></td>
+                </tr>
+                <tr>
+                    <th>Tratamiento</th>
+                    <td> <textarea class="form-control">    {{ hallazgo.tratamiento }} </textarea></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-lg-1">
+        <br>
+        <a data-toggle="tooltip"data-original-title="Nueva accion" href="{{ path('accion_new', { 'idHallazgo': hallazgo.id }) }}" class="btn btn-app">
+            <i class="fa fa-plus"></i> Accion 
+        </a>
+        <br>
+    </div>
+    <div class="col-lg-8">
+        <h3>Acciones <small>Auditoria: {{hallazgo.auditoria.proceso.nombre}}</small></h3>
+        <hr>
+        <table class="table display">
+        <thead>
+            <tr>
+                <th>Fechamaxima</th>
+                <th>Accion</th>
+                <th>Observaciones</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
         <tbody>
+        {% for accion in hallazgo.acciones %}
             <tr>
-                <th>Id</th>
-                <td>{{ hallazgo.id }}</td>
+                <td>{% if accion.fechaMaxima %}{{ accion.fechaMaxima|date('Y-m-d') }}{% endif %}</td>
+                <td> <textarea class="form-control"> {{ accion.accion }} </textarea> </td>
+                <td> <textarea class="form-control"> {{ accion.observaciones }} </textarea> </td>
+                <td>
+                   <a class="btn btn-default btn-xs" href="{{ path('cierreauditoria_new', { 'idAccion': accion.id }) }}">Cerrar Accion</a>
+                </td>
             </tr>
-            <tr>
-                <th>Descripcion</th>
-                <td>{{ hallazgo.descripcion }}</td>
-            </tr>
-            <tr>
-                <th>Fechahallazgo</th>
-                <td>{% if hallazgo.fechaHallazgo %}{{ hallazgo.fechaHallazgo|date('Y-m-d') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Naturaleza</th>
-                <td>{{ hallazgo.naturaleza }}</td>
-            </tr>
-            <tr>
-                <th>Tratamiento</th>
-                <td>{{ hallazgo.tratamiento }}</td>
-            </tr>
+        {% endfor %}
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('hallazgo_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('hallazgo_edit', { 'id': hallazgo.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+    </div>
+</div>
 {% endblock %}

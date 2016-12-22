@@ -66,9 +66,9 @@
         {% for auditorium in auditorias %}
             <tr>
                 <td>{{ auditorium.tipoAuditoria }}</td>
-                <td> <textarea class="form-control" cols="50" rows="14" readonly>{{ auditorium.objetivos }}</textarea></td>
-                <td> <textarea class="form-control" cols="50" rows="14" readonly>{{ auditorium.alcance }}</textarea></td>
-                <td> <textarea class="form-control" cols="50" rows="14" readonly>{{ auditorium.criterio }}</textarea></td>
+                <td> <textarea class="form-control" cols="30" rows="5" readonly>{{ auditorium.objetivos }}</textarea></td>
+                <td> <textarea class="form-control" cols="30" rows="5" readonly>{{ auditorium.alcance }}</textarea></td>
+                <td> <textarea class="form-control" cols="30" rows="5" readonly>{{ auditorium.criterio }}</textarea></td>
                 <td>{% if auditorium.fechaInicio %}{{ auditorium.fechaInicio|date('Y-m-d') }}{% endif %}</td>
                 <td>
                     <div class="btn-group">

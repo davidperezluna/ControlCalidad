@@ -42,6 +42,11 @@ class Accion
      */
     private $observaciones;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Hallazgo", inversedBy="acciones")
+     */
+    protected $hallazgo;
+
 
      /**
      * @ORM\OneToOne(targetEntity="CierreAuditoria", mappedBy="accion")
@@ -60,76 +65,5 @@ class Accion
         return $this->id;
     }
 
-    /**
-     * Set fechaMaxima
-     *
-     * @param \DateTime $fechaMaxima
-     *
-     * @return Accion
-     */
-    public function setFechaMaxima($fechaMaxima)
-    {
-        $this->fechaMaxima = $fechaMaxima;
-
-        return $this;
-    }
-
-    /**
-     * Get fechaMaxima
-     *
-     * @return \DateTime
-     */
-    public function getFechaMaxima()
-    {
-        return $this->fechaMaxima;
-    }
-
-    /**
-     * Set accion
-     *
-     * @param string $accion
-     *
-     * @return Accion
-     */
-    public function setAccion($accion)
-    {
-        $this->accion = $accion;
-
-        return $this;
-    }
-
-    /**
-     * Get accion
-     *
-     * @return string
-     */
-    public function getAccion()
-    {
-        return $this->accion;
-    }
-
-    /**
-     * Set observaciones
-     *
-     * @param string $observaciones
-     *
-     * @return Accion
-     */
-    public function setObservaciones($observaciones)
-    {
-        $this->observaciones = $observaciones;
-
-        return $this;
-    }
-
-    /**
-     * Get observaciones
-     *
-     * @return string
-     */
-    public function getObservaciones()
-    {
-        return $this->observaciones;
-    }
+  
 }
-

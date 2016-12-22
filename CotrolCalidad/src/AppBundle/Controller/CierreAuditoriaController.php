@@ -8,7 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
 
 /**
- * Cierreauditorium controller.
+ * CierreAuditoria controller.
  *
  * @Route("cierreauditoria")
  */
@@ -39,7 +39,7 @@ class CierreAuditoriaController extends Controller
      */
     public function newAction(Request $request)
     {
-        $cierreAuditorium = new Cierreauditorium();
+        $cierreAuditorium = new CierreAuditoria();
         $form = $this->createForm('AppBundle\Form\CierreAuditoriaType', $cierreAuditorium);
         $form->handleRequest($request);
 

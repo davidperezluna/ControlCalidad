@@ -42,12 +42,17 @@ class Accion
      */
     private $observaciones;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Hallazgo", inversedBy="acciones")
+     */
+    protected $hallazgo;
+
 
      /**
-     * @ORM\OneToOne(targetEntity="CierreAuditoria", mappedBy="accion")
+     *@ORM\OneToOne(targetEntity="CierreAuditoria", mappedBy="accion")
      *@ORM\joinColumn(name="cierre_auditoria_id", referencedColumnName="id")
      */
-    private $cierre;
+    private $cierreAuditoria;
 
 
     /**
@@ -59,6 +64,8 @@ class Accion
     {
         return $this->id;
     }
+
+  
 
     /**
      * Set fechaMaxima
@@ -130,6 +137,30 @@ class Accion
     public function getObservaciones()
     {
         return $this->observaciones;
+    }
+
+    /**
+     * Set hallazgo
+     *
+     * @param \AppBundle\Entity\Hallazgo $hallazgo
+     *
+     * @return Accion
+     */
+    public function setHallazgo(\AppBundle\Entity\Hallazgo $hallazgo = null)
+    {
+        $this->hallazgo = $hallazgo;
+
+        return $this;
+    }
+
+    /**
+     * Get hallazgo
+     *
+     * @return \AppBundle\Entity\Hallazgo
+     */
+    public function getHallazgo()
+    {
+        return $this->hallazgo;
     }
 
     /**

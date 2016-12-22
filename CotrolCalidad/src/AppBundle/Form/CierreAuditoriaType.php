@@ -13,7 +13,7 @@ class CierreAuditoriaType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('fecha')->add('estado')->add('observaciones')->add('accion')        ;
+        $builder->add('fecha')->add('estado')->add('observaciones');
     }
     
     /**
