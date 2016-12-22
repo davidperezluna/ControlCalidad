@@ -4,6 +4,7 @@ namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class AccionType extends AbstractType
@@ -13,7 +14,13 @@ class AccionType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('accion')->add('observaciones') ;
+        $builder
+        ->add('accion', TextareaType::class,array(
+                "attr" =>array("class" => "form-control") 
+            ))
+        ->add('observaciones', TextareaType::class,array(
+                "attr" =>array("class" => "form-control") 
+            )) ;
     }
     
     /**

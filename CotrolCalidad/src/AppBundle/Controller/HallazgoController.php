@@ -96,6 +96,8 @@ class HallazgoController extends Controller
         $editForm = $this->createForm('AppBundle\Form\HallazgoType', $hallazgo);
         $editForm->handleRequest($request);
 
+         $idAuditoria = $hallazgo->getId();
+
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
@@ -103,6 +105,7 @@ class HallazgoController extends Controller
         }
 
         return $this->render('AppBundle:hallazgo:edit.html.twig', array(
+            'idAuditoria' => $idAuditoria,
             'hallazgo' => $hallazgo,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),

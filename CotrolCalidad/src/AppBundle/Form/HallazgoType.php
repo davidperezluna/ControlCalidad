@@ -31,7 +31,7 @@ class HallazgoType extends AbstractType
              "attr" =>array("class" => "form-control"),
         ));
     }
-    
+     
     /**
      * {@inheritdoc}
      */

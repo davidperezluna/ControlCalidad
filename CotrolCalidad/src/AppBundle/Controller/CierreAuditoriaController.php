@@ -39,19 +39,26 @@ class CierreAuditoriaController extends Controller
      */
     public function newAction(Request $request)
     {
+        $em = $this->getDoctrine()->getManager();
         $cierreAuditorium = new CierreAuditoria();
         $form = $this->createForm('AppBundle\Form\CierreAuditoriaType', $cierreAuditorium);
         $form->handleRequest($request);
+        $accion = $em->getRepository('AppBundle:Accion')->find($request->query->get('idAccion'));
+        $idHallazgo = $accion->getHallazgo()->getId();
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $fecha = new \DateTime($request->query->get('fechaCierre'));
             $em = $this->getDoctrine()->getManager();
+            $cierreAuditorium->setFecha($fecha);
+            $cierreAuditorium->setEstado('Cerrado');
             $em->persist($cierreAuditorium);
             $em->flush($cierreAuditorium);
 
-            return $this->redirectToRoute('cierreauditoria_show', array('id' => $cierreAuditorium->getId()));
+            return $this->redirectToRoute('hallazgo_show', array('id' => $idHallazgo));
         }
 
         return $this->render('AppBundle:cierreauditoria:new.html.twig', array(
+            'idHallazgo' => $idHallazgo,
             'cierreAuditorium' => $cierreAuditorium,
             'form' => $form->createView(),
         ));

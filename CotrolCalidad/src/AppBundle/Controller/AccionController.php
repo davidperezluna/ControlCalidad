@@ -42,6 +42,7 @@ class AccionController extends Controller
         $accion = new Accion();
         $form = $this->createForm('AppBundle\Form\AccionType', $accion);
         $form->handleRequest($request);
+        $idHallazgo=$request->query->get('idHallazgo');
 
         if ($form->isSubmitted() && $form->isValid()) {
 
@@ -65,6 +66,7 @@ class AccionController extends Controller
         }
 
         return $this->render('AppBundle:accion:new.html.twig', array(
+            'idHallazgo' => $idHallazgo,
             'accion' => $accion,
             'form' => $form->createView(),
         ));
