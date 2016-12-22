@@ -49,10 +49,10 @@ class Accion
 
 
      /**
-     * @ORM\OneToOne(targetEntity="CierreAuditoria", mappedBy="accion")
+     *@ORM\OneToOne(targetEntity="CierreAuditoria", mappedBy="accion")
      *@ORM\joinColumn(name="cierre_auditoria_id", referencedColumnName="id")
      */
-    private $cierre;
+    private $cierreAuditoria;
 
 
     /**
@@ -66,4 +66,124 @@ class Accion
     }
 
   
+
+    /**
+     * Set fechaMaxima
+     *
+     * @param \DateTime $fechaMaxima
+     *
+     * @return Accion
+     */
+    public function setFechaMaxima($fechaMaxima)
+    {
+        $this->fechaMaxima = $fechaMaxima;
+
+        return $this;
+    }
+
+    /**
+     * Get fechaMaxima
+     *
+     * @return \DateTime
+     */
+    public function getFechaMaxima()
+    {
+        return $this->fechaMaxima;
+    }
+
+    /**
+     * Set accion
+     *
+     * @param string $accion
+     *
+     * @return Accion
+     */
+    public function setAccion($accion)
+    {
+        $this->accion = $accion;
+
+        return $this;
+    }
+
+    /**
+     * Get accion
+     *
+     * @return string
+     */
+    public function getAccion()
+    {
+        return $this->accion;
+    }
+
+    /**
+     * Set observaciones
+     *
+     * @param string $observaciones
+     *
+     * @return Accion
+     */
+    public function setObservaciones($observaciones)
+    {
+        $this->observaciones = $observaciones;
+
+        return $this;
+    }
+
+    /**
+     * Get observaciones
+     *
+     * @return string
+     */
+    public function getObservaciones()
+    {
+        return $this->observaciones;
+    }
+
+    /**
+     * Set hallazgo
+     *
+     * @param \AppBundle\Entity\Hallazgo $hallazgo
+     *
+     * @return Accion
+     */
+    public function setHallazgo(\AppBundle\Entity\Hallazgo $hallazgo = null)
+    {
+        $this->hallazgo = $hallazgo;
+
+        return $this;
+    }
+
+    /**
+     * Get hallazgo
+     *
+     * @return \AppBundle\Entity\Hallazgo
+     */
+    public function getHallazgo()
+    {
+        return $this->hallazgo;
+    }
+
+    /**
+     * Set cierre
+     *
+     * @param \AppBundle\Entity\CierreAuditoria $cierre
+     *
+     * @return Accion
+     */
+    public function setCierre(\AppBundle\Entity\CierreAuditoria $cierre = null)
+    {
+        $this->cierre = $cierre;
+
+        return $this;
+    }
+
+    /**
+     * Get cierre
+     *
+     * @return \AppBundle\Entity\CierreAuditoria
+     */
+    public function getCierre()
+    {
+        return $this->cierre;
+    }
 }
