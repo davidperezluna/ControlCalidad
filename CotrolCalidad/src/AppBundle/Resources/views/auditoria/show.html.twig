@@ -146,9 +146,9 @@
                             {% if hallazgo.fechaHallazgo %}{{ hallazgo.fechaHallazgo|date_modify("+" ~ modify ~ " month")|date('Y-m-d') }}{% endif %}
                         </td>
                         <td>{{ hallazgo.tipoHallazgo.nombre }}</td>
-                        <td> <textarea  rows="10" cols="40" readonly class="form-control"> {{ hallazgo.descripcion }}</textarea></td>
-                        <td> <textarea  rows="10" cols="40" readonly class="form-control"> {{ hallazgo.naturaleza }} </textarea></td>
-                        <td> <textarea  rows="10" cols="40" readonly class="form-control"> {{ hallazgo.tratamiento }}</textarea></td>
+                        <td> <textarea  rows="5" cols="20" readonly class="form-control"> {{ hallazgo.descripcion }}</textarea></td>
+                        <td> <textarea  rows="5" cols="20" readonly class="form-control"> {{ hallazgo.naturaleza }} </textarea></td>
+                        <td> <textarea  rows="5" cols="20" readonly class="form-control"> {{ hallazgo.tratamiento }}</textarea></td>
                         <td>
                             <div class="btn-group">
                               <a data-toggle="tooltip"data-original-title="ver" href="{{ path('hallazgo_show', { 'id': hallazgo.id }) }}" class="btn btn-default btn-flat "><i class="fa fa-eye "></i></a>
