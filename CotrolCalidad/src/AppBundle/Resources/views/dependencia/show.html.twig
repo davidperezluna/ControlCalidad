@@ -20,12 +20,13 @@
             <!-- /.box-header -->
             <div class="box-body">
              {% for categoria in dependencium.categorias %}
-        <a  href="{{ path('macroproceso_new', { 'idCategoria': categoria.id,'idDependencia': dependencium.id}) }}" class="small-box-footer">
-                            <i class="fa fa-plus"></i> <small>  Nuevo Macroproceso</small>
-        </a>
+        
         <div class="box  box-solid box-default" >
             <div class="box-header with-border ">
               <h3 class="box-title">{{categoria.nombre}}</h3>
+                    <a data-toggle="tooltip" title="Nuevo macro-proceso" style="margin-left:93%; position: relative; top: -1.8em;" href="{{ path('macroproceso_new', { 'idCategoria': categoria.id,'idDependencia': dependencium.id}) }}" class="btn btn-default btn-xs">
+                            <i class="fa fa-plus"></i> <small>Macroproceso</small>
+                    </a>
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Abrir">
                   <i class="fa fa-minus"></i></button>
@@ -53,14 +54,15 @@
                                                 <h4 class="box-title">
                                                     <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne{{mp.id}}" aria-expanded="false" class="collapsed">
                                                        <h3 class="box-title"><b>{{mp.sigla| upper}}</b> {{mp.nombre}}</h3>
+                                                       <a style="margin-left:450px;" href="{{ path('proceso_new', { 'idMacroProceso': mp.id}) }}" class="small-box-footer">
+                                                            <i class="fa fa-plus"></i> <small>  Nuevo Proceso</small>
+                                                        </a>
                                                     </a>
                                                 </h4>
                                             </div>
                                             <div id="collapseOne{{mp.id}}" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
                                                 <div class="box-body ">
-                                                    <a  href="{{ path('proceso_new', { 'idMacroProceso': mp.id}) }}" class="small-box-footer">
-                                                        <i class="fa fa-plus"></i> <small>  Nuevo Proceso</small>
-                                                    </a>
+                                                    
                                                        <table class="table display2 compact" id"" >
                                                             <thead>
                                                                 <tr>
