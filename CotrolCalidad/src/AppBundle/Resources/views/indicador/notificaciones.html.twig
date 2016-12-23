@@ -21,7 +21,7 @@
           {% for notificacion in seguimientoIndicador %}
             <li>
               <a href="{{ path('indicador_show',{'id':notificacion.indicador.id})}}">
-                {% if seguimientoIndicador|length == 1 %}
+                {% if seguimientoIndicador|length >= 1 %}
                 <i class="fa fa-calendar-times-o text-aqua"></i>seguimiento vencido...
                 {% endif %}
               </a>
