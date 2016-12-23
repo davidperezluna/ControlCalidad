@@ -85,10 +85,17 @@ class Proceso
 
     private $auditorias;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Riesgo", mappedBy="proceso")
+     */
+
+    private $riesgos;
+
     
 
     public function __construct() {
         $this->procedimientos = new ArrayCollection();
+        $this->riesgos = new ArrayCollection();
         $this->procesosUsuarios = new ArrayCollection();
         $this->indicadores = new ArrayCollection();
         $this->auditorias = new ArrayCollection();
@@ -401,5 +408,39 @@ class Proceso
     public function getAuditorias()
     {
         return $this->auditorias;
+    }
+
+    /**
+     * Add riesgo
+     *
+     * @param \AppBundle\Entity\Riesgo $riesgo
+     *
+     * @return Proceso
+     */
+    public function addRiesgo(\AppBundle\Entity\Riesgo $riesgo)
+    {
+        $this->riesgos[] = $riesgo;
+
+        return $this;
+    }
+
+    /**
+     * Remove riesgo
+     *
+     * @param \AppBundle\Entity\Riesgo $riesgo
+     */
+    public function removeRiesgo(\AppBundle\Entity\Riesgo $riesgo)
+    {
+        $this->riesgos->removeElement($riesgo);
+    }
+
+    /**
+     * Get riesgos
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getRiesgos()
+    {
+        return $this->riesgos;
     }
 }
