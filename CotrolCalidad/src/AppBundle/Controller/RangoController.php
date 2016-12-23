@@ -50,7 +50,7 @@ class RangoController extends Controller
             $em->persist($rango);
             $em->flush($rango);
 
-            return $this->redirectToRoute('rango_show', array('id' => $rango->getId()));
+            return $this->redirectToRoute('rango_index');
         }
 
         return $this->render('AppBundle:rango:new.html.twig', array(

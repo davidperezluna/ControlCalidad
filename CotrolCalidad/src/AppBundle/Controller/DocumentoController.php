@@ -17,6 +17,22 @@ class DocumentoController extends Controller
 {
 
     /**
+     * Lists all documento entities.
+     *
+     * @Route("/documentos/index", name="documentos_index")
+     * @Method("GET")
+     */
+    public function DocumentosIndexAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $documentos = $em->getRepository('AppBundle:ProcedimientoDocumento')->findAll();
+        return $this->render('AppBundle:documento:documentosMaestros.html.twig', array(
+            'procedimientosDocumentos' => $documentos,
+        ));
+    }
+
+    /**
      * Creates a new documento entity.
      *
      * @Route("/new/documento", name="documento_index_new")
