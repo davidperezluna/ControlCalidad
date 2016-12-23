@@ -26,7 +26,7 @@ class RiesgoController extends Controller
 
         $riesgos = $em->getRepository('AppBundle:Riesgo')->findAll();
 
-        return $this->render('riesgo/index.html.twig', array(
+        return $this->render('AppBundle:Riesgo:index.html.twig', array(
             'riesgos' => $riesgos,
         ));
     }
@@ -43,15 +43,21 @@ class RiesgoController extends Controller
         $form = $this->createForm('AppBundle\Form\RiesgoType', $riesgo);
         $form->handleRequest($request);
 
+        $idProceso = $request->query->get('idProceso');
+
         if ($form->isSubmitted() && $form->isValid()) {
+            $idProceso = $request->query->get('idProceso');
             $em = $this->getDoctrine()->getManager();
+            $proceso = $em->getRepository('AppBundle:Proceso')->find($idProceso);
+            $riesgo->setProceso($proceso);
             $em->persist($riesgo);
             $em->flush($riesgo);
 
-            return $this->redirectToRoute('riesgo_show', array('id' => $riesgo->getId()));
+            return $this->redirectToRoute('proceso_show', array('id' => $idProceso));
         }
 
-        return $this->render('riesgo/new.html.twig', array(
+        return $this->render('AppBundle:Riesgo:new.html.twig', array(
+            'idProceso' => $idProceso,
             'riesgo' => $riesgo,
             'form' => $form->createView(),
         ));
@@ -67,7 +73,7 @@ class RiesgoController extends Controller
     {
         $deleteForm = $this->createDeleteForm($riesgo);
 
-        return $this->render('riesgo/show.html.twig', array(
+        return $this->render('AppBundle:Riesgo:show.html.twig', array(
             'riesgo' => $riesgo,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -91,7 +97,7 @@ class RiesgoController extends Controller
             return $this->redirectToRoute('riesgo_edit', array('id' => $riesgo->getId()));
         }
 
-        return $this->render('riesgo/edit.html.twig', array(
+        return $this->render('AppBundle:Riesgo:edit.html.twig', array(
             'riesgo' => $riesgo,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),

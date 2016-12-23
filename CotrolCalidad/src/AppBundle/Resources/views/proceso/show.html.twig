@@ -77,6 +77,7 @@
                 <li class="active"><a href="#activity" data-toggle="tab" aria-expanded="false">Archivos</a></li>
                 <li class=""><a href="#timeline" data-toggle="tab" aria-expanded="false">Usuarios</a></li>
                 <li class=""><a href="#Indicadores" data-toggle="tab" aria-expanded="false">Indicadores</a></li>
+                <li class=""><a href="#Riesgos" data-toggle="tab" aria-expanded="false">Riesgos</a></li>
               </ul>
               <div class="tab-content">
                 <div class="tab-pane active" id="activity">
@@ -196,6 +197,31 @@
                     </table>
                 </div>
                 <!-- /.tab-pane -->
+
+                <div class="tab-pane active" id="Riesgos">
+
+                        <table  class="table display">
+                            <thead>
+                                <a style="position: relative;top: 2.5em;" data-toggle="tooltip" data-original-title="Crear Indicador" href="{{ path('riesgo_new', { 'idProceso': proceso.id }) }}" class="link-black text-sm">
+                                <i class="fa fa-plus" ></i> Riesgo 
+                                 </a>
+                                <tr>
+                                    <th>Riesgos</th>
+                                    <th>Accion Preventiva</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                             {% for riesgo in proceso.riesgos %}
+                                <tr>
+                                    <td>{{ riesgo.riesgo }}</td>
+                                    <td>{{ riesgo.accionPreventiva }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                 
+                </div>
+
                 <!-- /.tab-pane -->
               </div>
               <!-- /.tab-content -->
