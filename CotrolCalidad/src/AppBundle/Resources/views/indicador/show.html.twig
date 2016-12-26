@@ -270,9 +270,10 @@
 								resize: true,
 								data: [{
 								{% for seguimientoIndicador in indicador.seguimientosIndicadores %}
-									y: '', a{{ seguimientoIndicador.id }}: {{ seguimientoIndicador.resultado }},
+									y: 'Seguimientos', a{{ seguimientoIndicador.id }}: {{ seguimientoIndicador.resultado }},
 								{% endfor %}
-								}
+								},
+								{y:'Resultado',b:30}
 								],
 
 								barColors: [
@@ -280,20 +281,28 @@
 										{% for seguimientoIndicador in indicador.seguimientosIndicadores %}
 												{% for nivel in seguimientoIndicador.indicador.rango.niveles %}
 
-														{% if (seguimientoIndicador.resultado >= nivel.valorMinimo) and (seguimientoIndicador.resultado <= nivel.valorMaximo) %}
-
-														'{{nivel.color}}',
-
-														{% endif %}
+														
+														'#3c8dbc',
 												{% endfor %}
 										{% endfor %}
+
+										{% for nivel in indicador.rango.niveles %}
+									
+											{% if (30 >= nivel.valorMinimo) and (30 <= nivel.valorMaximo) %}
+
+															,'{{nivel.color}}'
+
+											{% endif %}
+
+										{% endfor %}
+
 								],
 								xkey: 'y',
 								ykeys: [
 										{% for seguimientoIndicador in indicador.seguimientosIndicadores %}
 											'a{{ seguimientoIndicador.id }}',
 										{% endfor %}
-										,,,,,,,,,,
+										,,,'b',,,,,,
 										
 								],
 								hideHover: 'auto'
