@@ -25,6 +25,19 @@ class IndicadorType extends AbstractType
         ->add('nombre', TextType::class,array(
                 "attr" =>array("class" => "form-control")
             ))
+        ->add('medida', TextType::class,array(
+            'label'  => 'Unidad de medida',
+                "attr" =>array("class" => "form-control")
+            ))
+
+        ->add('calculoTotal', ChoiceType::class, array(
+
+            'choices'  => array(
+                'ACUMULATIVA' => 'ACUMULATIVA',
+                'PROMEDIO' => 'PROMEDIO',
+            ),
+             "attr" =>array("class" => "form-control")
+        ))
         ->add('tipo', ChoiceType::class, array(
             'choices'  => array(
                 'RESULTADO' => 'RESULTADO',
@@ -47,13 +60,14 @@ class IndicadorType extends AbstractType
                 "attr" =>array("class" => "form-control")
             ))
         ->add('unidadMedida', ChoiceType::class, array(
+             'label'  => 'Formula',
             'choices'  => array(
-                'PORCENTAJE' => 'PORCENTAJE',
-                'NUMERO' => 'NUMERO',
-                'INDICE' => 'INDICE',
-                'NOVEDAD' => 'NOVEDAD',
-                'DIAS' => 'DIAS',
-                'DIAS AMPLIADO' => 'DIAS AMPLIADO',
+                '(A/B)*100' => 'PORCENTAJE',
+                'A-B' => 'NUMERO',
+                '(A-B)/B' => 'INDICE',
+                'A' => 'NOVEDAD',
+                'FECHA_A - FECHA_B' => 'DIAS',
+                '(FECHA_A - FECHA_B)/C' => 'DIAS AMPLIADO',
             ),
              "attr" =>array("class" => "form-control")
 
