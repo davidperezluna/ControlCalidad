@@ -66,14 +66,12 @@
                     <i class="fa fa-plus"></i> <small>Procedimiento</small>
                   </a>
                 <br>
-                
-                
+
             </div>
 
           <div  class="col-md-7">
             <div class="nav-tabs-custom">
               <ul class="nav nav-tabs">
-                
                 <li class="active"><a href="#activity" data-toggle="tab" aria-expanded="false">Archivos</a></li>
                 <li class=""><a href="#timeline" data-toggle="tab" aria-expanded="false">Usuarios</a></li>
                 <li class=""><a href="#Indicadores" data-toggle="tab" aria-expanded="false">Indicadores</a></li>
@@ -179,6 +177,7 @@
                                     {% if proceso.codigo < 10 %}{{proceso.macroProceso.sigla}}0{{proceso.codigo}}_{% if indicador.codigo < 10 %}00{{indicador.codigo}}{% else %}{{indicador.codigo}}{% endif %}{% else %}{{proceso.macroProceso.sigla}}{{proceso.codigo}}_{% if indicador.codigo < 10 %}00{{indicador.codigo}}{% else %}{{indicador.codigo}}{% endif %}{% endif %}
                                 </td>
                                 <td>{{ indicador.nombre }}</td>
+                                
                                 <td>{{ indicador.tipo }}</td>
                                 <td>{{ indicador.tablero }}</td>
                                 <td>{{ indicador.unidadMedida }}</td>
@@ -281,9 +280,6 @@
             </div>
             <!-- /.box-body -->
           </div>
-
- 
-  
   </div> 
 
 {% endblock %}

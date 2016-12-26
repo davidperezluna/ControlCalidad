@@ -7,12 +7,12 @@
 	<div class="box collapsed-box">
 	    <div class="box-header with-border">
 	      <h3 class="box-title">{{e.nombre}} </h3> 
-		    <small style="margin-left:93%; position: relative; top: -1.9em;">
+		    <small class="col-md-offset-10">
 		      	<a  data-toggle="tooltip" title="Nueva dependencia" href="{{ path('dependencia_new', { 'idEmpresa': e.id}) }}" class="btn btn-default btn-xs">
 					<i class="fa fa-plus"></i> Dependencia
 				</a>
 			</small>
-	      <div class="box-tools pull-right">
+	      <div class="box-tools pull-right ">
 	        <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Abrir">
 	          <i class="fa fa-minus"></i></button>
 	      </div>
