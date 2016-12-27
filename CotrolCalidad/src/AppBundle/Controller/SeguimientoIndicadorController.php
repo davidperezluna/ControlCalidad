@@ -124,7 +124,7 @@ class SeguimientoIndicadorController extends Controller
 
             }
 
-            $FechaSeguimiento = new \DateTime('now');
+                $FechaSeguimiento = new \DateTime('now');
 
             if ($indicador->getPeriodicidad() == "MENSUAL") {
 

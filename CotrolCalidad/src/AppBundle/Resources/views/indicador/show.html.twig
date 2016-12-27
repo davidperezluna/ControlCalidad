@@ -189,6 +189,7 @@
 					<table class="table display">
 							<thead>
 								<tr>
+									<th>Mes</th>
 									<th>Fechaseguimiento</th>
 									<th>Proximafecha</th>
 									<th>Resultado</th>
@@ -200,6 +201,7 @@
 							<tbody>
 							{% for seguimientoIndicador in indicador.seguimientosIndicadores %}
 								<tr>
+									<td>{{seguimientoIndicador.mes}}</td>
 									<td>{% if seguimientoIndicador.fechaSeguimiento %}{{ seguimientoIndicador.fechaSeguimiento|date('Y-m-d') }}{% endif %}</td>
 									<td>{% if seguimientoIndicador.proximaFecha %}{{ seguimientoIndicador.proximaFecha|date('Y-m-d') }}{% endif %}</td>
 									<td>{{ seguimientoIndicador.resultado }}</td>
