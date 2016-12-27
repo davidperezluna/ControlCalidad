@@ -21,7 +21,7 @@
       </div>
       <!-- /.box-header -->
       <div class="box-body">
-        <strong><i class="fa fa-qrcode margin-r-5"></i> Codigo </strong>
+        <strong><i class="fa fa-qrcode margin-r-5"></i> Código </strong>
         <p>{% if procedimiento.proceso.codigo < 10 %}<b>{{procedimiento.proceso.macroProceso.sigla | upper}}</b>0{{ procedimiento.proceso.codigo}}_{% if procedimiento.codigo < 10 %}
                   0{{ procedimiento.codigo }}
                   {% else %}
@@ -36,7 +36,7 @@
                 {% endif %} 
             {% endif %}</p>
         <hr>
-        <strong><i class="fa fa-list margin-r-5"></i> Version </strong>
+        <strong><i class="fa fa-list margin-r-5"></i> Versión </strong>
         <p>
           {% if procedimiento.archivos|length != 0 %}
             {% for archivo in procedimiento.archivos %}
@@ -59,7 +59,7 @@
 
   <div style="margin-top: 19px;" class="col-md-1">
     <a  data-toggle="tooltip"data-original-title="Archivo de procedimiento" href="{{ path('archivo_new', { 'idProcedimiento': procedimiento.id }) }}" class="btn btn-app">
-      <i class="fa fa-plus"></i> Archivo
+      <i class="fa fa-plus"></i> Caracterización
     </a>
     <br>
     <a  data-toggle="tooltip"data-original-title="Editar procedimiento" href="{{ path('procedimiento_edit', { 'id': procedimiento.id }) }}" class="btn btn-app">
@@ -94,11 +94,11 @@
             <thead>
               <tr>
 
-                <th>Version</th>
+                <th>Versión</th>
                 <th>Control de Cambios</th>
                 <th>Descargar </th>
                 <th>Descargar PDF</th>
-                <th>Actions</th>
+                <th>Ver</th>
               </tr>
             </thead>
             <tbody>
@@ -130,11 +130,11 @@
           <table class="table display">
             <thead>
               <tr>  
-                <th>Nombre Usuario</th>
-                <th>Identificacion Usuario</th>
+                <th>Usuario</th>
+               
                 <th>Cargo</th>
-                <th>Role</th>
-                <th>Actions</th>
+                <th>Acción</th>
+                <th>Ver</th>
               </tr>
             </thead>
             <tbody>
@@ -142,7 +142,7 @@
                 <tr>
 
                   <td>{{procedimientousuario.usuario.nombres}} {{procedimientousuario.usuario.apellidos}}</td>
-                  <td>{{procedimientousuario.usuario.identificacion}}</td>
+                  
                   <td>{{procedimientousuario.usuario.cargo.nombre}}</td>
                   <td>{{procedimientousuario.role}}</td>
                   <td>
@@ -207,11 +207,11 @@
               <th>Documento</th>
               <th>Nombre</th>
               <th>Tipo Documento</th>
-              <th>Version</th>
-              <th>vigencia</th>
+              <th>Versión</th>
+              <th>Vigencia</th>
               <th>Documento</th>
               <th>Instructivo</th>
-              <th>Acciones</th>
+              <th>+ Acciones</th>
 
             </tr>
           </thead> 

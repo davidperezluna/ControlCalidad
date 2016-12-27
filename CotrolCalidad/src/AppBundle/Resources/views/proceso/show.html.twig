@@ -15,7 +15,7 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-               <strong><i class="fa fa-qrcode margin-r-5"></i> Codigo </strong>
+               <strong><i class="fa fa-qrcode margin-r-5"></i> Código </strong>
               <p>
                 {% if proceso.codigo < 10 %}
                  <b> {{proceso.macroProceso.sigla | upper}}</b>0{{ proceso.codigo }}
@@ -24,7 +24,7 @@
                 {% endif %}
               </p>
               <hr>
-              <strong><i class="fa  fa-list margin-r-5"></i> Version </strong>
+              <strong><i class="fa  fa-list margin-r-5"></i> Versión </strong>
               <p>
                 {% if proceso.archivos|length != 0 %}
                   {% for archivo in proceso.archivos %}
@@ -83,11 +83,11 @@
                             <thead>
                                 <tr>
                                    
-                                    <th>Version</th>
+                                    <th>Versión</th>
                                     <th>Control de Cambios</th>
-                                    <th>Documento</th>
-                                    <th>Documento PDF</th>
-                                    <th>Actions</th>
+                                    <th>Original</th>
+                                    <th>PDF</th>
+                                    <th>Ver</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -124,11 +124,11 @@
                     <table  class="table display">
                         <thead>
                             <tr>  
-                                <th>Nombre Usuario</th>
-                                <th>Identificacion Usuario</th>
+                                <th>Usuario</th>
+                                
                                 <th>Cargo</th>
-                                <th>Role</th>
-                                <th>Actions</th>
+                                <th>Acción</th>
+                                <th>Ver</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -136,7 +136,7 @@
                             <tr>
 
                                 <td>{{procesoUsuario.usuario.nombres}} {{procesoUsuario.usuario.apellidos}}</td>
-                                <td>{{procesoUsuario.usuario.identificacion}}</td>
+                                
                                 <td>{{procesoUsuario.usuario.cargo.nombre}}</td>
                                 <td>{{procesoUsuario.role}}</td>
                                 <td>
@@ -160,14 +160,14 @@
                        </a>
                         <thead>
                             <tr>
-                                <th>Codigo</th>
+                                <th>Código</th>
                                 <th>Nombre</th>
-                                <th>Tipo</th>
-                                <th>Tablero</th>
-                                <th>Unidadmedida</th>
+                                
+                               
+                                <th>Unidad medida</th>
                                 <th>Periodicidad</th>
                                 <th>Meta</th>
-                                <th>Actions</th>
+                                <th>Ver</th>
                             </tr> 
                         </thead>
                         <tbody>
@@ -178,8 +178,8 @@
                                 </td>
                                 <td>{{ indicador.nombre }}</td>
                                 
-                                <td>{{ indicador.tipo }}</td>
-                                <td>{{ indicador.tablero }}</td>
+                                
+                                
                                 <td>{{ indicador.unidadMedida }}</td>
                                 <td>{{ indicador.periodicidad }}</td>
                                 <td>{{ indicador.meta }}</td>
@@ -205,8 +205,8 @@
                                 <i class="fa fa-plus" ></i> Riesgo 
                                  </a>
                                 <tr>
-                                    <th>Riesgos</th>
-                                    <th>Accion Preventiva</th>
+                                    <th>Riesgo</th>
+                                    <th>Acción Preventiva</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -248,10 +248,10 @@
                 <table  class="table display" id="example40">
                   <thead>
                       <tr>
-                          <th>Codigo</th>
+                          <th>Código</th>
                           <th>Nombre</th>
                           <th>Vigencia</th>
-                          <th>Actions</th>
+                          <th>+ Acciones</th>
                       </tr>
                   </thead>
                   <tbody>
