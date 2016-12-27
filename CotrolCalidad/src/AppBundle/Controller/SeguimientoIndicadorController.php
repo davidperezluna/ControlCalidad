@@ -126,8 +126,6 @@ class SeguimientoIndicadorController extends Controller
 
             $FechaSeguimiento = new \DateTime('now');
 
-
-
             if ($indicador->getPeriodicidad() == "MENSUAL") {
 
                 $proxima = new \DateTime('now');
@@ -159,11 +157,11 @@ class SeguimientoIndicadorController extends Controller
             $porcentaje = ($resultado*$indicador->getMeta())/100;
 
             $seguimientoIndicador->setResultado($resultado);
-             $seguimientoIndicador->setPorcentaje($porcentaje);
+            $seguimientoIndicador->setPorcentaje($porcentaje);
             $seguimientoIndicador->setIndicador($indicador);
 
-
-            $seguimientoIndicador->setFechaSeguimiento($FechaSeguimiento );
+           
+            $seguimientoIndicador->setFechaSeguimiento($FechaSeguimiento);
             $seguimientoIndicador->setProximaFecha($proximaFecha);
             $seguimientoIndicador->setNotificacion(true);
 

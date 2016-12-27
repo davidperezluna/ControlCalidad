@@ -149,6 +149,7 @@ class Indicador
      public function __construct() {
         $this->indicadoresCargos = new ArrayCollection();
         $this->variables = new ArrayCollection();
+        $this->seguimientosIndicadores = new ArrayCollection();
     }
 
     public function __toString()
