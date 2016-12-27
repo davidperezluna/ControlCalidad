@@ -296,28 +296,4 @@ class SeguimientoIndicador
     {
         return $this->porcentaje;
     }
-
-    /**
-     * Set mes
-     *
-     * @param string $mes
-     *
-     * @return SeguimientoIndicador
-     */
-    public function setMes($mes)
-    {
-        $this->mes = $mes;
-
-        return $this;
-    }
-
-    /**
-     * Get mes
-     *
-     * @return string
-     */
-    public function getMes()
-    {
-        return $this->mes;
-    }
 }

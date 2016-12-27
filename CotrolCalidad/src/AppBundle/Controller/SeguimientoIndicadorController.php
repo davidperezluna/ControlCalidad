@@ -131,27 +131,86 @@ class SeguimientoIndicadorController extends Controller
                 $proxima = new \DateTime('now');
                 $intervalo = new \DateInterval('P1M');
                 $proximaFecha = $proxima->add($intervalo);
+
+                if (count($indicador->getSeguimientosIndicadores()) == null) {
+                    $seguimientoIndicador->setMes("Enero");
+                }elseif (count($indicador->getSeguimientosIndicadores()) == 1) {
+                    $seguimientoIndicador->setMes("Febrero");
+                }elseif (count($indicador->getSeguimientosIndicadores()) == 2) {
+                    $seguimientoIndicador->setMes("Marzo");
+                }elseif (count($indicador->getSeguimientosIndicadores()) == 3) {
+                    $seguimientoIndicador->setMes("Abril");
+                }elseif (count($indicador->getSeguimientosIndicadores()) == 4) {
+                    $seguimientoIndicador->setMes("Mayo");
+                }elseif (count($indicador->getSeguimientosIndicadores()) == 5) {
+                    $seguimientoIndicador->setMes("Junio");
+                }elseif (count($indicador->getSeguimientosIndicadores()) == 6) {
+                    $seguimientoIndicador->setMes("Julio");
+                }elseif (count($indicador->getSeguimientosIndicadores()) == 7) {
+                    $seguimientoIndicador->setMes("Agosto");
+                }elseif (count($indicador->getSeguimientosIndicadores()) == 8) {
+                    $seguimientoIndicador->setMes("Septiembre");
+                }elseif (count($indicador->getSeguimientosIndicadores()) == 9) {
+                    $seguimientoIndicador->setMes("Octubre");
+                }elseif (count($indicador->getSeguimientosIndicadores()) == 10) {
+                    $seguimientoIndicador->setMes("Noviembre");
+                }elseif (count($indicador->getSeguimientosIndicadores()) == 11) {
+                    $seguimientoIndicador->setMes("Diciembre");
+                }
             }
 
             if ($indicador->getPeriodicidad() == "BIMENSUAL") {
                 $proxima = new \DateTime('now');
                 $intervalo = new \DateInterval('P2M');
                 $proximaFecha = $proxima->add($intervalo);
+
+                if (count($indicador->getSeguimientosIndicadores()) == null) {
+                    $seguimientoIndicador->setMes("Enero");
+                }elseif (count($indicador->getSeguimientosIndicadores()) == 1) {
+                    $seguimientoIndicador->setMes("Marzo");
+                }elseif (count($indicador->getSeguimientosIndicadores()) == 2) {
+                    $seguimientoIndicador->setMes("Mayo");
+                }elseif (count($indicador->getSeguimientosIndicadores()) == 3) {
+                    $seguimientoIndicador->setMes("Julio");
+                }elseif (count($indicador->getSeguimientosIndicadores()) == 4) {
+                    $seguimientoIndicador->setMes("Septiembre");
+                }elseif (count($indicador->getSeguimientosIndicadores()) == 5) {
+                    $seguimientoIndicador->setMes("Noviembre");
+                }
             }
             if ($indicador->getPeriodicidad() == "TRIMESTRAL") {
                 $proxima = new \DateTime('now');
                 $intervalo = new \DateInterval('P3M');
                 $proximaFecha = $proxima->add($intervalo);
+
+                if (count($indicador->getSeguimientosIndicadores()) == null) {
+                    $seguimientoIndicador->setMes("Enero");
+                }elseif (count($indicador->getSeguimientosIndicadores()) == 1) {
+                    $seguimientoIndicador->setMes("Abril");
+                }elseif (count($indicador->getSeguimientosIndicadores()) == 2) {
+                    $seguimientoIndicador->setMes("Julio");
+                }elseif (count($indicador->getSeguimientosIndicadores()) == 3) {
+                    $seguimientoIndicador->setMes("Octubre");
+                }
+
             }
             if ($indicador->getPeriodicidad() == "SEMESTRAL") {
                 $proxima = new \DateTime('now');
                 $intervalo = new \DateInterval('P6M');
                 $proximaFecha = $proxima->add($intervalo);
+
+                if (count($indicador->getSeguimientosIndicadores()) == null) {
+                    $seguimientoIndicador->setMes("Enero");
+                }elseif (count($indicador->getSeguimientosIndicadores()) == 1) {
+                    $seguimientoIndicador->setMes("Junio");
+                }
             }
             if ($indicador->getPeriodicidad() == "ANUAL") {
                 $proxima = new \DateTime('now');
                 $intervalo = new \DateInterval('P12M');
                 $proximaFecha = $proxima->add($intervalo);
+
+                $seguimientoIndicador->setMes("Enero");
             }
 
             $porcentaje = ($resultado*$indicador->getMeta())/100;

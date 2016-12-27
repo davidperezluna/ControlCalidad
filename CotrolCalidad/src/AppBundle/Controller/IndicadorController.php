@@ -112,7 +112,10 @@ class IndicadorController extends Controller
                  $calculoTotal= $calculoTotal + $seguimientoIndicador->getResultado();
             }
 
-             $calculoTotal=$calculoTotal/count($indicador->getSeguimientosIndicadores());
+            if (count($indicador->getSeguimientosIndicadores()) > 0) {
+               $calculoTotal=$calculoTotal/count($indicador->getSeguimientosIndicadores());
+            }
+             
 
         }
 
