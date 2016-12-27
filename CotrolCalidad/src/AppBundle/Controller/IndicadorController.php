@@ -101,8 +101,42 @@ class IndicadorController extends Controller
     public function showAction(Indicador $indicador)
     {
         $deleteForm = $this->createDeleteForm($indicador);
+        $calculoTotal=0;
+
+        if ($indicador->getCalculoTotal() == 'ACUMULATIVA') {
+            foreach ($indicador->getSeguimientosIndicadores() as $seguimientoIndicador) {
+                 $calculoTotal= $calculoTotal + $seguimientoIndicador->getResultado();
+            }
+        }else{
+            foreach ($indicador->getSeguimientosIndicadores() as $seguimientoIndicador) {
+                 $calculoTotal= $calculoTotal + $seguimientoIndicador->getResultado();
+            }
+
+             $calculoTotal=$calculoTotal/count($indicador->getSeguimientosIndicadores());
+
+        }
+
+        if ($indicador->getPeriodicidad() == "MENSUAL") {
+                $periodo= 12;
+            }
+
+            if ($indicador->getPeriodicidad() == "BIMENSUAL") {
+                $periodo=6;
+            }
+            if ($indicador->getPeriodicidad() == "TRIMESTRAL") {
+                $periodo=4;
+            }
+            if ($indicador->getPeriodicidad() == "SEMESTRAL") {
+                $periodo=2;
+            }
+            if ($indicador->getPeriodicidad() == "ANUAL") {
+                $periodo=1;
+            }
+   
 
         return $this->render('AppBundle:indicador:show.html.twig', array(
+            'periodo'=>$periodo,
+            'calculoTotal'=> $calculoTotal,
             'indicador' => $indicador,
             'delete_form' => $deleteForm->createView(),
         ));

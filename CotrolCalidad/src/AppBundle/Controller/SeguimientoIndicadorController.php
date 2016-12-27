@@ -28,7 +28,7 @@ class SeguimientoIndicadorController extends Controller
 
         return $this->render('AppBundle:seguimientoindicador:index.html.twig', array(
             'seguimientoIndicadors' => $seguimientoIndicadors,
-        ));
+        )); 
     }
 
     /**
