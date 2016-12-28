@@ -44,7 +44,7 @@
             <div  class="col-md-1">
 
               <a data-toggle="tooltip"data-original-title="Archivo de proceso" href="{{ path('archivo_new', { 'idProceso': proceso.id }) }}" class="btn btn-app">
-                    <i class="fa fa-plus"></i> Archivo 
+                    <i class="fa fa-plus"></i> Caracterización 
                   </a>
                 <br>
               
@@ -59,7 +59,7 @@
                 <br>
 
                 <a data-toggle="tooltip"data-original-title="Asignar Procedimiento" href="{{ path('procedimiento_new', { 'idProceso': proceso.id }) }}" class="btn btn-app">
-                    <i class="fa fa-plus"></i> <small>Procedimiento</small>
+                    <i class="fa fa-plus"></i> Procedimiento
                   </a>
                 <br>
 
@@ -116,7 +116,7 @@
                 </div>
                 <!-- /.tab-pane -->
                 <div class="tab-pane" id="timeline">
-                    <a href="{{ path('procesousuario_new', { 'idProceso': proceso.id }) }}" class="link-black text-sm"><i class="fa fa-plus"></i> Usuario</a>
+                    <a style="position: relative; background-color: #0d9c0d; color: #ffffff; padding: 4px 6px 4px 6px; border-radius: 5px;" href="{{ path('procesousuario_new', { 'idProceso': proceso.id }) }}" class="link-black text-sm"><i class="fa fa-plus"></i> Usuario</a>
                     <table  class="table display">
                         <thead>
                             <tr>  
@@ -151,7 +151,7 @@
                  <!-- /.tab-pane -->
                 <div class="tab-pane" id="Indicadores">
                      <table class="table display3">
-                      <a style="position: relative;top: 2.5em;" data-toggle="tooltip" data-original-title="Crear Indicador" href="{{ path('indicador_new', { 'idProceso': proceso.id }) }}" class="link-black text-sm">
+                      <a style="position: relative; background-color: #0d9c0d; color: #ffffff; padding: 4px 6px 4px 6px; border-radius: 5px;" data-toggle="tooltip" data-original-title="Crear Indicador" href="{{ path('indicador_new', { 'idProceso': proceso.id }) }}" class="link-black text-sm">
                       <i class="fa fa-plus" ></i> Indicador 
                        </a>
                         <thead>
@@ -197,7 +197,7 @@
 
                         <table  class="table display">
                             <thead>
-                                <a style="position: relative;top: 2.5em;" data-toggle="tooltip" data-original-title="Crear Riesgo" href="{{ path('riesgo_new', { 'idProceso': proceso.id }) }}" class="link-black text-sm">
+                                <a class="agrega" data-toggle="tooltip" data-original-title="Crear Riesgo" href="{{ path('riesgo_new', { 'idProceso': proceso.id }) }}" class="link-black text-sm">
                                 <i class="fa fa-plus" ></i> Riesgo 
                                  </a>
                                 <tr>
