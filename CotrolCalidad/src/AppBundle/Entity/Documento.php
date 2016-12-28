@@ -39,7 +39,7 @@ class Documento
     /**
      * @var string
      *
-     * @ORM\Column(name="urlInstructivo", type="string", length=255,nullable=true)
+     * @ORM\Column(name="urlInstructivo", type="string", length=255, nullable=true)
      */
     private $urlInstructivo;
 
@@ -201,7 +201,7 @@ class Documento
      *
      * @return Documento
      */
-    public function setUrlInstructivo($urlInstructivo)
+    public function setUrlInstructivo($urlInstructivo = null)
     {
         $this->urlInstructivo = $urlInstructivo;
 

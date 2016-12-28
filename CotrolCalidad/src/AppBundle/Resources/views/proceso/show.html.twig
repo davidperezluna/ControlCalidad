@@ -17,11 +17,7 @@
             <div class="box-body">
                <strong><i class="fa fa-qrcode margin-r-5"></i> Código </strong>
               <p>
-                {% if proceso.codigo < 10 %}
-                 <b> {{proceso.macroProceso.sigla | upper}}</b>0{{ proceso.codigo }}
-                {% else %}
-                    <b> {{proceso.macroProceso.sigla | upper}}</b>{{ proceso.codigo }}
-                {% endif %}
+                    <b> {{proceso.macroProceso.sigla | upper}}</b>{{ proceso.codigo | upper }}
               </p>
               <hr>
               <strong><i class="fa  fa-list margin-r-5"></i> Versión </strong>
@@ -174,7 +170,7 @@
                         {% for indicador in proceso.indicadores %}
                             <tr>
                                 <td>
-                                    {% if proceso.codigo < 10 %}{{proceso.macroProceso.sigla}}0{{proceso.codigo}}_{% if indicador.codigo < 10 %}00{{indicador.codigo}}{% else %}{{indicador.codigo}}{% endif %}{% else %}{{proceso.macroProceso.sigla}}{{proceso.codigo}}_{% if indicador.codigo < 10 %}00{{indicador.codigo}}{% else %}{{indicador.codigo}}{% endif %}{% endif %}
+                                   {{proceso.macroProceso.sigla | upper}}{{proceso.codigo | upper}}_{{indicador.codigo}}
                                 </td>
                                 <td>{{ indicador.nombre }}</td>
                                 
@@ -205,6 +201,7 @@
                                 <i class="fa fa-plus" ></i> Riesgo 
                                  </a>
                                 <tr>
+                                    <th>Fecha</th>
                                     <th>Riesgo</th>
                                     <th>Acción Preventiva</th>
                                 </tr>
@@ -212,6 +209,7 @@
                             <tbody>
                              {% for riesgo in proceso.riesgos %}
                                 <tr>
+                                    <td>{% if riesgo.fecha %}{{riesgo.fecha|date('Y-m-d')}}{% else %}{% endif %}</td>
                                     <td>{{ riesgo.riesgo }}</td>
                                     <td>{{ riesgo.accionPreventiva }}</td>
                                 </tr>
@@ -257,14 +255,7 @@
                   <tbody>
                   {% for procedimiento in proceso.procedimientos %}
                       <tr>
-                          <td>
-                            {% if procedimiento.codigo < 10 %}
-                              0{{ procedimiento.codigo }}
-                              {% else %}
-                                 {{ procedimiento.codigo }} 
-                            {% endif %}
-                            
-                          </td>
+                          <td>{{ procedimiento.codigo }}</td>
                           <td>{{ procedimiento.nombre }}</td>
                           <td>{{procedimiento.vigencia}}</td>
                           <td>

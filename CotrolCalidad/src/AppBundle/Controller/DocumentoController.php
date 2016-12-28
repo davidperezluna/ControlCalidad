@@ -56,16 +56,18 @@ class DocumentoController extends Controller
                 $fileName
             );
 
-            $instrictivo = $documento->geturlInstructivo();
 
-            $instrictivoName = md5(uniqid()).$documento->getNombre().'.'.$instrictivo->guessExtension();
+            if ($instrictivo = $documento->geturlInstructivo() != null) {
 
-
-            $instrictivo->move(
-                $this->getParameter('documentos_directory'),
-                $instrictivoName
-            );
-            $documento->seturlInstructivo($instrictivoName);
+                $instrictivo = $documento->geturlInstructivo();
+                $instrictivoName = md5(uniqid()).$documento->getNombre().'.'.$instrictivo->guessExtension();
+                $instrictivo->move(
+                    $this->getParameter('documentos_directory'),
+                    $instrictivoName
+                );
+                $documento->seturlInstructivo($instrictivoName);
+            }
+           
 
 
             $documento->seturlDocumento($fileName);
@@ -187,6 +189,7 @@ class DocumentoController extends Controller
                 $fileName
             );
 
+            if ($instrictivo = $documento->geturlInstructivo() != null) {
             $instrictivo = $documento->geturlInstructivo();
 
             $instrictivoName = md5(uniqid()).$documento->getNombre().'.'.$instrictivo->guessExtension();
@@ -196,11 +199,8 @@ class DocumentoController extends Controller
                 $this->getParameter('documentos_directory'),
                 $instrictivoName
             );
-
-
-
-
-            $documento->seturlInstructivo($instrictivoName);
+             $documento->seturlInstructivo($instrictivoName);
+            }
             $documento->seturlDocumento($fileName);
             $em = $this->getDoctrine()->getManager();
             $em->persist($documento);

@@ -19,7 +19,7 @@ class ProcedimientoType extends AbstractType
     {
         $builder
 
-        ->add('codigo', NumberType::class,array(
+        ->add('codigo', TextType::class,array(
                 "attr" =>array("class" => "form-control") 
             ))
         ->add('nombre', TextType::class,array(

@@ -39,6 +39,8 @@ class RiesgoController extends Controller
      */
     public function newAction(Request $request)
     {
+
+        
         $riesgo = new Riesgo();
         $form = $this->createForm('AppBundle\Form\RiesgoType', $riesgo);
         $form->handleRequest($request);
@@ -46,10 +48,13 @@ class RiesgoController extends Controller
         $idProceso = $request->query->get('idProceso');
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $fecha = $request->request->get('fecha');
             $idProceso = $request->query->get('idProceso');
             $em = $this->getDoctrine()->getManager();
             $proceso = $em->getRepository('AppBundle:Proceso')->find($idProceso);
             $riesgo->setProceso($proceso);
+            $riesgo->setFecha(new \Datetime($fecha));
             $em->persist($riesgo);
             $em->flush($riesgo);
 
