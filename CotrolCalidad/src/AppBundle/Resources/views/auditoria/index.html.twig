@@ -64,6 +64,7 @@
         </thead>
         <tbody>
         {% for auditorium in auditorias %}
+          {% if app.user.role == "ROLE_SUPER_ADMIN" or app.user.role == "ROLE_ADMIN_SGC" %}
             <tr>
                 <td>{{ auditorium.tipoAuditoria }}</td>
                 <td> <textarea class="form-control" cols="30" rows="5" readonly>{{ auditorium.objetivos }}</textarea></td>
@@ -76,6 +77,22 @@
                     </div>
                 </td>
             </tr>
+            {% else %}
+              {% if condition %}
+              <tr>
+                <td>{{ auditorium.tipoAuditoria }}</td>
+                <td> <textarea class="form-control" cols="30" rows="5" readonly>{{ auditorium.objetivos }}</textarea></td>
+                <td> <textarea class="form-control" cols="30" rows="5" readonly>{{ auditorium.alcance }}</textarea></td>
+                <td> <textarea class="form-control" cols="30" rows="5" readonly>{{ auditorium.criterio }}</textarea></td>
+                <td>{% if auditorium.fechaInicio %}{{ auditorium.fechaInicio|date('Y-m-d') }}{% endif %}</td>
+                <td>
+                    <div class="btn-group">
+                              <a data-toggle="tooltip"data-original-title="ver" href="{{ path('auditoria_show', { 'id': auditorium.id }) }}" class="btn btn-default btn-flat"><i class="fa fa-eye"></i></a>
+                    </div>
+                </td>
+              </tr>
+            {% endif %}
+           {% endif %}
         {% endfor %}
         </tbody>
     </table>

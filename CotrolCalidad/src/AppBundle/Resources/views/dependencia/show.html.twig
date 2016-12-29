@@ -87,21 +87,16 @@
                                                                     <td>{{ proceso.nombre }}</td>
                                                                     <td>{{proceso.vigencia}}</td>
                                                                     <td>
-                                                                        {% if app.user.role == "ROLE_SUPERVISOR" %}
+                                                                        {% if app.user.role == "ROLE_SUPERVISOR" or app.user.role == "ROLE_LIDER_PROCESO" or app.user.role == "ROLE_USER"%}
                                                                             <a data-toggle="tooltip"data-original-title="Ver proceso" href="{{ path('proceso_show_supervisor', { 'id': proceso.id }) }}" class="btn btn-social-icon btn-bitbucket btn-xs"><i class="fa  fa-hand-pointer-o"></i></a>
                                                                         {% else %}
                                                                              <a data-toggle="tooltip"data-original-title="Ver proceso" href="{{ path('proceso_show', { 'id': proceso.id }) }}" class="btn btn-social-icon btn-bitbucket btn-xs"><i class="fa  fa-hand-pointer-o"></i></a>
                                                                         {% endif %}
-                                                                        
-
                                                                     </td>
                                                                 </tr>
                                                             {% endfor %}
                                                             </tbody>
                                                         </table>
-
-
-                                                   
                                                 </div>
                                             </div>
                                         </div>

@@ -31,19 +31,39 @@
                 </thead>
                 <tbody>
                 {% for proceso in procesos %}
-                    <tr>
-                        <td>
-                            <b>{{ proceso.macroProceso.sigla}}</b>{% if proceso.codigo < 10 %}0{{ proceso.codigo }}{% else %}{{ proceso.codigo }}{% endif %}
-                        </td>
-                        <td>{{ proceso.nombre }}</td>
-                        <td>{{ proceso.vigencia}}</td>
-                        <td><b>{{ proceso.macroProceso.sigla}}</b>{{ proceso.macroProceso.nombre}}</td>
-                        <td>
-                            <div class="btn-group">
-                              <a data-toggle="tooltip"data-original-title="Auditar" href="{{ path('auditoria_index', { 'idProceso': proceso.id }) }}" class="btn btn-default btn-flat"><i class="fa fa-hand-stop-o"></i></a>
-                            </div>
-                        </td>
-                    </tr>
+                    {% if app.user.role == "ROLE_SUPER_ADMIN" or app.user.role == "ROLE_ADMIN_SGC" %}
+                        <tr>
+                            <td>
+                                <b>{{ proceso.macroProceso.sigla}}</b>{% if proceso.codigo < 10 %}0{{ proceso.codigo }}{% else %}{{ proceso.codigo }}{% endif %}
+                            </td>
+                            <td>{{ proceso.nombre }}</td>
+                            <td>{{ proceso.vigencia}}</td>
+                            <td><b>{{ proceso.macroProceso.sigla}}</b>{{ proceso.macroProceso.nombre}}</td>
+                            <td>
+                                <div class="btn-group">
+                                  <a data-toggle="tooltip"data-original-title="Auditar" href="{{ path('auditoria_index', { 'idProceso': proceso.id }) }}" class="btn btn-default btn-flat"><i class="fa fa-hand-stop-o"></i></a>
+                                </div>
+                            </td>
+                        </tr>
+                    {% else %}
+                        {% for procesoUsuario in proceso.procesosUsuarios %}
+                            {% if app.user.id == procesoUsuario.usuario.id %}
+                                <tr>
+                                    <td>
+                                        <b>{{ proceso.macroProceso.sigla}}</b>{{ proceso.codigo }}
+                                    </td>
+                                    <td>{{ proceso.nombre }}</td>
+                                    <td>{{ proceso.vigencia}}</td>
+                                    <td><b>{{ proceso.macroProceso.sigla}}</b>{{ proceso.macroProceso.nombre}}</td>
+                                    <td>
+                                        <div class="btn-group">
+                                          <a data-toggle="tooltip"data-original-title="Auditar" href="{{ path('auditoria_index', { 'idProceso': proceso.id }) }}" class="btn btn-default btn-flat"><i class="fa fa-hand-stop-o"></i></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
                 {% endfor %}
                 </tbody>
                

@@ -45,7 +45,9 @@
               <ul class="nav nav-tabs">
                 <li class="active"><a href="#activity" data-toggle="tab" aria-expanded="true">Archivos</a></li>
                 <li class=""><a href="#timeline" data-toggle="tab" aria-expanded="true">Usuarios</a></li>
+                {% if app.user.role != "ROLE_USER" %}
                 <li class=""><a href="#Indicadores" data-toggle="tab" aria-expanded="true">Indicadores</a></li>
+                {% endif %}
                 <li class=""><a href="#Riesgos" data-toggle="tab" aria-expanded="true">Riesgos</a></li>
               </ul>
               <div class="tab-content">
@@ -122,6 +124,15 @@
 
                  <!-- /.tab-pane -->
                 <div class="tab-pane" id="Indicadores">
+
+                  {% for procesoUsuario in proceso.procesosUsuarios  %}
+                    {% if app.user.role == "ROLE_LIDER_PROCESO" and app.user.id == procesoUsuario.usuario.id %}
+                     <a style="position: relative; background-color: #0d9c0d; color: #ffffff; padding: 4px 6px 4px 6px; border-radius: 5px;" data-toggle="tooltip" data-original-title="Crear Indicador" href="{{ path('indicador_new', { 'idProceso': proceso.id }) }}" class="link-black text-sm">
+                        <i class="fa fa-plus" ></i> Indicador 
+                       </a>
+                    {% endif %}
+                  {% endfor %}
+                        
                      <table class="table display3">
                         <thead>
                             <tr>
@@ -146,7 +157,13 @@
                                 <td>
                                     <ul>
                                         <div class="btn-group">
-                                              <a data-toggle="tooltip"data-original-title="ver" href="{{ path('indicador_show', { 'id': indicador.id }) }}" class="btn btn-default btn-flat btn-xs"><i class="fa fa-eye"></i></a>
+                                        {% for procesoUsuario in proceso.procesosUsuarios  %}
+                                          {% if app.user.role == "ROLE_LIDER_PROCESO" and app.user.id == procesoUsuario.usuario.id %}
+                                           <a data-toggle="tooltip"data-original-title="editar" href="{{ path('indicador_show', { 'id': indicador.id }) }}" class="btn btn-default btn-flat btn-xs"><i class="fa fa-edit"></i></a>
+                                           {% else %}
+                                          {% endif %}
+                                        {% endfor %}
+                                        <a data-toggle="tooltip"data-original-title="ver" href="{{ path('indicador_show_supervisor', { 'id': indicador.id }) }}" class="btn btn-default btn-flat btn-xs"><i class="fa fa-eye"></i></a>
                                         </div>
                                     </ul>
                                 </td>
