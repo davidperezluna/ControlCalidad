@@ -54,9 +54,11 @@
                                                 <h4 class="box-title">
                                                     <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne{{mp.id}}" aria-expanded="false" class="collapsed">
                                                        <h3 class="box-title"><b>{{mp.sigla| upper}}</b> {{mp.nombre}}</h3>
-                                                       <a style="margin-left:450px;" href="{{ path('proceso_new', { 'idMacroProceso': mp.id}) }}" class="small-box-footer">
-                                                            <i class="fa fa-plus"></i> <small>Proceso</small>
-                                                        </a>
+                                                       {% if app.user.role == "ROLE_SUPER_ADMIN" or app.user.role == "ROLE_ADMIN_SGC" %}
+                                                           <a style="margin-left:450px;" href="{{ path('proceso_new', { 'idMacroProceso': mp.id}) }}" class="small-box-footer">
+                                                                <i class="fa fa-plus"></i> <small>Proceso</small>
+                                                            </a>
+                                                        {% endif %}
                                                     </a>
                                                 </h4>
                                             </div>
@@ -84,7 +86,15 @@
                                                                     </td>
                                                                     <td>{{ proceso.nombre }}</td>
                                                                     <td>{{proceso.vigencia}}</td>
-                                                                    <td><a data-toggle="tooltip"data-original-title="Ver proceso" href="{{ path('proceso_show', { 'id': proceso.id }) }}" class="btn btn-social-icon btn-bitbucket btn-xs"><i class="fa  fa-hand-pointer-o"></i></a></td>
+                                                                    <td>
+                                                                        {% if app.user.role == "ROLE_SUPERVISOR" %}
+                                                                            <a data-toggle="tooltip"data-original-title="Ver proceso" href="{{ path('proceso_show_supervisor', { 'id': proceso.id }) }}" class="btn btn-social-icon btn-bitbucket btn-xs"><i class="fa  fa-hand-pointer-o"></i></a>
+                                                                        {% else %}
+                                                                             <a data-toggle="tooltip"data-original-title="Ver proceso" href="{{ path('proceso_show', { 'id': proceso.id }) }}" class="btn btn-social-icon btn-bitbucket btn-xs"><i class="fa  fa-hand-pointer-o"></i></a>
+                                                                        {% endif %}
+                                                                        
+
+                                                                    </td>
                                                                 </tr>
                                                             {% endfor %}
                                                             </tbody>

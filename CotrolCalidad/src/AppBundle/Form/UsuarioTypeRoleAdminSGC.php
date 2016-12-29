@@ -13,7 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
-class UsuarioType extends AbstractType
+class UsuarioTypeRoleAdminSGC extends AbstractType
 {
     /**
      * {@inheritdoc}
@@ -48,19 +48,11 @@ class UsuarioType extends AbstractType
                 "attr" =>array("class" => "form-control"),
                 'choice_label' => 'nombre',
             ))
-
-        ->add('dependencia', EntityType::class, array(
-                'class' => 'AppBundle:Dependencia',
-                "attr" =>array("class" => "form-control"),
-                'choice_label' => 'nombre',
-            ))
         ->add('role', ChoiceType::class,array(
                 "attr" =>array("class" => "form-control"),
                 "choices"=> array(
-                    "Super Administrador" => "ROLE_SUPER_ADMIN",
-                    "Administrador SGC" => "ROLE_ADMIN_SGC",
-                    "Supervisor" => "ROLE_SUPERVISOR",
-                    
+                    "Lider de Proceso" => "ROLE_LIDER_PROCESO",
+                    "Usuario SGC" => "ROLE_USER",
                 ),
                 "attr" =>array("class" => "form-control")
             ))

@@ -1,0 +1,235 @@
+{% extends 'base.html.twig' %}
+{% block referencia %}
+     <ol class="breadcrumb">
+        <li><a href="{{ path('dependencia_show', { 'id': proceso.macroProceso.dependencia.id }) }}"><i class="fa fa-dashboard"></i>Dependencia</a></li>
+
+        <li>Proceso</li>
+      </ol>
+{% endblock %}
+{% block body %}
+    <div class="col-md-4">
+          <!-- About Me Box -->
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">{{ proceso.nombre }}</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+               <strong><i class="fa fa-qrcode margin-r-5"></i> Código </strong>
+              <p>
+                    <b> {{proceso.macroProceso.sigla | upper}}</b>{{ proceso.codigo | upper }}
+              </p>
+              <hr>
+              <strong><i class="fa  fa-list margin-r-5"></i> Versión </strong>
+              <p>
+                {% if proceso.archivos|length != 0 %}
+                  {% for archivo in proceso.archivos %}
+                      {% if archivo.estado %}
+                          <div class="label label-success"> {{ archivo.version }}</div>
+                      {% endif %}
+                  {% endfor %}
+                {% else %}
+                  <h5 class="label label-danger"><i class="fa fa-clock-o"></i> No hay asignado ningun archivo</h5>
+                {% endif %}
+              </p>
+              <hr>
+              <strong><i class="fa fa-calendar margin-r-5"></i>Vigencia </strong>
+              <p>{{proceso.vigencia}}</p>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+          <div  class="col-md-7">
+            <div class="nav-tabs-custom">
+              <ul class="nav nav-tabs">
+                <li class="active"><a href="#activity" data-toggle="tab" aria-expanded="true">Archivos</a></li>
+                <li class=""><a href="#timeline" data-toggle="tab" aria-expanded="true">Usuarios</a></li>
+                <li class=""><a href="#Indicadores" data-toggle="tab" aria-expanded="true">Indicadores</a></li>
+                <li class=""><a href="#Riesgos" data-toggle="tab" aria-expanded="true">Riesgos</a></li>
+              </ul>
+              <div class="tab-content">
+                <div class="tab-pane active" id="activity">
+                        <table  class="table display">
+                            <thead>
+                                <tr>
+                                    <th>Versión</th>
+                                    <th>Control de Cambios</th>
+                                    <th>Original</th>
+                                    <th>PDF</th>
+                                    <th>Ver</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for archivo in proceso.archivos %}
+                                <tr>
+                                    <td>
+                                      {% if archivo.estado %}
+                                      <div data-toggle="tooltip"data-original-title="Vigente" class="label label-success">{{ archivo.version }}</div>
+                                      {% else %}
+                                         <div data-toggle="tooltip"data-original-title="Obsoleto" class="label label-danger">{{ archivo.version }}</div>
+                                      {% endif %}
+
+                                          
+                                    </td>
+                                    <td>{{ archivo.descripcion }}</td>
+                                    
+                                    <td><a data-toggle="tooltip"data-original-title="descargar" class="btn btn-primary" href="{{ path('documento_archivo_download', { 'id': archivo.id }) }}"><i class="fa  fa-cloud-download"></i></a></td>
+                                    <td><a data-toggle="tooltip"data-original-title="descargar" class="btn btn-primary" href="{{ path('documento_pdf_archivo_download', { 'id': archivo.id }) }}"><i class="fa  fa-cloud-download"></i></a></td>
+                                    <td>
+                                        <div class="btn-group">
+                                      <a data-toggle="tooltip"data-original-title="editar" href="{{ path('archivo_edit', { 'id': archivo.id }) }}" class="btn btn-default btn-flat btn-xs"><i class="fa fa-edit"></i></a>
+
+                                    </div>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                 
+                </div>
+                <!-- /.tab-pane -->
+                <div class="tab-pane" id="timeline">
+                    <table  class="table display">
+                        <thead>
+                            <tr>  
+                                <th>Usuario</th>
+                                <th>Cargo</th>
+                                <th>Acción</th>
+                                <th>Ver</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for procesoUsuario in proceso.procesosUsuarios %}
+                            <tr>
+
+                                <td>{{procesoUsuario.usuario.nombres}} {{procesoUsuario.usuario.apellidos}}</td>
+                                
+                                <td>{{procesoUsuario.usuario.cargo.nombre}}</td>
+                                <td>{{procesoUsuario.role}}</td>
+                                <td>
+                                    <div class="btn-group">
+                                      <a data-toggle="tooltip"data-original-title="ver" href="{{ path('usuario_show', { 'id': procesoUsuario.usuario.id }) }}" class="btn btn-default btn-flat btn-xs"><i class="fa fa-eye "></i></a>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>      
+                   
+                </div>
+                <!-- /.tab-pane -->
+
+                 <!-- /.tab-pane -->
+                <div class="tab-pane" id="Indicadores">
+                     <table class="table display3">
+                        <thead>
+                            <tr>
+                                <th>Código</th>
+                                <th>Nombre</th>
+                                <th>Unidad medida</th>
+                                <th>Periodicidad</th>
+                                <th>Meta</th>
+                                <th>Ver</th>
+                            </tr> 
+                        </thead>
+                        <tbody>
+                        {% for indicador in proceso.indicadores %}
+                            <tr>
+                                <td>
+                                   {{proceso.macroProceso.sigla | upper}}{{proceso.codigo | upper}}_{{indicador.codigo}}
+                                </td>
+                                <td>{{ indicador.nombre }}</td>
+                                <td>{{ indicador.unidadMedida }}</td>
+                                <td>{{ indicador.periodicidad }}</td>
+                                <td>{{ indicador.meta }}</td>
+                                <td>
+                                    <ul>
+                                        <div class="btn-group">
+                                              <a data-toggle="tooltip"data-original-title="ver" href="{{ path('indicador_show', { 'id': indicador.id }) }}" class="btn btn-default btn-flat btn-xs"><i class="fa fa-eye"></i></a>
+                                        </div>
+                                    </ul>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.tab-pane -->
+                <div class="tab-pane" id="Riesgos">
+
+                        <table  class="table display">
+                            <thead>
+                                <tr>
+                                    <th>Fecha</th>
+                                    <th>Riesgo</th>
+                                    <th>Acción Preventiva</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                             {% for riesgo in proceso.riesgos %}
+                                <tr>
+                                    <td>{% if riesgo.fecha %}{{riesgo.fecha|date('Y-m-d')}}{% else %}{% endif %}</td>
+                                    <td>{{ riesgo.riesgo }}</td>
+                                    <td>{{ riesgo.accionPreventiva }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                 
+                </div>
+
+                <!-- /.tab-pane -->
+              </div>
+              <!-- /.tab-content -->
+            </div>
+            <!-- /.nav-tabs-custom -->
+           </div>
+
+       
+        
+           {#  {{ form_start(delete_form) }}
+                <a type="submit" value="Delete" class="btn btn-app">
+                <i class="fa fa-edit"></i> Edit
+                </a>
+            {{ form_end(delete_form) }} #}
+  
+<div class="col-md-12">
+
+
+  <div class="box box-default">
+            <div class="box-header with-border">
+              <h3 class="box-title">Procedimientos</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <table  class="table display" id="example40">
+                  <thead>
+                      <tr>
+                          <th>Código</th>
+                          <th>Nombre</th>
+                          <th>Vigencia</th>
+                          <th>+ Acciones</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                  {% for procedimiento in proceso.procedimientos %}
+                      <tr>
+                          <td>{{ procedimiento.codigo }}</td>
+                          <td>{{ procedimiento.nombre }}</td>
+                          <td>{{procedimiento.vigencia}}</td>
+                          <td>
+                              <div class="btn-group">
+                                <a data-toggle="tooltip"data-original-title="ver" href="{{ path('procedimiento_show_supervisor', { 'id': procedimiento.id }) }}" class="btn btn-default btn-flat"><i class="fa fa-eye"></i></a>
+                              </div>
+                          </td>
+                      </tr>
+                  {% endfor %}
+                  </tbody>
+              </table>
+            </div>
+            <!-- /.box-body -->
+          </div>
+  </div> 
+
+{% endblock %}

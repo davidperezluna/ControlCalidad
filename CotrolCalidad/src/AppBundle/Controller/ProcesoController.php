@@ -16,6 +16,22 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class ProcesoController extends Controller
 {
+
+    /**
+     * Finds and displays a proceso entity.
+     *
+     * @Route("/proceso/{id}", name="proceso_show_supervisor")
+     * @Method("GET")
+     */
+    public function showSupervisorAction(Proceso $proceso)
+    {
+        $deleteForm = $this->createDeleteForm($proceso);
+
+        return $this->render('AppBundle:proceso:procesoShowSupervisor.html.twig', array(
+            'proceso' => $proceso,
+            'delete_form' => $deleteForm->createView(),
+        ));
+    }
     /**
      * Lists all proceso entities.
      *

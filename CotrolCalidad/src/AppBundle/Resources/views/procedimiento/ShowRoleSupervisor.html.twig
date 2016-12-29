@@ -1,0 +1,211 @@
+{% extends 'base.html.twig' %}
+{% block referencia %}
+     <ol class="breadcrumb">
+        <li><a href="{{ path('homepage') }}"><i class="fa fa-dashboard"></i>Home</a></li>
+        <li><a href="{{ path('dependencia_show', { 'id': procedimiento.proceso.macroProceso.dependencia.id }) }}">Dependencia</a></li>
+        <li><a href="{{ path('proceso_show_supervisor', { 'id': procedimiento.proceso.id }) }}">Proceso</a></li>
+        <li>Procedimiento</li>
+      </ol>
+{% endblock %}
+
+{% block body %}
+
+
+  <div class="col-md-4">
+    <!-- About Me Box -->
+    <div class="box box-primary">
+      <div class="box-header with-border">
+        <h3 class="box-title">{{ procedimiento.nombre }}</h3>
+      </div>
+      <!-- /.box-header -->
+      <div class="box-body">
+        <strong><i class="fa fa-qrcode margin-r-5"></i> Código </strong>
+        <p>{{procedimiento.proceso.macroProceso.sigla | upper }}{{procedimiento.proceso.codigo | upper }}_{{procedimiento.codigo | upper }}</p>
+        <hr>
+        <strong><i class="fa fa-list margin-r-5"></i> Versión </strong>
+        <p>
+          {% if procedimiento.archivos|length != 0 %}
+            {% for archivo in procedimiento.archivos %}
+                {% if archivo.estado %}
+                    <div class="label label-success"> {{ archivo.version }}</div>
+                {% endif %}
+            {% endfor %}
+          {% else %}
+            <h5 class="label label-danger"><i class="fa fa-clock-o"></i> No hay asignado ningun archivo</h5>
+          {% endif %}
+        </p>
+        <hr>
+        <strong><i class="fa fa-calendar margin-r-5"></i>Vigencia </strong>
+        <p>{{procedimiento.vigencia}}</p>
+      </div>
+      <!-- /.box-body -->
+    </div>
+    <!-- /.box -->
+  </div>
+
+
+  <div  class="col-md-8">
+    <div class="nav-tabs-custom">
+      <ul class="nav nav-tabs">
+
+        <li class="active"><a href="#activity" data-toggle="tab" aria-expanded="false">Archivos</a></li>
+        <li class=""><a href="#timeline" data-toggle="tab" aria-expanded="false">Usuarios</a></li>
+        <li class=""><a href="#normograma" data-toggle="tab" aria-expanded="false">Normograma</a></li>
+      </ul>
+      <div class="tab-content">
+        <div class="tab-pane active" id="activity">
+
+          <table class="table display" >
+            <thead>
+              <tr>
+
+                <th>Versión</th>
+                <th>Control de Cambios</th>
+                <th>Descargar </th>
+                <th>Descargar PDF</th>
+                <th>Ver</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for archivo in procedimiento.archivos %}
+                <tr>
+                  <td>{% if archivo.estado %}
+                      <div data-toggle="tooltip"data-original-title="Vigente" class="label label-success">{{ archivo.version }}</div>
+                      {% else %}
+                         <div data-toggle="tooltip"data-original-title="Obsoleto" class="label label-danger">{{ archivo.version }}</div>
+                      {% endif %}
+                  </td>
+                  <td>{{ archivo.descripcion }}</td>
+                  <td><a  data-toggle="tooltip"data-original-title="Descargar" class="btn btn-primary " href="{{ path('documento_archivo_download', { 'id': archivo.id }) }}"><i class="fa  fa-cloud-download"></i></a></td>
+                  <td><a   data-toggle="tooltip"data-original-title="Descargar" class="btn btn-primary " href="{{ path('documento_pdf_archivo_download', { 'id': archivo.id }) }}"><i class="fa  fa-cloud-download"></i></a></td>
+                  <td>
+                    <div class="btn-group">
+                      <a <a  data-toggle="tooltip"data-original-title="editar" href="{{ path('archivo_edit', { 'id': archivo.id }) }}" class="btn btn-default btn-flat btn-xs"><i class="fa fa-edit"></i></a>
+                    </div>
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+
+        </div>
+        <!-- /.tab-pane -->
+        <div class="tab-pane" id="timeline">
+          <table class="table display">
+            <thead>
+              <tr>  
+                <th>Usuario</th>
+               
+                <th>Cargo</th>
+                <th>Acción</th>
+                <th>Ver</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for procedimientousuario in procedimiento.procedimientosUsuarios %}
+                <tr>
+
+                  <td>{{procedimientousuario.usuario.nombres}} {{procedimientousuario.usuario.apellidos}}</td>
+                  
+                  <td>{{procedimientousuario.usuario.cargo.nombre}}</td>
+                  <td>{{procedimientousuario.role}}</td>
+                  <td>
+                    <div class="btn-group">
+                      <a data-toggle="tooltip"data-original-title="ver" href="{{ path('usuario_show', { 'id': procedimientousuario.usuario.id }) }}" class="btn btn-default btn-flat btn-xs"><i class="fa fa-eye "></i></a>
+                    </div>
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>      
+
+        </div>
+        <!-- /.tab-pane -->
+
+        <!-- /.tab-pane -->
+        <div class="tab-pane" id="normograma">
+          <table class="table display" >
+            <thead>
+              <tr>  
+                <th>Nombre</th>
+                <th>Url</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for normograma in procedimiento.normogramas %}
+                <tr>
+
+                  <td>{{normograma.documentoLegal.nombre}}</td>
+                  <td> <a data-toggle="tooltip"data-original-title="Visitar pagina" href="{{normograma.documentoLegal.url}}" class="btn btn-primary"><i class="fa fa-external-link"></i></a> </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>      
+
+        </div>
+        <!-- /.tab-pane -->
+
+
+        <!-- /.tab-pane -->
+      </div>
+      <!-- /.tab-content -->
+    </div>
+    <!-- /.nav-tabs-custom -->
+  </div>
+
+
+  <div class="col-md-12">
+
+    <!-- About Me Box -->
+    <div class="box box-default">
+      <div class="box-header with-border">
+        <h3 class="box-title">Documentos</h3>
+      </div>
+      <!-- /.box-header -->
+      <div class="box-body">
+        <table class="table display" >
+          <thead>
+            <tr>
+
+              <th>Documento</th>
+              <th>Nombre</th>
+              <th>Tipo Documento</th>
+              <th>Versión</th>
+              <th>Vigencia</th>
+              <th>Documento</th>
+              <th>Instructivo</th>
+            </tr>
+          </thead> 
+          <tbody>
+            {% for procedimientoDocumento in procedimiento.procedimientosDocumentos %}
+              <tr>
+
+                  <td>{{procedimiento.proceso.macroProceso.sigla | upper }}{{procedimiento.proceso.codigo | upper }}_{{procedimiento.codigo | upper }}_{{procedimientoDocumento.documento.tipoDocumento.sigla | upper }}{{procedimientoDocumento.documento.id}}</td>
+                  <td>{{procedimientoDocumento.documento.nombre}}</td>
+                  <td>{{procedimientoDocumento.documento.tipoDocumento.nombre}}</td>
+                  <td>{{procedimientoDocumento.documento.version}}</td>
+                  <td>{{procedimientoDocumento.documento.vigencia}}</td>
+                  <td>
+                      <a data-toggle="tooltip"data-original-title="Descargar" class="btn btn-primary btn-sm " href="{{ path('catalogo_marca_download', { 'id': procedimientoDocumento.documento.id }) }}">
+                      <i class="fa  fa-cloud-download"></i>
+                    </a>
+                  </td>
+
+                  <td>
+                    {% if procedimientoDocumento.documento.urlInstructivo != null %}
+                      
+                      <a data-toggle="tooltip"data-original-title="Descargar" class="btn btn-primary btn-sm " href="{{ path('instructivo_download', { 'id': procedimientoDocumento.documento.id }) }}">
+                      <i class="fa  fa-cloud-download"></i>
+                    </a>
+                    {% endif %}
+                  </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <!-- /.box-body -->
+    </div>
+    <!-- /.box -->
+  </div>
+{% endblock %}

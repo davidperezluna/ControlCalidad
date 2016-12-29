@@ -16,6 +16,22 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
 class ProcedimientoController extends Controller
 {
 
+     /**
+     * Finds and displays a procedimiento entity.
+     *
+     * @Route("procedimiento/{id}", name="procedimiento_show_supervisor")
+     * @Method("GET")
+     */
+    public function showSupervisorAction(Procedimiento $procedimiento)
+    {
+        $deleteForm = $this->createDeleteForm($procedimiento);
+
+        return $this->render('AppBundle:procedimiento:ShowRoleSupervisor.html.twig', array(
+            'procedimiento' => $procedimiento,
+            'delete_form' => $deleteForm->createView(),
+        ));
+    }
+
     /**
      * Lists all procedimiento entities.
      *

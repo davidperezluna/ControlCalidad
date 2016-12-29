@@ -89,6 +89,11 @@ class Usuario implements UserInterface
     protected $cargo;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Dependencia", inversedBy="Usuarios")
+     */
+    protected $dependencia;
+
+    /**
      * @ORM\OneToMany(targetEntity="ProcesoUsuario", mappedBy="usuario")
      */
     private $procesosUsuarios;
@@ -440,5 +445,29 @@ class Usuario implements UserInterface
     public function getProcedimientosUsuarios()
     {
         return $this->procedimientosUsuarios;
+    }
+
+    /**
+     * Set dependencia
+     *
+     * @param \AppBundle\Entity\Dependencia $dependencia
+     *
+     * @return Usuario
+     */
+    public function setDependencia(\AppBundle\Entity\Dependencia $dependencia = null)
+    {
+        $this->dependencia = $dependencia;
+
+        return $this;
+    }
+
+    /**
+     * Get dependencia
+     *
+     * @return \AppBundle\Entity\Dependencia
+     */
+    public function getDependencia()
+    {
+        return $this->dependencia;
     }
 }

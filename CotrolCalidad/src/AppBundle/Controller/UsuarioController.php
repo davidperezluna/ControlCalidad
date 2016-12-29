@@ -95,10 +95,22 @@ class UsuarioController extends Controller
     public function newAction(Request $request)
     {
         $usuario = new Usuario();
-        $form = $this->createForm('AppBundle\Form\UsuarioType', $usuario);
+        $user = $this->getUser();
+
+        if ($user->getRole()=="ROLE_SUPER_ADMIN") {
+          $form = $this->createForm('AppBundle\Form\UsuarioType', $usuario);
+        }elseif ($user->getRole()=="ROLE_ADMIN_SGC") {
+            $form = $this->createForm('AppBundle\Form\UsuarioTypeRoleAdminSGC', $usuario);
+        }
+      
         $form->handleRequest($request);
 
+
         if ($form->isSubmitted() && $form->isValid()) {
+
+            if ($user->getRole()=="ROLE_ADMIN_SGC") {
+              $usuario->setDependencia($user->getDependencia());
+            }
             $em = $this->getDoctrine()->getManager();
             $factory = $this->get("security.encoder_factory");
             $encoder = $factory->getEncoder($usuario);

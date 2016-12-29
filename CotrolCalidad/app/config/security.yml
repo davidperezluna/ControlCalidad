@@ -42,4 +42,3 @@ security:
         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/usuario/password/recovery, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         #-{ path: ^/*, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/*, roles: [ROLE_ADMIN] }

@@ -13,12 +13,18 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $em = $this->getDoctrine()->getManager();
+        $em = $this->getDoctrine()->getManager(); 
 
-        $empresas = $em->getRepository('AppBundle:Empresa')->findAll();
-
-        return $this->render('AppBundle:default:default.html.twig', array(
-            'empresas' => $empresas,
-        ));
+        $user = $this->getUser();
+          
+        if (($user->getRole()!="ROLE_SUPER_ADMIN")) {
+           return $this->redirectToRoute('dependencia_show', array('id' => $user->getDependencia()->getId()));
+        }else{
+            $empresas = $em->getRepository('AppBundle:Empresa')->findAll();
+             return $this->render('AppBundle:default:default.html.twig', array(
+                'empresas' => $empresas,
+            ));
+        }
+        
     }
 }
