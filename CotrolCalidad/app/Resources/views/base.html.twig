@@ -100,7 +100,19 @@
                             {{app.user.email}}
                         {% endif %}</span>
                       </p>
-                      <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                      <a href="#"><i class="fa fa-circle text-success"></i>
+                       {% if app.user.role == "ROLE_SUPER_ADMIN" %}
+                        Super Administrador
+                        {% elseif app.user.role == "ROLE_ADMIN_SGC" %}
+                        Administrador SGC
+                        {% elseif app.user.role == "ROLE_SUPERVISOR" %}
+                        Supervisor
+                        {% elseif app.user.role == "ROLE_LIDER_PROCESO" %}
+                        Lider de Proceso
+                        {% elseif app.user.role == "ROLE_USER" %}
+                        Usuario SGC
+                       {% endif %}
+                       </a>
                     </div>
                   </div>
              
@@ -112,15 +124,22 @@
                     <li class="header">MENU INICIO</li>
 
                     <li><a href="{{path("homepage")}}"><i class="fa fa-circle-o text-aqua"></i> <span>Inicio</span></a></li>
-                    <li><a href="{{path("proceso_index")}}"><i class="fa fa-circle-o text-orange"></i> <span>Auditoria</span></a></li>
+                    <li>
+                    {% if app.user.role != "ROLE_USER" %}
+                    <a href="{{path("proceso_index")}}"><i class="fa fa-circle-o text-orange"></i> <span>Auditoria</span></a>
+                    {% endif %}
+
+                    </li>
                     <li><a href="{{path("documentos_index")}}"><i class="fa fa-circle-o text-red"></i> <span>Documentos Maestros</span></a></li>
 
                     <li class="header">MENU ADMINISTRATIVO</li>
+
+                    {% if app.user.role == "ROLE_SUPER_ADMIN" or app.user.role == "ROLE_ADMIN_SGC" %}
                     <li class="treeview">
                       <a href="#">
                         <i class="fa  fa-user"></i> <span>Usuarios</span>
                         <span class="pull-right-container">
-                          <i class="fa fa-angle-left pull-right"></i>
+                           <i class="fa fa-angle-left pull-right"></i>
                         </span>
                       </a>
                       <ul class="treeview-menu">
@@ -179,19 +198,21 @@
                         <li><a href="{{path("cargo_index")}}">Administrar</a></li>
                       </ul>
                     </li>
-
-                    <li class="treeview">
-                      <a href="#">
-                        <i class="fa  fa-industry"></i>
-                        <span>Entidad</span>
-                        <span class="pull-right-container">
-                          <i class="fa fa-angle-left pull-right"></i>
-                        </span>
-                      </a>
-                      <ul class="treeview-menu">
-                        <li><a href="{{path("empresa_index")}}">Administrar</a></li>
-                      </ul>
-                    </li>
+                    
+                    {% if app.user.role == "ROLE_SUPER_ADMIN" %}
+                      <li class="treeview">
+                        <a href="#">
+                          <i class="fa  fa-industry"></i>
+                          <span>Entidad</span>
+                          <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                          </span>
+                        </a>
+                        <ul class="treeview-menu">
+                          <li><a href="{{path("empresa_index")}}">Administrar</a></li>
+                        </ul>
+                      </li>
+                    {% endif %}
 
                     <li class="treeview">
                       <a href="#">
@@ -218,6 +239,7 @@
                         <li><a href="{{path("rango_index")}}">Administrar</a></li>
                       </ul>
                     </li>
+                    {% endif %}
 
                     
                   </ul>

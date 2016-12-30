@@ -223,6 +223,7 @@ class SeguimientoIndicadorController extends Controller
             $seguimientoIndicador->setFechaSeguimiento($FechaSeguimiento);
             $seguimientoIndicador->setProximaFecha($proximaFecha);
             $seguimientoIndicador->setNotificacion(true);
+            $seguimientoIndicador->setUsuario($this->getUser());
 
 
             $em = $this->getDoctrine()->getManager();

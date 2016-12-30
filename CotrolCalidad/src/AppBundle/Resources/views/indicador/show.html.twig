@@ -193,8 +193,10 @@
 									<th>Fechaseguimiento</th>
 									<th>Proximafecha</th>
 									<th>Resultado</th>
+									
 									{# <th><h5> <b>porcentaje</b> <small>resultado/meta</small></h5></th> #}
 									<th>Acciones</th>
+									<th>Usuario</th>
 								</tr>
 							</thead>
 
@@ -209,6 +211,7 @@
 									<td>
 										{% if seguimientoIndicador.resultado < indicador.porcentajeAcciones %} <a data-toggle="tooltip"data-original-title="Porcentaje bajo" href="{{ path('seguimientoindicador_show', { 'id': seguimientoIndicador.id }) }}" class="btn btn-danger btn-flat btn-xs" ><i class="fa  fa-warning"></i></a>{% endif %}
 									</td>
+									<td>{{seguimientoIndicador.usuario.nombres}}</td>
 								</tr>
 							{% endfor %}
 							</tbody> 

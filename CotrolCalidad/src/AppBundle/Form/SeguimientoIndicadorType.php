@@ -16,7 +16,7 @@ class SeguimientoIndicadorType extends AbstractType
     {
         $builder
         
-        ->add('usuario');
+        ;
     }
     
     /**

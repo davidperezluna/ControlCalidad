@@ -167,6 +167,7 @@
 									<th>Fechaseguimiento</th>
 									<th>Proximafecha</th>
 									<th>Resultado</th>
+									<th>Usuario</th>
 									{# <th><h5> <b>porcentaje</b> <small>resultado/meta</small></h5></th> #}
 								</tr>
 							</thead>
@@ -178,6 +179,7 @@
 									<td>{% if seguimientoIndicador.fechaSeguimiento %}{{ seguimientoIndicador.fechaSeguimiento|date('Y-m-d') }}{% endif %}</td>
 									<td>{% if seguimientoIndicador.proximaFecha %}{{ seguimientoIndicador.proximaFecha|date('Y-m-d') }}{% endif %}</td>
 									<td>{{ seguimientoIndicador.resultado }}</td>
+									<td>{{ seguimientoIndicador.usuario.nombres }}</td>
 									{# <td>{{ seguimientoIndicador.porcentaje }}</td> #}
 								</tr>
 							{% endfor %}
