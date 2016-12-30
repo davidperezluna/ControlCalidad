@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Accion</h1>
+    <h1>Acción</h1>
 
     <table>
         <tbody>
@@ -10,11 +10,11 @@
                 <td>{{ accion.id }}</td>
             </tr>
             <tr>
-                <th>Fechamaxima</th>
+                <th>Fecha Máxima</th>
                 <td>{% if accion.fechaMaxima %}{{ accion.fechaMaxima|date('Y-m-d') }}{% endif %}</td>
             </tr>
             <tr>
-                <th>Accion</th>
+                <th>Acción</th>
                 <td>{{ accion.accion }}</td>
             </tr>
             <tr>
@@ -26,10 +26,10 @@
 
     <ul>
         <li>
-            <a href="{{ path('accion_index') }}">Back to the list</a>
+            <a href="{{ path('accion_index') }}">Regresar a la lista</a>
         </li>
         <li>
-            <a href="{{ path('accion_edit', { 'id': accion.id }) }}">Edit</a>
+            <a href="{{ path('accion_edit', { 'id': accion.id }) }}">Editar</a>
         </li>
         <li>
             {{ form_start(delete_form) }}
