@@ -80,6 +80,7 @@ class IndicadorType extends AbstractType
                 'MENSUAL' => 'MENSUAL',
                 'BIMENSUAL' => 'BIMENSUAL',
                 'TRIMESTRAL' => 'TRIMESTRAL',
+                'SEMESTRAL' => 'SEMESTRAL',
                 'SEMANAL' => 'SEMANAL',
                 'ANUAL' => 'ANUAL',
             ),

@@ -220,7 +220,17 @@ class SeguimientoIndicadorController extends Controller
 
                 if (count($indicador->getSeguimientosIndicadores()) == null) {
                     $seguimientoIndicador->setMes("Enero");
-                }elseif (count($indicador->getSeguimientosIndicadores()) == 1) {
+                }
+                 elseif (count($indicador->getSeguimientosIndicadores()) == 1) {
+                    $seguimientoIndicador->setMes("Enero");
+                }
+                elseif (count($indicador->getSeguimientosIndicadores()) > 1 && count($indicador->getSeguimientosIndicadores()) < 5) {
+                    $seguimientoIndicador->setMes("Enero");
+                }
+                elseif (count($indicador->getSeguimientosIndicadores()) == 5) {
+                    $seguimientoIndicador->setMes("Junio");
+                }
+                 elseif (count($indicador->getSeguimientosIndicadores()) > 5) {
                     $seguimientoIndicador->setMes("Junio");
                 }
             }
@@ -229,6 +239,12 @@ class SeguimientoIndicadorController extends Controller
                 $intervalo = new \DateInterval('P12M');
                 $proximaFecha = $proxima->add($intervalo);
                 $seguimientoIndicador->setMes("Enero");
+
+                if (count($indicador->getSeguimientosIndicadores()) == null) {
+                    $seguimientoIndicador->setMes("Enero");
+                }elseif (count($indicador->getSeguimientosIndicadores()) >= 1) {
+                     $seguimientoIndicador->setMes(" ");
+                }
             }
 
             $porcentaje = ($resultado*$indicador->getMeta())/100;

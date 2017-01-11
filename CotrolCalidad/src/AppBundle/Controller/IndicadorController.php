@@ -183,10 +183,10 @@ class IndicadorController extends Controller
                 $periodo=4;
             }
             if ($indicador->getPeriodicidad() == "SEMESTRAL") {
-                $periodo=2;
+                $periodo=12;
             }
             if ($indicador->getPeriodicidad() == "ANUAL") {
-                $periodo=1;
+                $periodo=12;
             }
    
 
