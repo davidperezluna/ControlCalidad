@@ -100,7 +100,7 @@ class DocumentoController extends Controller
         entity.');
         }
         $path = $this->get('kernel')->getRootDir() .
-        "/../web/uploads/documentos/" . $document->geturlDocumento();
+        "/../web/uploads/documentos/" . $document->geturlDocumento(); 
         $content = file_get_contents($path);
 
         $response = new Response();
@@ -270,8 +270,11 @@ class DocumentoController extends Controller
                 $instrictivoName
             );
 
+     
             $documento->seturlInstructivo($instrictivoName);
             $documento->seturlDocumento($fileName);
+
+            $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('procedimiento_show', array('id' => $idProcedimiento));
         }
@@ -323,6 +326,7 @@ class DocumentoController extends Controller
 
             $documento->seturlInstructivo($instrictivoName);
             $documento->seturlDocumento($fileName);
+            $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('documento_edit', array('id' => $documento->getId()));
         }

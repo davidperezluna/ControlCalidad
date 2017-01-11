@@ -36,7 +36,9 @@
                 </thead>
 
                 <tbody>
+
                 {% for categorium in categorias %}
+                    {% if categorium.dependencia.id == app.user.dependencia.id %}
                     <tr>
                         <td><a href="{{ path('categoria_show', { 'id': categorium.id }) }}">{{ categorium.id }}</a></td>
                         <td>{{ categorium.nombre }}</td>
@@ -48,6 +50,7 @@
                             </div>
                         </td>
                     </tr>
+                    {% endif %}
                 {% endfor %}
                 </tbody>
                
