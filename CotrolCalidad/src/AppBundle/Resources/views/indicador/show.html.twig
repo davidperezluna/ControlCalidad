@@ -184,6 +184,13 @@
 					<h3 class="box-title">Seguimiento <small><a href="{{ path('seguimientoindicador_new', { 'idIndicador': indicador.id }) }}">Nuevo Seguimiento</a></small></h3>
 				{% endif %}
 				</div>
+
+				{% for flash_message in app.session.flashbag.get('error') %}
+				    <div class="alert alert-warning alert-dismissable">
+					  <button type="button" class="close" data-dismiss="alert">&times;</button>
+					  <strong>¡Cuidado!</strong> {{ flash_message }}.
+					</div>
+				{% endfor %}
 				<!-- /.box-header -->
 				<div class="box-body">
 					<table class="table display">

@@ -43,12 +43,17 @@ class CategoriaController extends Controller
         $form = $this->createForm('AppBundle\Form\CategoriaType', $categorium);
         $form->handleRequest($request);
 
+
         if ($form->isSubmitted() && $form->isValid()) {
+
+            if ($this->getUser()->getRole() != "ROLE_SUPER_ADMIN") {
+              $categorium->setDependencia($this->getUser()->getDependencia()); 
+            }
             $em = $this->getDoctrine()->getManager();
             $em->persist($categorium);
             $em->flush($categorium);
 
-            return $this->redirectToRoute('categoria_show', array('id' => $categorium->getId()));
+            return $this->redirectToRoute('categoria_index');
         }
 
         return $this->render('AppBundle:categoria:new.html.twig', array(

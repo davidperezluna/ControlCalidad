@@ -108,8 +108,8 @@ class UsuarioController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            if ($user->getRole()=="ROLE_ADMIN_SGC") {
-              $usuario->setDependencia($user->getDependencia());
+            if ($this->getUser()->getRole()=="ROLE_ADMIN_SGC") {
+                $usuario->setDependencia($this->getUser()->getDependencia());
             }
             $em = $this->getDoctrine()->getManager();
             $factory = $this->get("security.encoder_factory");

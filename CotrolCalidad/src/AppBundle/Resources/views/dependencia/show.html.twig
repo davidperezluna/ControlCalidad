@@ -78,11 +78,10 @@
                                                             {% for proceso in mp.procesos %}
                                                                 <tr>
                                                                     <td>
-                                                                        {% if proceso.codigo < 10 %}
-                                                                            0{{proceso.codigo}}
-                                                                            {% else %}
+                                                                        
+                                                                          
                                                                              {{proceso.codigo}}
-                                                                        {% endif %}
+                                                                        
                                                                     </td>
                                                                     <td>{{ proceso.nombre }}</td>
                                                                     <td>{{proceso.vigencia}}</td>

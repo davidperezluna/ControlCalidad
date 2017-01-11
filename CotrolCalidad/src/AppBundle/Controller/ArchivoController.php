@@ -122,6 +122,7 @@ class ArchivoController extends Controller
             }
 
         if ($form->isSubmitted() && $form->isValid()) {
+
             $file = $archivo->getUrlDocumento();
             $filePdf = $archivo->getUrlDocumentoPdf();
             $fileName = md5(uniqid()).$archivo->getVersion().'.'.$file->guessExtension();
@@ -144,9 +145,18 @@ class ArchivoController extends Controller
                  $archivos = $em->getRepository('AppBundle:Archivo')->findBy(array('proceso' => $preoceso->getId()));
 
                 foreach ($archivos as $archivoC ) {
+                    if ($archivoC->getVersion() == $archivo->getVersion()) {
+                    $this->addFlash(
+                        'error',
+                        'La version ya existe!'
+                    );
+
+                    return $this->redirectToRoute('proceso_show', array('id' => $preoceso->getId())); 
+                }else{
                     $archivoC->setEstado(0);
                     $em->persist($archivoC);
                     $em->flush($archivoC);
+                }
                 }
             }else{
                 $preoceso = null;
@@ -158,16 +168,24 @@ class ArchivoController extends Controller
 
                 $archivos = $em->getRepository('AppBundle:Archivo')->findBy(array('procedimiento' => $procedimiento->getId()));
                 foreach ($archivos as $archivoP ) {
-                $archivoP->setEstado(0);
-                $em->persist($archivoP);
-                $em->flush($archivoP);
+                    if ($archivoP->getVersion() == $archivo->getVersion()) {
+                    $this->addFlash(
+                        'error',
+                        'La version ya existe!'
+                    );
+
+                    return $this->redirectToRoute('proceso_show', array('id' => $preoceso->getId())); 
+                }else{
+                    $archivoP->setEstado(0);
+                    $em->persist($archivoP);
+                    $em->flush($archivoP);
+                }
+                    
                 }
             }else{
                 $procedimiento = null;
             }
-
-
-           
+            
             $archivo->setEstado(1);
             $archivo->seturlDocumentoPdf($filePdfName);
             $archivo->setProcedimiento($procedimiento);

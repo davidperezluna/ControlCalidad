@@ -17,11 +17,12 @@
                   <h3 class="box-title">Crear Categoria</h3>
                 </div>
                  {{ form_start(form) }}
-                    {{ form_widget(form) }}
+                    
 
                       {% if app.user.role == "ROLE_ADMIN_SGC" %}
                         {{ form_widget(form.dependencia, { 'attr': {'class': 'hidden'} }) }}
                       {% endif %}
+                    {{ form_widget(form) }}
                     <br>
                     <div class="box-footer">
                     <button type="submit" class="btn btn-primary">Crear</button>

@@ -78,9 +78,28 @@ class SeguimientoIndicadorController extends Controller
             }
 
             if ($indicador->getUnidadMedida()=="PORCENTAJE") {
-               $numerador = $request->request->get('numerador');
-               $denominador = $request->request->get('denominador');
-                $resultado = ($numerador / $denominador)*100;
+
+
+                    $numerador = $request->request->get('numerador');
+                    $denominador = $request->request->get('denominador');
+                   
+
+                    if ($denominador == 0) {
+                         $this->addFlash(
+                            'error',
+                            'El denominador no puede ser 0!'
+                        );
+                        return $this->redirectToRoute('indicador_show', array('id' => $indicador->getId()));
+                    }
+
+                    if ($denominador < $numerador) {
+                         $this->addFlash(
+                            'error',
+                            'Cuidado el numerador es mayor que el denominador '
+                        );
+                        return $this->redirectToRoute('indicador_show', array('id' => $indicador->getId()));
+                    }
+                    $resultado = ($numerador / $denominador)*100;
             }
 
              if ($indicador->getUnidadMedida()=="NUMERO") {
@@ -209,7 +228,6 @@ class SeguimientoIndicadorController extends Controller
                 $proxima = new \DateTime('now');
                 $intervalo = new \DateInterval('P12M');
                 $proximaFecha = $proxima->add($intervalo);
-
                 $seguimientoIndicador->setMes("Enero");
             }
 
@@ -224,7 +242,6 @@ class SeguimientoIndicadorController extends Controller
             $seguimientoIndicador->setProximaFecha($proximaFecha);
             $seguimientoIndicador->setNotificacion(true);
             $seguimientoIndicador->setUsuario($this->getUser());
-
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($seguimientoIndicador);

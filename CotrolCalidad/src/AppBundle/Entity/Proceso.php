@@ -36,12 +36,7 @@ class Proceso
      */
     private $nombre;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="version", type="string", length=255)
-     */
-    private $version;
+   
 
     /**
      * @var \DateTime
@@ -141,30 +136,6 @@ class Proceso
     public function getNombre()
     {
         return $this->nombre;
-    }
-
-    /**
-     * Set version
-     *
-     * @param string $version
-     *
-     * @return Proceso
-     */
-    public function setVersion($version)
-    {
-        $this->version = $version;
-
-        return $this;
-    }
-
-    /**
-     * Get version
-     *
-     * @return string
-     */
-    public function getVersion()
-    {
-        return $this->version;
     }
 
     /**
