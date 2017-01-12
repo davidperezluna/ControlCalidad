@@ -59,7 +59,6 @@
                                     <th>Control de Cambios</th>
                                     <th>Original</th>
                                     <th>PDF</th>
-                                    <th>Ver</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -78,12 +77,7 @@
                                     
                                     <td><a data-toggle="tooltip"data-original-title="descargar" class="btn btn-primary" href="{{ path('documento_archivo_download', { 'id': archivo.id }) }}"><i class="fa  fa-cloud-download"></i></a></td>
                                     <td><a data-toggle="tooltip"data-original-title="descargar" class="btn btn-primary" href="{{ path('documento_pdf_archivo_download', { 'id': archivo.id }) }}"><i class="fa  fa-cloud-download"></i></a></td>
-                                    <td>
-                                        <div class="btn-group">
-                                      <a data-toggle="tooltip"data-original-title="editar" href="{{ path('archivo_edit', { 'id': archivo.id }) }}" class="btn btn-default btn-flat btn-xs"><i class="fa fa-edit"></i></a>
-
-                                    </div>
-                                    </td>
+                                    
                                 </tr>
                             {% endfor %}
                             </tbody>
@@ -98,7 +92,6 @@
                                 <th>Usuario</th>
                                 <th>Cargo</th>
                                 <th>Acción</th>
-                                <th>Ver</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -109,11 +102,7 @@
                                 
                                 <td>{{procesoUsuario.usuario.cargo.nombre}}</td>
                                 <td>{{procesoUsuario.role}}</td>
-                                <td>
-                                    <div class="btn-group">
-                                      <a data-toggle="tooltip"data-original-title="ver" href="{{ path('usuario_show', { 'id': procesoUsuario.usuario.id }) }}" class="btn btn-default btn-flat btn-xs"><i class="fa fa-eye "></i></a>
-                                    </div>
-                                </td>
+                                
                             </tr>
                         {% endfor %}
                         </tbody>

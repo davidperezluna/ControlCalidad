@@ -63,23 +63,28 @@
                 </p>
             </div>
             {% else %}
-            <div class="col-md-1">
-                    <br>
-                    <a  data-toggle="tooltip"data-original-title="Agregar Auditor - Auditado" href="{{ path('auditoriausuario_new', { 'idAuditoria': auditorium.id }) }}" class="btn btn-app">
-                          <i class="fa fa-plus"></i> Roles
-                    </a>
-                    <br>
+            {% if app.user.role != "ROLE_SUPERVISOR" %}
 
-                    <a  data-toggle="tooltip"data-original-title="Agregar Hallazgo" href="{{ path('hallazgo_new', { 'idAuditoria': auditorium.id }) }}" class="btn btn-app">
-                          <i class="fa fa-plus"></i> Hallazgo
-                    </a>
-                    <br>
+                <div class="col-md-1">
+                        <br>
+                        <a  data-toggle="tooltip"data-original-title="Agregar Auditor - Auditado" href="{{ path('auditoriausuario_new', { 'idAuditoria': auditorium.id }) }}" class="btn btn-app">
+                              <i class="fa fa-plus"></i> Roles
+                        </a>
+                        <br>
 
-                     <a  data-toggle="tooltip"data-original-title="Cerrar auditoria" href="{{ path('auditoria_edit', { 'id': auditorium.id }) }}" class="btn btn-app">
-                          <i class="fa fa-warning"></i> Cerrar
-                    </a>
-                    <br>
-            </div> 
+                        <a  data-toggle="tooltip"data-original-title="Agregar Hallazgo" href="{{ path('hallazgo_new', { 'idAuditoria': auditorium.id }) }}" class="btn btn-app">
+                              <i class="fa fa-plus"></i> Hallazgo
+                        </a>
+                        <br>
+
+                         <a  data-toggle="tooltip"data-original-title="Cerrar auditoria" href="{{ path('auditoria_edit', { 'id': auditorium.id }) }}" class="btn btn-app">
+                              <i class="fa fa-warning"></i> Cerrar
+                        </a>
+                        <br>
+                </div>
+
+            {% endif %}
+             
           
         {% endif %}
         <div class="col-lg-6">
@@ -152,8 +157,9 @@
                         <td>
                             <div class="btn-group">
                               <a data-toggle="tooltip"data-original-title="ver" href="{{ path('hallazgo_show', { 'id': hallazgo.id }) }}" class="btn btn-default btn-flat "><i class="fa fa-eye "></i></a>
-
+                            {% if app.user.role != "ROLE_SUPERVISOR" %}
                               <a data-toggle="tooltip"data-original-title="editar" href="{{ path('hallazgo_edit', { 'id': hallazgo.id }) }}" class="btn btn-default btn-flat "><i class="fa fa-edit "></i></a>
+                            {% endif %}
                             </div>
                         </td>
                     </tr>

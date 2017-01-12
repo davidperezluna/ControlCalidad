@@ -10,11 +10,13 @@
 {% block body %}
     <!-- /.box -->
 <div class="col-lg-12">
+     {% if app.user.role != "ROLE_SUPERVISOR" %}
     <div class="col-lg-1">
                     <a data-toggle="tooltip"data-original-title="Agregar nueva categoria" href="{{ path('categoria_new')}}" class="btn btn-app btn-xs">
                         <i class="fa fa-plus"></i> Agregar
                     </a>
                 </div>
+    {% endif %}
        
         <div class="col-lg-12">
           <div class="box">
@@ -28,10 +30,11 @@
 
                 <thead>
                 <tr>
-                    <th>Id</th>
                     <th>Nombre</th> 
                     <th>Descripción</th>
+                     {% if app.user.role != "ROLE_SUPERVISOR" %}
                     <th>Ver</th>
+                {% endif %}
                 </tr>
                 </thead>
 
@@ -41,21 +44,21 @@
                     {% if app.user.dependencia != null %}
                         {% if categorium.dependencia.id == app.user.dependencia.id %}
                             <tr>
-                                <td><a href="{{ path('categoria_show', { 'id': categorium.id }) }}">{{ categorium.id }}</a></td>
                                 <td>{{ categorium.nombre }}</td>
                                 <td>{{ categorium.descripcion }}</td>
+                                 {% if app.user.role != "ROLE_SUPERVISOR" %}
                                 <td>
                                     <div class="btn-group">
                                       <a data-toggle="tooltip"data-original-title="ver" href="{{ path('categoria_show', { 'id': categorium.id }) }}" class="btn btn-default btn-flat"><i class="fa fa-eye"></i></a>
                                       <a data-toggle="tooltip"data-original-title="editar" href="{{ path('categoria_edit', { 'id': categorium.id }) }}" class="btn btn-default btn-flat"><i class="fa fa-edit"></i></a>
                                     </div>
                                 </td>
+                            {% endif %}
                             </tr>
                         {% endif %}
 
                         {% else %}
                             <tr>
-                                <td><a href="{{ path('categoria_show', { 'id': categorium.id }) }}">{{ categorium.id }}</a></td>
                                 <td>{{ categorium.nombre }}</td>
                                 <td>{{ categorium.descripcion }}</td>
                                 <td>

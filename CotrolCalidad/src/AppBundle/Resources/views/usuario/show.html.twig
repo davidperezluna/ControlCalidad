@@ -20,13 +20,14 @@
 
 
                 <p class="text-muted text-center">{{ usuario.apellidos }}</p>
-                
+                {% if app.user.role == "ROLE_SUPER_ADMIN" or app.user.role == "ROLE_ADMIN_SGC"  %}
                 <div style="margin-top: 19px; margin-left: 35%;">
                     <a href="{{ path('usuario_edit', { 'id': usuario.id }) }}" class="btn btn-app">
                         <i class="fa fa-edit"></i> Editar
                     </a>
                     <br>
                 </div>
+            {% endif %}
 
                 <ul class="list-group list-group-unbordered">
                     <li class="list-group-item">
@@ -46,9 +47,12 @@
                     </li>
 
                 </ul>
-                {{ form_start(delete_form) }}
-                <input type="submit" class="btn btn-danger btn-block" value="Eliminar">
-                {{ form_end(delete_form) }}
+                {% if app.user.role == "ROLE_SUPER_ADMIN" or app.user.role == "ROLE_ADMIN_SGC"  %}
+                    {{ form_start(delete_form) }}
+                        <input type="submit" class="btn btn-danger btn-block" value="Eliminar">
+                    {{ form_end(delete_form) }}
+                {% endif %}
+                
 
             </div>
             <!-- /.box-body -->

@@ -47,12 +47,15 @@
           </div>
           <!-- /.box -->
         </div>
-         <div  class="col-md-1">
-              <a data-toggle="tooltip"data-original-title="Nueva Auditoria" href="{{ path('auditoria_new', { 'idProceso': proceso.id }) }}" class="btn btn-app">
-                    <i class="fa fa-plus"></i> Auditoria 
-                  </a>
-                <br>
-            </div>
+        {% if app.user.role != "ROLE_SUPERVISOR" %}
+          <div  class="col-md-1">
+                <a data-toggle="tooltip"data-original-title="Nueva Auditoria" href="{{ path('auditoria_new', { 'idProceso': proceso.id }) }}" class="btn btn-app">
+                      <i class="fa fa-plus"></i> Auditoria 
+                    </a>
+                  <br>
+          </div>
+        {% endif %}
+         
 </div>
 <div class="col-lg-12">
   <div class="panel panel-default">
@@ -90,7 +93,7 @@
                 </td>
             </tr>
             {% else %}
-              {% if condition %}
+              
               <tr>
                 <td>{{ auditorium.tipoAuditoria }}</td>
                 <td> <textarea class="form-control" cols="30" rows="5" readonly>{{ auditorium.objetivos }}</textarea></td>
@@ -106,7 +109,6 @@
                       <div class="btn-group">
                         <a data-toggle="tooltip"data-original-title="ver audirotia cerrada" href="{{ path('auditoria_show', { 'id': auditorium.id }) }}" class="btn btn-success btn-flat btn-xs"><i class="fa fa-eye"></i></a>
                       </div>   
-                  {% endif %}
                 </td>
               </tr>
             {% endif %}

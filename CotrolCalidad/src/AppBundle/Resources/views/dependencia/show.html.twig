@@ -24,9 +24,12 @@
         <div class="box  box-solid box-default" >
             <div class="box-header with-border ">
               <h3 class="box-title">{{categoria.nombre}}</h3>
-                    <a data-toggle="tooltip" title="Nuevo macro-proceso" class="col-md-offset-10" href="{{ path('macroproceso_new', { 'idCategoria': categoria.id,'idDependencia': dependencium.id}) }}" class="btn btn-default btn-xs">
-                            <i class="fa fa-plus"></i> <small>Macroproceso</small>
-                    </a>
+              {% if app.user.role == "ROLE_SUPER_ADMIN" or app.user.role == "ROLE_ADMIN_SGC" %}
+                <a data-toggle="tooltip" title="Nuevo macro-proceso" class="col-md-offset-10" href="{{ path('macroproceso_new', { 'idCategoria': categoria.id,'idDependencia': dependencium.id}) }}" class="btn btn-default btn-xs">
+                      <i class="fa fa-plus"></i> <small>Macroproceso</small>
+                </a>
+              {% endif %}
+                   
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Abrir">
                   <i class="fa fa-minus"></i></button>
@@ -78,10 +81,7 @@
                                                             {% for proceso in mp.procesos %}
                                                                 <tr>
                                                                     <td>
-                                                                        
-                                                                          
                                                                              {{proceso.codigo}}
-                                                                        
                                                                     </td>
                                                                     <td>{{ proceso.nombre }}</td>
                                                                     <td>{{proceso.vigencia}}</td>

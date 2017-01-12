@@ -28,6 +28,7 @@
             </tbody>
         </table>
     </div>
+     {% if app.user.role != "ROLE_SUPERVISOR" %}
     <div class="col-lg-1">
         <br>
         <a data-toggle="tooltip"data-original-title="Nueva accion" href="{{ path('accion_new', { 'idHallazgo': hallazgo.id }) }}" class="btn btn-app">
@@ -35,6 +36,7 @@
         </a>
         <br>
     </div>
+{% endif %}
     <div class="col-lg-8">
         <h3>Acciones <small>Auditoria: {{hallazgo.auditoria.proceso.nombre}}</small></h3>
         <hr>
@@ -46,7 +48,9 @@
                 <th>Observaciones</th>
                 <th>Observaciones cierre</th>
                 <th>Fecha cierre</th>
+                {% if app.user.role != "ROLE_SUPERVISOR" %}
                 <th>Cerrar</th>
+                {% endif %}
             </tr>
         </thead>
         <tbody>
@@ -62,9 +66,13 @@
                         {% if accion.cierreAuditoria.fecha %}{{ accion.cierreAuditoria.fecha|date('Y-m-d') }}{% endif %}
                     {% else %}{{ accion.fechaMaxima|date('Y-m-d') }}{% endif %}
                 </td>
+                {% if app.user.role != "ROLE_SUPERVISOR" %}
                 <td>
+                
                     {% if accion.cierreAuditoria == null %} <a class="btn btn-default btn-xs" href="{{ path('cierreauditoria_new', { 'idAccion': accion.id }) }}">Cerrar Accion</a> {% else %} {{accion.cierreAuditoria.estado}}{% endif %}
+                
                 </td>
+                {% endif %}
             </tr>
         {% endfor %}
         </tbody>
