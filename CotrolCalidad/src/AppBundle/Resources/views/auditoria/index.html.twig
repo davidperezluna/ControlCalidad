@@ -1,5 +1,11 @@
 {% extends 'base.html.twig' %}
-
+{% block referencia %}
+     <ol class="breadcrumb">
+        <li><a href="{{ path('homepage') }}"><i class="fa fa-dashboard"></i> Inicio</a></li>
+        <li><a href="{{ path('proceso_index') }}">Procesos</a></li>
+        <li class="active">Nuevo</li>
+      </ol>
+{% endblock %}
 {% block body %}
 <div class="col-lg-12">
      <h2>Auditorias al <small>{{proceso.nombre}}</small></h2>
@@ -72,9 +78,15 @@
                 <td> <textarea class="form-control" cols="30" rows="5" readonly>{{ auditorium.criterio }}</textarea></td>
                 <td>{% if auditorium.fechaInicio %}{{ auditorium.fechaInicio|date('Y-m-d') }}{% endif %}</td>
                 <td>
-                    <div class="btn-group">
-                              <a data-toggle="tooltip"data-original-title="ver" href="{{ path('auditoria_show', { 'id': auditorium.id }) }}" class="btn btn-default btn-flat"><i class="fa fa-eye"></i></a>
-                    </div>
+                    {% if auditorium.estado == 0  %}
+                      <div class="btn-group">
+                        <a data-toggle="tooltip"data-original-title="ver auditoria" href="{{ path('auditoria_show', { 'id': auditorium.id }) }}" class="btn btn-default btn-flat btn-xs"><i class="fa fa-eye"></i></a>
+                      </div>
+                      {% else %}
+                      <div class="btn-group">
+                        <a data-toggle="tooltip"data-original-title="ver audirotia cerrada" href="{{ path('auditoria_show', { 'id': auditorium.id }) }}" class="btn btn-success btn-flat btn-xs"><i class="fa fa-eye"></i></a>
+                      </div>   
+                  {% endif %}
                 </td>
             </tr>
             {% else %}
@@ -86,9 +98,15 @@
                 <td> <textarea class="form-control" cols="30" rows="5" readonly>{{ auditorium.criterio }}</textarea></td>
                 <td>{% if auditorium.fechaInicio %}{{ auditorium.fechaInicio|date('Y-m-d') }}{% endif %}</td>
                 <td>
-                    <div class="btn-group">
-                              <a data-toggle="tooltip"data-original-title="ver" href="{{ path('auditoria_show', { 'id': auditorium.id }) }}" class="btn btn-default btn-flat"><i class="fa fa-eye"></i></a>
-                    </div>
+                   {% if auditorium.estado == 0  %}
+                      <div class="btn-group">
+                        <a data-toggle="tooltip"data-original-title="ver auditoria" href="{{ path('auditoria_show', { 'id': auditorium.id }) }}" class="btn btn-default btn-flat btn-xs"><i class="fa fa-eye"></i></a>
+                      </div>
+                      {% else %}
+                      <div class="btn-group">
+                        <a data-toggle="tooltip"data-original-title="ver audirotia cerrada" href="{{ path('auditoria_show', { 'id': auditorium.id }) }}" class="btn btn-success btn-flat btn-xs"><i class="fa fa-eye"></i></a>
+                      </div>   
+                  {% endif %}
                 </td>
               </tr>
             {% endif %}

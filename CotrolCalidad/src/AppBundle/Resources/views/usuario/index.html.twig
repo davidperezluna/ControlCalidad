@@ -44,23 +44,23 @@
                         <tbody>
                         {% for usuario in usuarios %}
                             {% if app.user.role == "ROLE_SUPER_ADMIN" %}
-                                <tr>
-                                    <td><a href="{{ path('usuario_show', { 'id': usuario.id }) }}">{{ usuario.id }}</a></td>
-                                    <td>{{ usuario.nombres }}</td>
-                                    <td>{{ usuario.apellidos }}</td>
-                                    <td>{{ usuario.direccion }}</td>
-                                    <td>{{ usuario.telefono }}</td>
-                                    <td>{{ usuario.email }}</td>
-                                    <td>{{ usuario.role }}</td>
-                                    <td>{{ usuario.identificacion }}</td>
-                                    <td>
-                                        <div class="btn-group">
-                                          <a  data-toggle="tooltip"data-original-title="ver" href="{{ path('usuario_show', { 'id': usuario.id }) }}" class="btn btn-default btn-flat"><i class="fa fa-eye"></i></a>
-                                          <a data-toggle="tooltip"data-original-title="editar" href="{{ path('usuario_edit', { 'id': usuario.id }) }}" class="btn btn-default btn-flat"><i class="fa fa-edit"></i></a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                    {% elseif app.user.role == usuario.role or usuario.role == "ROLE_LIDER_PROCESO"  %}
+                                        <tr>
+                                            <td><a href="{{ path('usuario_show', { 'id': usuario.id }) }}">{{ usuario.id }}</a></td>
+                                            <td>{{ usuario.nombres }}</td>
+                                            <td>{{ usuario.apellidos }}</td>
+                                            <td>{{ usuario.direccion }}</td>
+                                            <td>{{ usuario.telefono }}</td>
+                                            <td>{{ usuario.email }}</td>
+                                            <td>{{ usuario.role }}</td>
+                                            <td>{{ usuario.identificacion }}</td>
+                                            <td>
+                                                <div class="btn-group">
+                                                  <a  data-toggle="tooltip"data-original-title="ver" href="{{ path('usuario_show', { 'id': usuario.id }) }}" class="btn btn-default btn-flat"><i class="fa fa-eye"></i></a>
+                                                  <a data-toggle="tooltip"data-original-title="editar" href="{{ path('usuario_edit', { 'id': usuario.id }) }}" class="btn btn-default btn-flat"><i class="fa fa-edit"></i></a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    {% elseif app.user.role == usuario.role or usuario.role == "ROLE_LIDER_PROCESO" or usuario.role == "ROLE_USER"  %}
                                         <tr>
                                         <td><a href="{{ path('usuario_show', { 'id': usuario.id }) }}">{{ usuario.id }}</a></td>
                                         <td>{{ usuario.nombres }}</td>

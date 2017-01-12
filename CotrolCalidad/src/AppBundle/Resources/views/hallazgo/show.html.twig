@@ -60,7 +60,7 @@
                 <td>
                     {% if accion.cierreAuditoria != null %}
                         {% if accion.cierreAuditoria.fecha %}{{ accion.cierreAuditoria.fecha|date('Y-m-d') }}{% endif %}
-                    {% else %}Accion no Cerrada{% endif %}
+                    {% else %}{{ accion.fechaMaxima|date('Y-m-d') }}{% endif %}
                 </td>
                 <td>
                     {% if accion.cierreAuditoria == null %} <a class="btn btn-default btn-xs" href="{{ path('cierreauditoria_new', { 'idAccion': accion.id }) }}">Cerrar Accion</a> {% else %} {{accion.cierreAuditoria.estado}}{% endif %}

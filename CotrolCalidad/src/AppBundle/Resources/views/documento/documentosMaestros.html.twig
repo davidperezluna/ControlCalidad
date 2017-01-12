@@ -27,7 +27,9 @@
           </thead> 
           <tbody>
             {% for procedimientoDocumento in procedimientosDocumentos %}
-              <tr>
+
+            {% if app.user.role == "ROLE_SUPER_ADMIN" %}
+                <tr>
                   <td>{{procedimientoDocumento.procedimiento.proceso.macroProceso.nombre}}</td>
                   <td>{{procedimientoDocumento.procedimiento.proceso.nombre}}</td>
                   
@@ -45,6 +47,32 @@
                   <td>{{procedimientoDocumento.documento.vigencia}}</td>
                   <td><a data-toggle="tooltip"data-original-title="descargar" class="btn btn-primary" href="{{ path('catalogo_marca_download', { 'id': procedimientoDocumento.documento.id }) }}"><i class="fa  fa-cloud-download"></i></a></td>
               </tr>
+
+              {% elseif procedimientoDocumento.procedimiento.proceso.macroProceso.dependencia.id == app.user.dependencia.id %}
+                <tr>
+                  <td>{{procedimientoDocumento.procedimiento.proceso.macroProceso.nombre}}</td>
+                  <td>{{procedimientoDocumento.procedimiento.proceso.nombre}}</td>
+                  
+                  <td>{{procedimientoDocumento.procedimiento.proceso.macroProceso.sigla}}{% set idProceso = procedimientoDocumento.procedimiento.proceso.codigo / 2 %}{% if idProceso < 5 %}0{% endif %}{{procedimientoDocumento.procedimiento.proceso.codigo}}_{% set idProcedimiento = procedimientoDocumento.procedimiento.codigo / 2 %}{% if idProcedimiento < 5 %}0{% endif %}{{procedimientoDocumento.procedimiento.codigo}}_{{procedimientoDocumento.documento.tipoDocumento.sigla}}{% set idDocumento = procedimientoDocumento.documento.id / 2 %}{% if idDocumento < 5 %}0{% endif %}{{procedimientoDocumento.documento.id}}</td>
+                  <td>{{procedimientoDocumento.documento.nombre}}</td>
+                  <td>
+                    {% for procedimientoUsuario in procedimientoDocumento.procedimiento.procedimientosUsuarios %}
+                        {% if procedimientoUsuario.role == "Lider" %}
+                        {{procedimientoUsuario.usuario.nombres}} {{procedimientoUsuario.usuario.apellidos}} <b>{{procedimientoUsuario.usuario.cargo}}
+                        </b>{% endif %}<br>
+                    {% endfor %}          
+                  </td>
+                  <td>{{procedimientoDocumento.documento.tipoDocumento.nombre}}</td>
+                  <td>{{procedimientoDocumento.documento.version}}</td>
+                  <td>{{procedimientoDocumento.documento.vigencia}}</td>
+                  <td><a data-toggle="tooltip"data-original-title="descargar" class="btn btn-primary" href="{{ path('catalogo_marca_download', { 'id': procedimientoDocumento.documento.id }) }}"><i class="fa  fa-cloud-download"></i></a></td>
+              </tr>
+
+            {% endif %} 
+              
+              
+
+              
             {% endfor %}
           </tbody>
         </table>

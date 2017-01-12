@@ -1,5 +1,11 @@
 {% extends 'base.html.twig' %}
-
+{% block referencia %}
+     <ol class="breadcrumb">
+        <li><a href="{{ path('homepage') }}"><i class="fa fa-dashboard"></i> Inicio</a></li>
+        <li><a href="{{ path('auditoria_index', { 'idProceso': idProceso }) }}">Auditoria</a></li>
+        <li class="active">Nuevo</li>
+      </ol>
+{% endblock %}
 {% block body %}
     <h3>Cerrar Auditoria</h3>
     <div class="col-lg-4">

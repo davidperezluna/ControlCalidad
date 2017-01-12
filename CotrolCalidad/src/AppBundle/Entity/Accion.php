@@ -38,7 +38,7 @@ class Accion
     /**
      * @var string
      *
-     * @ORM\Column(name="observaciones", type="text")
+     * @ORM\Column(name="observaciones", type="text", nullable=true)
      */
     private $observaciones;
 
@@ -122,7 +122,7 @@ class Accion
      *
      * @return Accion
      */
-    public function setObservaciones($observaciones)
+    public function setObservaciones($observaciones = null)
     {
         $this->observaciones = $observaciones;
 

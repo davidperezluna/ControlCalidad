@@ -48,7 +48,7 @@ class TipoHallazgoController extends Controller
             $em->persist($tipoHallazgo);
             $em->flush($tipoHallazgo);
 
-            return $this->redirectToRoute('tipohallazgo_show', array('id' => $tipoHallazgo->getId()));
+            return $this->redirectToRoute('tipohallazgo_index');
         }
 
         return $this->render('AppBundle:tipohallazgo:new.html.twig', array(
