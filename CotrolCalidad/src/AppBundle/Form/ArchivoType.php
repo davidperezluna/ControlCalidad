@@ -26,12 +26,12 @@ class ArchivoType extends AbstractType
             ))
         ->add('urlDocumento', FileType::class,array(
             "label" => "Documento Original",
-            'attr' =>array("class" =>"file file-5", "data-preview-file-type"=>"any", "data-upload-url"=>"#"),
+            'attr' =>array("class" =>"file file-5", "data-preview-file-type"=>"any"),
             "data_class" => null
           )) 
         ->add('urlDocumentoPdf', FileType::class,array(
             "label" => "Documento PDF",
-            'attr' =>array("class" =>"file file-5", "data-preview-file-type"=>"any", "data-upload-url"=>"#"),
+            'attr' =>array("class" =>"file file-5", "data-preview-file-type"=>"any"),
             "data_class" => null
           )) 
 

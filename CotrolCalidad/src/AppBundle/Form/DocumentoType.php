@@ -19,17 +19,17 @@ class DocumentoType extends AbstractType
         $builder
         ->add('nombre', TextType::class,array(
                 "attr" =>array("class" => "form-control")
-            ))
+            )) 
 
         ->add('urlDocumento', FileType::class,array(
             "label" => "Documento",
-            'attr' =>array("class" =>"file file-5", "data-preview-file-type"=>"any", "data-upload-url"=>"#"),
+            'attr' =>array("class" =>"file file-5", "data-preview-file-type"=>"any"),
             "data_class" => null
           ))
 
           ->add('urlInstructivo', FileType::class,array(
             "label" => "Instructivo",
-            'attr' =>array("class" =>"file file-5", "data-preview-file-type"=>"any", "data-upload-url"=>"#"),
+            'attr' =>array("class" =>"file file-5", "data-preview-file-type"=>"any"),
             "data_class" => null
           )) 
 
