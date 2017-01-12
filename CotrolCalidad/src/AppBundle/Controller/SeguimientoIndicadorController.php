@@ -222,16 +222,16 @@ class SeguimientoIndicadorController extends Controller
                     $seguimientoIndicador->setMes("Enero");
                 }
                  elseif (count($indicador->getSeguimientosIndicadores()) == 1) {
-                    $seguimientoIndicador->setMes("Enero");
+                    $seguimientoIndicador->setMes(" ");
                 }
                 elseif (count($indicador->getSeguimientosIndicadores()) > 1 && count($indicador->getSeguimientosIndicadores()) < 5) {
-                    $seguimientoIndicador->setMes("Enero");
+                    $seguimientoIndicador->setMes(" ");
                 }
                 elseif (count($indicador->getSeguimientosIndicadores()) == 5) {
                     $seguimientoIndicador->setMes("Junio");
                 }
                  elseif (count($indicador->getSeguimientosIndicadores()) > 5) {
-                    $seguimientoIndicador->setMes("Junio");
+                    $seguimientoIndicador->setMes(" ");
                 }
             }
             if ($indicador->getPeriodicidad() == "ANUAL") {
