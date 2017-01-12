@@ -102,11 +102,29 @@
                             {{app.user.nombres}}
                         {% endif %}</span>
                       </p>
-                      <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                      {% if app.user.role == "ROLE_ADMIN_SGC" %}
+                          Administrador SGC
+                      {% endif %}
+
+                      {% if app.user.role == "ROLE_SUPERVISOR" %}
+                        Supervisor
+                      {% endif %}
+
+                      {% if app.user.role == "ROLE_LIDER_PROCESO" %}
+                        Lider de Proceso
+                      {% endif %}
+
+                      {% if app.user.role == "ROLE_USER" %}
+                        Usuario
+                      {% endif %}
+
+                      {% if app.user.role == "ROLE_SUPER_ADMIN" %}
+                        Super Admin
+                      {% endif %}
+                      <br>
                     </div>
                   </div>
-             
-                 
+                  <br>
                   <!-- /.search form -->
                   <!-- sidebar menu: : style can be found in sidebar.less -->
                   <ul class="sidebar-menu">
@@ -574,7 +592,6 @@
               $(document).ready(function() {
                   $('table.display3').DataTable({
                     "lengthChange": false,
-                     "scrollX": true,
                      "ordering": false,
                      "language": {
                       "zeroRecords": "No Existen Registros",

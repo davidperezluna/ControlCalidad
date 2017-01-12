@@ -167,8 +167,6 @@
                             <tr>
                                 <th>Código</th>
                                 <th>Nombre</th>
-                                
-                               
                                 <th>Unidad medida</th>
                                 <th>Periodicidad</th>
                                 <th>Meta</th>
@@ -179,7 +177,7 @@
                         {% for indicador in proceso.indicadores %}
                             <tr>
                                 <td>
-                                   {{proceso.macroProceso.sigla | upper}}{{proceso.codigo | upper}}_{{indicador.codigo}}
+                                   {{proceso.macroProceso.sigla | upper}}{{proceso.codigo | upper}}_{% if indicador.codigo < 10 %}00{{indicador.codigo}}{% else %}0{{indicador.codigo}}{% endif %}
                                 </td>
                                 <td>{{ indicador.nombre }}</td>
                                 
