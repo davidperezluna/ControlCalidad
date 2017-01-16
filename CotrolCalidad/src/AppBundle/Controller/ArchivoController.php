@@ -174,7 +174,11 @@ class ArchivoController extends Controller
                         'La version ya existe!'
                     );
 
-                    return $this->redirectToRoute('proceso_show', array('id' => $preoceso->getId())); 
+                   if ($preoceso==null) {
+                return $this->redirectToRoute('procedimiento_show', array('id' => $procedimiento->getId()));
+                  }else{
+                     return $this->redirectToRoute('proceso_show', array('id' => $preoceso->getId())); 
+                  }
                 }else{
                     $archivoP->setEstado(0);
                     $em->persist($archivoP);

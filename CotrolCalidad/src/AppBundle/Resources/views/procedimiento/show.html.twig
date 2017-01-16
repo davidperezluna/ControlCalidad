@@ -77,6 +77,12 @@
       </ul>
       <div class="tab-content">
         <div class="tab-pane active" id="activity">
+          {% for flash_message in app.session.flashbag.get('error') %}
+                      <div class="alert alert-danger alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>¡Cuidado!</strong>{{ flash_message }}
+                      </div>
+                  {% endfor %}
 
           <table class="table display" >
             <thead>
