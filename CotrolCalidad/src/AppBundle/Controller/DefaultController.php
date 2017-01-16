@@ -27,4 +27,29 @@ class DefaultController extends Controller
         }
         
     }
+
+    /**
+     * Lists all dependencia entities.
+     *
+     * @Route("/panelcontrol", name="panel_control")
+     */
+    public function panelControlAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $procesoId = $request->query->get('id');
+        if ($procesoId == null) {
+            $proceso = null;
+        }else{
+            $proceso = $em->getRepository('AppBundle:Proceso')->find($procesoId);
+        }
+        
+       
+        $dependencias = $em->getRepository('AppBundle:Dependencia')->findAll();
+        return $this->render('AppBundle:panelControl:panelControl.html.twig', array(
+            'dependencias' => $dependencias,
+            'proceso' => $proceso,
+
+        ));
+    }
 }
