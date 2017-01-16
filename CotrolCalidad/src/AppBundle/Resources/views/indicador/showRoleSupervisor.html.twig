@@ -19,7 +19,7 @@
 					<tr>
 						<th>Codigo</th>
 						<td>
-							{{indicador.proceso.macroProceso.sigla}}{% if indicador.proceso.codigo < 10 %}0{{indicador.proceso.codigo}}_{% else %}{{indicador.proceso.codigo}}_{% endif %}{% if indicador.codigo < 10 %}00{{ indicador.codigo }}{% else %}0{{ indicador.codigo }}{% endif %}
+							{{indicador.proceso.macroProceso.sigla}}{{indicador.proceso.codigo}}_{{ indicador.codigo }}
 						</td>
 						<th>Nombre</th>
 						<td>{{ indicador.nombre }}</td>

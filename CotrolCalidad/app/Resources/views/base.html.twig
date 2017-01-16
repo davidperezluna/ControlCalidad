@@ -97,9 +97,9 @@
                     <div class="pull-left info">
                       <p>
                         {% if app.user != null %}
-                            {{app.user.email}}
-                            <br>
                             {{app.user.nombres}}
+                            <br>
+                            {{app.user.APELLIDOS}}
                         {% endif %}</span>
                       </p>
                       {% if app.user.role == "ROLE_ADMIN_SGC" %}
