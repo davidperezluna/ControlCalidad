@@ -16,8 +16,10 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getManager(); 
 
         $user = $this->getUser();
-          
-        if (($user->getRole()!="ROLE_SUPER_ADMIN")) {
+        if ($user == null) {
+            return $this->redirectToRoute('usuario_logout');
+        }else{
+             if (($user->getRole()!="ROLE_SUPER_ADMIN")) {
            return $this->redirectToRoute('dependencia_show', array('id' => $user->getDependencia()->getId()));
         }else{
             $empresas = $em->getRepository('AppBundle:Empresa')->findAll();
@@ -25,6 +27,9 @@ class DefaultController extends Controller
                 'empresas' => $empresas,
             ));
         }
+        }
+          
+       
         
     }
 
