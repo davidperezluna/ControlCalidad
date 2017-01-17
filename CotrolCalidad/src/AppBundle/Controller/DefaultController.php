@@ -18,15 +18,15 @@ class DefaultController extends Controller
         $user = $this->getUser();
         if ($user == null) {
             return $this->redirectToRoute('usuario_logout');
-        }else{
-             if (($user->getRole()!="ROLE_SUPER_ADMIN")) {
-           return $this->redirectToRoute('dependencia_show', array('id' => $user->getDependencia()->getId()));
-        }else{
-            $empresas = $em->getRepository('AppBundle:Empresa')->findAll();
-             return $this->render('AppBundle:default:default.html.twig', array(
-                'empresas' => $empresas,
-            ));
-        }
+            }else{
+                if (($user->getRole()!="ROLE_SUPER_ADMIN")) {
+                    return $this->redirectToRoute('dependencia_show', array('id' => $user->getDependencia()->getId()));
+                }else{
+                    $empresas = $em->getRepository('AppBundle:Empresa')->findAll();
+                     return $this->render('AppBundle:default:default.html.twig', array(
+                        'empresas' => $empresas,
+                    ));
+                }
         }
           
        
